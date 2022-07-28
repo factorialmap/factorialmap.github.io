@@ -2,18 +2,18 @@ project:
   type: website
 
 website:
-  title: "mysite"
+  title: "kaizen_project"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
+    right:
       - about.qmd
-
+      - icon: github
+        href: https://github.com/
+      - icon: twitter
+        href: https://twitter.com
 format:
   html:
-    theme: Vapor
+    theme: cosmo
     css: styles.css
-    toc: true
 
-
+editor: visual
 
