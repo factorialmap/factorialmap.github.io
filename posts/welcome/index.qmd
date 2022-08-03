@@ -1,12 +1,50 @@
 ---
-title: "Welcome To My Blog"
-author: "Tristan O'Malley"
-date: "2022-07-25"
-categories: [news]
+title: "Motivação para o blog"
+author: "Marcelo Carvalho dos Anjos"
+date: "2022-08-03"
+categories: [Demanda, Dados,Ferramentas, Exploração, Modelos, Versionamento, Comunicação, Aplicação]
 ---
 
-This is the first post in a Quarto blog. Welcome!
+## Por que este blog e este canal no YouTube ?
 
-![](thumbnail.jpg)
+Em 2040 o Brasil terá uma população mais urbana e mais idosa. A necessidade de aumento de produtividade no país estará em rota de colisão com a demanda por mão de obra qualificada em países desenvolvidos que estarão com suas populações diminuindo.
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+O objetivo do canal é tentar auxiliar na melhoria de processos pra quando chegarmos lá, que estejamos preparados.
+
+![](demographic_shift.png)
+
+## Como serão divididos os tópicos ?
+
+-   **Demanda, definição do problema, objetivos e métricas de sucesso -** Etapa importante pois todo o trabalho realizado geralmente começa por aqui. Todas as ferramentas, linguagens e comunicação tem como objetivo atingir o que está determinado aqui.
+
+-   **Dados -** É uma etapa mais conceitual mas que é útil para estimular a observação, abstração e entendimento sobre o que são dados.
+
+-   **Ferramentas -** Geralmente as ferramentas utilizadas são o R(RStudio), Oracle SQL\*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.
+
+-   **Exploração -** Tópico sobre visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.
+
+-   **Modelos -** São abordados alguns tipos de modelos. Descritivos, preditivos e inferenciais.
+
+-   **Versionamento e Reprodutibilidade -** Tópico voltado para github, git, quarto, rmardown, bookdown etc.
+
+-   **Comunicação -** Etapa mais conceitual de comunicação de estatísticas e relatórios técnicos.
+
+-   **Aplicação -** Etapa criada para facilitar o entendimento do pesquisador onde tentarei associar o assunto por área de atuação onde se tratando do seu dia a dia, a ideia é que este entenda melhor o assunto e os dados e exemplos que estarão sendo usados.
+
+![](tumb.png)
+
+## Como será divido cada post ?
+
+Em 2001 para facilitar o entendimento dos profissionais da operação em industria eu criei um padrão e até então tem se mostrado eficiente ao longo do tempo
+
+-   **O que é :** qual a ideia do que está sendo abordado.
+
+-   **Qual o objetivo :** por que isso está sendo ou foi desenvolvido.
+
+-   **De onde vem :** quais as necessidades ou origem dessa demanda. A motivação.
+
+-   **Como fazer :** qual o procedimento, código, sequência ou fluxo.
+
+-   **Pra onde vai :** quem é o consumidor disso. Qual a aplicação prática disso.
+
+-   **Qual o resultado :** descrição dos resultados previstos ou comprovados.
