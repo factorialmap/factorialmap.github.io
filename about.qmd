@@ -1,8 +1,9 @@
 ---
-title: "Carvalho Ribeiro"
+title: "Sobre"
 image: images/channel_logo.png
 about:
-  template: jolla
+  template: trestles
+  image-width: 7em
   links:
     - icon: youtube
       text: YouTube
@@ -15,4 +16,14 @@ about:
       href: https://linkedin.com/carvalhoribeiro
 ---
 
+### **Bio** 
+
 O objetivo do blog é complementar o conteúdo postado no YouTube sobre melhoria de processos, projetos kaizen e business intelligence bem como as ferramentas e métodos empregados para facilitar a vida do pesquisador, melhorista de processo e demais profissionais da industria e setor de serviços.
+
+### **Education**
+
+**Nova Acrópole** \| Florianópolis, SC, Brasil\
+Filosofia no modelo Clássico \| 2014-2015
+
+**Universidade Anhanguera Uniderp** \| Campo Grande, MS, Brasil\
+Mestrado Produção e Gestão Agroindustrial \| 2008-2010

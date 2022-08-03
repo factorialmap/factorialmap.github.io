@@ -2,16 +2,16 @@
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "Carvalho Ribeiro",
+    "title": "Sobre",
     "section": "",
-    "text": "O objetivo do blog é complementar o conteúdo postado no YouTube sobre melhoria de processos, projetos kaizen e business intelligence bem como as ferramentas e métodos empregados para facilitar a vida do pesquisador, melhorista de processo e demais profissionais da industria e setor de serviços."
+    "text": "Education\nNova Acrópole | Florianópolis, SC, Brasil\nFilosofia no modelo Clássico | 2014-2015\nUniversidade Anhanguera Uniderp | Campo Grande, MS, Brasil\nMestrado Produção e Gestão Agroindustrial | 2008-2010"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Carvalho Ribeiro",
     "section": "",
-    "text": "news\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJul 28, 2022\n\n\nHarlow Malloc\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJul 25, 2022\n\n\nTristan O’Malley\n\n\n\n\n\n\nNo matching items"
+    "text": "Demanda\n\n\nDados\n\n\nFerramentas\n\n\nExploração\n\n\nModelos\n\n\nVersionamento\n\n\nComunicação\n\n\nAplicação\n\n\n\n\n\n\n\n\n\n\n\nAug 3, 2022\n\n\nMarcelo Carvalho dos Anjos\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJul 28, 2022\n\n\nHarlow Malloc\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "posts/post-with-code/index.html",
@@ -23,8 +23,36 @@
   {
     "objectID": "posts/welcome/index.html",
     "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "title": "Motivação para o blog",
     "section": "",
-    "text": "Since this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+    "text": "Em 2040 o Brasil terá uma população mais urbana e mais idosa. A necessidade de aumento de produtividade no país estará em rota de colisão com a demanda por mão de obra qualificada em países desenvolvidos que estarão com suas populações diminuindo.\nO objetivo do canal é tentar auxiliar na melhoria de processos pra quando chegarmos lá, que estejamos preparados."
+  },
+  {
+    "objectID": "posts/welcome/index.html#como-serão-divididos-os-tópicos",
+    "href": "posts/welcome/index.html#como-serão-divididos-os-tópicos",
+    "title": "Motivação para o blog",
+    "section": "Como serão divididos os tópicos ?",
+    "text": "Como serão divididos os tópicos ?\n\nDemanda, definição do problema, objetivos e métricas de sucesso - Etapa importante pois todo o trabalho realizado geralmente começa por aqui. Todas as ferramentas, linguagens e comunicação tem como objetivo atingir o que está determinado aqui.\nDados - É uma etapa mais conceitual mas que é útil para estimular a observação, abstração e entendimento sobre o que são dados.\nFerramentas - Geralmente as ferramentas utilizadas são o R(RStudio), Oracle SQL*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.\nExploração - Tópico sobre visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.\nModelos - São abordados alguns tipos de modelos. Descritivos, preditivos e inferenciais.\nVersionamento e Reprodutibilidade - Tópico voltado para github, git, quarto, rmardown, bookdown etc.\nComunicação - Etapa mais conceitual de comunicação de estatísticas e relatórios técnicos.\nAplicação - Etapa criada para facilitar o entendimento do pesquisador onde tentarei associar o assunto por área de atuação onde se tratando do seu dia a dia, a ideia é que este entenda melhor o assunto e os dados e exemplos que estarão sendo usados."
+  },
+  {
+    "objectID": "posts/welcome/index.html#como-será-divido-cada-post",
+    "href": "posts/welcome/index.html#como-será-divido-cada-post",
+    "title": "Motivação para o blog",
+    "section": "Como será divido cada post ?",
+    "text": "Como será divido cada post ?\nEm 2001 para facilitar o entendimento dos profissionais da operação em industria eu criei um padrão e até então tem se mostrado eficiente ao longo do tempo\n\nO que é : qual a ideia do que está sendo abordado.\nQual o objetivo : por que isso está sendo ou foi desenvolvido.\nDe onde vem : quais as necessidades ou origem dessa demanda. A motivação.\nComo fazer : qual o procedimento, código, sequência ou fluxo.\nPra onde vai : quem é o consumidor disso. Qual a aplicação prática disso.\nQual o resultado : descrição dos resultados previstos ou comprovados."
+  },
+  {
+    "objectID": "about.html#education",
+    "href": "about.html#education",
+    "title": "Sobre",
+    "section": "Education",
+    "text": "Education\n**Massachusetts Institute of Technology** | Cambridge, MA\nPh.D. in Computer Science | September 2009 - May 2014\n**The University of California, Berkeley** | Berkeley, CA\nB.S. in Computer Science | September 2005 - May 2009"
+  },
+  {
+    "objectID": "about.html#experience",
+    "href": "about.html#experience",
+    "title": "Sobre",
+    "section": "Experience",
+    "text": "Experience\n**Google Brain** | Principal Investigator | January 2018 - Present\n**Netflix** | Research Scientist | June 2014 - December 2017"
   }
 ]
