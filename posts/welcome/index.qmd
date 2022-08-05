@@ -11,27 +11,27 @@ Em 2040 o Brasil terá uma população mais urbana e mais idosa. A necessidade d
 
 O objetivo do canal é tentar auxiliar na melhoria de processos pra quando chegarmos lá, que estejamos preparados.
 
-![](demographic_shift.png)
+![](demographic_shift.png){fig-align="center" width="602"}
 
 ## Como serão divididos os tópicos ?
 
--   **Demanda, definição do problema, objetivos e métricas de sucesso -** Etapa importante pois todo o trabalho realizado geralmente começa por aqui. Todas as ferramentas, linguagens e comunicação tem como objetivo atingir o que está determinado aqui.
+-   **Demanda, definição do problema, objetivos e métricas de sucesso -** Serão abordados as necessidades, ou seja aquilo que torna todo o restante do trabalho necessário.
 
--   **Dados -** É uma etapa mais conceitual mas que é útil para estimular a observação, abstração e entendimento sobre o que são dados.
+-   **Dados -** Será abordado os conceitos com o objetivo de estimular a observação, abstração e entendimento sobre o que são dados.
 
--   **Ferramentas -** Geralmente as ferramentas utilizadas são o R(RStudio), Oracle SQL\*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.
+-   **Ferramentas -** Será abordado ferramentas como R(RStudio), Oracle SQL\*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.
 
--   **Exploração -** Tópico sobre visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.
+-   **Exploração -** Será abordado visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.
 
--   **Modelos -** São abordados alguns tipos de modelos. Descritivos, preditivos e inferenciais.
+-   **Modelos -** Será abordado alguns tipos de modelos descritivos, preditivos, inferenciais, otimização entre outros.
 
--   **Versionamento e Reprodutibilidade -** Tópico voltado para github, git, quarto, rmardown, bookdown etc.
+-   **Versionamento e Reprodutibilidade -** Será abordado o processo de desenvolvimento de documento reproduzível usando github, git, quarto_pub, rmardown, bookdown entre outros.
 
--   **Comunicação -** Etapa mais conceitual de comunicação de estatísticas e relatórios técnicos.
+-   **Comunicação -** Será abordado formas de comunicação das estatísticas e relatórios técnicos.
 
--   **Aplicação -** Etapa criada para facilitar o entendimento do pesquisador onde tentarei associar o assunto por área de atuação onde se tratando do seu dia a dia, a ideia é que este entenda melhor o assunto e os dados e exemplos que estarão sendo usados.
+-   **Aplicação -** Será abordado as ações e aplicações dos projetos.
 
-![](tumb.png)
+![](tumb.png){fig-align="center"}
 
 ## Como será divido cada post ?
 

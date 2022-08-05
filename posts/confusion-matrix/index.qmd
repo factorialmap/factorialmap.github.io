@@ -1,0 +1,139 @@
+---
+title: "Avaliar resultados de modelo preditivo com matriz de confusão"
+author: "Marcelo Carvalho dos Anjos"
+date: "2022-08-03"
+categories: [Modelos]
+image: "confusion_matrix.png"
+---
+
+### [**O que é uma matriz de confusão**]{style="color: #5AC8BE ;"}
+
+-   Tabela que facilita a visualização das previsões corretas e as erradas em modelos de classificação.
+
+-   Possibilita a interpretação dos resultados sobre diversos pontos de vista desde que tenhamos os **valores reais e os valores previstos pelo modelo.**
+
+    ![Matriz de confusão](confusion_matrix.png){width="605"}
+
+    -   **TP - verdadeiros positivos:** Casos em que previmos que o paciênte tem a doença e ele realmente tem.
+
+    -   **TN - verdadeiro negativos:** Casos em que previmos que o paciênte não tem a doença e ele realmente não tem.
+
+    -   **FP - falso positivo:** Previmos que sim, mas na verdade ele não tem a doença. também conhecido como "erro do tipo 1".
+
+    -   **FN - falso negativo:** Previmos que não, mas na verdade ele tem a doença. também conhecido como "erro do tipo 2".
+
+### [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+
+-   Por ser visual ajuda a responder rapidamente será que meu modelo teve um bom desempenho, onde deu errado, como posso corrigir ?
+
+-   As diversas saídas de previõe permite a criação de indicadores que serão uteis nos ajustes mais adequados conforme a necessidade do trabalho que está sendo desenvolvido.
+
+### [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+
+-   Em 1904 Karl Pearson criou a tabela de contingência. Por que precisamos e uma matriz de confusao se tevem a acuracidade ?
+
+-   Imagine prever quantas pessoas estao infectadas com um virus contagioso antes de apresentar sintomas e isola-las da populacao saudavel.
+
+### [**Como fazer**]{style="color: #5AC8BE ;"}
+
+Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/) , [tidymodels](https://www.tidymodels.org/) e [janitor](https://github.com/sfirke/janitor)\
+O principal pacote que será usando para analisar uma matriz de confusão é o pacote [yardstick](https://yardstick.tidymodels.org/) que já é carregado quando chamamos o pacote **tidymodels**.
+
+```{r}
+#| warning: false
+
+#packages
+library(tidyverse)
+library(tidymodels)
+
+#check
+two_class_example %>% filter(Class1 >0.5) %>% janitor::tabyl(truth)
+
+#exemplo de tabela cruzada usando janitor
+two_class_example %>% 
+  janitor::tabyl(truth, predicted) %>% 
+  janitor::adorn_totals(where = c("col", "row")) %>% 
+  janitor::adorn_title()
+
+#trocando nomes
+two_class_example %>% 
+  conf_mat(truth =truth, estimate =predicted, dnn =c("vlr_previsto","vlr_real"))
+
+#plot heatmap
+two_class_example %>% 
+  conf_mat(truth = truth, estimate = predicted) %>% 
+  autoplot(type = "heatmap")
+
+#acuracia- prop de acertos do modelo total de acerto / total previu
+two_class_example %>% 
+  accuracy(truth= truth, estimate = predicted)
+
+#sensibilidade ou recall é a proporção de casos positivos classif corretamente
+#Raio X de aeroporto prioriza sensitivity
+#diagnóstico de cancer também pois o não diagnóstico resulta em atraso no tratamento
+two_class_example %>% 
+  yardstick::sens(truth= truth, estimate = predicted)
+
+#Recall métrica útil nos casos em que o Falso Negativo supera o falso positivol
+#importante em casos médicos em que não importa se disparamos um alarme 
+#falso, mas os casos positivos reais não devem passar despercebidos!
+#Em nosso exemplo, Recall seria uma métrica melhor porque não queremos dar alta 
+#acidentalmente a uma pessoa infectada e deixá-la se misturar com a população 
+#saudável,espalhando o vírus contagioso. 
+#Agora você pode entender por que a acuracidade foi uma métrica ruim para modelo.
+two_class_example %>% 
+  yardstick::recall(truth= truth, estimate = predicted)
+
+#kappa
+two_class_example %>% 
+  yardstick::kap(truth= truth, estimate = predicted)
+
+#npv
+two_class_example %>% 
+  yardstick::npv(truth= truth, estimate = predicted)
+
+#ppv
+two_class_example %>% 
+  yardstick::ppv(truth= truth, estimate = predicted)
+
+#A precisão é util nos casos em que os falsos positivos são uma preocupação 
+#maior do que os falsos negativos.
+#A precisão é importante em sistemas de recomendação de música ou vídeo, 
+#sites de comércio eletrônico, etc. Resultados errados podem levar à perda de 
+#clientes e prejudicar o negócio.
+two_class_example %>% 
+  yardstick::precision(truth= truth, estimate = predicted)
+
+#spec
+two_class_example %>% 
+  yardstick::spec(truth= truth, estimate = predicted)
+
+#roc_curve
+two_class_example %>% 
+  roc_curve(truth = truth, estimate = Class1 ) %>% autoplot()
+
+#roc_auc
+two_class_example %>% 
+  roc_auc(truth = truth, estimate = Class1 )
+
+```
+
+::: {.callout-tip collapse="true"}
+## Diferença entre incidência e prevalencia
+
+**Incidencia** é o número de casos recém-diagnosticados de uma doença. Número de novos casos de uma doença dividido pelo número de pessoas em risco para a doença. Se, ao longo de um ano, cinco mulheres são diagnosticadas com câncer de mama, de uma população total de 200 mulheres do estudo (que não têm câncer de mama no início do período de estudo), então diríamos que a incidência de câncer de mama câncer nesta população foi de 0,025. (ou 2.500 por 100.000 mulheres-anos de estudo)
+
+**Prevalência** é o número total de casos da doença existentes em uma população. A taxa de prevalência é o número total de casos de uma doença existente em uma população dividido pela população total. Assim, se uma medida de câncer é feita em uma população de 40.000 pessoas e 1.200 foram recentemente diagnosticadas com câncer e 3.500 estão vivendo com câncer, então a prevalência de câncer é de 0,118. (ou 11.750 por 100.000 pessoas)
+:::
+
+### [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+
+-   A próxima etapa é o ajuste, finalização e comunicação do modelo.
+
+### [**Qual o resultado**]{style="color: #5AC8BE ;"}
+
+-   Aperfeiçoar as técnicas de avaliação de performance de modelos poupando tempo e dinheiro.
+
+-   Facilitar o processo de busca por melhorias nos modelos de previsão.
+
+-   Melhorar a comunicação dos resultados.

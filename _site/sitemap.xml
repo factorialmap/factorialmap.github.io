@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/dummy-post/post.html</loc>
+    <lastmod>2022-08-05T02:47:06.977Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/index.html</loc>
+    <lastmod>2022-08-05T03:30:03.884Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/blog.html</loc>
+    <lastmod>2022-08-05T02:50:39.592Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/confusion-matrix/index.html</loc>
+    <lastmod>2022-08-05T02:58:08.542Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/about.html</loc>
+    <lastmod>2022-08-05T02:58:22.863Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/welcome/index.html</loc>
+    <lastmod>2022-08-05T03:00:51.139Z</lastmod>
+  </url>
+</urlset>
