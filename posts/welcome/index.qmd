@@ -5,46 +5,48 @@ date: "2022-08-03"
 categories: [Demanda, Dados,Ferramentas, Exploração, Modelos, Versionamento, Comunicação, Aplicação]
 ---
 
-## Por que este blog e este canal no YouTube ?
+### [**Por que este blog e este canal no YouTube ?**]{style="color: #5AC8BE ;"}
 
-Em 2040 o Brasil terá uma população mais urbana e mais idosa. A necessidade de aumento de produtividade no país estará em rota de colisão com a demanda por mão de obra qualificada em países desenvolvidos que estarão com suas populações diminuindo.
+Em 2040 o Brasil terá uma população mais urbana e mais madura. A necessidade de aumento de produtividade no país estará em rota de colisão com a demanda por mão de obra qualificada em países desenvolvidos que estarão com suas populações diminuindo.
 
-O objetivo do canal é tentar auxiliar na melhoria de processos pra quando chegarmos lá, que estejamos preparados.
+O objetivo do canal e do blog é tentar auxiliar na melhoria de processos para que estejamos mais preparados quando chegarmos em 2040.
 
 ![](demographic_shift.png){fig-align="center" width="602"}
 
-## Como serão divididos os tópicos ?
+### [**Como serão divididos os tópicos ?**]{style="color: #5AC8BE ;"}
 
--   **Demanda, definição do problema, objetivos e métricas de sucesso -** Serão abordados as necessidades, ou seja aquilo que torna todo o restante do trabalho necessário.
+-   **Demanda, definição do problema, objetivos e métricas de sucesso -** Contém a origem e tipos de necessidade que é o que torna todo o restante do trabalho necessário.
 
--   **Dados -** Será abordado os conceitos com o objetivo de estimular a observação, abstração e entendimento sobre o que são dados.
+-   **Dados -** Contém conceitos com o objetivo de estimular a observação, abstração e entendimento sobre o que são dados.
 
--   **Ferramentas -** Será abordado ferramentas como R(RStudio), Oracle SQL\*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.
+-   **Ferramentas -** Contém ferramentas como R(RStudio), Oracle SQL\*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.
 
--   **Exploração -** Será abordado visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.
+-   **Exploração -** Contém visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.
 
--   **Modelos -** Será abordado alguns tipos de modelos descritivos, preditivos, inferenciais, otimização entre outros.
+-   **Modelos -** Contém alguns tipos de modelos descritivos, preditivos, inferenciais, otimização entre outros.
 
--   **Versionamento e Reprodutibilidade -** Será abordado o processo de desenvolvimento de documento reproduzível usando github, git, quarto_pub, rmardown, bookdown entre outros.
+-   **Versionamento e Reprodutibilidade -** Contém processos para desenvolvimento de documentos reproduzíveis usando versionamento `github, git`, criação de documentos `quarto_pub e rmardown`, criação de livros `bookdown` entre outros.
 
--   **Comunicação -** Será abordado formas de comunicação das estatísticas e relatórios técnicos.
+-   **Comunicação -** Contém abordagens sobre comunicação das estatísticas e relatórios técnicos.
 
--   **Aplicação -** Será abordado as ações e aplicações dos projetos.
+-   **Aplicação -** Contém histórico de ações e aplicações dos projetos.
 
 ![](tumb.png){fig-align="center"}
 
-## Como será divido cada post ?
+### [**Como será divido cada post ?**]{style="color: #5AC8BE ;"}
 
-Em 2001 para facilitar o entendimento dos profissionais da operação em industria eu criei um padrão e até então tem se mostrado eficiente ao longo do tempo
+Em 2001 para facilitar o entendimento dos profissionais da operação em industria eu escolhi um padrão que ao longo do tempo vem se mostrando eficiente e utilizarei aqui.
 
--   **O que é :** qual a ideia do que está sendo abordado.
+-   **O que é :** qual a ideia do que está sendo abordado ?
 
--   **Qual o objetivo :** por que isso está sendo ou foi desenvolvido.
+-   **Qual o objetivo :** por que isso está sendo ou foi desenvolvido ?
 
--   **De onde vem :** quais as necessidades ou origem dessa demanda. A motivação.
+-   **De onde vem :** quais as necessidades ou origem dessa demanda ? A motivação ?
 
--   **Como fazer :** qual o procedimento, código, sequência ou fluxo.
+-   **Como fazer :** qual o procedimento, código, sequência ou fluxo ?
 
--   **Pra onde vai :** quem é o consumidor disso. Qual a aplicação prática disso.
+-   **Pra onde vai :** quem é o consumidor disso ? Qual a aplicação prática ?
 
 -   **Qual o resultado :** descrição dos resultados previstos ou comprovados.
+
+Referencia: [Transição demográfica Brasil e Japão](https://youtu.be/xJWjSOml7zI)
