@@ -1,10 +1,16 @@
 ---
 title: "Como importar e visualizar dados - Titanic dataset parte1"
 author: "Marcelo Carvalho dos Anjos"
-date: "2022-08-03"
+date: "2022-08-07"
 categories: [Exploração]
 image: "data_import.png"
 ---
+
+::: callout-tip
+## O vídeo tema para este post disponível em
+
+[YouTube Como importar e visualizar dados - Titanic dataset parte1](https://youtu.be/p-wiv5wnLMw)
+:::
 
 ### [**O que é importação e visualização de dados**]{style="color: #5AC8BE ;"}
 
@@ -14,7 +20,7 @@ image: "data_import.png"
 
 -   Geralmente estão atrelados a uma métrica de sucesso e é feito após a etapa **P** do **PDCA** , **PPDAC** ou outro método de análise de fenõmeno e causa raíz utilizado.
 
-    ![Processo de projeto kaizen](data_import.png){width="700"}
+    ![Processo de projeto kaizen](data_import.png){width="605"}
 
 ### [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 
@@ -130,7 +136,7 @@ train_titanic %>%
 
 ```
 
-**Vamos juntar as variáveis e analisar sob outro ponto de vista**
+**Vamos juntar as variáveis age+sex+pclass e analisar sob outro ponto de vista**
 
 ```{r}
 #| warning: false
@@ -171,7 +177,7 @@ train_titanic %>%
 
 ```
 
-**Sera que o tamanho da familia importa e está bem representada ?**
+**Sera que o tamanho da familia importa e o dado está bem representado ?**
 
 ```{r}
 #| warning: false
@@ -187,7 +193,7 @@ train_titanic %>%
 
 ```
 
-**Será que o título dos nomes importa ?**
+**Será que existe algum padrão no nome que possa ser extraído e que ajude a explicar se impacta na sobrevivência ?**
 
 ```{r}
 #| warning: false
@@ -212,7 +218,3 @@ train_titanic %>%
 -   Facilitar a comunicação com os envolvidos no projeto.
 
 -   Melhorar e estimular a geração de ideias através da interação entre os membros do projeto.
-
-### [**Video**]{style="color: #5AC8BE ;"}
-
--   [Video no YouTube sobre o tema](https://youtu.be/p-wiv5wnLMw)

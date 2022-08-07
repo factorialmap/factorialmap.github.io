@@ -1,7 +1,7 @@
 ---
 title: "Modelo preditivo usando com rede neural"
 author: "Marcelo Carvalho dos Anjos"
-date: "2022-08-03"
+date: "2022-08-06"
 categories: [Modelos]
 image: "neural_class.png"
 ---
@@ -10,9 +10,15 @@ image: "neural_class.png"
 
 -   Rede neural é uma técnica que usa nós interconectados ou neuronios em uma estrutura de camadas com o objetivo de resolver problemas de previsão.
 
-    ![Rede Neural - Regressão](neural_reg.png){width="605"}
+    ::: panel-tabset
+    ## Rede neural regressão
 
-    ![Rede Neural - Classificação](neural_class.png){width="605"}
+    ![Rede Neural - Regressão](neural_reg.png){alt="Rede Neural - Regressão" width="605"}
+
+    ## Rede neural Classificação
+
+    ![Rede Neural - Classificação](neural_class.png){alt="Rede Neural - Classificação" width="605"}
+    :::
 
 ### [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 
@@ -91,14 +97,10 @@ Plotando o modelo que acabamos de fazer
 ```{r}
 #| warning: false
 #| label: plot-neural-net
-#| fig-alt: "Plot da rede neural"
-#| fig-width: 60
-#| fig-height: 20
+
 
 #plotando o gráfico
-NeuralNetTools::plotnet(mdl_fit_nn_iris,
-                        cex_val = .5,
-                        circle_col = "grey90")
+NeuralNetTools::plotnet(mdl_fit_nn_iris,pad_x=0.55, circle_col = "grey90")
 
 ```
 

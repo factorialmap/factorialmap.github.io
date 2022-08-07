@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marcelo Carvalho dos Anjos">
-<meta name="dcterms.date" content="2022-08-03">
+<meta name="dcterms.date" content="2022-08-06">
 
 <title>Carvalho Ribeiro Blog - Modelo preditivo usando com rede neural</title>
 <style>
@@ -199,7 +199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 3, 2022</p>
+      <p class="date">August 6, 2022</p>
     </div>
   </div>
     
@@ -212,17 +212,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="o-que-é-um-modelo-de-rede-neural"><span style="color: #5AC8BE ;"><strong>O que é um modelo de rede neural</strong></span></h3>
 <ul>
 <li><p>Rede neural é uma técnica que usa nós interconectados ou neuronios em uma estrutura de camadas com o objetivo de resolver problemas de previsão.</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Rede neural regressão</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Rede neural Classificação</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="neural_reg.png" class="img-fluid figure-img" width="605"></p>
+<p><img src="neural_reg.png" class="img-fluid figure-img" alt="Rede Neural - Regressão" width="605"></p>
 <p></p><figcaption class="figure-caption">Rede Neural - Regressão</figcaption><p></p>
 </figure>
 </div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="neural_class.png" class="img-fluid figure-img" width="605"></p>
+<p><img src="neural_class.png" class="img-fluid figure-img" alt="Rede Neural - Classificação" width="605"></p>
 <p></p><figcaption class="figure-caption">Rede Neural - Classificação</figcaption><p></p>
 </figure>
+</div>
+</div>
+</div>
 </div></li>
 </ul>
 </section>
@@ -266,26 +275,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">maxit =</span> <span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># weights:  43
-initial  value 147.734700 
-iter  10 value 52.945564
-iter  20 value 26.769894
-iter  30 value 17.136233
-iter  40 value 11.836506
-iter  50 value 6.758372
-iter  60 value 6.054320
-iter  70 value 5.821805
-iter  80 value 5.789431
-iter  90 value 5.733911
-iter 100 value 5.629667
-iter 110 value 5.300392
-iter 120 value 5.197445
-iter 130 value 5.160252
-iter 140 value 5.039001
-iter 150 value 5.010833
-iter 160 value 5.006860
-iter 170 value 5.006174
-iter 180 value 5.006124
-final  value 5.006123 
+initial  value 173.574949 
+iter  10 value 23.884505
+iter  20 value 7.392767
+iter  30 value 6.183677
+iter  40 value 5.273530
+iter  50 value 4.976371
+iter  60 value 4.886542
+iter  70 value 4.869171
+iter  80 value 4.844737
+iter  90 value 4.823461
+iter 100 value 4.789703
+iter 110 value 4.722156
+iter 120 value 4.611097
+iter 130 value 4.592617
+iter 140 value 4.584783
+iter 150 value 4.584329
+iter 160 value 4.584321
+final  value 4.584320 
 converged</code></pre>
 </div>
 </div>
@@ -301,45 +308,45 @@ converged</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         ...1 sepal_length sepal_width petal_length petal_width    species
-1      setosa          5.1         3.5          1.4         0.2     setosa
-2      setosa          4.9         3.0          1.4         0.2     setosa
-3      setosa          5.0         3.6          1.4         0.2     setosa
-4      setosa          4.9         3.1          1.5         0.1     setosa
-5      setosa          5.8         4.0          1.2         0.2     setosa
-6      setosa          5.7         3.8          1.7         0.3     setosa
-7      setosa          5.2         3.5          1.5         0.2     setosa
-8      setosa          5.4         3.4          1.5         0.4     setosa
-9      setosa          4.9         3.1          1.5         0.2     setosa
-10     setosa          4.9         3.6          1.4         0.1     setosa
-11     setosa          5.1         3.4          1.5         0.2     setosa
-12     setosa          5.0         3.5          1.6         0.6     setosa
-13     setosa          5.0         3.3          1.4         0.2     setosa
-14 versicolor          5.5         2.3          4.0         1.3 versicolor
-15 versicolor          6.3         3.3          4.7         1.6 versicolor
-16 versicolor          6.6         2.9          4.6         1.3 versicolor
-17 versicolor          5.0         2.0          3.5         1.0 versicolor
-18 versicolor          5.6         3.0          4.5         1.5 versicolor
-19 versicolor          6.1         2.8          4.7         1.2 versicolor
-20 versicolor          5.5         2.4          3.8         1.1 versicolor
-21 versicolor          5.8         2.7          3.9         1.2 versicolor
-22  virginica          6.0         2.7          5.1         1.6 versicolor
-23 versicolor          6.3         2.3          4.4         1.3 versicolor
-24 versicolor          6.1         3.0          4.6         1.4 versicolor
-25 versicolor          5.0         2.3          3.3         1.0 versicolor
-26 versicolor          5.7         3.0          4.2         1.2 versicolor
+1      setosa          4.6         3.1          1.5         0.2     setosa
+2      setosa          4.8         3.0          1.4         0.1     setosa
+3      setosa          4.3         3.0          1.1         0.1     setosa
+4      setosa          5.8         4.0          1.2         0.2     setosa
+5      setosa          5.7         3.8          1.7         0.3     setosa
+6      setosa          5.1         3.3          1.7         0.5     setosa
+7      setosa          5.0         3.0          1.6         0.2     setosa
+8      setosa          5.2         3.5          1.5         0.2     setosa
+9      setosa          5.5         3.5          1.3         0.2     setosa
+10     setosa          5.0         3.5          1.3         0.3     setosa
+11     setosa          4.4         3.2          1.3         0.2     setosa
+12     setosa          5.1         3.8          1.6         0.2     setosa
+13     setosa          5.3         3.7          1.5         0.2     setosa
+14 versicolor          6.4         3.2          4.5         1.5 versicolor
+15 versicolor          6.9         3.1          4.9         1.5 versicolor
+16 versicolor          6.1         2.8          4.0         1.3 versicolor
+17 versicolor          6.7         3.0          5.0         1.7 versicolor
+18 versicolor          6.0         2.9          4.5         1.5 versicolor
+19  virginica          6.0         2.7          5.1         1.6 versicolor
+20 versicolor          5.4         3.0          4.5         1.5 versicolor
+21 versicolor          5.6         3.0          4.1         1.3 versicolor
+22 versicolor          5.5         2.6          4.4         1.2 versicolor
+23 versicolor          5.8         2.6          4.0         1.2 versicolor
+24 versicolor          5.7         2.9          4.2         1.3 versicolor
+25 versicolor          6.2         2.9          4.3         1.3 versicolor
+26 versicolor          5.7         2.8          4.1         1.3 versicolor
 27  virginica          5.8         2.7          5.1         1.9  virginica
-28  virginica          7.1         3.0          5.9         2.1  virginica
-29  virginica          6.5         3.0          5.8         2.2  virginica
-30  virginica          4.9         2.5          4.5         1.7  virginica
+28  virginica          7.2         3.6          6.1         2.5  virginica
+29  virginica          6.8         3.0          5.5         2.1  virginica
+30  virginica          5.7         2.5          5.0         2.0  virginica
 31  virginica          5.8         2.8          5.1         2.4  virginica
 32  virginica          6.4         3.2          5.3         2.3  virginica
-33  virginica          6.1         3.0          4.9         1.8  virginica
-34  virginica          6.1         2.6          5.6         1.4  virginica
-35  virginica          6.4         3.1          5.5         1.8  virginica
-36  virginica          6.9         3.1          5.4         2.1  virginica
-37  virginica          6.9         3.1          5.1         2.3  virginica
-38  virginica          5.8         2.7          5.1         1.9  virginica
-39  virginica          6.2         3.4          5.4         2.3  virginica</code></pre>
+33  virginica          6.5         3.0          5.5         1.8  virginica
+34  virginica          7.7         2.8          6.7         2.0  virginica
+35  virginica          6.3         2.7          4.9         1.8  virginica
+36  virginica          6.7         3.3          5.7         2.1  virginica
+37  virginica          6.2         2.8          4.8         1.8  virginica
+38  virginica          6.3         3.4          5.6         2.4  virginica
+39  virginica          6.0         3.0          4.8         1.8  virginica</code></pre>
 </div>
 </div>
 <p>Como já temos o dados previstos e também o real, podemos fazer uma a matriz de confusão para facilitar a visualização dos resultados e analisar o desempenho inicial do modelo.</p>
@@ -365,8 +372,8 @@ converged</code></pre>
 <pre><code> [1] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
  [6] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
 [11] "setosa"     "setosa"     "setosa"     "versicolor" "versicolor"
-[16] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
-[21] "versicolor" "virginica"  "versicolor" "versicolor" "versicolor"
+[16] "versicolor" "versicolor" "versicolor" "virginica"  "versicolor"
+[21] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
 [26] "versicolor" "virginica"  "virginica"  "virginica"  "virginica" 
 [31] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
 [36] "virginica"  "virginica"  "virginica"  "virginica" </code></pre>
@@ -375,16 +382,17 @@ converged</code></pre>
 <p>Plotando o modelo que acabamos de fazer</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plotando o gráfico</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>NeuralNetTools<span class="sc">::</span><span class="fu">plotnet</span>(mdl_fit_nn_iris, <span class="at">circle_col =</span> <span class="st">"grey90"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>NeuralNetTools<span class="sc">::</span><span class="fu">plotnet</span>(mdl_fit_nn_iris,<span class="at">pad_x=</span><span class="fl">0.55</span>, <span class="at">circle_col =</span> <span class="st">"grey90"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="neuralnet_files/figure-html/plot-neural-net-1.png" class="img-fluid" alt="Plot da rede neural" width="5760"></p>
+<p><img src="neuralnet_files/figure-html/plot-neural-net-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="pra-onde-vai-quem-é-o-cliente" class="level3">
 <h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
-<li>A próxima</li>
+<li>Um modelos de previsão de classificação pode ser embarcado dentro do sistema de produção.</li>
+<li></li>
 </ul>
 </section>
 <section id="qual-o-resultado" class="level3">

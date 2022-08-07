@@ -2,9 +2,9 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/confusion-matrix/index.html",
       "/posts/importar-visualizar/importar_visualizar.html",
       "/posts/neural-net-nnet/neuralnet.html",
+      "/posts/confusion-matrix/index.html",
       "/posts/welcome/index.html"
     ]
   },
