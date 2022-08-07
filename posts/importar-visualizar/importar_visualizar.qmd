@@ -1,0 +1,218 @@
+---
+title: "Como importar e visualizar dados - Titanic dataset parte1"
+author: "Marcelo Carvalho dos Anjos"
+date: "2022-08-03"
+categories: [Exploração]
+image: "data_import.png"
+---
+
+### [**O que é importação e visualização de dados**]{style="color: #5AC8BE ;"}
+
+-   É a etapa de extração de dados que possam contribuir para a solução do problema a ser resolvido.
+
+-   A visualização é uma forma intuitiva de traçar relações possíveis entre os dados e o desfecho permitindo a geração de questões e levantamente de hipóteses.
+
+-   Geralmente estão atrelados a uma métrica de sucesso e é feito após a etapa **P** do **PDCA** , **PPDAC** ou outro método de análise de fenõmeno e causa raíz utilizado.
+
+    ![Processo de projeto kaizen](data_import.png){width="605"}
+
+### [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+
+-   Disponibilizar recursos revelantes para solução dos problemas
+
+-   Filtrar dados relevantes dos não relevantes, entender a natureza dos dados se são realmente ruídos ou carecem de representação.
+
+-   Avaliar existencia de *shadow stats* ou se haverá dificuldade na coleta. Por exemplo: o dado pode ser muito relevante mas difícil de ser coletado ou haver muita instabilidade e ambiguidade nos dados por exemplo usar critérios diferentes.
+
+-   Gerar novas questões e hipóteses que poderão utilizar novos dados ou um resultado de interação entre os existentes.
+
+### [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+
+-   A extração e visualização dos dados vem da necessidade de encontrar variáveis que expliquem o fenômeno e ajudem a prever eventos futuros.
+
+-   Melhorar e estimular a geração de ideias através da interação entre os envolvidos.
+
+### [**Como fazer**]{style="color: #5AC8BE ;"}
+
+Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/) , [tidymodels](https://www.tidymodels.org/) e [janitor](https://github.com/sfirke/janitor), [ggpubr](http://rpkgs.datanovia.com/ggpubr/index.html), [funmodeling](http://pablo14.github.io/funModeling/articles/funModeling_quickstart.html), [ggalluvial](https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html) e [visdat](https://cran.r-project.org/web/packages/visdat/vignettes/using_visdat.html)\
+
+O dados podem ser baixados no [Kaggle titanic dataset](https://www.kaggle.com/competitions/titanic/data)
+
+```{r}
+#| warning: false
+
+# pacotes           --------------------------------------------------------
+library(tidymodels)
+library(tidyverse)
+library(janitor)
+library(ggpubr)
+library(funModeling)
+library(ggalluvial)
+library(visdat)
+
+# dados             --------------------------------------------------------
+#importar os dados do kaggle e salvar em  diretorio padrão
+
+# importar dados e padronizar colunas
+train_titanic <- 
+	read.csv("train.csv", na.strings = c(""," ")) %>% 
+	clean_names() %>% 
+	mutate(is_train = TRUE) 
+
+#importar dados de teste
+test_titanic <- 
+  read.csv("test.csv", na.strings = c(""," ")) %>% 
+  clean_names() %>% 
+  mutate(survived = NA, is_train = FALSE) 
+
+#juntar os conjuntos
+split_titanic <- bind_rows(train_titanic, test_titanic)
+
+#check nas caracteristicas dos dados
+split_titanic %>% funModeling::df_status()
+
+```
+
+Como o nosso conjunto de dados é pequeno(tem poucas variáveis) é possível usar um gráfico para visualizar os tipos de dados e as características.
+
+```{r}
+#| warning: false
+
+split_titanic %>% visdat::vis_dat()
+```
+
+::: {.callout-tip collapse="true"}
+## Como faço pra visualizar dados faltantes quando o conjunto for grande ?
+
+**Sugestão** É possível usar o pacote `naniar` com a função `naniar::miss_var_summary()`
+:::
+
+Como resultado da análise podemos verificar a necessidade de algumas transformações nos dados. Anotamos tudo para alterarmos posteriormente mas seguimos com a análise exploratória por enquanto.
+
+> Alterar o tipo de variável de `sex, embarked, survived, pclass = factor`
+>
+> Inserir dados faltantes em `embarked = moda, age e fare = usando knn`
+
+Vamos fazer uma **correlação** para avaliar os padrões existentes. **Mas note**. Para fazer correlação, os dados precisam ser **numéricos** por isso usamos a função `select_if(is.numeric)` . Pelo padrão apresentado é possível verificar a existencia de dados categóricos `eles geralmente ficam espaçados no gráfico` e eles precisam ser transformados pra factor posteriormente e que já anotamos e comunicamos.
+
+```{r}
+#| warning: false
+# correlacao
+train_titanic %>% 
+  select_if(is.numeric) %>% 
+  GGally::ggscatmat(color = "survived", corMethod = "spearman")+
+  theme_pubclean()
+
+```
+
+**Será que a idade importa ?**
+
+```{r}
+#| warning: false
+
+
+# age - será que a idade importa ? 
+train_titanic %>% 
+  ggplot(aes(x=age, fill = factor(survived)))+
+  geom_density(alpha =0.5)
+```
+
+**Será que o sexo importa ?**
+
+```{r}
+#| warning: false
+
+# age, sex and class - será que o sexo importa ?
+train_titanic %>% 
+  ggplot(aes(x=pclass, fill= factor(survived)))+
+  geom_bar(stat = "count")+
+  facet_grid(~sex)
+
+```
+
+**Vamos juntar as variáveis e analisar sob outro ponto de vista**
+
+```{r}
+#| warning: false
+
+# age sex and class - sob outro ponto de vista
+train_titanic %>% 
+  ggplot(aes(x=age, y=sex))+
+  geom_jitter(aes(color = factor(survived)))+
+  facet_wrap(~pclass)
+```
+
+**Novamente vamos analisar sob outro ponto de vista**
+
+```{r}
+#| warning: false
+
+# sex, class e survived 
+train_titanic %>% 
+  group_by(sex, survived, pclass) %>% 
+  summarise(qtd = n()) %>% 
+  ggplot(aes(axis1=sex, axis2=pclass, axis3 = survived, y=qtd, fill= sex))+
+  geom_alluvium()+
+  geom_stratum()+
+  geom_text(stat = "stratum", aes(label = after_stat(stratum)))+
+  scale_x_discrete(limits = c("sex", "pclass","survived"))
+```
+
+**Será que a variável tarifa está bem representada ?**
+
+```{r}
+#| warning: false
+
+# fare - será que fare é uma variável válida ?
+train_titanic %>% 
+  mutate(fare = fare) %>% 
+  ggplot(aes(x=fare, y=pclass))+
+  geom_jitter(aes(color = factor(survived)))
+
+```
+
+**Sera que o tamanho da familia importa e está bem representada ?**
+
+```{r}
+#| warning: false
+
+# parch sib_sp - será que o tamanho da familia importa ?
+train_titanic %>% 
+  mutate(family_size = parch + sib_sp +1) %>%
+  ggboxplot(x="survived", 
+            y="family_size", 
+            fill= "survived",
+            palette = "uchicago")+
+  stat_compare_means()
+
+```
+
+**Será que o título dos nomes importa ?**
+
+```{r}
+#| warning: false
+# title
+train_titanic %>% 
+  mutate(title = str_extract(name, "[A-z]*\\.")) %>% 
+  tabyl(title) %>% 
+  adorn_pct_formatting() %>% 
+  arrange(desc(n))
+```
+
+### [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+
+-   A próxima etapa é comunicar os resultados junto aos membros do projeto sobre as relações encontradas permitindo a interção e levantamento de novas necessidades ou hipóteses.
+
+-   Posteriormente, vem as etapas de pré processamento, modelo, validação e submissão.
+
+### [**Qual o resultado**]{style="color: #5AC8BE ;"}
+
+-   Aperfeiçoar a técnica de observação e representação de dados.
+
+-   Facilitar a comunicação com os envolvidos no projeto.
+
+-   Melhorar e estimular a geração de ideias através da interação entre os membros do projeto.
+
+### [**Video**]{style="color: #5AC8BE ;"}
+
+-   [Video no YouTube sobre o tema](https://youtu.be/p-wiv5wnLMw)

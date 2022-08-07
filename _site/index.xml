@@ -238,6 +238,471 @@ Diferença entre incidência e prevalencia
   <media:content url="https://carvalhoribeiro.netlify.app/posts/confusion-matrix/confusion_matrix.png" medium="image" type="image/png" height="77" width="144"/>
 </item>
 <item>
+  <title>Como importar e visualizar dados - Titanic dataset parte1</title>
+  <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
+  <link>https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar.html</link>
+  <description><![CDATA[ 
+
+
+
+<section id="o-que-é-importação-e-visualização-de-dados" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-importação-e-visualização-de-dados"><span style="color: #5AC8BE ;"><strong>O que é importação e visualização de dados</strong></span></h3>
+<ul>
+<li><p>É a etapa de extração de dados que possam contribuir para a solução do problema a ser resolvido.</p></li>
+<li><p>A visualização é uma forma intuitiva de traçar relações possíveis entre os dados e o desfecho permitindo a geração de questões e levantamente de hipóteses.</p></li>
+<li><p>Geralmente estão atrelados a uma métrica de sucesso e é feito após a etapa <strong>P</strong> do <strong>PDCA</strong> , <strong>PPDAC</strong> ou outro método de análise de fenõmeno e causa raíz utilizado.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/data_import.png" class="img-fluid figure-img" width="605"></p>
+<p></p><figcaption class="figure-caption">Processo de projeto kaizen</figcaption><p></p>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"><span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<ul>
+<li><p>Disponibilizar recursos revelantes para solução dos problemas</p></li>
+<li><p>Filtrar dados relevantes dos não relevantes, entender a natureza dos dados se são realmente ruídos ou carecem de representação.</p></li>
+<li><p>Avaliar existencia de <em>shadow stats</em> ou se haverá dificuldade na coleta. Por exemplo: o dado pode ser muito relevante mas difícil de ser coletado ou haver muita instabilidade e ambiguidade nos dados por exemplo usar critérios diferentes.</p></li>
+<li><p>Gerar novas questões e hipóteses que poderão utilizar novos dados ou um resultado de interação entre os existentes.</p></li>
+</ul>
+</section>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<ul>
+<li><p>A extração e visualização dos dados vem da necessidade de encontrar variáveis que expliquem o fenômeno e ajudem a prever eventos futuros.</p></li>
+<li><p>Melhorar e estimular a geração de ideias através da interação entre os envolvidos.</p></li>
+</ul>
+</section>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"><span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/">tidyverse</a> , <a href="https://www.tidymodels.org/">tidymodels</a> e <a href="https://github.com/sfirke/janitor">janitor</a>, <a href="http://rpkgs.datanovia.com/ggpubr/index.html">ggpubr</a>, <a href="http://pablo14.github.io/funModeling/articles/funModeling_quickstart.html">funmodeling</a>, <a href="https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html">ggalluvial</a> e <a href="https://cran.r-project.org/web/packages/visdat/vignettes/using_visdat.html">visdat</a><br>
+</p>
+<p>O dados podem ser baixados no <a href="https://www.kaggle.com/competitions/titanic/data">Kaggle titanic dataset</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># pacotes           --------------------------------------------------------</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidymodels)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;">library</span>(janitor)</span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;">library</span>(ggpubr)</span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;">library</span>(funModeling)</span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;">library</span>(ggalluvial)</span>
+<span id="cb1-8"><span class="fu" style="color: #4758AB;">library</span>(visdat)</span>
+<span id="cb1-9"></span>
+<span id="cb1-10"><span class="co" style="color: #5E5E5E;"># dados             --------------------------------------------------------</span></span>
+<span id="cb1-11"><span class="co" style="color: #5E5E5E;">#importar os dados do kaggle e salvar em  diretorio padrão</span></span>
+<span id="cb1-12"></span>
+<span id="cb1-13"><span class="co" style="color: #5E5E5E;"># importar dados e padronizar colunas</span></span>
+<span id="cb1-14">train_titanic <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb1-15">    <span class="fu" style="color: #4758AB;">read.csv</span>(<span class="st" style="color: #20794D;">"train.csv"</span>, <span class="at" style="color: #657422;">na.strings =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">""</span>,<span class="st" style="color: #20794D;">" "</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-16">    <span class="fu" style="color: #4758AB;">clean_names</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-17">    <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">is_train =</span> <span class="cn" style="color: #8f5902;">TRUE</span>) </span>
+<span id="cb1-18"></span>
+<span id="cb1-19"><span class="co" style="color: #5E5E5E;">#importar dados de teste</span></span>
+<span id="cb1-20">test_titanic <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb1-21">  <span class="fu" style="color: #4758AB;">read.csv</span>(<span class="st" style="color: #20794D;">"test.csv"</span>, <span class="at" style="color: #657422;">na.strings =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">""</span>,<span class="st" style="color: #20794D;">" "</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-22">  <span class="fu" style="color: #4758AB;">clean_names</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-23">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">survived =</span> <span class="cn" style="color: #8f5902;">NA</span>, <span class="at" style="color: #657422;">is_train =</span> <span class="cn" style="color: #8f5902;">FALSE</span>) </span>
+<span id="cb1-24"></span>
+<span id="cb1-25"><span class="co" style="color: #5E5E5E;">#juntar os conjuntos</span></span>
+<span id="cb1-26">split_titanic <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">bind_rows</span>(train_titanic, test_titanic)</span>
+<span id="cb1-27"></span>
+<span id="cb1-28"><span class="co" style="color: #5E5E5E;">#check nas caracteristicas dos dados</span></span>
+<span id="cb1-29">split_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> funModeling<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">df_status</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       variable q_zeros p_zeros q_na  p_na q_inf p_inf      type unique
+1  passenger_id       0    0.00    0  0.00     0     0   integer   1309
+2      survived     549   41.94  418 31.93     0     0   integer      2
+3        pclass       0    0.00    0  0.00     0     0   integer      3
+4          name       0    0.00    0  0.00     0     0 character   1307
+5           sex       0    0.00    0  0.00     0     0 character      2
+6           age       0    0.00  263 20.09     0     0   numeric     98
+7        sib_sp     891   68.07    0  0.00     0     0   integer      7
+8         parch    1002   76.55    0  0.00     0     0   integer      8
+9        ticket       0    0.00    0  0.00     0     0 character    929
+10         fare      17    1.30    1  0.08     0     0   numeric    281
+11        cabin       0    0.00 1014 77.46     0     0 character    186
+12     embarked       0    0.00    2  0.15     0     0 character      3
+13     is_train     418   31.93    0  0.00     0     0   logical      2</code></pre>
+</div>
+</div>
+<p>Como o nosso conjunto de dados é pequeno(tem poucas variáveis) é possível usar um gráfico para visualizar os tipos de dados e as características.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">split_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> visdat<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">vis_dat</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Como faço pra visualizar dados faltantes quando o conjunto for grande ?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Sugestão</strong> É possível usar o pacote <code>naniar</code> com a função <code>naniar::miss_var_summary()</code></p>
+</div>
+</div>
+</div>
+<p>Como resultado da análise podemos verificar a necessidade de algumas transformações nos dados. Anotamos tudo para alterarmos posteriormente mas seguimos com a análise exploratória por enquanto.</p>
+<blockquote class="blockquote">
+<p>Alterar o tipo de variável de <code>sex, embarked, survived, pclass = factor</code></p>
+<p>Inserir dados faltantes em <code>embarked = moda, age e fare = usando knn</code></p>
+</blockquote>
+<p>Vamos fazer uma <strong>correlação</strong> para avaliar os padrões existentes. <strong>Mas note</strong>. Para fazer correlação, os dados precisam ser <strong>numéricos</strong> por isso usamos a função <code>select_if(is.numeric)</code> . Pelo padrão apresentado é possível verificar a existencia de dados categóricos <code>eles geralmente ficam espaçados no gráfico</code> e eles precisam ser transformados pra factor posteriormente e que já anotamos e comunicamos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;"># correlacao</span></span>
+<span id="cb4-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb4-3">  <span class="fu" style="color: #4758AB;">select_if</span>(is.numeric) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb4-4">  GGally<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">ggscatmat</span>(<span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"survived"</span>, <span class="at" style="color: #657422;">corMethod =</span> <span class="st" style="color: #20794D;">"spearman"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb4-5">  <span class="fu" style="color: #4758AB;">theme_pubclean</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Será que a idade importa ?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;"># age - será que a idade importa ? </span></span>
+<span id="cb5-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb5-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>age, <span class="at" style="color: #657422;">fill =</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-4">  <span class="fu" style="color: #4758AB;">geom_density</span>(<span class="at" style="color: #657422;">alpha =</span><span class="fl" style="color: #AD0000;">0.5</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Será que o sexo importa ?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;"># age, sex and class - será que o sexo importa ?</span></span>
+<span id="cb6-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb6-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>pclass, <span class="at" style="color: #657422;">fill=</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb6-4">  <span class="fu" style="color: #4758AB;">geom_bar</span>(<span class="at" style="color: #657422;">stat =</span> <span class="st" style="color: #20794D;">"count"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb6-5">  <span class="fu" style="color: #4758AB;">facet_grid</span>(<span class="sc" style="color: #5E5E5E;">~</span>sex)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Vamos juntar as variáveis e analisar sob outro ponto de vista</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;"># age sex and class - sob outro ponto de vista</span></span>
+<span id="cb7-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb7-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>age, <span class="at" style="color: #657422;">y=</span>sex))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-4">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">color =</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb7-5">  <span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>pclass)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Novamente vamos analisar sob outro ponto de vista</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;"># sex, class e survived </span></span>
+<span id="cb8-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb8-3">  <span class="fu" style="color: #4758AB;">group_by</span>(sex, survived, pclass) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb8-4">  <span class="fu" style="color: #4758AB;">summarise</span>(<span class="at" style="color: #657422;">qtd =</span> <span class="fu" style="color: #4758AB;">n</span>()) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb8-5">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">axis1=</span>sex, <span class="at" style="color: #657422;">axis2=</span>pclass, <span class="at" style="color: #657422;">axis3 =</span> survived, <span class="at" style="color: #657422;">y=</span>qtd, <span class="at" style="color: #657422;">fill=</span> sex))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-6">  <span class="fu" style="color: #4758AB;">geom_alluvium</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-7">  <span class="fu" style="color: #4758AB;">geom_stratum</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-8">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="at" style="color: #657422;">stat =</span> <span class="st" style="color: #20794D;">"stratum"</span>, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> <span class="fu" style="color: #4758AB;">after_stat</span>(stratum)))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb8-9">  <span class="fu" style="color: #4758AB;">scale_x_discrete</span>(<span class="at" style="color: #657422;">limits =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"sex"</span>, <span class="st" style="color: #20794D;">"pclass"</span>,<span class="st" style="color: #20794D;">"survived"</span>))</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Será que a variável tarifa está bem representada ?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;"># fare - será que fare é uma variável válida ?</span></span>
+<span id="cb9-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb9-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">fare =</span> fare) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb9-4">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>fare, <span class="at" style="color: #657422;">y=</span>pclass))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb9-5">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">color =</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Sera que o tamanho da familia importa e está bem representada ?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;"># parch sib_sp - será que o tamanho da familia importa ?</span></span>
+<span id="cb10-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb10-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">family_size =</span> parch <span class="sc" style="color: #5E5E5E;">+</span> sib_sp <span class="sc" style="color: #5E5E5E;">+</span><span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb10-4">  <span class="fu" style="color: #4758AB;">ggboxplot</span>(<span class="at" style="color: #657422;">x=</span><span class="st" style="color: #20794D;">"survived"</span>, </span>
+<span id="cb10-5">            <span class="at" style="color: #657422;">y=</span><span class="st" style="color: #20794D;">"family_size"</span>, </span>
+<span id="cb10-6">            <span class="at" style="color: #657422;">fill=</span> <span class="st" style="color: #20794D;">"survived"</span>,</span>
+<span id="cb10-7">            <span class="at" style="color: #657422;">palette =</span> <span class="st" style="color: #20794D;">"uchicago"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb10-8">  <span class="fu" style="color: #4758AB;">stat_compare_means</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Será que o título dos nomes importa ?</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="co" style="color: #5E5E5E;"># title</span></span>
+<span id="cb11-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb11-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">title =</span> <span class="fu" style="color: #4758AB;">str_extract</span>(name, <span class="st" style="color: #20794D;">"[A-z]*</span><span class="sc" style="color: #5E5E5E;">\\</span><span class="st" style="color: #20794D;">."</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb11-4">  <span class="fu" style="color: #4758AB;">tabyl</span>(title) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb11-5">  <span class="fu" style="color: #4758AB;">adorn_pct_formatting</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb11-6">  <span class="fu" style="color: #4758AB;">arrange</span>(<span class="fu" style="color: #4758AB;">desc</span>(n))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     title   n percent
+       Mr. 517   58.0%
+     Miss. 182   20.4%
+      Mrs. 125   14.0%
+   Master.  40    4.5%
+       Dr.   7    0.8%
+      Rev.   6    0.7%
+      Col.   2    0.2%
+    Major.   2    0.2%
+     Mlle.   2    0.2%
+     Capt.   1    0.1%
+ Countess.   1    0.1%
+      Don.   1    0.1%
+ Jonkheer.   1    0.1%
+     Lady.   1    0.1%
+      Mme.   1    0.1%
+       Ms.   1    0.1%
+      Sir.   1    0.1%</code></pre>
+</div>
+</div>
+</section>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<ul>
+<li><p>A próxima etapa é comunicar os resultados junto aos membros do projeto sobre as relações encontradas permitindo a interção e levantamento de novas necessidades ou hipóteses.</p></li>
+<li><p>Posteriormente, vem as etapas de pré processamento, modelo, validação e submissão.</p></li>
+</ul>
+</section>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"><span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<ul>
+<li><p>Aperfeiçoar a técnica de observação e representação de dados.</p></li>
+<li><p>Facilitar a comunicação com os envolvidos no projeto.</p></li>
+<li><p>Melhorar e estimular a geração de ideias através da interação entre os membros do projeto.</p></li>
+</ul>
+</section>
+<section id="video" class="level3">
+<h3 class="anchored" data-anchor-id="video"><span style="color: #5AC8BE ;"><strong>Video</strong></span></h3>
+<ul>
+<li><a href="https://youtu.be/p-wiv5wnLMw">Video no YouTube sobre o tema</a></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Exploração</category>
+  <guid>https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar.html</guid>
+  <pubDate>Wed, 03 Aug 2022 03:00:00 GMT</pubDate>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/data_import.png" medium="image" type="image/png" height="74" width="144"/>
+</item>
+<item>
+  <title>Modelo preditivo usando com rede neural</title>
+  <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
+  <link>https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet.html</link>
+  <description><![CDATA[ 
+
+
+
+<section id="o-que-é-um-modelo-de-rede-neural" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-um-modelo-de-rede-neural"><span style="color: #5AC8BE ;"><strong>O que é um modelo de rede neural</strong></span></h3>
+<ul>
+<li><p>Rede neural é uma técnica que usa nós interconectados ou neuronios em uma estrutura de camadas com o objetivo de resolver problemas de previsão.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neural_reg.png" class="img-fluid figure-img" width="605"></p>
+<p></p><figcaption class="figure-caption">Rede Neural - Regressão</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neural_class.png" class="img-fluid figure-img" width="605"></p>
+<p></p><figcaption class="figure-caption">Rede Neural - Classificação</figcaption><p></p>
+</figure>
+</div></li>
+</ul>
+</section>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"><span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<ul>
+<li><p>A técnica é muito utilizada na solução de problemas de classificação ou seja, onde o resultado(desfecho) é uma classe (e.g.&nbsp;gato, cachorro, cavalo).</p></li>
+<li><p>Neste exemplo, nós temos uma linha de produção com sensores que registra características como largura e comprimento da pétala e sepala dos três tipos de flores iris: <strong>setosa</strong>, <strong>versicolor</strong> e <strong>virgínica</strong>.</p></li>
+<li><p>Nosso objetivo é fazer um modelo de previsão que com base nessas características, consiga classificar cada tipo de flor e separá-las corretamente.</p></li>
+</ul>
+</section>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<ul>
+<li><p>Vem do uso de sistemas que utilizam visão computacional, processamento de linguagem natural como base para seu funcionamento ou melhoria como por exemplo veículos semi-autonomos, linhas de produção de veículos, controle de qualidade de autopeças entre outros.</p></li>
+<li><p>A primeira rede neural artificial foi implementada em 1958 por Frank Rosenblat e se chamava <strong>Perceptron</strong> e naquela época já se falava que era um embrião de um computador eletronico que seria capaz de andar, falar, ver, escrever e se reproduzir. <a href="https://www.nytimes.com/1958/07/13/archives/electronic-brain-teaches-itself.html">Materia New York Times</a></p></li>
+</ul>
+</section>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"><span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<p>Neste exemplo usaremos os pacotes <a href="https://www.tidyverse.org/">tidyverse</a>, <a href="https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html">janitor</a>, <a href="https://www.tidymodels.org/">tidymodels</a>, <a href="https://cran.r-project.org/web/packages/nnet/index.html">nnet</a> e <a href="https://www.jstatsoft.org/article/view/v085i11">neuralnettools</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># packages -------------------------------------------------------------</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(tidymodels)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;">library</span>(nnet)</span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;">library</span>(NeuralNetTools)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7"><span class="co" style="color: #5E5E5E;"># data -------------------------------------------------------------------</span></span>
+<span id="cb1-8">data_iris <span class="ot" style="color: #003B4F;">&lt;-</span> iris <span class="sc" style="color: #5E5E5E;">%&gt;%</span> janitor<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">clean_names</span>()</span>
+<span id="cb1-9"></span>
+<span id="cb1-10">split_iris <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">initial_split</span>(data_iris, <span class="at" style="color: #657422;">strata =</span> species)</span>
+<span id="cb1-11">train_iris <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">training</span>(split_iris)</span>
+<span id="cb1-12">test_iris  <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">testing</span>(split_iris)</span>
+<span id="cb1-13"></span>
+<span id="cb1-14"><span class="co" style="color: #5E5E5E;"># model ------------------------------------------------------------------</span></span>
+<span id="cb1-15">mdl_fit_nn_iris <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">nnet</span>(species <span class="sc" style="color: #5E5E5E;">~</span>., </span>
+<span id="cb1-16">                        <span class="at" style="color: #657422;">data =</span> train_iris, </span>
+<span id="cb1-17">                        <span class="at" style="color: #657422;">size =</span> <span class="dv" style="color: #AD0000;">5</span>, </span>
+<span id="cb1-18">                        <span class="at" style="color: #657422;">decay =</span> <span class="fl" style="color: #AD0000;">0.01</span>, </span>
+<span id="cb1-19">                        <span class="at" style="color: #657422;">maxit =</span> <span class="dv" style="color: #AD0000;">500</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># weights:  43
+initial  value 147.734700 
+iter  10 value 52.945564
+iter  20 value 26.769894
+iter  30 value 17.136233
+iter  40 value 11.836506
+iter  50 value 6.758372
+iter  60 value 6.054320
+iter  70 value 5.821805
+iter  80 value 5.789431
+iter  90 value 5.733911
+iter 100 value 5.629667
+iter 110 value 5.300392
+iter 120 value 5.197445
+iter 130 value 5.160252
+iter 140 value 5.039001
+iter 150 value 5.010833
+iter 160 value 5.006860
+iter 170 value 5.006174
+iter 180 value 5.006124
+final  value 5.006123 
+converged</code></pre>
+</div>
+</div>
+<p>Vamos fazer uma previsão usando o modelo que construímos e jogar o resultado para dentro do dataframe de teste para podermos comparar entre o <code>previsto</code> vs <code>realizado</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;"># results ----------------------------------------------------------------</span></span>
+<span id="cb3-2">mdl_fit_nn_iris <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb3-3">  <span class="fu" style="color: #4758AB;">predict</span>(test_iris,<span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"class"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
+<span id="cb3-4">  <span class="fu" style="color: #4758AB;">bind_cols</span>(test_iris)</span></code></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+• `` -&gt; `...1`</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         ...1 sepal_length sepal_width petal_length petal_width    species
+1      setosa          5.1         3.5          1.4         0.2     setosa
+2      setosa          4.9         3.0          1.4         0.2     setosa
+3      setosa          5.0         3.6          1.4         0.2     setosa
+4      setosa          4.9         3.1          1.5         0.1     setosa
+5      setosa          5.8         4.0          1.2         0.2     setosa
+6      setosa          5.7         3.8          1.7         0.3     setosa
+7      setosa          5.2         3.5          1.5         0.2     setosa
+8      setosa          5.4         3.4          1.5         0.4     setosa
+9      setosa          4.9         3.1          1.5         0.2     setosa
+10     setosa          4.9         3.6          1.4         0.1     setosa
+11     setosa          5.1         3.4          1.5         0.2     setosa
+12     setosa          5.0         3.5          1.6         0.6     setosa
+13     setosa          5.0         3.3          1.4         0.2     setosa
+14 versicolor          5.5         2.3          4.0         1.3 versicolor
+15 versicolor          6.3         3.3          4.7         1.6 versicolor
+16 versicolor          6.6         2.9          4.6         1.3 versicolor
+17 versicolor          5.0         2.0          3.5         1.0 versicolor
+18 versicolor          5.6         3.0          4.5         1.5 versicolor
+19 versicolor          6.1         2.8          4.7         1.2 versicolor
+20 versicolor          5.5         2.4          3.8         1.1 versicolor
+21 versicolor          5.8         2.7          3.9         1.2 versicolor
+22  virginica          6.0         2.7          5.1         1.6 versicolor
+23 versicolor          6.3         2.3          4.4         1.3 versicolor
+24 versicolor          6.1         3.0          4.6         1.4 versicolor
+25 versicolor          5.0         2.3          3.3         1.0 versicolor
+26 versicolor          5.7         3.0          4.2         1.2 versicolor
+27  virginica          5.8         2.7          5.1         1.9  virginica
+28  virginica          7.1         3.0          5.9         2.1  virginica
+29  virginica          6.5         3.0          5.8         2.2  virginica
+30  virginica          4.9         2.5          4.5         1.7  virginica
+31  virginica          5.8         2.8          5.1         2.4  virginica
+32  virginica          6.4         3.2          5.3         2.3  virginica
+33  virginica          6.1         3.0          4.9         1.8  virginica
+34  virginica          6.1         2.6          5.6         1.4  virginica
+35  virginica          6.4         3.1          5.5         1.8  virginica
+36  virginica          6.9         3.1          5.4         2.1  virginica
+37  virginica          6.9         3.1          5.1         2.3  virginica
+38  virginica          5.8         2.7          5.1         1.9  virginica
+39  virginica          6.2         3.4          5.4         2.3  virginica</code></pre>
+</div>
+</div>
+<p>Como já temos o dados previstos e também o real, podemos fazer uma a matriz de confusão para facilitar a visualização dos resultados e analisar o desempenho inicial do modelo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;">#confusion matrix</span></span>
+<span id="cb6-2"><span class="fu" style="color: #4758AB;">table</span>(test_iris<span class="sc" style="color: #5E5E5E;">$</span>species,</span>
+<span id="cb6-3">      <span class="fu" style="color: #4758AB;">predict</span>(mdl_fit_nn_iris,</span>
+<span id="cb6-4">              <span class="at" style="color: #657422;">newdata =</span> test_iris, </span>
+<span id="cb6-5">              <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"class"</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            
+             setosa versicolor virginica
+  setosa         13          0         0
+  versicolor      0         12         1
+  virginica       0          0        13</code></pre>
+</div>
+</div>
+<p>Como ficou o resultado da previsão ?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;">#predict classes</span></span>
+<span id="cb8-2"><span class="fu" style="color: #4758AB;">predict</span>(mdl_fit_nn_iris, test_iris, <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"class"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
+ [6] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
+[11] "setosa"     "setosa"     "setosa"     "versicolor" "versicolor"
+[16] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
+[21] "versicolor" "virginica"  "versicolor" "versicolor" "versicolor"
+[26] "versicolor" "virginica"  "virginica"  "virginica"  "virginica" 
+[31] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
+[36] "virginica"  "virginica"  "virginica"  "virginica" </code></pre>
+</div>
+</div>
+<p>Plotando o modelo que acabamos de fazer</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;">#plotando o gráfico</span></span>
+<span id="cb10-2">NeuralNetTools<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">plotnet</span>(mdl_fit_nn_iris, <span class="at" style="color: #657422;">circle_col =</span> <span class="st" style="color: #20794D;">"grey90"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet_files/figure-html/plot-neural-net-1.png" class="img-fluid" alt="Plot da rede neural" width="5760"></p>
+</div>
+</div>
+</section>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<ul>
+<li>A próxima</li>
+</ul>
+</section>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"><span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<ul>
+<li><p>Aperfeiçoar</p></li>
+<li><p>Facilitar</p></li>
+<li><p>Melhorar.</p></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Modelos</category>
+  <guid>https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet.html</guid>
+  <pubDate>Wed, 03 Aug 2022 03:00:00 GMT</pubDate>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neural_class.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
+<item>
   <title>Motivação para o blog</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
   <link>https://carvalhoribeiro.netlify.app/posts/welcome/index.html</link>
