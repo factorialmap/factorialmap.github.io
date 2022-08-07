@@ -14,7 +14,7 @@ image: "data_import.png"
 
 -   Geralmente estão atrelados a uma métrica de sucesso e é feito após a etapa **P** do **PDCA** , **PPDAC** ou outro método de análise de fenõmeno e causa raíz utilizado.
 
-    ![Processo de projeto kaizen](data_import.png){width="605"}
+    ![Processo de projeto kaizen](data_import.png){width="700"}
 
 ### [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 
