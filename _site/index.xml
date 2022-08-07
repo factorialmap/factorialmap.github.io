@@ -35,12 +35,12 @@ O vídeo tema para este post disponível em
 <section id="o-que-é-importação-e-visualização-de-dados" class="level3">
 <h3 class="anchored" data-anchor-id="o-que-é-importação-e-visualização-de-dados"><span style="color: #5AC8BE ;"><strong>O que é importação e visualização de dados</strong></span></h3>
 <ul>
-<li><p>É a etapa de extração de dados que possam contribuir para a solução do problema a ser resolvido.</p></li>
+<li><p>É a etapa onde é feita extração de dados e avaliação se os mesmos podem contribuir para a solução do problema a ser resolvido.</p></li>
 <li><p>A visualização é uma forma intuitiva de traçar relações possíveis entre os dados e o desfecho permitindo a geração de questões e levantamente de hipóteses.</p></li>
 <li><p>Geralmente estão atrelados a uma métrica de sucesso e é feito após a etapa <strong>P</strong> do <strong>PDCA</strong> , <strong>PPDAC</strong> ou outro método de análise de fenõmeno e causa raíz utilizado.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/data_import.png" class="img-fluid figure-img" width="700"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/data_import.png" class="img-fluid figure-img" width="605"></p>
 <p></p><figcaption class="figure-caption">Processo de projeto kaizen</figcaption><p></p>
 </figure>
 </div></li>
@@ -174,7 +174,7 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Vamos juntar as variáveis e analisar sob outro ponto de vista</strong></p>
+<p><strong>Vamos juntar as variáveis age+sex+pclass e analisar sob outro ponto de vista</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;"># age sex and class - sob outro ponto de vista</span></span>
 <span id="cb7-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
@@ -211,7 +211,7 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Sera que o tamanho da familia importa e está bem representada ?</strong></p>
+<p><strong>Sera que o tamanho da familia importa e o dado está bem representado ?</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;"># parch sib_sp - será que o tamanho da familia importa ?</span></span>
 <span id="cb10-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
@@ -225,7 +225,7 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p><strong>Será que o título dos nomes importa ?</strong></p>
+<p><strong>Será que existe algum padrão no nome que possa ser extraído e que ajude a explicar se impacta na sobrevivência ?</strong></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="co" style="color: #5E5E5E;"># title</span></span>
 <span id="cb11-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>

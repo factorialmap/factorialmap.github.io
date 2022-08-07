@@ -14,7 +14,7 @@ image: "data_import.png"
 
 ### [**O que é importação e visualização de dados**]{style="color: #5AC8BE ;"}
 
--   É a etapa de extração de dados que possam contribuir para a solução do problema a ser resolvido.
+-   É a etapa onde é feita extração de dados e avaliação se os mesmos podem contribuir para a solução do problema a ser resolvido.
 
 -   A visualização é uma forma intuitiva de traçar relações possíveis entre os dados e o desfecho permitindo a geração de questões e levantamente de hipóteses.
 
