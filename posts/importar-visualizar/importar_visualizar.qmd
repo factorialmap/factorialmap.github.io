@@ -28,7 +28,7 @@ image: "data_import.png"
 
 -   Filtrar dados relevantes dos não relevantes, entender a natureza dos dados se são realmente ruídos ou carecem de representação.
 
--   Avaliar existencia de *shadow stats* ou se haverá dificuldade na coleta. Por exemplo: o dado pode ser muito relevante mas difícil de ser coletado ou haver muita instabilidade e ambiguidade nos dados por exemplo usar critérios diferentes.
+-   Avaliar existencia de *shadow stats* ou se haverá dificuldade na coleta. Por exemplo: o dado pode ser muito relevante mas difícil de ser coletado ou pode haver muita instabilidade e ambiguidade ou até mesmo usar critérios diferentes entre diferentes fontes.
 
 -   Gerar novas questões e hipóteses que poderão utilizar novos dados ou um resultado de interação entre os existentes.
 
