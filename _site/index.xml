@@ -317,15 +317,15 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <section id="qual-o-objetivo" class="level3">
 <h3 class="anchored" data-anchor-id="qual-o-objetivo"><span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
-<li><p>A técnica é muito utilizada na solução de problemas de classificação ou seja, onde o resultado(desfecho) é uma classe (e.g.&nbsp;gato, cachorro, cavalo).</p></li>
-<li><p>Neste exemplo, nós temos uma linha de produção com sensores que registra características como largura e comprimento da pétala e sepala dos três tipos de flores iris: <strong>setosa</strong>, <strong>versicolor</strong> e <strong>virgínica</strong>.</p></li>
-<li><p>Nosso objetivo é fazer um modelo de previsão que com base nessas características, consiga classificar cada tipo de flor e separá-las corretamente.</p></li>
+<li><p>A técnica é muito utilizada na solução de problemas de classificação onde o resultado(desfecho) é uma classe (e.g.&nbsp;gato, cachorro, cavalo).</p></li>
+<li><p>Neste exemplo, nós usaremos como exemplo uma linha de produção com sensores que registram características como largura e comprimento da pétala e sepala dos três tipos de flores iris: <strong>setosa</strong>, <strong>versicolor</strong> e <strong>virgínica</strong>.</p></li>
+<li><p>Nosso objetivo é fazer um modelo de previsão o qual com base nessas características, consiga classificar cada tipo de flor e separá-las corretamente.</p></li>
 </ul>
 </section>
 <section id="de-onde-vem-a-demanda" class="level3">
 <h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
-<li><p>Vem do uso de sistemas que utilizam visão computacional, processamento de linguagem natural como base para seu funcionamento ou melhoria como por exemplo veículos semi-autonomos, linhas de produção de veículos, controle de qualidade de autopeças entre outros.</p></li>
+<li><p>Vem do uso de sistemas que utilizam visão computacional, processamento de linguagem natural em seu funcionamento como por exemplo veículos semi-autonomos, linhas de produção de veículos, controle de qualidade de autopeças entre outros.</p></li>
 <li><p>A primeira rede neural artificial foi implementada em 1958 por Frank Rosenblat e se chamava <strong>Perceptron</strong> e naquela época já se falava que era um embrião de um computador eletronico que seria capaz de andar, falar, ver, escrever e se reproduzir. <a href="https://www.nytimes.com/1958/07/13/archives/electronic-brain-teaches-itself.html">Materia New York Times</a></p></li>
 </ul>
 </section>
@@ -333,20 +333,20 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <h3 class="anchored" data-anchor-id="como-fazer"><span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <p>Neste exemplo usaremos os pacotes <a href="https://www.tidyverse.org/">tidyverse</a>, <a href="https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html">janitor</a>, <a href="https://www.tidymodels.org/">tidymodels</a>, <a href="https://cran.r-project.org/web/packages/nnet/index.html">nnet</a> e <a href="https://www.jstatsoft.org/article/view/v085i11">neuralnettools</a></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># packages -------------------------------------------------------------</span></span>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># packages ----------------------------------------------------</span></span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(tidymodels)</span>
 <span id="cb1-4"><span class="fu" style="color: #4758AB;">library</span>(nnet)</span>
 <span id="cb1-5"><span class="fu" style="color: #4758AB;">library</span>(NeuralNetTools)</span>
 <span id="cb1-6"></span>
-<span id="cb1-7"><span class="co" style="color: #5E5E5E;"># data -------------------------------------------------------------------</span></span>
+<span id="cb1-7"><span class="co" style="color: #5E5E5E;"># data --------------------------------------------------------</span></span>
 <span id="cb1-8">data_iris <span class="ot" style="color: #003B4F;">&lt;-</span> iris <span class="sc" style="color: #5E5E5E;">%&gt;%</span> janitor<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">clean_names</span>()</span>
 <span id="cb1-9"></span>
 <span id="cb1-10">split_iris <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">initial_split</span>(data_iris, <span class="at" style="color: #657422;">strata =</span> species)</span>
 <span id="cb1-11">train_iris <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">training</span>(split_iris)</span>
 <span id="cb1-12">test_iris  <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">testing</span>(split_iris)</span>
 <span id="cb1-13"></span>
-<span id="cb1-14"><span class="co" style="color: #5E5E5E;"># model ------------------------------------------------------------------</span></span>
+<span id="cb1-14"><span class="co" style="color: #5E5E5E;"># model -------------------------------------------------------</span></span>
 <span id="cb1-15">mdl_fit_nn_iris <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">nnet</span>(species <span class="sc" style="color: #5E5E5E;">~</span>., </span>
 <span id="cb1-16">                        <span class="at" style="color: #657422;">data =</span> train_iris, </span>
 <span id="cb1-17">                        <span class="at" style="color: #657422;">size =</span> <span class="dv" style="color: #AD0000;">5</span>, </span>
@@ -354,30 +354,28 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <span id="cb1-19">                        <span class="at" style="color: #657422;">maxit =</span> <span class="dv" style="color: #AD0000;">500</span>)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># weights:  43
-initial  value 173.574949 
-iter  10 value 23.884505
-iter  20 value 7.392767
-iter  30 value 6.183677
-iter  40 value 5.273530
-iter  50 value 4.976371
-iter  60 value 4.886542
-iter  70 value 4.869171
-iter  80 value 4.844737
-iter  90 value 4.823461
-iter 100 value 4.789703
-iter 110 value 4.722156
-iter 120 value 4.611097
-iter 130 value 4.592617
-iter 140 value 4.584783
-iter 150 value 4.584329
-iter 160 value 4.584321
-final  value 4.584320 
+initial  value 124.125355 
+iter  10 value 52.678791
+iter  20 value 11.630425
+iter  30 value 5.200076
+iter  40 value 4.378034
+iter  50 value 4.170839
+iter  60 value 4.102572
+iter  70 value 4.052743
+iter  80 value 4.043437
+iter  90 value 4.023595
+iter 100 value 4.016805
+iter 110 value 4.012022
+iter 120 value 4.011065
+iter 130 value 4.010976
+iter 140 value 4.010972
+final  value 4.010971 
 converged</code></pre>
 </div>
 </div>
-<p>Vamos fazer uma previsão usando o modelo que construímos e jogar o resultado para dentro do dataframe de teste para podermos comparar entre o <code>previsto</code> vs <code>realizado</code>.</p>
+<p>Vamos fazer uma previsão usando o modelo que construímos e colocar o resultado dentro do <code>dataframe</code> com os dados de teste para podermos comparar valores <code>previstos</code> e <code>realizados</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;"># results ----------------------------------------------------------------</span></span>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;"># results -----------------------------------------------------</span></span>
 <span id="cb3-2">mdl_fit_nn_iris <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb3-3">  <span class="fu" style="color: #4758AB;">predict</span>(test_iris,<span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"class"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
 <span id="cb3-4">  <span class="fu" style="color: #4758AB;">bind_cols</span>(test_iris)</span></code></pre></div>
@@ -387,48 +385,48 @@ converged</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         ...1 sepal_length sepal_width petal_length petal_width    species
-1      setosa          4.6         3.1          1.5         0.2     setosa
-2      setosa          4.8         3.0          1.4         0.1     setosa
-3      setosa          4.3         3.0          1.1         0.1     setosa
-4      setosa          5.8         4.0          1.2         0.2     setosa
-5      setosa          5.7         3.8          1.7         0.3     setosa
-6      setosa          5.1         3.3          1.7         0.5     setosa
-7      setosa          5.0         3.0          1.6         0.2     setosa
-8      setosa          5.2         3.5          1.5         0.2     setosa
-9      setosa          5.5         3.5          1.3         0.2     setosa
-10     setosa          5.0         3.5          1.3         0.3     setosa
-11     setosa          4.4         3.2          1.3         0.2     setosa
+1      setosa          5.4         3.7          1.5         0.2     setosa
+2      setosa          4.8         3.4          1.6         0.2     setosa
+3      setosa          4.8         3.0          1.4         0.1     setosa
+4      setosa          4.3         3.0          1.1         0.1     setosa
+5      setosa          5.7         4.4          1.5         0.4     setosa
+6      setosa          5.7         3.8          1.7         0.3     setosa
+7      setosa          4.6         3.6          1.0         0.2     setosa
+8      setosa          5.2         3.4          1.4         0.2     setosa
+9      setosa          4.5         2.3          1.3         0.3     setosa
+10     setosa          5.0         3.5          1.6         0.6     setosa
+11     setosa          5.1         3.8          1.9         0.4     setosa
 12     setosa          5.1         3.8          1.6         0.2     setosa
-13     setosa          5.3         3.7          1.5         0.2     setosa
+13     setosa          4.6         3.2          1.4         0.2     setosa
 14 versicolor          6.4         3.2          4.5         1.5 versicolor
 15 versicolor          6.9         3.1          4.9         1.5 versicolor
-16 versicolor          6.1         2.8          4.0         1.3 versicolor
-17 versicolor          6.7         3.0          5.0         1.7 versicolor
-18 versicolor          6.0         2.9          4.5         1.5 versicolor
-19  virginica          6.0         2.7          5.1         1.6 versicolor
-20 versicolor          5.4         3.0          4.5         1.5 versicolor
-21 versicolor          5.6         3.0          4.1         1.3 versicolor
-22 versicolor          5.5         2.6          4.4         1.2 versicolor
-23 versicolor          5.8         2.6          4.0         1.2 versicolor
-24 versicolor          5.7         2.9          4.2         1.3 versicolor
-25 versicolor          6.2         2.9          4.3         1.3 versicolor
-26 versicolor          5.7         2.8          4.1         1.3 versicolor
-27  virginica          5.8         2.7          5.1         1.9  virginica
-28  virginica          7.2         3.6          6.1         2.5  virginica
-29  virginica          6.8         3.0          5.5         2.1  virginica
-30  virginica          5.7         2.5          5.0         2.0  virginica
-31  virginica          5.8         2.8          5.1         2.4  virginica
-32  virginica          6.4         3.2          5.3         2.3  virginica
-33  virginica          6.5         3.0          5.5         1.8  virginica
-34  virginica          7.7         2.8          6.7         2.0  virginica
-35  virginica          6.3         2.7          4.9         1.8  virginica
-36  virginica          6.7         3.3          5.7         2.1  virginica
-37  virginica          6.2         2.8          4.8         1.8  virginica
-38  virginica          6.3         3.4          5.6         2.4  virginica
-39  virginica          6.0         3.0          4.8         1.8  virginica</code></pre>
+16 versicolor          6.6         2.9          4.6         1.3 versicolor
+17 versicolor          5.2         2.7          3.9         1.4 versicolor
+18 versicolor          6.0         2.2          4.0         1.0 versicolor
+19 versicolor          6.1         2.9          4.7         1.4 versicolor
+20 versicolor          6.1         2.8          4.0         1.3 versicolor
+21 versicolor          6.1         2.8          4.7         1.2 versicolor
+22 versicolor          6.4         2.9          4.3         1.3 versicolor
+23 versicolor          6.0         2.9          4.5         1.5 versicolor
+24  virginica          6.0         2.7          5.1         1.6 versicolor
+25 versicolor          5.6         3.0          4.1         1.3 versicolor
+26 versicolor          5.0         2.3          3.3         1.0 versicolor
+27  virginica          6.3         3.3          6.0         2.5  virginica
+28  virginica          6.3         2.9          5.6         1.8  virginica
+29  virginica          7.2         3.6          6.1         2.5  virginica
+30  virginica          6.4         2.7          5.3         1.9  virginica
+31  virginica          7.7         2.8          6.7         2.0  virginica
+32  virginica          6.3         2.7          4.9         1.8  virginica
+33  virginica          6.1         3.0          4.9         1.8  virginica
+34 versicolor          7.2         3.0          5.8         1.6  virginica
+35  virginica          6.4         2.8          5.6         2.2  virginica
+36 versicolor          6.3         2.8          5.1         1.5  virginica
+37  virginica          7.7         3.0          6.1         2.3  virginica
+38  virginica          6.0         3.0          4.8         1.8  virginica
+39  virginica          6.9         3.1          5.4         2.1  virginica</code></pre>
 </div>
 </div>
-<p>Como já temos o dados previstos e também o real, podemos fazer uma a matriz de confusão para facilitar a visualização dos resultados e analisar o desempenho inicial do modelo.</p>
+<p>Como já temos o resultados previstos e o real, podemos fazer uma matriz de confusão para facilitar a visualização dos resultados e analisar o desempenho inicial do modelo.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;">#confusion matrix</span></span>
 <span id="cb6-2"><span class="fu" style="color: #4758AB;">table</span>(test_iris<span class="sc" style="color: #5E5E5E;">$</span>species,</span>
@@ -440,7 +438,7 @@ converged</code></pre>
              setosa versicolor virginica
   setosa         13          0         0
   versicolor      0         12         1
-  virginica       0          0        13</code></pre>
+  virginica       0          2        11</code></pre>
 </div>
 </div>
 <p>Como ficou o resultado da previsão ?</p>
@@ -451,11 +449,11 @@ converged</code></pre>
 <pre><code> [1] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
  [6] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
 [11] "setosa"     "setosa"     "setosa"     "versicolor" "versicolor"
-[16] "versicolor" "versicolor" "versicolor" "virginica"  "versicolor"
-[21] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
+[16] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
+[21] "versicolor" "versicolor" "versicolor" "virginica"  "versicolor"
 [26] "versicolor" "virginica"  "virginica"  "virginica"  "virginica" 
-[31] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
-[36] "virginica"  "virginica"  "virginica"  "virginica" </code></pre>
+[31] "virginica"  "virginica"  "virginica"  "versicolor" "virginica" 
+[36] "versicolor" "virginica"  "virginica"  "virginica" </code></pre>
 </div>
 </div>
 <p>Plotando o modelo que acabamos de fazer</p>
@@ -471,15 +469,15 @@ converged</code></pre>
 <h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
 <li>Um modelos de previsão de classificação pode ser embarcado dentro do sistema de produção.</li>
-<li></li>
+<li>O modelo que fizemos é bastante simple e serve apenas como base para aprendizado, como próximo passo o uso de validação cruzada (cross validation) pode ser uma excelente opção para complementar o que aprendemos aqui.</li>
 </ul>
 </section>
 <section id="qual-o-resultado" class="level3">
 <h3 class="anchored" data-anchor-id="qual-o-resultado"><span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
-<li><p>Aperfeiçoar</p></li>
-<li><p>Facilitar</p></li>
-<li><p>Melhorar.</p></li>
+<li><p>Aperfeiçoar as técnicas de contrução de modelos e solução de problemas de classificação para que estes possam auxiliar na produtividade da industria de flores que usamos como exemplo.</p></li>
+<li><p>Facilitar o processo de classificação</p></li>
+<li><p>Melhorar o processo de produção, qualidade do produto, satisfação do consumidor e competitividade do negócio.</p></li>
 </ul>
 
 

@@ -15,8 +15,11 @@ website:
         href: https://github.com/factorialmap
 format:
   html:
-    theme: Flatly
+    theme: 
+      light: Flatly
+      dark: Cyborg
     css: styles.css
-
+    
+    
 editor: visual
 

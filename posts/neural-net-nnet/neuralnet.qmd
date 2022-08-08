@@ -22,15 +22,15 @@ image: "neural_class.png"
 
 ### [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 
--   A técnica é muito utilizada na solução de problemas de classificação ou seja, onde o resultado(desfecho) é uma classe (e.g. gato, cachorro, cavalo).
+-   A técnica é muito utilizada na solução de problemas de classificação onde o resultado(desfecho) é uma classe (e.g. gato, cachorro, cavalo).
 
--   Neste exemplo, nós temos uma linha de produção com sensores que registra características como largura e comprimento da pétala e sepala dos três tipos de flores iris: **setosa**, **versicolor** e **virgínica**.
+-   Neste exemplo, nós usaremos como exemplo uma linha de produção com sensores que registram características como largura e comprimento da pétala e sepala dos três tipos de flores iris: **setosa**, **versicolor** e **virgínica**.
 
--   Nosso objetivo é fazer um modelo de previsão que com base nessas características, consiga classificar cada tipo de flor e separá-las corretamente.
+-   Nosso objetivo é fazer um modelo de previsão o qual com base nessas características, consiga classificar cada tipo de flor e separá-las corretamente.
 
 ### [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
 
--   Vem do uso de sistemas que utilizam visão computacional, processamento de linguagem natural como base para seu funcionamento ou melhoria como por exemplo veículos semi-autonomos, linhas de produção de veículos, controle de qualidade de autopeças entre outros.
+-   Vem do uso de sistemas que utilizam visão computacional, processamento de linguagem natural em seu funcionamento como por exemplo veículos semi-autonomos, linhas de produção de veículos, controle de qualidade de autopeças entre outros.
 
 -   A primeira rede neural artificial foi implementada em 1958 por Frank Rosenblat e se chamava **Perceptron** e naquela época já se falava que era um embrião de um computador eletronico que seria capaz de andar, falar, ver, escrever e se reproduzir. [Materia New York Times](https://www.nytimes.com/1958/07/13/archives/electronic-brain-teaches-itself.html)
 
@@ -41,20 +41,20 @@ Neste exemplo usaremos os pacotes [tidyverse](https://www.tidyverse.org/), [jani
 ```{r}
 #| warning: false
 
-# packages -------------------------------------------------------------
+# packages ----------------------------------------------------
 library(tidyverse)
 library(tidymodels)
 library(nnet)
 library(NeuralNetTools)
 
-# data -------------------------------------------------------------------
+# data --------------------------------------------------------
 data_iris <- iris %>% janitor::clean_names()
 
 split_iris <- initial_split(data_iris, strata = species)
 train_iris <- training(split_iris)
 test_iris  <- testing(split_iris)
 
-# model ------------------------------------------------------------------
+# model -------------------------------------------------------
 mdl_fit_nn_iris <- nnet(species ~., 
                         data = train_iris, 
                         size = 5, 
@@ -63,16 +63,16 @@ mdl_fit_nn_iris <- nnet(species ~.,
 
 ```
 
-Vamos fazer uma previsão usando o modelo que construímos e jogar o resultado para dentro do dataframe de teste para podermos comparar entre o `previsto` vs `realizado`.
+Vamos fazer uma previsão usando o modelo que construímos e colocar o resultado dentro do `dataframe` com os dados de teste para podermos comparar valores `previstos` e `realizados`.
 
 ```{r}
-# results ----------------------------------------------------------------
+# results -----------------------------------------------------
 mdl_fit_nn_iris %>% 
   predict(test_iris,type = "class") %>%
   bind_cols(test_iris)
 ```
 
-Como já temos o dados previstos e também o real, podemos fazer uma a matriz de confusão para facilitar a visualização dos resultados e analisar o desempenho inicial do modelo.
+Como já temos o resultados previstos e o real, podemos fazer uma matriz de confusão para facilitar a visualização dos resultados e analisar o desempenho inicial do modelo.
 
 ```{r}
 #confusion matrix
@@ -107,12 +107,12 @@ NeuralNetTools::plotnet(mdl_fit_nn_iris,pad_x=0.55, circle_col = "grey90")
 ### [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 
 -   Um modelos de previsão de classificação pode ser embarcado dentro do sistema de produção.
--   
+-   O modelo que fizemos é bastante simple e serve apenas como base para aprendizado, como próximo passo o uso de validação cruzada (cross validation) pode ser uma excelente opção para complementar o que aprendemos aqui.
 
 ### [**Qual o resultado**]{style="color: #5AC8BE ;"}
 
--   Aperfeiçoar
+-   Aperfeiçoar as técnicas de contrução de modelos e solução de problemas de classificação para que estes possam auxiliar na produtividade da industria de flores que usamos como exemplo.
 
--   Facilitar
+-   Facilitar o processo de classificação
 
--   Melhorar.
+-   Melhorar o processo de produção, qualidade do produto, satisfação do consumidor e competitividade do negócio.
