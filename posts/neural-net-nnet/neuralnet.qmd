@@ -107,12 +107,13 @@ NeuralNetTools::plotnet(mdl_fit_nn_iris,pad_x=0.55, circle_col = "grey90")
 ### [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 
 -   Um modelos de previsão de classificação pode ser embarcado dentro do sistema de produção.
--   O modelo que fizemos é bastante simple e serve apenas como base para aprendizado, como próximo passo o uso de validação cruzada (cross validation) pode ser uma excelente opção para complementar o que aprendemos aqui.
+
+-   O modelo que fizemos é bastante simples e serve apenas como base para aprendizado, como próximo passo o uso de validação cruzada (cross validation) pode ser uma excelente opção para complementar o que aprendemos aqui.
 
 ### [**Qual o resultado**]{style="color: #5AC8BE ;"}
 
 -   Aperfeiçoar as técnicas de contrução de modelos e solução de problemas de classificação para que estes possam auxiliar na produtividade da industria de flores que usamos como exemplo.
 
--   Facilitar o processo de classificação
+-   Facilitar o processo de classificação.
 
 -   Melhorar o processo de produção, qualidade do produto, satisfação do consumidor e competitividade do negócio.
