@@ -19,35 +19,32 @@
 
 
 
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
-O vídeo tema para este post disponível em
+<div class="callout-body-container">
+<p>Vídeo tema para este post em <a href="https://youtu.be/p-wiv5wnLMw" target="_blank">YouTube Como importar e visualizar dados - Titanic dataset parte1</a></p>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><a href="https://youtu.be/p-wiv5wnLMw">YouTube Como importar e visualizar dados - Titanic dataset parte1</a></p>
 </div>
-</div>
-<section id="o-que-é-importação-e-visualização-de-dados" class="level3">
-<h3 class="anchored" data-anchor-id="o-que-é-importação-e-visualização-de-dados"><span style="color: #5AC8BE ;"><strong>O que é importação e visualização de dados</strong></span></h3>
+<section id="fa-1-o-que-é-importação-e-visualização-de-dados" class="level3">
+<h3 class="anchored" data-anchor-id="fa-1-o-que-é-importação-e-visualização-de-dados"> <span style="color: #5AC8BE ;"><strong>O que é importação e visualização de dados</strong></span></h3>
 <ul>
 <li><p>É a etapa onde é feita extração de dados e avaliação se os mesmos podem contribuir para a solução do problema a ser resolvido.</p></li>
 <li><p>A visualização é uma forma intuitiva de traçar relações possíveis entre os dados e o desfecho permitindo a geração de questões e levantamento de hipóteses.</p></li>
 <li><p>Geralmente estão atrelados a uma métrica de sucesso e é feito após a etapa <strong>P</strong> do <strong>PDCA</strong> , <strong>PPDAC</strong> ou outro método de análise de fenõmeno e causa raíz utilizado.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/data_import.png" class="img-fluid figure-img" width="605"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/data_import.png" class="img-fluid figure-img" width="658"></p>
 <p></p><figcaption class="figure-caption">Processo de projeto kaizen</figcaption><p></p>
 </figure>
 </div></li>
 </ul>
 </section>
-<section id="qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="qual-o-objetivo"><span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<section id="fa-2-qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
 <li><p>Disponibilizar recursos revelantes para solução dos problemas</p></li>
 <li><p>Filtrar dados relevantes dos não relevantes, entender a natureza dos dados se são realmente ruídos ou carecem de representação.</p></li>
@@ -55,19 +52,19 @@ O vídeo tema para este post disponível em
 <li><p>Gerar novas questões e hipóteses que poderão utilizar novos dados ou um resultado de interação entre os existentes.</p></li>
 </ul>
 </section>
-<section id="de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<section id="fa-3-de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
 <li><p>A extração e visualização dos dados vem da necessidade de encontrar variáveis que expliquem o fenômeno e ajudem a prever eventos futuros.</p></li>
 <li><p>Melhorar e estimular a geração de ideias através da interação entre os envolvidos.</p></li>
 </ul>
 </section>
-<section id="como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="como-fazer"><span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
-<p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/">tidyverse</a> , <a href="https://www.tidymodels.org/">tidymodels</a> e <a href="https://github.com/sfirke/janitor">janitor</a>, <a href="http://rpkgs.datanovia.com/ggpubr/index.html">ggpubr</a>, <a href="http://pablo14.github.io/funModeling/articles/funModeling_quickstart.html">funmodeling</a>, <a href="https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html">ggalluvial</a> e <a href="https://cran.r-project.org/web/packages/visdat/vignettes/using_visdat.html">visdat</a><br>
+<section id="fa-4-como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a>, <a href="http://rpkgs.datanovia.com/ggpubr/index.html" target="_blank">ggpubr</a>, <a href="http://pablo14.github.io/funModeling/articles/funModeling_quickstart.html" target="_blank">funmodeling</a>, <a href="https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html" target="_blank">ggalluvial</a> e <a href="https://cran.r-project.org/web/packages/visdat/vignettes/using_visdat.html" target="_blank">visdat</a><br>
 </p>
-<p>O dados podem ser baixados no <a href="https://www.kaggle.com/competitions/titanic/data">Kaggle titanic dataset</a></p>
-<div class="cell">
+<p>O dados podem ser baixados no <a href="https://www.kaggle.com/competitions/titanic/data" target="_blank">Kaggle titanic dataset</a></p>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># pacotes           --------------------------------------------------------</span></span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidymodels)</span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
@@ -115,14 +112,18 @@ O vídeo tema para este post disponível em
 </div>
 </div>
 <p>Como o nosso conjunto de dados é pequeno(tem poucas variáveis) é possível usar um gráfico para visualizar os tipos de dados e as características.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">split_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> visdat<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">vis_dat</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -131,7 +132,7 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Sugestão</strong> É possível usar o pacote <code>naniar</code> com a função <code>naniar::miss_var_summary()</code></p>
 </div>
@@ -143,50 +144,66 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <p>Inserir dados faltantes em <code>embarked = moda, age e fare = usando knn</code></p>
 </blockquote>
 <p>Vamos fazer uma <strong>correlação</strong> para avaliar os padrões existentes. <strong>Mas note</strong>. Para fazer correlação, os dados precisam ser <strong>numéricos</strong> por isso usamos a função <code>select_if(is.numeric)</code> . Pelo padrão apresentado é possível verificar a existencia de dados categóricos <code>eles geralmente ficam espaçados no gráfico</code> e eles precisam ser transformados pra factor posteriormente e que já anotamos e comunicamos.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;"># correlacao</span></span>
 <span id="cb4-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb4-3">  <span class="fu" style="color: #4758AB;">select_if</span>(is.numeric) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb4-4">  GGally<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">ggscatmat</span>(<span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"survived"</span>, <span class="at" style="color: #657422;">corMethod =</span> <span class="st" style="color: #20794D;">"spearman"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb4-5">  <span class="fu" style="color: #4758AB;">theme_pubclean</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Será que a idade importa ?</strong></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;"># age - será que a idade importa ? </span></span>
 <span id="cb5-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb5-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>age, <span class="at" style="color: #657422;">fill =</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb5-4">  <span class="fu" style="color: #4758AB;">geom_density</span>(<span class="at" style="color: #657422;">alpha =</span><span class="fl" style="color: #AD0000;">0.5</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Será que o sexo importa ?</strong></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;"># age, sex and class - será que o sexo importa ?</span></span>
 <span id="cb6-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb6-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>pclass, <span class="at" style="color: #657422;">fill=</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb6-4">  <span class="fu" style="color: #4758AB;">geom_bar</span>(<span class="at" style="color: #657422;">stat =</span> <span class="st" style="color: #20794D;">"count"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb6-5">  <span class="fu" style="color: #4758AB;">facet_grid</span>(<span class="sc" style="color: #5E5E5E;">~</span>sex)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Vamos juntar as variáveis age+sex+pclass e analisar sob outro ponto de vista</strong></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;"># age sex and class - sob outro ponto de vista</span></span>
 <span id="cb7-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb7-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>age, <span class="at" style="color: #657422;">y=</span>sex))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb7-4">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">color =</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb7-5">  <span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>pclass)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Novamente vamos analisar sob outro ponto de vista</strong></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;"># sex, class e survived </span></span>
 <span id="cb8-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb8-3">  <span class="fu" style="color: #4758AB;">group_by</span>(sex, survived, pclass) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
@@ -197,22 +214,30 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <span id="cb8-8">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="at" style="color: #657422;">stat =</span> <span class="st" style="color: #20794D;">"stratum"</span>, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> <span class="fu" style="color: #4758AB;">after_stat</span>(stratum)))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb8-9">  <span class="fu" style="color: #4758AB;">scale_x_discrete</span>(<span class="at" style="color: #657422;">limits =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"sex"</span>, <span class="st" style="color: #20794D;">"pclass"</span>,<span class="st" style="color: #20794D;">"survived"</span>))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Será que a variável tarifa está bem representada ?</strong></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;"># fare - será que fare é uma variável válida ?</span></span>
 <span id="cb9-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb9-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">fare =</span> fare) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb9-4">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>fare, <span class="at" style="color: #657422;">y=</span>pclass))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb9-5">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">color =</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Sera que o tamanho da familia importa e o dado está bem representado ?</strong></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;"># parch sib_sp - será que o tamanho da familia importa ?</span></span>
 <span id="cb10-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb10-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">family_size =</span> parch <span class="sc" style="color: #5E5E5E;">+</span> sib_sp <span class="sc" style="color: #5E5E5E;">+</span><span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
@@ -222,11 +247,15 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <span id="cb10-7">            <span class="at" style="color: #657422;">palette =</span> <span class="st" style="color: #20794D;">"uchicago"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb10-8">  <span class="fu" style="color: #4758AB;">stat_compare_means</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p><strong>Será que existe algum padrão no nome que possa ser extraído e que ajude a explicar se impacta na sobrevivência ?</strong></p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="co" style="color: #5E5E5E;"># title</span></span>
 <span id="cb11-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb11-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">title =</span> <span class="fu" style="color: #4758AB;">str_extract</span>(name, <span class="st" style="color: #20794D;">"[A-z]*</span><span class="sc" style="color: #5E5E5E;">\\</span><span class="st" style="color: #20794D;">."</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
@@ -255,15 +284,15 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 </div>
 </section>
-<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
 <li><p>A próxima etapa é comunicar os resultados junto aos membros do projeto sobre as relações encontradas permitindo a interção e levantamento de novas necessidades ou hipóteses.</p></li>
 <li><p>Posteriormente, vem as etapas de pré processamento, modelo, validação e submissão.</p></li>
 </ul>
 </section>
-<section id="qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="qual-o-resultado"><span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<section id="fa-6-qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoar a técnica de observação e representação de dados.</p></li>
 <li><p>Facilitar a comunicação com os envolvidos no projeto.</p></li>
@@ -273,7 +302,7 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 
 </section>
 
- ]]></description>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section></div> ]]></description>
   <category>Exploração</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar.html</guid>
   <pubDate>Sun, 07 Aug 2022 03:00:00 GMT</pubDate>

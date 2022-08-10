@@ -16,11 +16,11 @@ about:
       href: https://linkedin.com/carvalhoribeiro
 ---
 
-### **Bio**
+### {{< fa bullseye >}} **Goals**
 
 O objetivo do blog é complementar o conteúdo postado no YouTube e tentar facilitar a vida do pesquisador, melhorista de processo e demais profissionais da industria e setor de serviços.
 
-### **Education**
+### {{< fa graduation-cap >}} **Education**
 
 **Nova Acrópole** \| Florianópolis, SC, Brasil\
 Filosofia na tradição Clássica \| 2014-2015

@@ -4,6 +4,11 @@
 # (see https://quarto.org/docs/projects/code-execution.html#freeze)
 freeze: true
 
+# enable CC licence appendix
+#license: "CC BY"
+
+
+
 # Enable banner style title blocks
 title-block-banner: false
 
@@ -12,6 +17,8 @@ author: "Marcelo Carvalho dos Anjos"
 
 # Table of content setting
 toc: true
+toc-title: Conteúdo
+toc-location: left
 toc-depth: 3
 
 page-layout: article

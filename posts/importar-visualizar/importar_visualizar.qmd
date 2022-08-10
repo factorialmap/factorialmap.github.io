@@ -6,13 +6,11 @@ categories: [Exploração]
 image: "data_import.png"
 ---
 
-::: callout-tip
-## O vídeo tema para este post disponível em
-
-[YouTube Como importar e visualizar dados - Titanic dataset parte1](https://youtu.be/p-wiv5wnLMw)
+::: {.callout-tip appearance="simple"}
+Vídeo tema para este post em [YouTube Como importar e visualizar dados - Titanic dataset parte1](https://youtu.be/p-wiv5wnLMw){target="_blank"}
 :::
 
-### [**O que é importação e visualização de dados**]{style="color: #5AC8BE ;"}
+### {{< fa 1 >}} [**O que é importação e visualização de dados**]{style="color: #5AC8BE ;"}
 
 -   É a etapa onde é feita extração de dados e avaliação se os mesmos podem contribuir para a solução do problema a ser resolvido.
 
@@ -20,9 +18,9 @@ image: "data_import.png"
 
 -   Geralmente estão atrelados a uma métrica de sucesso e é feito após a etapa **P** do **PDCA** , **PPDAC** ou outro método de análise de fenõmeno e causa raíz utilizado.
 
-    ![Processo de projeto kaizen](data_import.png){width="605"}
+    ![Processo de projeto kaizen](data_import.png){width="658"}
 
-### [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 
 -   Disponibilizar recursos revelantes para solução dos problemas
 
@@ -32,20 +30,21 @@ image: "data_import.png"
 
 -   Gerar novas questões e hipóteses que poderão utilizar novos dados ou um resultado de interação entre os existentes.
 
-### [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
 
 -   A extração e visualização dos dados vem da necessidade de encontrar variáveis que expliquem o fenômeno e ajudem a prever eventos futuros.
 
 -   Melhorar e estimular a geração de ideias através da interação entre os envolvidos.
 
-### [**Como fazer**]{style="color: #5AC8BE ;"}
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
 
-Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/) , [tidymodels](https://www.tidymodels.org/) e [janitor](https://github.com/sfirke/janitor), [ggpubr](http://rpkgs.datanovia.com/ggpubr/index.html), [funmodeling](http://pablo14.github.io/funModeling/articles/funModeling_quickstart.html), [ggalluvial](https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html) e [visdat](https://cran.r-project.org/web/packages/visdat/vignettes/using_visdat.html)\
+Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/){target="_blank"} , [tidymodels](https://www.tidymodels.org/){target="_blank"} e [janitor](https://github.com/sfirke/janitor){target="_blank"}, [ggpubr](http://rpkgs.datanovia.com/ggpubr/index.html){target="_blank"}, [funmodeling](http://pablo14.github.io/funModeling/articles/funModeling_quickstart.html){target="_blank"}, [ggalluvial](https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html){target="_blank"} e [visdat](https://cran.r-project.org/web/packages/visdat/vignettes/using_visdat.html){target="_blank"}\
 
-O dados podem ser baixados no [Kaggle titanic dataset](https://www.kaggle.com/competitions/titanic/data)
+O dados podem ser baixados no [Kaggle titanic dataset](https://www.kaggle.com/competitions/titanic/data){target="_blank"}
 
 ```{r}
 #| warning: false
+#| fig-align: center
 
 # pacotes           --------------------------------------------------------
 library(tidymodels)
@@ -83,6 +82,7 @@ Como o nosso conjunto de dados é pequeno(tem poucas variáveis) é possível us
 
 ```{r}
 #| warning: false
+#| fig-align: center
 
 split_titanic %>% visdat::vis_dat()
 ```
@@ -103,6 +103,7 @@ Vamos fazer uma **correlação** para avaliar os padrões existentes. **Mas note
 
 ```{r}
 #| warning: false
+#| fig-align: center
 # correlacao
 train_titanic %>% 
   select_if(is.numeric) %>% 
@@ -115,6 +116,7 @@ train_titanic %>%
 
 ```{r}
 #| warning: false
+#| fig-align: center
 
 
 # age - será que a idade importa ? 
@@ -127,6 +129,7 @@ train_titanic %>%
 
 ```{r}
 #| warning: false
+#| fig-align: center
 
 # age, sex and class - será que o sexo importa ?
 train_titanic %>% 
@@ -140,6 +143,7 @@ train_titanic %>%
 
 ```{r}
 #| warning: false
+#| fig-align: center
 
 # age sex and class - sob outro ponto de vista
 train_titanic %>% 
@@ -152,6 +156,7 @@ train_titanic %>%
 
 ```{r}
 #| warning: false
+#| fig-align: center
 
 # sex, class e survived 
 train_titanic %>% 
@@ -168,6 +173,7 @@ train_titanic %>%
 
 ```{r}
 #| warning: false
+#| fig-align: center
 
 # fare - será que fare é uma variável válida ?
 train_titanic %>% 
@@ -181,6 +187,7 @@ train_titanic %>%
 
 ```{r}
 #| warning: false
+#| fig-align: center
 
 # parch sib_sp - será que o tamanho da familia importa ?
 train_titanic %>% 
@@ -197,6 +204,7 @@ train_titanic %>%
 
 ```{r}
 #| warning: false
+#| fig-align: center
 # title
 train_titanic %>% 
   mutate(title = str_extract(name, "[A-z]*\\.")) %>% 
@@ -205,13 +213,13 @@ train_titanic %>%
   arrange(desc(n))
 ```
 
-### [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 
 -   A próxima etapa é comunicar os resultados junto aos membros do projeto sobre as relações encontradas permitindo a interção e levantamento de novas necessidades ou hipóteses.
 
 -   Posteriormente, vem as etapas de pré processamento, modelo, validação e submissão.
 
-### [**Qual o resultado**]{style="color: #5AC8BE ;"}
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
 
 -   Aperfeiçoar a técnica de observação e representação de dados.
 
