@@ -6,21 +6,25 @@ categories: [Modelos]
 image: "neural_class.png"
 ---
 
-### [**O que é um modelo de rede neural**]{style="color: #5AC8BE ;"}
+::: {.callout-tip appearance="simple"}
+Vídeo tema para este post em [Redes neurais artificiais no R com nnet package](https://youtu.be/UKXYGGzHc0A){target="_blank"}
+:::
+
+### {{< fa 1 >}} [**O que é um modelo de rede neural**]{style="color: #5AC8BE ;"}
 
 -   Rede neural é uma técnica que usa nós interconectados ou neuronios em uma estrutura de camadas com o objetivo de resolver problemas de previsão.
 
     ::: panel-tabset
     ## Rede neural regressão
 
-    ![Rede Neural - Regressão](neural_reg.png){alt="Rede Neural - Regressão" width="605"}
+    ![Rede Neural - Regressão](neural_reg.png){alt="Rede Neural - Regressão" width="500"}
 
     ## Rede neural Classificação
 
-    ![Rede Neural - Classificação](neural_class.png){alt="Rede Neural - Classificação" width="605"}
+    ![Rede Neural - Classificação](neural_class.png){alt="Rede Neural - Classificação" width="500"}
     :::
 
-### [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 
 -   A técnica é muito utilizada na solução de problemas de classificação onde o resultado(desfecho) é uma classe (e.g. gato, cachorro, cavalo).
 
@@ -28,15 +32,15 @@ image: "neural_class.png"
 
 -   Nosso objetivo é fazer um modelo de previsão o qual com base nessas características, consiga classificar cada tipo de flor e separá-las corretamente.
 
-### [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
 
 -   Vem do uso de sistemas que utilizam visão computacional, processamento de linguagem natural em seu funcionamento como por exemplo veículos semi-autonomos, linhas de produção de veículos, controle de qualidade de autopeças entre outros.
 
--   A primeira rede neural artificial foi implementada em 1958 por Frank Rosenblat e se chamava **Perceptron** e naquela época já se falava que era um embrião de um computador eletronico que seria capaz de andar, falar, ver, escrever e se reproduzir. [Materia New York Times](https://www.nytimes.com/1958/07/13/archives/electronic-brain-teaches-itself.html)
+-   A primeira rede neural artificial foi implementada em 1958 por Frank Rosenblat e se chamava **Perceptron** e naquela época já se falava que era um embrião de um computador eletronico que seria capaz de andar, falar, ver, escrever e se reproduzir. [Materia New York Times](https://www.nytimes.com/1958/07/13/archives/electronic-brain-teaches-itself.html){target="_blank"}
 
-### [**Como fazer**]{style="color: #5AC8BE ;"}
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
 
-Neste exemplo usaremos os pacotes [tidyverse](https://www.tidyverse.org/), [janitor](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html), [tidymodels](https://www.tidymodels.org/), [nnet](https://cran.r-project.org/web/packages/nnet/index.html) e [neuralnettools](https://www.jstatsoft.org/article/view/v085i11)
+Neste exemplo usaremos os pacotes [tidyverse](https://www.tidyverse.org/){target="_blank"}, [janitor](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html){target="_blank"}, [tidymodels](https://www.tidymodels.org/){target="_blank"}, [nnet](https://cran.r-project.org/web/packages/nnet/index.html){target="_blank"} e [neuralnettools](https://www.jstatsoft.org/article/view/v085i11){target="_blank"}
 
 ```{r}
 #| warning: false
@@ -104,13 +108,13 @@ NeuralNetTools::plotnet(mdl_fit_nn_iris,pad_x=0.55, circle_col = "grey90")
 
 ```
 
-### [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+### {{< fa 6 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 
 -   Um modelos de previsão de classificação pode ser embarcado dentro do sistema de produção.
 
 -   O modelo que fizemos é bastante simples e serve apenas como base para aprendizado, como próximo passo o uso de validação cruzada (cross validation) pode ser uma excelente opção para complementar o que aprendemos aqui.
 
-### [**Qual o resultado**]{style="color: #5AC8BE ;"}
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
 
 -   Aperfeiçoar as técnicas de contrução de modelos e solução de problemas de classificação para que estes possam auxiliar na produtividade da industria de flores que usamos como exemplo.
 

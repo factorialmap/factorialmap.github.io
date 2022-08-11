@@ -6,7 +6,11 @@ categories: [Modelos]
 image: "confusion_matrix.png"
 ---
 
-### [**O que é uma matriz de confusão**]{style="color: #5AC8BE ;"}
+::: {.callout-tip appearance="simple"}
+Vídeo tema para este post em [Avaliar resultados de modelo preditivo com matriz de confusão](https://youtu.be/eqvmtYXh_C4){target="_blank"}
+:::
+
+### {{< fa 1 >}} [**O que é uma matriz de confusão**]{style="color: #5AC8BE ;"}
 
 -   Tabela que facilita a visualização das previsões corretas e as erradas em modelos de classificação.
 
@@ -22,22 +26,22 @@ image: "confusion_matrix.png"
 
     -   **FN - falso negativo:** Previmos que não, mas na verdade ele tem a doença. também conhecido como "erro do tipo 2".
 
-### [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 
 -   Por ser visual ajuda a responder rapidamente será que meu modelo teve um bom desempenho, onde deu errado, como posso corrigir ?
 
 -   As diversas saídas de previõe permite a criação de indicadores que serão uteis nos ajustes mais adequados conforme a necessidade do trabalho que está sendo desenvolvido.
 
-### [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
 
 -   Em 1904 Karl Pearson criou a tabela de contingência. Por que precisamos e uma matriz de confusao se tevem a acuracidade ?
 
 -   Imagine prever quantas pessoas estao infectadas com um virus contagioso antes de apresentar sintomas e isola-las da populacao saudavel.
 
-### [**Como fazer**]{style="color: #5AC8BE ;"}
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
 
-Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/) , [tidymodels](https://www.tidymodels.org/) e [janitor](https://github.com/sfirke/janitor)\
-O principal pacote que será usando para analisar uma matriz de confusão é o pacote [yardstick](https://yardstick.tidymodels.org/) que já é carregado quando chamamos o pacote **tidymodels**.
+Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/){target="_blank"} , [tidymodels](https://www.tidymodels.org/){target="_blank"} e [janitor](https://github.com/sfirke/janitor){target="_blank"}\
+O principal pacote que será usando para analisar uma matriz de confusão é o pacote [yardstick](https://yardstick.tidymodels.org/){target="_blank"} que já é carregado quando chamamos o pacote **tidymodels**.
 
 ```{r}
 #| warning: false
@@ -124,13 +128,15 @@ two_class_example %>%
 **Incidencia** é o número de casos recém-diagnosticados de uma doença. Número de novos casos de uma doença dividido pelo número de pessoas em risco para a doença. Se, ao longo de um ano, cinco mulheres são diagnosticadas com câncer de mama, de uma população total de 200 mulheres do estudo (que não têm câncer de mama no início do período de estudo), então diríamos que a incidência de câncer de mama câncer nesta população foi de 0,025. (ou 2.500 por 100.000 mulheres-anos de estudo)
 
 **Prevalência** é o número total de casos da doença existentes em uma população. A taxa de prevalência é o número total de casos de uma doença existente em uma população dividido pela população total. Assim, se uma medida de câncer é feita em uma população de 40.000 pessoas e 1.200 foram recentemente diagnosticadas com câncer e 3.500 estão vivendo com câncer, então a prevalência de câncer é de 0,118. (ou 11.750 por 100.000 pessoas)
+
+Fonte: Departament of health - NY State at https://www.health.ny.gov/diseases/chronic/basicstat.htm
 :::
 
-### [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 
 -   A próxima etapa é o ajuste, finalização e comunicação do modelo.
 
-### [**Qual o resultado**]{style="color: #5AC8BE ;"}
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
 
 -   Aperfeiçoar as técnicas de avaliação de performance de modelos poupando tempo e dinheiro.
 

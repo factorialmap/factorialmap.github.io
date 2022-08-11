@@ -83,6 +83,9 @@ Como o nosso conjunto de dados é pequeno(tem poucas variáveis) é possível us
 ```{r}
 #| warning: false
 #| fig-align: center
+#| label: visdat-chart
+#| output-location: column
+#| fig-cap: "Gráfico Visdat - Características das variáveis"
 
 split_titanic %>% visdat::vis_dat()
 ```
@@ -104,6 +107,8 @@ Vamos fazer uma **correlação** para avaliar os padrões existentes. **Mas note
 ```{r}
 #| warning: false
 #| fig-align: center
+#| label: correlation-chart
+#| fig-cap: "Gráfico de correlação de Spearman"
 # correlacao
 train_titanic %>% 
   select_if(is.numeric) %>% 
