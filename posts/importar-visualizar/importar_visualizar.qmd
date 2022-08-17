@@ -18,7 +18,7 @@ Vídeo tema para este post em [YouTube Como importar e visualizar dados - Titani
 
 -   Geralmente estão atrelados a uma métrica de sucesso e é feito após a etapa **P** do **PDCA** , **PPDAC** ou outro método de análise de fenõmeno e causa raíz utilizado.
 
-    ![Processo de projeto kaizen](data_import.png){width="658"}
+    ![Processo de projeto kaizen](data_import.png){width="1390"}
 
 ### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 

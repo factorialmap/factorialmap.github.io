@@ -22,7 +22,7 @@ code-fold: show
 code-summary: "Clique aqui para ocultar/mostrar o código"
 
 # tipo de layout full or article 
-page-layout: full
+page-layout: article
 
 
 comments: 
