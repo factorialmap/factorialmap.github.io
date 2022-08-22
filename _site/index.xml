@@ -10,9 +10,9 @@
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>
 <generator>quarto-1.0.18</generator>
-<lastBuildDate>Tue, 16 Aug 2022 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 21 Aug 2022 03:00:00 GMT</lastBuildDate>
 <item>
-  <title>Analisando distribuição de dados com histograma no R</title>
+  <title>Como analisar distribuição em dados - histograma curva normal</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
   <link>https://carvalhoribeiro.netlify.app/posts/histogram/histogram.html</link>
   <description><![CDATA[ 
@@ -1032,7 +1032,7 @@ Clique aqui pra abrir os detalhes
  ]]></description>
   <category>Exploração</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/histogram/histogram.html</guid>
-  <pubDate>Tue, 16 Aug 2022 03:00:00 GMT</pubDate>
+  <pubDate>Sun, 21 Aug 2022 03:00:00 GMT</pubDate>
   <media:content url="https://carvalhoribeiro.netlify.app/posts/histogram/diametro_histogram.png" medium="image" type="image/png" height="131" width="144"/>
 </item>
 <item>
