@@ -1,0 +1,141 @@
+---
+title: "Analisando distribuição de dados com histograma no R"
+author: "Marcelo Carvalho dos Anjos"
+date: "2022-08-16"
+categories: [Exploração]
+image: "diametro_histogram.png"
+---
+
+::: {.callout-tip appearance="simple"}
+Vídeo tema para este post em [Como analisar distribuição em dados - histograma curva normal](https://youtu.be/YLrmz43Ib1M){target="_blank"}
+:::
+
+### {{< fa 1 >}} [**O que é histograma**]{style="color: #5AC8BE ;"}
+
+-   Gráfico que mostra como os dados coletados (amostra) estão distribuidos. Também mostra a média e como esses dados estão distante da média (desvio padrão e variância).
+
+![Histograma](histogram.png){width="1390"}
+
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+
+-   Obter uma resposta racional que auxilie na decisão (pre processamento, estudo do outlier, escolha do modelo mais adequado, identificação distorções na realidade).
+
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+
+**De questões como:**
+
+-   Como está a distribuição de renda da população ?
+
+-   Como está a distribuição de peso na minha plantação de tomates?
+
+-   Como está a distribuição de altura das pessoas em determinada região?
+
+-   Será que se eu separar em grupos eu consigo atender melhor as necessidades ?
+
+::: {.callout-tip appearance="simple" collapse="true"}
+## Clique aqui pra abrir os detalhes
+
+{{< fa 1 >}} . Imagine que eu queira prever o peso dos cachorros com base nas características deles.
+
+{{< fa 2 >}} . Para explicar a distribuição dos pesos, tento dividir a população em grupos com base nessas características.
+
+{{< fa 3 >}} . Em um agrupamento bem sucedido, os grupos terão baixa variação dentro do grupo e boa variação entre os grupos.
+
+{{< fa 4 >}} . Na primeira tentativa, escolho jovem pelo curto, jovem pelo longo, velho pelo curto, jovem pelo longo.
+
+{{< fa 5 >}} . Na segunda tentantiva escolho cães de trabalho atletico, trabalho faro, domestico atletico, domestico faro.
+
+{{< fa 6 >}} . Na terceira tentativa escolho raças como pintcher, vira latas, pastor alemão e são bernardo.
+:::
+
+![Histograma base para Anova](anova.png){width="1390"}
+
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
+
+Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/){target="_blank"} , [rcompanion](https://rcompanion.org/handbook/){target="_blank"} e [janitor](https://github.com/sfirke/janitor){target="_blank"}, [ggpubr](http://rpkgs.datanovia.com/ggpubr/index.html){target="_blank"}, [funmodeling](http://pablo14.github.io/funModeling/articles/funModeling_quickstart.html){target="_blank"},[skimr](https://cran.r-project.org/web/packages/skimr/vignettes/skimr.html){target="_blank"}\
+
+Gráfico usando rcompanion
+
+```{r}
+#| warning: false
+
+# package -----------------------------------------------------------------
+library(tidyverse)
+library(rcompanion)
+library(funModeling)
+library(skimr)
+library(ggpubr)
+library(ggdist)
+library(gghalves)
+
+# plot --------------------------------------------------------------------
+
+#rcompanion
+rcompanion::plotNormalHistogram(iris$Sepal.Length)
+
+```
+
+Gráfico usando funModeling
+
+```{r}
+#| warning: false
+
+#funmodeling
+mtcars %>% funModeling::plot_num()
+
+```
+
+Gráfico usando skimr
+
+```{r}
+#| warning: false
+
+#skimr
+data(ames, package = "modeldata")
+
+ames %>% skimr::skim()
+
+```
+
+Gráfico usando ggpubr
+
+```{r}
+#| warning: false
+
+#ggpubr
+data(pistonrings, package = "qcc")
+
+pistonrings %>% 
+  ggpubr::gghistogram(x = "diameter", 
+                      fill = "trial",
+                      add = "mean",
+                      rug = TRUE)
+
+```
+
+Gráfico usando base raincloud
+
+```{r}
+#| warning: false
+#raincloud
+ames <- ames %>% janitor::clean_names()
+
+ames %>% 
+  mutate(sale_price = log10(sale_price)) %>% 
+  ggplot(aes(x = heating_qc,
+             y = sale_price))+
+  ggdist::stat_halfeye()
+
+```
+
+### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+
+-   Vai para a etapa de pre processamento ou ajuste de coleta de dados.
+
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
+
+-   Aperfeiçoar a avalição preliminar dos dados através da análise de distribuição.
+
+-   Facilitar o reconhecimento de determinados padrões que poderão influenciar nas decisões.
+
+-   Melhorar o entendimento sobre a natureza dos dados.

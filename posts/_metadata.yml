@@ -18,11 +18,11 @@ toc-location: left
 toc-depth: 3
 
 # fold code
-code-fold: show
-code-summary: "Clique aqui para ocultar/mostrar o código"
+#code-fold: show
+#code-summary: "Clique aqui para ocultar/mostrar o código"
 
 # tipo de layout full or article 
-page-layout: article
+page-layout: full
 
 
 comments: 

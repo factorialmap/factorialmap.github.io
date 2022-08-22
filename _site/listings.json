@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/histogram/histogram.html",
       "/posts/importar-visualizar/importar_visualizar.html",
       "/posts/neural-net-nnet/neuralnet.html",
       "/posts/confusion-matrix/index.html",

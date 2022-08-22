@@ -22,21 +22,21 @@ O objetivo do canal e do blog é tentar auxiliar na melhoria de processos para q
 ::: {.callout-tip appearance="simple" collapse="true"}
 ## Clique aqui pra abrir os detalhes
 
-{{< fa 1 >}} . **Demanda, definição do problema, objetivos e métricas de sucesso** - Contém a origem e tipos de necessidade que é o que torna todo o restante do trabalho necessário.
+{{< fa 1 >}} . Demanda, definição do problema, objetivos e métricas de sucesso - Contém a origem e tipos de necessidade que é o que torna todo o restante do trabalho necessário.
 
-{{< fa 2 >}} . **Dados** - Contém conceitos com o objetivo de estimular a observação, abstração e entendimento sobre o que são dados.
+{{< fa 2 >}} . Dados - Contém conceitos com o objetivo de estimular a observação, abstração e entendimento sobre o que são dados.
 
-{{< fa 3 >}} . **Ferramentas** - Contém ferramentas como R(RStudio), Oracle SQL\*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.
+{{< fa 3 >}} . Ferramentas - Contém ferramentas como R(RStudio), Oracle SQL*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.
 
-{{< fa 4 >}} . **Exploração** - Contém visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.
+{{< fa 4 >}} . Exploração - Contém visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.
 
-{{< fa 5 >}} . **Modelos** - Contém alguns tipos de modelos descritivos, preditivos, inferenciais, otimização entre outros.
+{{< fa 5 >}} . Modelos - Contém alguns tipos de modelos descritivos, preditivos, inferenciais, otimização entre outros.
 
-{{< fa 6 >}} . **Versionamento e Reprodutibilidade** - Contém processos para desenvolvimento de documentos reproduzíveis usando versionamento github, git, criação de documentos quarto_pub e rmardown, criação de livros bookdown entre outros.
+{{< fa 6 >}} . Versionamento e Reprodutibilidade - Contém processos para desenvolvimento de documentos reproduzíveis usando versionamento github, git, criação de documentos quarto_pub e rmardown, criação de livros bookdown entre outros.
 
-{{< fa 7 >}} . **Comunicação** - Contém abordagens sobre comunicação das estatísticas e relatórios técnicos.
+{{< fa 7 >}} . Comunicação - Contém abordagens sobre comunicação das estatísticas e relatórios técnicos.
 
-{{< fa 8 >}} . **Aplicação** - Contém histórico de ações e aplicações dos projetos.
+{{< fa 8 >}} . Aplicação - Contém histórico de ações e aplicações dos projetos.
 :::
 
 ![](tumb.png){fig-align="center"}
@@ -45,14 +45,14 @@ O objetivo do canal e do blog é tentar auxiliar na melhoria de processos para q
 
 Em 2001 para facilitar o entendimento dos profissionais da operação em industria eu escolhi um padrão que ao longo do tempo vem se mostrando eficiente e utilizarei aqui.
 
-{{< fa lightbulb >}} - **O que é :** qual a ideia do que está sendo abordado ?
+{{< fa lightbulb >}} - O que é : qual a ideia do que está sendo abordado ?
 
-{{< fa bullseye >}} - **Qual o objetivo :** por que isso está sendo ou foi desenvolvido ?
+{{< fa bullseye >}} - Qual o objetivo : por que isso está sendo ou foi desenvolvido ?
 
-{{< fa clipboard-question >}} - **De onde vem :** quais as necessidades ou origem dessa demanda ? A motivação ?
+{{< fa clipboard-question >}} - De onde vem : quais as necessidades ou origem dessa demanda ? A motivação ?
 
-{{< fa file-code >}} - **Como fazer :** qual o procedimento, código, sequência ou fluxo ?
+{{< fa file-code >}} - Como fazer : qual o procedimento, código, sequência ou fluxo ?
 
-{{< fa users >}} - **Pra onde vai :** quem é o consumidor disso ? Qual a aplicação prática ?
+{{< fa users >}} - Pra onde vai : quem é o consumidor disso ? Qual a aplicação prática ?
 
-{{< fa circle-check >}} - **Qual o resultado :** descrição dos resultados previstos ou comprovados.
+{{< fa circle-check >}} - Qual o resultado : descrição dos resultados previstos ou comprovados.

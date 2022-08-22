@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/index.html</loc>
-    <lastmod>2022-08-17T00:54:48.688Z</lastmod>
+    <lastmod>2022-08-22T00:43:34.954Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/blog.html</loc>
@@ -18,11 +18,11 @@
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/about.html</loc>
-    <lastmod>2022-08-09T04:29:40.119Z</lastmod>
+    <lastmod>2022-08-22T00:33:03.681Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/welcome/index.html</loc>
-    <lastmod>2022-08-13T13:28:40.195Z</lastmod>
+    <lastmod>2022-08-17T02:00:53.356Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet.html</loc>
@@ -31,5 +31,9 @@
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar.html</loc>
     <lastmod>2022-08-17T00:54:56.374Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/histogram/histogram.html</loc>
+    <lastmod>2022-08-22T00:44:00.738Z</lastmod>
   </url>
 </urlset>
