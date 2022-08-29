@@ -1,7 +1,7 @@
 ---
 title: "Como Identificar padrões em dados - gráfico de dispersão"
 author: "Marcelo Carvalho dos Anjos"
-date: "2022-08-24"
+date: "2022-08-28"
 categories: [Exploração]
 image: "pattern_recognition.png"
 ---
@@ -33,6 +33,8 @@ Vídeo tema para este post em [Como Identificar padrões em dados - gráfico de 
 -   Da necessidade de investigar as características com visão ampla sobre diversos pontos de vista PDCA.
 
 -   No exemplo utilizado **a)Quem eram as vítimas ?** **b)Em que período ele as intoxicava ?** **c)Em qual período de tempo ?**
+
+![PDCA - Etapa 2](pdca_2.png){width="1390"}
 
 ### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
 

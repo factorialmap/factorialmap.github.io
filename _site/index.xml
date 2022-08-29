@@ -10,7 +10,7 @@
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>
 <generator>quarto-1.0.18</generator>
-<lastBuildDate>Wed, 24 Aug 2022 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 28 Aug 2022 03:00:00 GMT</lastBuildDate>
 <item>
   <title>Como Identificar padrões em dados - gráfico de dispersão</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
@@ -57,6 +57,12 @@
 <li><p>Da necessidade de investigar as características com visão ampla sobre diversos pontos de vista PDCA.</p></li>
 <li><p>No exemplo utilizado <strong>a)Quem eram as vítimas ?</strong> <strong>b)Em que período ele as intoxicava ?</strong> <strong>c)Em qual período de tempo ?</strong></p></li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pdca_2.png" class="img-fluid figure-img" width="1390"></p>
+<p></p><figcaption class="figure-caption">PDCA - Etapa 2</figcaption><p></p>
+</figure>
+</div>
 </section>
 <section id="fa-4-como-fazer" class="level3">
 <h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
@@ -149,7 +155,7 @@
  ]]></description>
   <category>Exploração</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition.html</guid>
-  <pubDate>Wed, 24 Aug 2022 03:00:00 GMT</pubDate>
+  <pubDate>Sun, 28 Aug 2022 03:00:00 GMT</pubDate>
   <media:content url="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition.png" medium="image" type="image/png" height="116" width="144"/>
 </item>
 <item>
