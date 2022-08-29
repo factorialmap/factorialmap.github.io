@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marcelo Carvalho dos Anjos">
-<meta name="dcterms.date" content="2022-08-06">
+<meta name="dcterms.date" content="2022-08-24">
 
-<title>Carvalho Ribeiro Blog - Modelo preditivo usando com rede neural</title>
+<title>Carvalho Ribeiro Blog - Como Identificar padrões em dados - gráfico de dispersão</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -171,12 +171,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Conteúdo</h2>
    
   <ul>
-  <li><a href="#fa-1-o-que-é-um-modelo-de-rede-neural" id="toc-fa-1-o-que-é-um-modelo-de-rede-neural" class="nav-link active" data-scroll-target="#fa-1-o-que-é-um-modelo-de-rede-neural"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>O que é um modelo de rede neural</strong></span></a></li>
+  <li><a href="#fa-1-o-que-são-padrões-em-dados" id="toc-fa-1-o-que-são-padrões-em-dados" class="nav-link active" data-scroll-target="#fa-1-o-que-são-padrões-em-dados"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>O que são padrões em dados</strong></span></a></li>
   <li><a href="#fa-2-qual-o-objetivo" id="toc-fa-2-qual-o-objetivo" class="nav-link" data-scroll-target="#fa-2-qual-o-objetivo"><i class="fa-solid fa-2" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></a></li>
   <li><a href="#fa-3-de-onde-vem-a-demanda" id="toc-fa-3-de-onde-vem-a-demanda" class="nav-link" data-scroll-target="#fa-3-de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></a></li>
   <li><a href="#fa-4-como-fazer" id="toc-fa-4-como-fazer" class="nav-link" data-scroll-target="#fa-4-como-fazer"><i class="fa-solid fa-4" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></a></li>
-  <li><a href="#fa-6-pra-onde-vai-quem-é-o-cliente" id="toc-fa-6-pra-onde-vai-quem-é-o-cliente" class="nav-link" data-scroll-target="#fa-6-pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-6" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></a></li>
+  <li><a href="#fa-5-pra-onde-vai-quem-é-o-cliente" id="toc-fa-5-pra-onde-vai-quem-é-o-cliente" class="nav-link" data-scroll-target="#fa-5-pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-5" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></a></li>
   <li><a href="#fa-6-qual-o-resultado" id="toc-fa-6-qual-o-resultado" class="nav-link" data-scroll-target="#fa-6-qual-o-resultado"><i class="fa-solid fa-6" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></a></li>
+  <li><a href="#fa-7-referência" id="toc-fa-7-referência" class="nav-link" data-scroll-target="#fa-7-referência"><i class="fa-solid fa-7" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Referência</strong></span></a></li>
   </ul>
 </nav>
 </nav>
@@ -188,9 +189,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Modelo preditivo usando com rede neural</h1>
+<h1 class="title">Como Identificar padrões em dados - gráfico de dispersão</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Modelos</div>
+    <div class="quarto-category">Exploração</div>
   </div>
   </div>
 
@@ -208,7 +209,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 6, 2022</p>
+      <p class="date">August 24, 2022</p>
     </div>
   </div>
     
@@ -223,203 +224,123 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Vídeo tema para este post <a href="https://youtu.be/UKXYGGzHc0A" target="_blank">Redes neurais artificiais no R com nnet package</a></p>
+<p>Vídeo tema para este post em <a href="https://youtu.be/YLrmz43Ib1M" target="_blank">Como Identificar padrões em dados - gráfico de dispersão</a></p>
 </div>
 </div>
 </div>
-<section id="fa-1-o-que-é-um-modelo-de-rede-neural" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-um-modelo-de-rede-neural"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>O que é um modelo de rede neural</strong></span></h3>
+<section id="fa-1-o-que-são-padrões-em-dados" class="level3">
+<h3 class="anchored" data-anchor-id="fa-1-o-que-são-padrões-em-dados"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>O que são padrões em dados</strong></span></h3>
 <ul>
-<li><p>Rede neural é uma técnica que usa nós interconectados ou neuronios em uma estrutura de camadas com o objetivo de resolver problemas de previsão.</p>
-<div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Rede neural regressão</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Rede neural Classificação</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="neural_reg.png" class="img-fluid figure-img" alt="Rede Neural - Regressão" width="500"></p>
-<p></p><figcaption class="figure-caption">Rede Neural - Regressão</figcaption><p></p>
-</figure>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="neural_class.png" class="img-fluid figure-img" alt="Rede Neural - Classificação" width="500"></p>
-<p></p><figcaption class="figure-caption">Rede Neural - Classificação</figcaption><p></p>
-</figure>
-</div>
-</div>
-</div>
-</div></li>
+<li><p>Padrões são fenômenos que se repetem de forma regular com base em alguma regra ou em condições definidas.</p></li>
+<li><p>Padrões nos permite fazer comparações e com isso deu origem a descobertas e invenções as quais são resultados da habilidade humanda de reconhecer padrões.</p></li>
+<li><p>Reconhecer padrões requer repetição da experiência, e compreender os padrões é um dos fundamentos do pensamento matemático e resolução de problemas.</p></li>
+<li><p>Exemplo de padrões - número, som, imagem, cores, plantas, linguagem.</p></li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="linear_b.png" class="img-fluid figure-img" width="1390"></p>
+<p></p><figcaption class="figure-caption">Tabuleta de barro micenica de 1200 antes de Cristo com informações sobre a distrubição de couro bovino, suíno e veado aos sapateiros - PY Ub 1318</figcaption><p></p>
+</figure>
+</div>
 </section>
 <section id="fa-2-qual-o-objetivo" class="level3">
 <h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"><i class="fa-solid fa-2" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
-<li><p>A técnica é muito utilizada na solução de problemas de classificação onde o resultado(desfecho) é uma classe (e.g.&nbsp;gato, cachorro, cavalo).</p></li>
-<li><p>Neste exemplo, nós usaremos como exemplo uma linha de produção com sensores que registram características como largura e comprimento da pétala e sepala dos três tipos de flores iris: <strong>setosa</strong>, <strong>versicolor</strong> e <strong>virgínica</strong>.</p></li>
-<li><p>Nosso objetivo é fazer um modelo de previsão o qual com base nessas características, consiga classificar cada tipo de flor e separá-las corretamente.</p></li>
+<li><p>Permitir que possamos fazer previsões e ou explicar melhor o fenômeno.</p></li>
+<li><p>Encontrar dados relevantes para que consigamos replicar esses fenomenos para construir coisas que melhorem e simplifiquem nossa vida</p></li>
 </ul>
 </section>
 <section id="fa-3-de-onde-vem-a-demanda" class="level3">
 <h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
-<li><p>Vem do uso de sistemas que utilizam visão computacional, processamento de linguagem natural em seu funcionamento como por exemplo veículos semi-autonomos, linhas de produção de veículos, controle de qualidade de autopeças entre outros.</p></li>
-<li><p>A primeira rede neural artificial foi implementada em 1958 por Frank Rosenblat e se chamava <strong>Perceptron</strong> e naquela época já se falava que era um embrião de um computador eletronico que seria capaz de andar, falar, ver, escrever e se reproduzir. <a href="https://www.nytimes.com/1958/07/13/archives/electronic-brain-teaches-itself.html" target="_blank">Materia New York Times</a></p></li>
+<li><p>Da necessidade de investigar as características com visão ampla sobre diversos pontos de vista PDCA.</p></li>
+<li><p>No exemplo utilizado <strong>a)Quem eram as vítimas ?</strong> <strong>b)Em que período ele as intoxicava ?</strong> <strong>c)Em qual período de tempo ?</strong></p></li>
 </ul>
 </section>
 <section id="fa-4-como-fazer" class="level3">
 <h3 class="anchored" data-anchor-id="fa-4-como-fazer"><i class="fa-solid fa-4" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
-<p>Neste exemplo usaremos os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a>, <a href="https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html" target="_blank">janitor</a>, <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a>, <a href="https://cran.r-project.org/web/packages/nnet/index.html" target="_blank">nnet</a> e <a href="https://www.jstatsoft.org/article/view/v085i11" target="_blank">neuralnettools</a></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># packages ----------------------------------------------------</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nnet)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(NeuralNetTools)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># data --------------------------------------------------------</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>data_iris <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>split_iris <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(data_iris, <span class="at">strata =</span> species)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>train_iris <span class="ot">&lt;-</span> <span class="fu">training</span>(split_iris)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>test_iris  <span class="ot">&lt;-</span> <span class="fu">testing</span>(split_iris)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># model -------------------------------------------------------</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>mdl_fit_nn_iris <span class="ot">&lt;-</span> <span class="fu">nnet</span>(species <span class="sc">~</span>., </span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                        <span class="at">data =</span> train_iris, </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">size =</span> <span class="dv">5</span>, </span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">decay =</span> <span class="fl">0.01</span>, </span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">maxit =</span> <span class="dv">500</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># weights:  43
-initial  value 142.466668 
-iter  10 value 14.781617
-iter  20 value 9.929478
-iter  30 value 8.291768
-iter  40 value 7.849535
-iter  50 value 7.765939
-iter  60 value 7.732812
-iter  70 value 7.696247
-iter  80 value 7.684596
-iter  90 value 7.675855
-iter 100 value 7.669159
-iter 110 value 7.662754
-iter 120 value 7.658608
-iter 130 value 7.657329
-iter 140 value 7.657058
-iter 150 value 7.657015
-final  value 7.657012 
-converged</code></pre>
-</div>
-</div>
-<p>Vamos fazer uma previsão usando o modelo que construímos e colocar o resultado dentro do <code>dataframe</code> com os dados de teste para podermos comparar valores <code>previstos</code> e <code>realizados</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># results -----------------------------------------------------</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mdl_fit_nn_iris <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">predict</span>(test_iris,<span class="at">type =</span> <span class="st">"class"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(test_iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-• `` -&gt; `...1`</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>         ...1 sepal_length sepal_width petal_length petal_width    species
-1      setosa          4.9         3.0          1.4         0.2     setosa
-2      setosa          5.0         3.4          1.5         0.2     setosa
-3      setosa          5.4         3.7          1.5         0.2     setosa
-4      setosa          5.8         4.0          1.2         0.2     setosa
-5      setosa          5.1         3.5          1.4         0.3     setosa
-6      setosa          5.7         3.8          1.7         0.3     setosa
-7      setosa          5.4         3.4          1.7         0.2     setosa
-8      setosa          5.0         3.4          1.6         0.4     setosa
-9      setosa          4.9         3.6          1.4         0.1     setosa
-10     setosa          5.1         3.4          1.5         0.2     setosa
-11     setosa          5.0         3.5          1.6         0.6     setosa
-12     setosa          5.1         3.8          1.6         0.2     setosa
-13     setosa          5.3         3.7          1.5         0.2     setosa
-14 versicolor          5.5         2.3          4.0         1.3 versicolor
-15 versicolor          6.3         3.3          4.7         1.6 versicolor
-16 versicolor          4.9         2.4          3.3         1.0 versicolor
-17 versicolor          6.2         2.2          4.5         1.5 versicolor
-18 versicolor          5.6         2.5          3.9         1.1 versicolor
-19 versicolor          6.7         3.0          5.0         1.7 versicolor
-20 versicolor          5.7         2.6          3.5         1.0 versicolor
-21 versicolor          6.0         3.4          4.5         1.6 versicolor
-22 versicolor          6.7         3.1          4.7         1.5 versicolor
-23 versicolor          5.5         2.6          4.4         1.2 versicolor
-24 versicolor          5.6         2.7          4.2         1.3 versicolor
-25 versicolor          5.7         3.0          4.2         1.2 versicolor
-26 versicolor          5.7         2.8          4.1         1.3 versicolor
-27  virginica          7.1         3.0          5.9         2.1  virginica
-28  virginica          4.9         2.5          4.5         1.7  virginica
-29  virginica          5.7         2.5          5.0         2.0  virginica
-30  virginica          5.8         2.8          5.1         2.4  virginica
-31  virginica          6.4         3.2          5.3         2.3  virginica
-32  virginica          7.7         2.8          6.7         2.0  virginica
-33  virginica          6.2         2.8          4.8         1.8  virginica
-34  virginica          7.2         3.0          5.8         1.6  virginica
-35  virginica          7.9         3.8          6.4         2.0  virginica
-36 versicolor          6.1         2.6          5.6         1.4  virginica
-37  virginica          6.4         3.1          5.5         1.8  virginica
-38  virginica          5.8         2.7          5.1         1.9  virginica
-39  virginica          6.3         2.5          5.0         1.9  virginica</code></pre>
-</div>
-</div>
-<p>Como já temos o resultados previstos e o real, podemos fazer uma matriz de confusão para facilitar a visualização dos resultados e analisar o desempenho inicial do modelo.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#confusion matrix</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(test_iris<span class="sc">$</span>species,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">predict</span>(mdl_fit_nn_iris,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">newdata =</span> test_iris, </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">type =</span> <span class="st">"class"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            
-             setosa versicolor virginica
-  setosa         13          0         0
-  versicolor      0         13         0
-  virginica       0          1        12</code></pre>
-</div>
-</div>
-<p>Como ficou o resultado da previsão ?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#predict classes</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(mdl_fit_nn_iris, test_iris, <span class="at">type =</span> <span class="st">"class"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
- [6] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
-[11] "setosa"     "setosa"     "setosa"     "versicolor" "versicolor"
-[16] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
-[21] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
-[26] "versicolor" "virginica"  "virginica"  "virginica"  "virginica" 
-[31] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
-[36] "versicolor" "virginica"  "virginica"  "virginica" </code></pre>
-</div>
-</div>
-<p>Plotando o modelo que acabamos de fazer</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#plotando o gráfico</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>NeuralNetTools<span class="sc">::</span><span class="fu">plotnet</span>(mdl_fit_nn_iris,<span class="at">pad_x=</span><span class="fl">0.55</span>, <span class="at">circle_col =</span> <span class="st">"grey90"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://exts.ggplot2.tidyverse.org/ggExtra.html/" target="_blank">ggExtra</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a><br>
+</p>
+<p>O dados podem ser baixados no github de <a href="https://github.com/dspiegel29/ArtofStatistics" target="_blank">David Spiegelhalter</a></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># packages  --------------------------------------------------------------------</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># data  -------------------------------------------------------------------</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>data_crime <span class="ot">&lt;-</span> </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/dspiegel29/ArtofStatistics/master/00-1-age-and-year-of-deathofharold-shipmans-victims/00-1-shipman-confirmed-victims-x.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>crime_time <span class="ot">&lt;-</span> </span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/dspiegel29/ArtofStatistics/master/00-2-shipman-times/00-2-shipman-times-x.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># plot    -------------------------------------------------------------------</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#diagrama de dispersao</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plot <span class="ot">&lt;-</span> </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>data_crime <span class="sc">%&gt;%</span> </span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> fractional_death_year, <span class="at">y =</span> age, <span class="at">color =</span> gender2))<span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"vitimas de shipman"</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"ano"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"idade"</span>)<span class="sc">+</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_blank</span>(), <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">125</span>,<span class="fl">1.15</span>))</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>ggExtra<span class="sc">::</span><span class="fu">ggMarginal</span>(plot, <span class="at">type =</span> <span class="st">"histogram"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="neuralnet_files/figure-html/plot-neural-net-1.png" class="img-fluid" width="672"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pattern_recognition_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#linha</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>crime_time <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span> hour, y))<span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> shipman, <span class="at">col =</span> <span class="st">"Shipman"</span>))<span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> comparison, <span class="at">col =</span> <span class="st">"Outros"</span>))<span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">15</span>), <span class="at">labels =</span> <span class="fu">label_percent</span>(<span class="at">scale=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pattern_recognition_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="fa-6-pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-6" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-5" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
-<li><p>Um modelos de previsão de classificação pode ser embarcado dentro do sistema de produção.</p></li>
-<li><p>O modelo que fizemos é bastante simples e serve apenas como base para aprendizado, como próximo passo o uso de validação cruzada (cross validation) pode ser uma excelente opção para complementar o que aprendemos aqui.</p></li>
+<li>A próxima etapa pra quem usa o PDCA é a busca pelas causas fundamentais do problema.</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="pdca.png" class="img-fluid figure-img" width="1390"></p>
+<p></p><figcaption class="figure-caption">PDCA - Etapa 3</figcaption><p></p>
+</figure>
+</div>
 </section>
 <section id="fa-6-qual-o-resultado" class="level3">
 <h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"><i class="fa-solid fa-6" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
-<li><p>Aperfeiçoar as técnicas de contrução de modelos e solução de problemas de classificação para que estes possam auxiliar na produtividade da industria de flores que usamos como exemplo.</p></li>
-<li><p>Facilitar o processo de classificação.</p></li>
-<li><p>Melhorar o processo de produção, qualidade do produto, satisfação do consumidor e competitividade do negócio.</p></li>
+<li><p>Aperfeiçoar as técnicas de análise de fenômeno encurtando o tempo para explicação ou solução de algum problema</p></li>
+<li><p>Facilitar a replicação do fenômeno e consequentemente a comunicação.</p></li>
+<li><p>Melhorar as chances de sucesso na solução de problemas ou fazer qualquer coisa bem.</p></li>
 </ul>
+</section>
+<section id="fa-7-referência" class="level3">
+<h3 class="anchored" data-anchor-id="fa-7-referência"><i class="fa-solid fa-7" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Referência</strong></span></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="art_of_statistic.jpg" class="img-fluid figure-img" width="650"></p>
+<p></p><figcaption class="figure-caption">A arte da estatística: Como aprender a partir de dados por David Spiegelhalter, George Schlesinger</figcaption><p></p>
+</figure>
+</div>
 
 
 </section>

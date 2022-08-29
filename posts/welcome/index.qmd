@@ -6,7 +6,7 @@ categories: [Demanda, Dados,Ferramentas, Exploração, Modelos, Versionamento, C
 ---
 
 ::: {.callout-tip appearance="simple"}
-Vídeo tema para este post em [Transição demográfcias Brasil e Japão](https://youtu.be/xJWjSOml7zI){target="_blank"}
+Vídeo tema para este post [Transição demográfcias Brasil e Japão](https://youtu.be/xJWjSOml7zI){target="_blank"}
 :::
 
 ### {{< fa 1 >}} [**Por que este blog e o canal no YouTube ?**]{style="color: #5AC8BE ;"}

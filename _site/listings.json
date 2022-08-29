@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/pattern-recognition/pattern_recognition.html",
       "/posts/histogram/histogram.html",
       "/posts/importar-visualizar/importar_visualizar.html",
       "/posts/neural-net-nnet/neuralnet.html",

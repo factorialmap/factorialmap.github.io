@@ -7,7 +7,7 @@ image: "data_import.png"
 ---
 
 ::: {.callout-tip appearance="simple"}
-Vídeo tema para este post em [YouTube Como importar e visualizar dados - Titanic dataset parte1](https://youtu.be/p-wiv5wnLMw){target="_blank"}
+Vídeo tema para este post [Como importar e visualizar dados - Titanic dataset parte1](https://youtu.be/p-wiv5wnLMw){target="_blank"}
 :::
 
 ### {{< fa 1 >}} [**O que é importação e visualização de dados**]{style="color: #5AC8BE ;"}

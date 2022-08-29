@@ -10,7 +10,148 @@
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>
 <generator>quarto-1.0.18</generator>
-<lastBuildDate>Sun, 21 Aug 2022 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 24 Aug 2022 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Como Identificar padrões em dados - gráfico de dispersão</title>
+  <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
+  <link>https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Vídeo tema para este post em <a href="https://youtu.be/YLrmz43Ib1M" target="_blank">Como Identificar padrões em dados - gráfico de dispersão</a></p>
+</div>
+</div>
+</div>
+<section id="fa-1-o-que-são-padrões-em-dados" class="level3">
+<h3 class="anchored" data-anchor-id="fa-1-o-que-são-padrões-em-dados"> <span style="color: #5AC8BE ;"><strong>O que são padrões em dados</strong></span></h3>
+<ul>
+<li><p>Padrões são fenômenos que se repetem de forma regular com base em alguma regra ou em condições definidas.</p></li>
+<li><p>Padrões nos permite fazer comparações e com isso deu origem a descobertas e invenções as quais são resultados da habilidade humanda de reconhecer padrões.</p></li>
+<li><p>Reconhecer padrões requer repetição da experiência, e compreender os padrões é um dos fundamentos do pensamento matemático e resolução de problemas.</p></li>
+<li><p>Exemplo de padrões - número, som, imagem, cores, plantas, linguagem.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/linear_b.png" class="img-fluid figure-img" width="1390"></p>
+<p></p><figcaption class="figure-caption">Tabuleta de barro micenica de 1200 antes de Cristo com informações sobre a distrubição de couro bovino, suíno e veado aos sapateiros - PY Ub 1318</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="fa-2-qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<ul>
+<li><p>Permitir que possamos fazer previsões e ou explicar melhor o fenômeno.</p></li>
+<li><p>Encontrar dados relevantes para que consigamos replicar esses fenomenos para construir coisas que melhorem e simplifiquem nossa vida</p></li>
+</ul>
+</section>
+<section id="fa-3-de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<ul>
+<li><p>Da necessidade de investigar as características com visão ampla sobre diversos pontos de vista PDCA.</p></li>
+<li><p>No exemplo utilizado <strong>a)Quem eram as vítimas ?</strong> <strong>b)Em que período ele as intoxicava ?</strong> <strong>c)Em qual período de tempo ?</strong></p></li>
+</ul>
+</section>
+<section id="fa-4-como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://exts.ggplot2.tidyverse.org/ggExtra.html/" target="_blank">ggExtra</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a><br>
+</p>
+<p>O dados podem ser baixados no github de <a href="https://github.com/dspiegel29/ArtofStatistics" target="_blank">David Spiegelhalter</a></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># packages  --------------------------------------------------------------------</span></span>
+<span id="cb1-2"></span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;">library</span>(ggExtra)</span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;">library</span>(janitor)</span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;">library</span>(scales)</span>
+<span id="cb1-7"></span>
+<span id="cb1-8"><span class="co" style="color: #5E5E5E;"># data  -------------------------------------------------------------------</span></span>
+<span id="cb1-9">data_crime <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb1-10">  <span class="fu" style="color: #4758AB;">read.csv</span>(<span class="st" style="color: #20794D;">"https://raw.githubusercontent.com/dspiegel29/ArtofStatistics/master/00-1-age-and-year-of-deathofharold-shipmans-victims/00-1-shipman-confirmed-victims-x.csv"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-11">  janitor<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">clean_names</span>()</span>
+<span id="cb1-12"></span>
+<span id="cb1-13">crime_time <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb1-14">  <span class="fu" style="color: #4758AB;">read.csv</span>(<span class="st" style="color: #20794D;">"https://raw.githubusercontent.com/dspiegel29/ArtofStatistics/master/00-2-shipman-times/00-2-shipman-times-x.csv"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-15">  janitor<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">clean_names</span>()</span>
+<span id="cb1-16"></span>
+<span id="cb1-17"><span class="co" style="color: #5E5E5E;"># plot    -------------------------------------------------------------------</span></span>
+<span id="cb1-18"><span class="co" style="color: #5E5E5E;">#diagrama de dispersao</span></span>
+<span id="cb1-19">plot <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb1-20">data_crime <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb1-21">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> fractional_death_year, <span class="at" style="color: #657422;">y =</span> age, <span class="at" style="color: #657422;">color =</span> gender2))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb1-22">  <span class="fu" style="color: #4758AB;">geom_point</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb1-23">  <span class="fu" style="color: #4758AB;">labs</span>(<span class="at" style="color: #657422;">title =</span> <span class="st" style="color: #20794D;">"vitimas de shipman"</span>,</span>
+<span id="cb1-24">       <span class="at" style="color: #657422;">x =</span> <span class="st" style="color: #20794D;">"ano"</span>,</span>
+<span id="cb1-25">       <span class="at" style="color: #657422;">y =</span> <span class="st" style="color: #20794D;">"idade"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb1-26">  <span class="fu" style="color: #4758AB;">theme</span>(<span class="at" style="color: #657422;">legend.title =</span> <span class="fu" style="color: #4758AB;">element_blank</span>(), <span class="at" style="color: #657422;">legend.position =</span> <span class="fu" style="color: #4758AB;">c</span>(.<span class="dv" style="color: #AD0000;">125</span>,<span class="fl" style="color: #AD0000;">1.15</span>))</span>
+<span id="cb1-27"></span>
+<span id="cb1-28">ggExtra<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">ggMarginal</span>(plot, <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"histogram"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;">#linha</span></span>
+<span id="cb2-2">crime_time <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span> hour, y))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> shipman, <span class="at" style="color: #657422;">col =</span> <span class="st" style="color: #20794D;">"Shipman"</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb2-5">  <span class="fu" style="color: #4758AB;">geom_line</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">y =</span> comparison, <span class="at" style="color: #657422;">col =</span> <span class="st" style="color: #20794D;">"Outros"</span>))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb2-6">  <span class="fu" style="color: #4758AB;">scale_y_continuous</span>(<span class="at" style="color: #657422;">limits =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">0</span>,<span class="dv" style="color: #AD0000;">15</span>), <span class="at" style="color: #657422;">labels =</span> <span class="fu" style="color: #4758AB;">label_percent</span>(<span class="at" style="color: #657422;">scale=</span><span class="dv" style="color: #AD0000;">1</span>))</span></code></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<ul>
+<li>A próxima etapa pra quem usa o PDCA é a busca pelas causas fundamentais do problema.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pdca.png" class="img-fluid figure-img" width="1390"></p>
+<p></p><figcaption class="figure-caption">PDCA - Etapa 3</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="fa-6-qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<ul>
+<li><p>Aperfeiçoar as técnicas de análise de fenômeno encurtando o tempo para explicação ou solução de algum problema</p></li>
+<li><p>Facilitar a replicação do fenômeno e consequentemente a comunicação.</p></li>
+<li><p>Melhorar as chances de sucesso na solução de problemas ou fazer qualquer coisa bem.</p></li>
+</ul>
+</section>
+<section id="fa-7-referência" class="level3">
+<h3 class="anchored" data-anchor-id="fa-7-referência"> <span style="color: #5AC8BE ;"><strong>Referência</strong></span></h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/art_of_statistic.jpg" class="img-fluid figure-img" width="650"></p>
+<p></p><figcaption class="figure-caption">A arte da estatística: Como aprender a partir de dados por David Spiegelhalter, George Schlesinger</figcaption><p></p>
+</figure>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>Exploração</category>
+  <guid>https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition.html</guid>
+  <pubDate>Wed, 24 Aug 2022 03:00:00 GMT</pubDate>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition.png" medium="image" type="image/png" height="116" width="144"/>
+</item>
 <item>
   <title>Como analisar distribuição em dados - histograma curva normal</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
@@ -1049,7 +1190,7 @@ Clique aqui pra abrir os detalhes
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Vídeo tema para este post em <a href="https://youtu.be/p-wiv5wnLMw" target="_blank">YouTube Como importar e visualizar dados - Titanic dataset parte1</a></p>
+<p>Vídeo tema para este post <a href="https://youtu.be/p-wiv5wnLMw" target="_blank">Como importar e visualizar dados - Titanic dataset parte1</a></p>
 </div>
 </div>
 </div>
@@ -1089,8 +1230,6 @@ Clique aqui pra abrir os detalhes
 </p>
 <p>O dados podem ser baixados no <a href="https://www.kaggle.com/competitions/titanic/data" target="_blank">Kaggle titanic dataset</a></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># pacotes           --------------------------------------------------------</span></span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidymodels)</span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
@@ -1120,7 +1259,6 @@ Clique aqui pra abrir os detalhes
 <span id="cb1-27"></span>
 <span id="cb1-28"><span class="co" style="color: #5E5E5E;">#check nas caracteristicas dos dados</span></span>
 <span id="cb1-29">split_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> funModeling<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">df_status</span>()</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       variable q_zeros p_zeros q_na  p_na q_inf p_inf      type unique
 1  passenger_id       0    0.00    0  0.00     0     0   integer   1309
@@ -1140,10 +1278,7 @@ Clique aqui pra abrir os detalhes
 </div>
 <p>Como o nosso conjunto de dados é pequeno(tem poucas variáveis) é possível usar um gráfico para visualizar os tipos de dados e as características.</p>
 <div class="cell" data-layout-align="center" data-output-location="column">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">split_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> visdat<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">vis_dat</span>()</span></code></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1176,14 +1311,11 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </blockquote>
 <p>Vamos fazer uma <strong>correlação</strong> para avaliar os padrões existentes. <strong>Mas note</strong>. Para fazer correlação, os dados precisam ser <strong>numéricos</strong> por isso usamos a função <code>select_if(is.numeric)</code> . Pelo padrão apresentado é possível verificar a existencia de dados categóricos <code>eles geralmente ficam espaçados no gráfico</code> e eles precisam ser transformados pra factor posteriormente e que já anotamos e comunicamos.</p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;"># correlacao</span></span>
 <span id="cb4-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb4-3">  <span class="fu" style="color: #4758AB;">select_if</span>(is.numeric) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb4-4">  GGally<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">ggscatmat</span>(<span class="at" style="color: #657422;">color =</span> <span class="st" style="color: #20794D;">"survived"</span>, <span class="at" style="color: #657422;">corMethod =</span> <span class="st" style="color: #20794D;">"spearman"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb4-5">  <span class="fu" style="color: #4758AB;">theme_pubclean</span>()</span></code></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1195,13 +1327,10 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Será que a idade importa ?</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;"># age - será que a idade importa ? </span></span>
 <span id="cb5-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb5-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>age, <span class="at" style="color: #657422;">fill =</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb5-4">  <span class="fu" style="color: #4758AB;">geom_density</span>(<span class="at" style="color: #657422;">alpha =</span><span class="fl" style="color: #AD0000;">0.5</span>)</span></code></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1212,14 +1341,11 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Será que o sexo importa ?</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;"># age, sex and class - será que o sexo importa ?</span></span>
 <span id="cb6-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb6-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>pclass, <span class="at" style="color: #657422;">fill=</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb6-4">  <span class="fu" style="color: #4758AB;">geom_bar</span>(<span class="at" style="color: #657422;">stat =</span> <span class="st" style="color: #20794D;">"count"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb6-5">  <span class="fu" style="color: #4758AB;">facet_grid</span>(<span class="sc" style="color: #5E5E5E;">~</span>sex)</span></code></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1230,14 +1356,11 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Vamos juntar as variáveis age+sex+pclass e analisar sob outro ponto de vista</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;"># age sex and class - sob outro ponto de vista</span></span>
 <span id="cb7-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb7-3">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>age, <span class="at" style="color: #657422;">y=</span>sex))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb7-4">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">color =</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb7-5">  <span class="fu" style="color: #4758AB;">facet_wrap</span>(<span class="sc" style="color: #5E5E5E;">~</span>pclass)</span></code></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1248,8 +1371,6 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Novamente vamos analisar sob outro ponto de vista</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;"># sex, class e survived </span></span>
 <span id="cb8-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb8-3">  <span class="fu" style="color: #4758AB;">group_by</span>(sex, survived, pclass) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
@@ -1259,7 +1380,6 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <span id="cb8-7">  <span class="fu" style="color: #4758AB;">geom_stratum</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb8-8">  <span class="fu" style="color: #4758AB;">geom_text</span>(<span class="at" style="color: #657422;">stat =</span> <span class="st" style="color: #20794D;">"stratum"</span>, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">label =</span> <span class="fu" style="color: #4758AB;">after_stat</span>(stratum)))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb8-9">  <span class="fu" style="color: #4758AB;">scale_x_discrete</span>(<span class="at" style="color: #657422;">limits =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"sex"</span>, <span class="st" style="color: #20794D;">"pclass"</span>,<span class="st" style="color: #20794D;">"survived"</span>))</span></code></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1270,14 +1390,11 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Será que a variável tarifa está bem representada ?</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;"># fare - será que fare é uma variável válida ?</span></span>
 <span id="cb9-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb9-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">fare =</span> fare) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb9-4">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>fare, <span class="at" style="color: #657422;">y=</span>pclass))<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb9-5">  <span class="fu" style="color: #4758AB;">geom_jitter</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">color =</span> <span class="fu" style="color: #4758AB;">factor</span>(survived)))</span></code></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1288,8 +1405,6 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Sera que o tamanho da familia importa e o dado está bem representado ?</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;"># parch sib_sp - será que o tamanho da familia importa ?</span></span>
 <span id="cb10-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb10-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">family_size =</span> parch <span class="sc" style="color: #5E5E5E;">+</span> sib_sp <span class="sc" style="color: #5E5E5E;">+</span><span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
@@ -1298,7 +1413,6 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <span id="cb10-6">            <span class="at" style="color: #657422;">fill=</span> <span class="st" style="color: #20794D;">"survived"</span>,</span>
 <span id="cb10-7">            <span class="at" style="color: #657422;">palette =</span> <span class="st" style="color: #20794D;">"uchicago"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
 <span id="cb10-8">  <span class="fu" style="color: #4758AB;">stat_compare_means</span>()</span></code></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1309,15 +1423,12 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Será que existe algum padrão no nome que possa ser extraído e que ajude a explicar se impacta na sobrevivência ?</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="co" style="color: #5E5E5E;"># title</span></span>
 <span id="cb11-2">train_titanic <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb11-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">title =</span> <span class="fu" style="color: #4758AB;">str_extract</span>(name, <span class="st" style="color: #20794D;">"[A-z]*</span><span class="sc" style="color: #5E5E5E;">\\</span><span class="st" style="color: #20794D;">."</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb11-4">  <span class="fu" style="color: #4758AB;">tabyl</span>(title) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb11-5">  <span class="fu" style="color: #4758AB;">adorn_pct_formatting</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb11-6">  <span class="fu" style="color: #4758AB;">arrange</span>(<span class="fu" style="color: #4758AB;">desc</span>(n))</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     title   n percent
        Mr. 517   58.0%
@@ -1378,7 +1489,7 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Vídeo tema para este post em <a href="https://youtu.be/UKXYGGzHc0A" target="_blank">Redes neurais artificiais no R com nnet package</a></p>
+<p>Vídeo tema para este post <a href="https://youtu.be/UKXYGGzHc0A" target="_blank">Redes neurais artificiais no R com nnet package</a></p>
 </div>
 </div>
 </div>
@@ -1421,15 +1532,13 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
 <li><p>Vem do uso de sistemas que utilizam visão computacional, processamento de linguagem natural em seu funcionamento como por exemplo veículos semi-autonomos, linhas de produção de veículos, controle de qualidade de autopeças entre outros.</p></li>
-<li><p>A primeira rede neural artificial foi implementada em 1958 por Frank Rosenblat e se chamava <strong>Perceptron</strong> e naquela época já se falava que era um embrião de um computador eletronico que seria capaz de andar, falar, ver, escrever e se reproduzir. <a href="https://www.nytimes.com/1958/07/13/archives/electronic-brain-teaches-itself.html">Materia New York Times</a></p></li>
+<li><p>A primeira rede neural artificial foi implementada em 1958 por Frank Rosenblat e se chamava <strong>Perceptron</strong> e naquela época já se falava que era um embrião de um computador eletronico que seria capaz de andar, falar, ver, escrever e se reproduzir. <a href="https://www.nytimes.com/1958/07/13/archives/electronic-brain-teaches-itself.html" target="_blank">Materia New York Times</a></p></li>
 </ul>
 </section>
 <section id="fa-4-como-fazer" class="level3">
 <h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <p>Neste exemplo usaremos os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a>, <a href="https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html" target="_blank">janitor</a>, <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a>, <a href="https://cran.r-project.org/web/packages/nnet/index.html" target="_blank">nnet</a> e <a href="https://www.jstatsoft.org/article/view/v085i11" target="_blank">neuralnettools</a></p>
 <div class="cell">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># packages ----------------------------------------------------</span></span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(tidymodels)</span>
@@ -1449,128 +1558,115 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <span id="cb1-17">                        <span class="at" style="color: #657422;">size =</span> <span class="dv" style="color: #AD0000;">5</span>, </span>
 <span id="cb1-18">                        <span class="at" style="color: #657422;">decay =</span> <span class="fl" style="color: #AD0000;">0.01</span>, </span>
 <span id="cb1-19">                        <span class="at" style="color: #657422;">maxit =</span> <span class="dv" style="color: #AD0000;">500</span>)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># weights:  43
-initial  value 151.877929 
-iter  10 value 60.610999
-iter  20 value 9.855664
-iter  30 value 6.347766
-iter  40 value 5.888289
-iter  50 value 5.715404
-iter  60 value 5.182046
-iter  70 value 5.017172
-iter  80 value 4.962475
-iter  90 value 4.915225
-iter 100 value 4.838802
-iter 110 value 4.819753
-iter 120 value 4.703885
-iter 130 value 4.677192
-iter 140 value 4.672932
-iter 150 value 4.672838
-final  value 4.672835 
+initial  value 142.466668 
+iter  10 value 14.781617
+iter  20 value 9.929478
+iter  30 value 8.291768
+iter  40 value 7.849535
+iter  50 value 7.765939
+iter  60 value 7.732812
+iter  70 value 7.696247
+iter  80 value 7.684596
+iter  90 value 7.675855
+iter 100 value 7.669159
+iter 110 value 7.662754
+iter 120 value 7.658608
+iter 130 value 7.657329
+iter 140 value 7.657058
+iter 150 value 7.657015
+final  value 7.657012 
 converged</code></pre>
 </div>
 </div>
 <p>Vamos fazer uma previsão usando o modelo que construímos e colocar o resultado dentro do <code>dataframe</code> com os dados de teste para podermos comparar valores <code>previstos</code> e <code>realizados</code>.</p>
 <div class="cell">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;"># results -----------------------------------------------------</span></span>
 <span id="cb3-2">mdl_fit_nn_iris <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb3-3">  <span class="fu" style="color: #4758AB;">predict</span>(test_iris,<span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"class"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
 <span id="cb3-4">  <span class="fu" style="color: #4758AB;">bind_cols</span>(test_iris)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stderr">
 <pre><code>New names:
 • `` -&gt; `...1`</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         ...1 sepal_length sepal_width petal_length petal_width    species
-1      setosa          5.1         3.5          1.4         0.2     setosa
-2      setosa          5.0         3.6          1.4         0.2     setosa
-3      setosa          5.4         3.9          1.7         0.4     setosa
-4      setosa          4.4         2.9          1.4         0.2     setosa
-5      setosa          4.8         3.0          1.4         0.1     setosa
-6      setosa          5.4         3.9          1.3         0.4     setosa
-7      setosa          5.7         3.8          1.7         0.3     setosa
-8      setosa          5.0         3.0          1.6         0.2     setosa
-9      setosa          4.8         3.1          1.6         0.2     setosa
-10     setosa          4.4         3.0          1.3         0.2     setosa
-11     setosa          4.4         3.2          1.3         0.2     setosa
-12     setosa          5.1         3.8          1.9         0.4     setosa
+1      setosa          4.9         3.0          1.4         0.2     setosa
+2      setosa          5.0         3.4          1.5         0.2     setosa
+3      setosa          5.4         3.7          1.5         0.2     setosa
+4      setosa          5.8         4.0          1.2         0.2     setosa
+5      setosa          5.1         3.5          1.4         0.3     setosa
+6      setosa          5.7         3.8          1.7         0.3     setosa
+7      setosa          5.4         3.4          1.7         0.2     setosa
+8      setosa          5.0         3.4          1.6         0.4     setosa
+9      setosa          4.9         3.6          1.4         0.1     setosa
+10     setosa          5.1         3.4          1.5         0.2     setosa
+11     setosa          5.0         3.5          1.6         0.6     setosa
+12     setosa          5.1         3.8          1.6         0.2     setosa
 13     setosa          5.3         3.7          1.5         0.2     setosa
-14 versicolor          4.9         2.4          3.3         1.0 versicolor
-15 versicolor          5.2         2.7          3.9         1.4 versicolor
-16 versicolor          5.0         2.0          3.5         1.0 versicolor
-17 versicolor          5.6         3.0          4.5         1.5 versicolor
-18 versicolor          6.2         2.2          4.5         1.5 versicolor
-19 versicolor          5.7         2.6          3.5         1.0 versicolor
-20 versicolor          5.8         2.7          3.9         1.2 versicolor
-21  virginica          6.0         2.7          5.1         1.6 versicolor
+14 versicolor          5.5         2.3          4.0         1.3 versicolor
+15 versicolor          6.3         3.3          4.7         1.6 versicolor
+16 versicolor          4.9         2.4          3.3         1.0 versicolor
+17 versicolor          6.2         2.2          4.5         1.5 versicolor
+18 versicolor          5.6         2.5          3.9         1.1 versicolor
+19 versicolor          6.7         3.0          5.0         1.7 versicolor
+20 versicolor          5.7         2.6          3.5         1.0 versicolor
+21 versicolor          6.0         3.4          4.5         1.6 versicolor
 22 versicolor          6.7         3.1          4.7         1.5 versicolor
-23 versicolor          6.3         2.3          4.4         1.3 versicolor
-24 versicolor          5.6         3.0          4.1         1.3 versicolor
-25 versicolor          5.6         2.7          4.2         1.3 versicolor
-26 versicolor          5.1         2.5          3.0         1.1 versicolor
+23 versicolor          5.5         2.6          4.4         1.2 versicolor
+24 versicolor          5.6         2.7          4.2         1.3 versicolor
+25 versicolor          5.7         3.0          4.2         1.2 versicolor
+26 versicolor          5.7         2.8          4.1         1.3 versicolor
 27  virginica          7.1         3.0          5.9         2.1  virginica
-28  virginica          6.3         2.9          5.6         1.8  virginica
-29  virginica          6.4         3.2          5.3         2.3  virginica
-30  virginica          6.5         3.0          5.5         1.8  virginica
-31  virginica          7.7         2.6          6.9         2.3  virginica
-32  virginica          5.6         2.8          4.9         2.0  virginica
-33  virginica          7.2         3.2          6.0         1.8  virginica
-34  virginica          6.2         2.8          4.8         1.8  virginica
-35  virginica          6.1         3.0          4.9         1.8  virginica
-36  virginica          6.1         2.6          5.6         1.4  virginica
-37  virginica          6.0         3.0          4.8         1.8  virginica
+28  virginica          4.9         2.5          4.5         1.7  virginica
+29  virginica          5.7         2.5          5.0         2.0  virginica
+30  virginica          5.8         2.8          5.1         2.4  virginica
+31  virginica          6.4         3.2          5.3         2.3  virginica
+32  virginica          7.7         2.8          6.7         2.0  virginica
+33  virginica          6.2         2.8          4.8         1.8  virginica
+34  virginica          7.2         3.0          5.8         1.6  virginica
+35  virginica          7.9         3.8          6.4         2.0  virginica
+36 versicolor          6.1         2.6          5.6         1.4  virginica
+37  virginica          6.4         3.1          5.5         1.8  virginica
 38  virginica          5.8         2.7          5.1         1.9  virginica
-39  virginica          6.7         3.0          5.2         2.3  virginica</code></pre>
+39  virginica          6.3         2.5          5.0         1.9  virginica</code></pre>
 </div>
 </div>
 <p>Como já temos o resultados previstos e o real, podemos fazer uma matriz de confusão para facilitar a visualização dos resultados e analisar o desempenho inicial do modelo.</p>
 <div class="cell">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;">#confusion matrix</span></span>
 <span id="cb6-2"><span class="fu" style="color: #4758AB;">table</span>(test_iris<span class="sc" style="color: #5E5E5E;">$</span>species,</span>
 <span id="cb6-3">      <span class="fu" style="color: #4758AB;">predict</span>(mdl_fit_nn_iris,</span>
 <span id="cb6-4">              <span class="at" style="color: #657422;">newdata =</span> test_iris, </span>
 <span id="cb6-5">              <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"class"</span>))</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            
              setosa versicolor virginica
   setosa         13          0         0
-  versicolor      0         12         1
-  virginica       0          0        13</code></pre>
+  versicolor      0         13         0
+  virginica       0          1        12</code></pre>
 </div>
 </div>
 <p>Como ficou o resultado da previsão ?</p>
 <div class="cell">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;">#predict classes</span></span>
 <span id="cb8-2"><span class="fu" style="color: #4758AB;">predict</span>(mdl_fit_nn_iris, test_iris, <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"class"</span>)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
  [6] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
 [11] "setosa"     "setosa"     "setosa"     "versicolor" "versicolor"
 [16] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
-[21] "virginica"  "versicolor" "versicolor" "versicolor" "versicolor"
+[21] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
 [26] "versicolor" "virginica"  "virginica"  "virginica"  "virginica" 
 [31] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
-[36] "virginica"  "virginica"  "virginica"  "virginica" </code></pre>
+[36] "versicolor" "virginica"  "virginica"  "virginica" </code></pre>
 </div>
 </div>
 <p>Plotando o modelo que acabamos de fazer</p>
 <div class="cell">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;">#plotando o gráfico</span></span>
 <span id="cb10-2">NeuralNetTools<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">plotnet</span>(mdl_fit_nn_iris,<span class="at" style="color: #657422;">pad_x=</span><span class="fl" style="color: #AD0000;">0.55</span>, <span class="at" style="color: #657422;">circle_col =</span> <span class="st" style="color: #20794D;">"grey90"</span>)</span></code></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet_files/figure-html/plot-neural-net-1.png" class="img-fluid" width="672"></p>
 </div>
@@ -1614,7 +1710,7 @@ converged</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Vídeo tema para este post em <a href="https://youtu.be/eqvmtYXh_C4" target="_blank">Avaliar resultados de modelo preditivo com matriz de confusão</a></p>
+<p>Vídeo tema para este post <a href="https://youtu.be/eqvmtYXh_C4" target="_blank">Avaliar resultados de modelo preditivo com matriz de confusão</a></p>
 </div>
 </div>
 </div>
@@ -1656,28 +1752,22 @@ converged</code></pre>
 <p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a><br>
 O principal pacote que será usando para analisar uma matriz de confusão é o pacote <a href="https://yardstick.tidymodels.org/" target="_blank">yardstick</a> que já é carregado quando chamamos o pacote <strong>tidymodels</strong>.</p>
 <div class="cell">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;">#packages</span></span>
 <span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
 <span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(tidymodels)</span>
 <span id="cb1-4"></span>
 <span id="cb1-5"><span class="co" style="color: #5E5E5E;">#check</span></span>
 <span id="cb1-6">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">filter</span>(Class1 <span class="sc" style="color: #5E5E5E;">&gt;</span><span class="fl" style="color: #AD0000;">0.5</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> janitor<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">tabyl</span>(truth)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  truth   n   percent
  Class1 227 0.8194946
  Class2  50 0.1805054</code></pre>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;">#exemplo de tabela cruzada usando janitor</span></span>
 <span id="cb3-2">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb3-3">  janitor<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">tabyl</span>(truth, predicted) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb3-4">  janitor<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">adorn_totals</span>(<span class="at" style="color: #657422;">where =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"col"</span>, <span class="st" style="color: #20794D;">"row"</span>)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb3-5">  janitor<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">adorn_title</span>()</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>        predicted             
   truth    Class1 Class2 Total
@@ -1685,56 +1775,42 @@ O principal pacote que será usando para analisar uma matriz de confusão é o p
  Class2        50    192   242
   Total       277    223   500</code></pre>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;">#trocando nomes</span></span>
 <span id="cb5-2">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb5-3">  <span class="fu" style="color: #4758AB;">conf_mat</span>(<span class="at" style="color: #657422;">truth =</span>truth, <span class="at" style="color: #657422;">estimate =</span>predicted, <span class="at" style="color: #657422;">dnn =</span><span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"vlr_previsto"</span>,<span class="st" style="color: #20794D;">"vlr_real"</span>))</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>            vlr_real
 vlr_previsto Class1 Class2
       Class1    227     50
       Class2     31    192</code></pre>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;">#plot heatmap</span></span>
 <span id="cb7-2">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb7-3">  <span class="fu" style="color: #4758AB;">conf_mat</span>(<span class="at" style="color: #657422;">truth =</span> truth, <span class="at" style="color: #657422;">estimate =</span> predicted) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb7-4">  <span class="fu" style="color: #4758AB;">autoplot</span>(<span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"heatmap"</span>)</span></code></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/confusion-matrix/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;">#acuracia- prop de acertos do modelo total de acerto / total previu</span></span>
 <span id="cb8-2">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb8-3">  <span class="fu" style="color: #4758AB;">accuracy</span>(<span class="at" style="color: #657422;">truth=</span> truth, <span class="at" style="color: #657422;">estimate =</span> predicted)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy binary         0.838</code></pre>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;">#sensibilidade ou recall é a proporção de casos positivos classif corretamente</span></span>
 <span id="cb10-2"><span class="co" style="color: #5E5E5E;">#Raio X de aeroporto prioriza sensitivity</span></span>
 <span id="cb10-3"><span class="co" style="color: #5E5E5E;">#diagnóstico de cancer também pois o não diagnóstico resulta em atraso no tratamento</span></span>
 <span id="cb10-4">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb10-5">  yardstick<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">sens</span>(<span class="at" style="color: #657422;">truth=</span> truth, <span class="at" style="color: #657422;">estimate =</span> predicted)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 sens    binary         0.880</code></pre>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="co" style="color: #5E5E5E;">#Recall métrica útil nos casos em que o Falso Negativo supera o falso positivol</span></span>
 <span id="cb12-2"><span class="co" style="color: #5E5E5E;">#importante em casos médicos em que não importa se disparamos um alarme </span></span>
 <span id="cb12-3"><span class="co" style="color: #5E5E5E;">#falso, mas os casos positivos reais não devem passar despercebidos!</span></span>
@@ -1744,51 +1820,39 @@ vlr_previsto Class1 Class2
 <span id="cb12-7"><span class="co" style="color: #5E5E5E;">#Agora você pode entender por que a acuracidade foi uma métrica ruim para modelo.</span></span>
 <span id="cb12-8">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb12-9">  yardstick<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">recall</span>(<span class="at" style="color: #657422;">truth=</span> truth, <span class="at" style="color: #657422;">estimate =</span> predicted)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 recall  binary         0.880</code></pre>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;">#kappa</span></span>
 <span id="cb14-2">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb14-3">  yardstick<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">kap</span>(<span class="at" style="color: #657422;">truth=</span> truth, <span class="at" style="color: #657422;">estimate =</span> predicted)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 kap     binary         0.675</code></pre>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="co" style="color: #5E5E5E;">#npv</span></span>
 <span id="cb16-2">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb16-3">  yardstick<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">npv</span>(<span class="at" style="color: #657422;">truth=</span> truth, <span class="at" style="color: #657422;">estimate =</span> predicted)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 npv     binary         0.861</code></pre>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><span class="co" style="color: #5E5E5E;">#ppv</span></span>
 <span id="cb18-2">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb18-3">  yardstick<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">ppv</span>(<span class="at" style="color: #657422;">truth=</span> truth, <span class="at" style="color: #657422;">estimate =</span> predicted)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 ppv     binary         0.819</code></pre>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><span class="co" style="color: #5E5E5E;">#A precisão é util nos casos em que os falsos positivos são uma preocupação </span></span>
 <span id="cb20-2"><span class="co" style="color: #5E5E5E;">#maior do que os falsos negativos.</span></span>
 <span id="cb20-3"><span class="co" style="color: #5E5E5E;">#A precisão é importante em sistemas de recomendação de música ou vídeo, </span></span>
@@ -1796,40 +1860,30 @@ vlr_previsto Class1 Class2
 <span id="cb20-5"><span class="co" style="color: #5E5E5E;">#clientes e prejudicar o negócio.</span></span>
 <span id="cb20-6">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb20-7">  yardstick<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">precision</span>(<span class="at" style="color: #657422;">truth=</span> truth, <span class="at" style="color: #657422;">estimate =</span> predicted)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric   .estimator .estimate
   &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;
 1 precision binary         0.819</code></pre>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><span class="co" style="color: #5E5E5E;">#spec</span></span>
 <span id="cb22-2">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb22-3">  yardstick<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">spec</span>(<span class="at" style="color: #657422;">truth=</span> truth, <span class="at" style="color: #657422;">estimate =</span> predicted)</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
 1 spec    binary         0.793</code></pre>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><span class="co" style="color: #5E5E5E;">#roc_curve</span></span>
 <span id="cb24-2">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb24-3">  <span class="fu" style="color: #4758AB;">roc_curve</span>(<span class="at" style="color: #657422;">truth =</span> truth, <span class="at" style="color: #657422;">estimate =</span> Class1 ) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">autoplot</span>()</span></code></pre></div>
-</details>
 <div class="cell-output-display">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/confusion-matrix/index_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid" width="672"></p>
 </div>
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="co" style="color: #5E5E5E;">#roc_auc</span></span>
 <span id="cb25-2">two_class_example <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
 <span id="cb25-3">  <span class="fu" style="color: #4758AB;">roc_auc</span>(<span class="at" style="color: #657422;">truth =</span> truth, <span class="at" style="color: #657422;">estimate =</span> Class1 )</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
@@ -1893,7 +1947,7 @@ Diferença entre incidência e prevalencia
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Vídeo tema para este post em <a href="https://youtu.be/xJWjSOml7zI" target="_blank">Transição demográfcias Brasil e Japão</a></p>
+<p>Vídeo tema para este post <a href="https://youtu.be/xJWjSOml7zI" target="_blank">Transição demográfcias Brasil e Japão</a></p>
 </div>
 </div>
 </div>

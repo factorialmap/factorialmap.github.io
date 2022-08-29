@@ -7,7 +7,7 @@ image: "confusion_matrix.png"
 ---
 
 ::: {.callout-tip appearance="simple"}
-Vídeo tema para este post em [Avaliar resultados de modelo preditivo com matriz de confusão](https://youtu.be/eqvmtYXh_C4){target="_blank"}
+Vídeo tema para este post [Avaliar resultados de modelo preditivo com matriz de confusão](https://youtu.be/eqvmtYXh_C4){target="_blank"}
 :::
 
 ### {{< fa 1 >}} [**O que é uma matriz de confusão**]{style="color: #5AC8BE ;"}

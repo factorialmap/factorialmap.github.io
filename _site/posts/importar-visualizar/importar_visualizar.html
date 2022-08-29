@@ -164,7 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc">
@@ -184,7 +184,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -223,7 +223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Vídeo tema para este post em <a href="https://youtu.be/p-wiv5wnLMw" target="_blank">YouTube Como importar e visualizar dados - Titanic dataset parte1</a></p>
+<p>Vídeo tema para este post <a href="https://youtu.be/p-wiv5wnLMw" target="_blank">Como importar e visualizar dados - Titanic dataset parte1</a></p>
 </div>
 </div>
 </div>
@@ -263,8 +263,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </p>
 <p>O dados podem ser baixados no <a href="https://www.kaggle.com/competitions/titanic/data" target="_blank">Kaggle titanic dataset</a></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pacotes           --------------------------------------------------------</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -294,7 +292,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#check nas caracteristicas dos dados</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>split_titanic <span class="sc">%&gt;%</span> funModeling<span class="sc">::</span><span class="fu">df_status</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>       variable q_zeros p_zeros q_na  p_na q_inf p_inf      type unique
 1  passenger_id       0    0.00    0  0.00     0     0   integer   1309
@@ -314,10 +311,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Como o nosso conjunto de dados é pequeno(tem poucas variáveis) é possível usar um gráfico para visualizar os tipos de dados e as características.</p>
 <div class="cell" data-layout-align="center" data-output-location="column">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>split_titanic <span class="sc">%&gt;%</span> visdat<span class="sc">::</span><span class="fu">vis_dat</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -350,14 +344,11 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </blockquote>
 <p>Vamos fazer uma <strong>correlação</strong> para avaliar os padrões existentes. <strong>Mas note</strong>. Para fazer correlação, os dados precisam ser <strong>numéricos</strong> por isso usamos a função <code>select_if(is.numeric)</code> . Pelo padrão apresentado é possível verificar a existencia de dados categóricos <code>eles geralmente ficam espaçados no gráfico</code> e eles precisam ser transformados pra factor posteriormente e que já anotamos e comunicamos.</p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlacao</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>train_titanic <span class="sc">%&gt;%</span> </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_if</span>(is.numeric) <span class="sc">%&gt;%</span> </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  GGally<span class="sc">::</span><span class="fu">ggscatmat</span>(<span class="at">color =</span> <span class="st">"survived"</span>, <span class="at">corMethod =</span> <span class="st">"spearman"</span>)<span class="sc">+</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_pubclean</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -369,13 +360,10 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Será que a idade importa ?</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># age - será que a idade importa ? </span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>train_titanic <span class="sc">%&gt;%</span> </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">fill =</span> <span class="fu">factor</span>(survived)))<span class="sc">+</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">alpha =</span><span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -386,14 +374,11 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Será que o sexo importa ?</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># age, sex and class - será que o sexo importa ?</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>train_titanic <span class="sc">%&gt;%</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>pclass, <span class="at">fill=</span> <span class="fu">factor</span>(survived)))<span class="sc">+</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>)<span class="sc">+</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -404,14 +389,11 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Vamos juntar as variáveis age+sex+pclass e analisar sob outro ponto de vista</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># age sex and class - sob outro ponto de vista</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>train_titanic <span class="sc">%&gt;%</span> </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>age, <span class="at">y=</span>sex))<span class="sc">+</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(survived)))<span class="sc">+</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>pclass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -422,8 +404,6 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Novamente vamos analisar sob outro ponto de vista</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># sex, class e survived </span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>train_titanic <span class="sc">%&gt;%</span> </span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex, survived, pclass) <span class="sc">%&gt;%</span> </span>
@@ -433,7 +413,6 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_stratum</span>()<span class="sc">+</span></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">stat =</span> <span class="st">"stratum"</span>, <span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">after_stat</span>(stratum)))<span class="sc">+</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="st">"sex"</span>, <span class="st">"pclass"</span>,<span class="st">"survived"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -444,14 +423,11 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Será que a variável tarifa está bem representada ?</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fare - será que fare é uma variável válida ?</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>train_titanic <span class="sc">%&gt;%</span> </span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">fare =</span> fare) <span class="sc">%&gt;%</span> </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>fare, <span class="at">y=</span>pclass))<span class="sc">+</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">factor</span>(survived)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -462,8 +438,6 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Sera que o tamanho da familia importa e o dado está bem representado ?</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># parch sib_sp - será que o tamanho da familia importa ?</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>train_titanic <span class="sc">%&gt;%</span> </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">family_size =</span> parch <span class="sc">+</span> sib_sp <span class="sc">+</span><span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
@@ -472,7 +446,6 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">fill=</span> <span class="st">"survived"</span>,</span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">palette =</span> <span class="st">"uchicago"</span>)<span class="sc">+</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_compare_means</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -483,15 +456,12 @@ Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <p><strong>Será que existe algum padrão no nome que possa ser extraído e que ajude a explicar se impacta na sobrevivência ?</strong></p>
 <div class="cell" data-layout-align="center">
-<details open="">
-<summary>Clique aqui para ocultar/mostrar o código</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># title</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>train_titanic <span class="sc">%&gt;%</span> </span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">title =</span> <span class="fu">str_extract</span>(name, <span class="st">"[A-z]*</span><span class="sc">\\</span><span class="st">."</span>)) <span class="sc">%&gt;%</span> </span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(title) <span class="sc">%&gt;%</span> </span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>() <span class="sc">%&gt;%</span> </span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>     title   n percent
        Mr. 517   58.0%
