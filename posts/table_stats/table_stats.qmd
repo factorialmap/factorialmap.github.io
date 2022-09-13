@@ -3,12 +3,12 @@ title: "Como construir tabela para artigo técnico - gtsummary"
 author: "Marcelo Carvalho dos Anjos"
 date: "2022-09-12"
 categories: [Exploração,Modelos]
-image: "data_import.png"
+image: "table.png"
 bibliography: references.bib
 ---
 
 ::: {.callout-tip appearance="simple"}
-Vídeo tema para este post em [Como construir tabela para artigo técnico - gtsummary](https://youtu.be/p-wiv5wnLMw){target="_blank"}
+Vídeo tema para este post em [Como construir tabela para artigo técnico - gtsummary](https://youtu.be/Vhuo96UdFu8){target="_blank"}
 :::
 
 ### {{< fa 1 >}} [**O que é uma tabela de dados**]{style="color: #5AC8BE ;"}
