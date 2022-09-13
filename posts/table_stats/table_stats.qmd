@@ -1,0 +1,193 @@
+---
+title: "Como construir tabela para artigo técnico - gtsummary"
+author: "Marcelo Carvalho dos Anjos"
+date: "2022-09-12"
+categories: [Exploração,Modelos]
+image: "data_import.png"
+bibliography: references.bib
+---
+
+::: {.callout-tip appearance="simple"}
+Vídeo tema para este post em [Como construir tabela para artigo técnico - gtsummary](https://youtu.be/p-wiv5wnLMw){target="_blank"}
+:::
+
+### {{< fa 1 >}} [**O que é uma tabela de dados**]{style="color: #5AC8BE ;"}
+
+-   Tabela é um meio eficiente de representação e comunicação de dados tendo como características principais linhas, colunas, sumarizações e comparativos.
+
+-   Devido a versatilidade e capacidade de informações, é comum o uso em publicações técnicas e científicas.
+
+::: {#fig-tables layout-ncol="3"}
+![Tabuleta de barro de 539 antes de Cristo de Nippur Mesopotâmia atual Iraque, considerada uma das primeiras planilhas](b3293.png){#fig-tablet}
+
+![Resultado financeiro de uma empresa DRE](DRE.png){#fig-DRE}
+
+![Modelo de tabela nutricional de lasanha congelada- FDA](fda_nutrition_facts_sample.png){#fig-nutrition}
+
+Exemplo de tabelas: Créditos para Penn Museum, factorialmap, FDA Food and Drug Administration
+:::
+
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+
+-   Representar de forma compacta informações importantes que podem ser difíceis de expressar em texto ou gráficos.
+
+-   Permitir a comparação entre valores, resumir ou definir conceitos, termos ou outros detalhes de um estudo.
+
+-   Permitir que o leitor veja rapidamente os resultados de dados complexos os quais são organizados e descritos adequadamente no texto @Slutsky2014.
+
+-   Trazer clareza nos resultados apresentados.
+
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+
+-   Da necessidade de registrar, computar e comunicar dados.
+
+-   Necessidade de mostrar muitos valores em um pequeno espaço.
+
+-   Necessidade de comparar e contrastar valores de dados com várias características ou variáveis compartilhadas.
+
+-   Para mostrar a presença ou ausência de características específicas.
+
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
+
+Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/){target="_blank"}, [janitor](https://github.com/sfirke/janitor){target="_blank"}, [gtsummary](https://www.danieldsjoberg.com/gtsummary/){target="_blank"}, [gtExtras](https://jthomasmock.github.io/gtExtras/){target="_blank"}, [gt](https://gt.rstudio.com/){target="_blank"}.
+
+O dados usados `iris`, `mtcars`, `trial`, os quais estão nos pacotes que serão carregados não sendo necessário baixá-los. Já o dado `corn` pode ser baixado em [Kniss AR, Streibig JC (2018) Statistical Analysis of Agricultural Experiments using R](https://rstats4ag.org/index.html#section){target="_blank"}
+
+{{< fa lightbulb >}} Entender bem a estrutura dos dados pode facilitar o trabalho de construção de tabelas .
+
+```{mermaid}
+%%| warning: false
+%%| echo: false
+%%| fig-width: 6.5
+flowchart LR
+    A[Variável] -->B(Numerica)
+    A -->C(Categórica)
+    B --> D{Número \n inteiro?}
+    D -->|Sim| E(Discreto)
+    D -->|Não| F(Contínuo)
+    C --> G{Quantas \n categorias?}
+    G -->|Duas|H(Binária\Dicotômica)
+    G -->|Três ou mais|I{Segue \n uma ordem?}
+    I -->|Sim|J(Ordinal)
+    I -->|Não|L(Norminal)
+```
+
+```{r}
+#| warning: false
+# package          -----------------------------------------------------------------
+library(tidyverse)
+library(gtsummary)
+library(gtExtras)
+library(gt)
+library(survival)
+
+# data             --------------------------------------------------------------------
+data_mtcars <- mtcars %>% janitor::clean_names()
+data_iris   <- iris %>% janitor::clean_names()
+data_trial  <- trial
+data_corn   <- read.csv("http://rstats4ag.org/data/irrigcorn.csv") %>% 
+  janitor::clean_names()
+```
+
+```{r}
+data_mtcars %>% 
+  select(mpg, cyl, wt, vs) %>% 
+  tbl_summary(by= vs,
+              label = c(mpg ~ "Milhas/galão",
+                        cyl ~ "Cilindros",
+                        wt ~ "Peso")) %>% 
+  modify_header(label = "**Variáveis**",
+                stat_1 = "V {n}",
+                stat_2 = "S {n}") %>% 
+  modify_spanning_header(c("stat_1","stat_2") ~ "**Type of Engine**") %>% 
+  modify_caption("**Figura1. Consumo de gasolina por tipo de motor**") %>% 
+  add_difference() %>% 
+  bold_p(t = 0.05) %>% 
+  bold_labels() %>% 
+  modify_caption("<div style='text-align:left;
+                 font-weight: bold;
+                 color:grey'>Figura1. Consumo de gasolina por tipo de motor </div>")
+````
+
+
+```{r}
+
+library(survival)
+
+
+tbl_fit_logreg_trial <- 
+  glm(response~ trt + grade + age, data = data_trial, family = binomial(link="logit")) %>% 
+  tbl_regression(exponentiate= TRUE)
+
+tbl_fit_coxph_trial <- 
+coxph(Surv(ttdeath, death)~ trt + grade + age, data = data_trial) %>% 
+  tbl_regression(exponentiate = TRUE)
+
+tbl_merge(tbls = list(tbl_fit_logreg_trial, tbl_fit_coxph_trial),
+          tab_spanner = c("**Log reg**", "**Coxph**"))
+````
+
+
+```{r}
+data_corn %>% 
+  select(irrig, yield_tonha, yield_bu_a) %>% 
+  tbl_summary(by = irrig,
+              label = list(yield_tonha ~ "Tons/hec",
+                           yield_bu_a ~ "Bushel Acre")) %>% 
+  add_difference() %>% 
+  modify_header(label = "**Yield**") %>% 
+  modify_spanning_header(all_stat_cols() ~ "**Irrigation type** {N} ")
+
+
+````
+
+
+```{r}
+mtcars %>%
+  slice_sample(n=8) %>% 
+  gt() %>% 
+  gt_theme_guardian() %>% 
+  data_color(columns = mpg:hp, colors = c("white","red")) %>% 
+  gt_highlight_rows(rows = 2, font_weight = "bold")
+
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(mpg_data  = list(mpg), .groups = "drop") %>% 
+  gt() %>% 
+  gt_plt_sparkline(mpg_data)
+
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(mpg_dat = list(mpg)) %>% 
+  gt() %>% 
+  gt_plt_dist(mpg_dat)
+````
+
+
+
+
+### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+
+-   Etapas de analise de resultados, validação, remodelagem ou comunicação.
+
+-   Inclusão em documento técnico reproduzível.
+
+-   Comunicação de descobertas ou resultados de trabalhos técnicos.
+
+-   Documentação ou treinamento de pessoal.
+
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
+
+-   Aperfeiçoar as técnicas de representação, calculo e comunicação de dados e estudos técnicos
+
+-   Facilitar o entendimento das informações contidas nos documentos técnicos poupando tempo e dinheiro, permitindo a replicação e experimentos e consequentemente busca por melhoria.
+
+-   Facilitar o reconhecimento de registros, estudos, descobertas em pesquisas futuras
+
+::: {#fig-logbooks layout-ncol="2"}
+![Registro de entrega de alimentos em diferentes regiões como Delta do Nilo. A receita em vermelho, a despesa em preto.](registro_entrega_alimentos.jpg){#fig-worksheet}
+
+![Arquivo de Merer registro de atividade de 200 homens durante a construção da pirâmide de Gizé](registro_merer.jpg){#fig-logbook}
+
+Papiros escritos em Hierático em 2550 antes de Cristo final do reinado de Khufu(Queops) e usados para registrar atividades durante a construção da pirâmide de Khufu. Créditos: Museu do Cairo, Egito.
+:::
