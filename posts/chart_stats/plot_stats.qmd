@@ -1,0 +1,261 @@
+---
+title: "Como construir gráficos para artigo técnico "
+author: "Marcelo Carvalho dos Anjos"
+date: "2022-09-28"
+categories: [Exploração, Comunicação]
+image: "chart_title.png"
+---
+
+::: {.callout-tip appearance="simple"}
+Vídeo tema para este post em [Como construir gráficos para artigo técnico](https://youtu.be/h-touCMsiYQ){target="_blank"}
+:::
+
+### {{< fa 1 >}} [**O que é um gráfico**]{style="color: #5AC8BE ;"}
+
+-   Um meio eficiente de representação e comunicação de dados e pode conter uma quantidade de significativa de informação.
+
+-   Formato visual de representação de dados que é interpretado em grande velocidade pelo cerebro e que permite ações ou decisões mais rápidas.
+
+![Alguns tipos de gráficos](chart_types.png){width="1390"}
+
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+
+-   Facilitar a identificação de padrões, tendências e discrepancias nos dados transformando em informações.
+
+-   Permitir ações imediatas ou gerar informação complementar para que ações possam ser tomadas posteriormente.
+
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+
+-   Necessidade de representação de dados que potencialize o desenvolvimento de estratégias e ações.
+
+-   Necessidade de algo que fortaleça o argumento em um estudo ou pesquisa.
+
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
+
+Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/){target="_blank"} , [ggpmisc](https://github.com/aphalo/ggpmisc/){target="_blank"}, [janitor](https://github.com/sfirke/janitor){target="_blank"}, [qcc](https://luca-scr.github.io/qcc/articles/qcc.html){target="_blank"}, [ggpubr](http://rpkgs.datanovia.com/ggpubr/index.html){target="_blank"}, [ggQC](http://rcontrolcharts.com/){target="_blank"}, [quantmod](https://www.quantmod.com/){target="_blank"} e [ggalluvial](https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html){target="_blank"}
+
+```{r}
+#| warning: false
+library(tidyverse)
+library(ggpubr)
+library(ggpmisc)
+library(qcc)
+library(ggQC)
+library(quantmod)
+library(easyalluvial)
+
+```
+
+Gráfico de comparação
+
+```{r}
+#| warning: false
+
+group_compar1 <- 
+  list(c("4","6"),
+       c("6","8"),
+       c("4","8"))
+
+mtcars %>% 
+  ggboxplot(x = "cyl",
+            y= "mpg",
+            fill = "cyl",
+            palette = "uchicago")+
+  stat_compare_means(comparisons = group_compar1)
+
+
+```
+
+Plotando estatístics no corpo do gráfico.
+
+```{r}
+#| warning: false
+mtcars %>% 
+  ggplot(aes(x = wt, y = mpg))+
+  geom_point()+
+  stat_fit_tb(method = "lm",
+              label.x = "right",
+              method.args = list(formula = y~x),
+              table.theme = ttheme_gtdark())
+
+```
+
+Plotando fórmulas no corpo do gráfico.
+
+```{r}
+#| warning: false
+mtcars %>% 
+  ggplot(aes(x = wt, y = mpg))+
+  geom_point()+
+  stat_correlation(use_label(c("r", "t", "p")),
+                   label.x = "right")
+
+
+```
+
+Plotando dados no corpo do gráfico.
+
+```{r}
+#| warning: false
+tbl_median_mtcars <- 
+  mtcars %>% 
+  select(mpg, hp, cyl) %>% 
+  group_by(cyl) %>% 
+  summarise(across(where(is.numeric), median)) %>% 
+  ungroup()
+
+data_trans_mtcars <- tibble(x = 5.40, y = 34, tb = list(tbl_median_mtcars))
+
+mtcars %>% 
+  ggplot(aes(x = wt, y = mpg, color = factor(cyl)))+
+  geom_point()+
+  geom_table(data= data_trans_mtcars, aes(x=x, y=y, label = tb))
+
+```
+
+Gráfico de cause efeito.
+
+```{r}
+#| warning: false
+qcc::cause.and.effect(
+  cause = list(
+    medida = c("metrica errada"),
+    maquin = c("defeito"),
+    metodo = c("treinamento")
+      ),
+  effect = "efeito"
+)
+
+```
+
+Modelo para auxiliar na escolha de gráfico de controle.
+
+```{mermaid}
+%%| warning: false
+%%| echo: false
+%%| fig-width: 6.5
+flowchart LR
+    A[dados] -->B{qual tipo \n de dados?}
+    B -->C[Contínuo]
+    B -->D[Discreta/\nAtributos]
+    C -->E{Qual o volume\n de dados ?}
+    E -->|n = 1|F[x.one + R]
+    E -->|n 2-10|G[x + R]
+    E -->|n > 10|H[x + S]
+    D -->I{Lote de dados\n constante ?}
+    I-->J[Sim]
+    I-->K[Não]
+    J-->L[C Proporção de \ndefeitos por UN]
+    J-->M[NP Contagem de \ndefeitos por UN]
+    K-->N[U Contagem de \ndefeitos por UN]
+    K-->O[P Proporção de \ndefeitos por UN]
+```
+
+Gráfico X bar de controle de processo.
+
+```{r}
+#| warning: false
+#| message: false
+#| output-location: column
+data("pistonrings")
+
+data_pistonring <- as_tibble(pistonrings)
+
+qcc(data_pistonring$diameter,
+                type = "xbar.one",
+                rules = shewhart.rules)
+```
+
+Gráfico de pareto.
+
+```{r}
+#| warning: false
+#| fig-width: 10
+data_defeito <- 
+  tribble(~"tipo", ~"qtd", ~"custo",
+          "riscos", 201, 4287.60,
+          "Manchas",78,2423.46,
+          "Dobras",47,1118.60,
+          "Furos",31,8946.60,
+          "Rasgos",15,1864.05)
+
+pareto_defeito <- 
+  data_defeito %>% 
+  ggplot(aes(x = tipo, y= qtd))+
+  stat_pareto(bars.fill = "lightblue")
+
+pareto_custo <- 
+  data_defeito %>% 
+  ggplot(aes(x = tipo, y= custo))+
+  stat_pareto(bars.fill = "navy")
+
+data_defeito %>% 
+  ggplot(aes(x = tipo, y = custo))+
+  stat_pareto(bars.fill = "navy")+
+  annotate("plot_npc", 
+            npcx = "right", 
+            npcy = "middle",
+            label =pareto_defeito )
+```
+
+Gráfico de sentimento candlestick chart.
+
+```{r}
+#| warning: false
+getSymbols("MORTGAGE30US", src= "FRED")
+chart_Series(MORTGAGE30US)
+
+getSymbols("VIXCLS", src= "FRED")
+chart_Series(VIXCLS)
+
+getSymbols("DGS10", src= "FRED")
+chart_Series(DGS10)
+
+getSymbols("VALE")
+chartSeries(VALE)
+
+```
+
+Gráfico de análise multidimensional Alluvial.
+
+```{r}
+#| warning: false
+plot_mtcars <- 
+  mtcars %>% 
+  alluvial_wide(max_variables = 5) 
+  
+add_marginal_histograms(plot_mtcars, mtcars)
+
+```
+
+Gráfico PCA
+
+```{r}
+#| warning: false
+iris %>% 
+  select(-Species) %>% 
+  prcomp(center = TRUE, scale. = TRUE) %>% 
+  factoextra::fviz_pca_biplot(geom.ind = "point",
+                              habillage = iris$Species,
+                              addEllipses = TRUE)
+
+```
+
+
+### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+
+-   Etapas de analise de resultados, validação, modelagem ou comunicação.
+
+-   Inclusão em documento técnico reproduzível.
+
+-   Comunicação de descobertas ou resultados de trabalhos técnicos
+
+-   Documentação ou treinamento de pessoal.
+
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
+
+-   Aperfeiçoar as técnicas de representação, exploração e comunicação de estudos técnicos.
+
+-   Facilitar o entendimento das informações contidas nos documentos técnicos poupando tempo e dinheiro, permitindo a replicação e experimentos e consequentemente busca por melhoria.
+
+-   Facilitar o reconhecimento de registros, estudos, descobertas em pesquisas futuras.

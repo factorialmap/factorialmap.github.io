@@ -24,7 +24,7 @@ Vídeo tema para este post em [Como construir tabela para artigo técnico - gtsu
 
 ![Modelo de tabela nutricional de lasanha congelada- FDA](fda_nutrition_facts_sample.png){#fig-nutrition}
 
-Exemplo de tabelas: Créditos para Penn Museum, factorialmap, FDA Food and Drug Administration
+Exemplo de tabelas: Créditos para Penn Museum, factorialmap (DRE = P&L in US), FDA Food and Drug Administration
 :::
 
 ### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
@@ -107,8 +107,7 @@ data_mtcars %>%
   modify_caption("<div style='text-align:left;
                  font-weight: bold;
                  color:grey'>Figura1. Consumo de gasolina por tipo de motor </div>")
-````
-
+```
 
 ```{r}
 
@@ -125,8 +124,7 @@ coxph(Surv(ttdeath, death)~ trt + grade + age, data = data_trial) %>%
 
 tbl_merge(tbls = list(tbl_fit_logreg_trial, tbl_fit_coxph_trial),
           tab_spanner = c("**Log reg**", "**Coxph**"))
-````
-
+```
 
 ```{r}
 data_corn %>% 
@@ -138,9 +136,7 @@ data_corn %>%
   modify_header(label = "**Yield**") %>% 
   modify_spanning_header(all_stat_cols() ~ "**Irrigation type** {N} ")
 
-
-````
-
+```
 
 ```{r}
 mtcars %>%
@@ -161,10 +157,7 @@ mtcars %>%
   summarise(mpg_dat = list(mpg)) %>% 
   gt() %>% 
   gt_plt_dist(mpg_dat)
-````
-
-
-
+```
 
 ### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 

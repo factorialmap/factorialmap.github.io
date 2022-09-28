@@ -10,7 +10,314 @@
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>
 <generator>quarto-1.0.18</generator>
-<lastBuildDate>Mon, 12 Sep 2022 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 28 Sep 2022 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Como construir gráficos para artigo técnico</title>
+  <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
+  <link>https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Vídeo tema para este post em <a href="https://youtu.be/h-touCMsiYQ" target="_blank">Como construir gráficos para artigo técnico</a></p>
+</div>
+</div>
+</div>
+<section id="fa-1-o-que-é-um-gráfico" class="level3">
+<h3 class="anchored" data-anchor-id="fa-1-o-que-é-um-gráfico"> <span style="color: #5AC8BE ;"><strong>O que é um gráfico</strong></span></h3>
+<ul>
+<li><p>Um meio eficiente de representação e comunicação de dados e pode conter uma quantidade de significativa de informação.</p></li>
+<li><p>Formato visual de representação de dados que é interpretado em grande velocidade pelo cerebro e que permite ações ou decisões mais rápidas.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/chart_types.png" class="img-fluid figure-img" width="1390"></p>
+<p></p><figcaption class="figure-caption">Alguns tipos de gráficos</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="fa-2-qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<ul>
+<li><p>Facilitar a identificação de padrões, tendências e discrepancias nos dados transformando em informações.</p></li>
+<li><p>Permitir ações imediatas ou gerar informação complementar para que ações possam ser tomadas posteriormente.</p></li>
+</ul>
+</section>
+<section id="fa-3-de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<ul>
+<li><p>Necessidade de representação de dados que potencialize o desenvolvimento de estratégias e ações.</p></li>
+<li><p>Necessidade de algo que fortaleça o argumento em um estudo ou pesquisa.</p></li>
+</ul>
+</section>
+<section id="fa-4-como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://github.com/aphalo/ggpmisc/" target="_blank">ggpmisc</a>, <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a>, <a href="https://luca-scr.github.io/qcc/articles/qcc.html" target="_blank">qcc</a>, <a href="http://rpkgs.datanovia.com/ggpubr/index.html" target="_blank">ggpubr</a>, <a href="http://rcontrolcharts.com/" target="_blank">ggQC</a>, <a href="https://www.quantmod.com/" target="_blank">quantmod</a> e <a href="https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html" target="_blank">ggalluvial</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(ggpubr)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(ggpmisc)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;">library</span>(qcc)</span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;">library</span>(ggQC)</span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;">library</span>(quantmod)</span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;">library</span>(easyalluvial)</span></code></pre></div>
+</div>
+<p>Gráfico de comparação</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">group_compar1 <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;">list</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"4"</span>,<span class="st" style="color: #20794D;">"6"</span>),</span>
+<span id="cb2-3">       <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"6"</span>,<span class="st" style="color: #20794D;">"8"</span>),</span>
+<span id="cb2-4">       <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"4"</span>,<span class="st" style="color: #20794D;">"8"</span>))</span>
+<span id="cb2-5"></span>
+<span id="cb2-6">mtcars <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb2-7">  <span class="fu" style="color: #4758AB;">ggboxplot</span>(<span class="at" style="color: #657422;">x =</span> <span class="st" style="color: #20794D;">"cyl"</span>,</span>
+<span id="cb2-8">            <span class="at" style="color: #657422;">y=</span> <span class="st" style="color: #20794D;">"mpg"</span>,</span>
+<span id="cb2-9">            <span class="at" style="color: #657422;">fill =</span> <span class="st" style="color: #20794D;">"cyl"</span>,</span>
+<span id="cb2-10">            <span class="at" style="color: #657422;">palette =</span> <span class="st" style="color: #20794D;">"uchicago"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb2-11">  <span class="fu" style="color: #4758AB;">stat_compare_means</span>(<span class="at" style="color: #657422;">comparisons =</span> group_compar1)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Plotando estatístics no corpo do gráfico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">mtcars <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> wt, <span class="at" style="color: #657422;">y =</span> mpg))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb3-3">  <span class="fu" style="color: #4758AB;">geom_point</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb3-4">  <span class="fu" style="color: #4758AB;">stat_fit_tb</span>(<span class="at" style="color: #657422;">method =</span> <span class="st" style="color: #20794D;">"lm"</span>,</span>
+<span id="cb3-5">              <span class="at" style="color: #657422;">label.x =</span> <span class="st" style="color: #20794D;">"right"</span>,</span>
+<span id="cb3-6">              <span class="at" style="color: #657422;">method.args =</span> <span class="fu" style="color: #4758AB;">list</span>(<span class="at" style="color: #657422;">formula =</span> y<span class="sc" style="color: #5E5E5E;">~</span>x),</span>
+<span id="cb3-7">              <span class="at" style="color: #657422;">table.theme =</span> <span class="fu" style="color: #4758AB;">ttheme_gtdark</span>())</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Plotando fórmulas no corpo do gráfico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">mtcars <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb4-2">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> wt, <span class="at" style="color: #657422;">y =</span> mpg))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb4-3">  <span class="fu" style="color: #4758AB;">geom_point</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb4-4">  <span class="fu" style="color: #4758AB;">stat_correlation</span>(<span class="fu" style="color: #4758AB;">use_label</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"r"</span>, <span class="st" style="color: #20794D;">"t"</span>, <span class="st" style="color: #20794D;">"p"</span>)),</span>
+<span id="cb4-5">                   <span class="at" style="color: #657422;">label.x =</span> <span class="st" style="color: #20794D;">"right"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Plotando dados no corpo do gráfico.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">tbl_median_mtcars <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb5-2">  mtcars <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb5-3">  <span class="fu" style="color: #4758AB;">select</span>(mpg, hp, cyl) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb5-4">  <span class="fu" style="color: #4758AB;">group_by</span>(cyl) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb5-5">  <span class="fu" style="color: #4758AB;">summarise</span>(<span class="fu" style="color: #4758AB;">across</span>(<span class="fu" style="color: #4758AB;">where</span>(is.numeric), median)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb5-6">  <span class="fu" style="color: #4758AB;">ungroup</span>()</span>
+<span id="cb5-7"></span>
+<span id="cb5-8">data_trans_mtcars <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">tibble</span>(<span class="at" style="color: #657422;">x =</span> <span class="fl" style="color: #AD0000;">5.40</span>, <span class="at" style="color: #657422;">y =</span> <span class="dv" style="color: #AD0000;">34</span>, <span class="at" style="color: #657422;">tb =</span> <span class="fu" style="color: #4758AB;">list</span>(tbl_median_mtcars))</span>
+<span id="cb5-9"></span>
+<span id="cb5-10">mtcars <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb5-11">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> wt, <span class="at" style="color: #657422;">y =</span> mpg, <span class="at" style="color: #657422;">color =</span> <span class="fu" style="color: #4758AB;">factor</span>(cyl)))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-12">  <span class="fu" style="color: #4758AB;">geom_point</span>()<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb5-13">  <span class="fu" style="color: #4758AB;">geom_table</span>(<span class="at" style="color: #657422;">data=</span> data_trans_mtcars, <span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x=</span>x, <span class="at" style="color: #657422;">y=</span>y, <span class="at" style="color: #657422;">label =</span> tb))</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Gráfico de cause efeito.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">qcc<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">cause.and.effect</span>(</span>
+<span id="cb6-2">  <span class="at" style="color: #657422;">cause =</span> <span class="fu" style="color: #4758AB;">list</span>(</span>
+<span id="cb6-3">    <span class="at" style="color: #657422;">medida =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"metrica errada"</span>),</span>
+<span id="cb6-4">    <span class="at" style="color: #657422;">maquin =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"defeito"</span>),</span>
+<span id="cb6-5">    <span class="at" style="color: #657422;">metodo =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"treinamento"</span>)</span>
+<span id="cb6-6">      ),</span>
+<span id="cb6-7">  <span class="at" style="color: #657422;">effect =</span> <span class="st" style="color: #20794D;">"efeito"</span></span>
+<span id="cb6-8">)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Modelo para auxiliar na escolha de gráfico de controle.</p>
+<div class="cell" data-warning="false" data-fig-width="6.5">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
+    A[dados] --&gt;B{qual tipo \n de dados?}
+    B --&gt;C[Contínuo]
+    B --&gt;D[Discreta/\nAtributos]
+    C --&gt;E{Qual o volume\n de dados ?}
+    E --&gt;|n = 1|F[x.one + R]
+    E --&gt;|n 2-10|G[x + R]
+    E --&gt;|n &gt; 10|H[x + S]
+    D --&gt;I{Lote de dados\n constante ?}
+    I--&gt;J[Sim]
+    I--&gt;K[Não]
+    J--&gt;L[C Proporção de \ndefeitos por UN]
+    J--&gt;M[NP Contagem de \ndefeitos por UN]
+    K--&gt;N[U Contagem de \ndefeitos por UN]
+    K--&gt;O[P Proporção de \ndefeitos por UN]
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<p>Gráfico X bar de controle de processo.</p>
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">data</span>(<span class="st" style="color: #20794D;">"pistonrings"</span>)</span>
+<span id="cb7-2"></span>
+<span id="cb7-3">data_pistonring <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">as_tibble</span>(pistonrings)</span>
+<span id="cb7-4"></span>
+<span id="cb7-5"><span class="fu" style="color: #4758AB;">qcc</span>(data_pistonring<span class="sc" style="color: #5E5E5E;">$</span>diameter,</span>
+<span id="cb7-6">                <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"xbar.one"</span>,</span>
+<span id="cb7-7">                <span class="at" style="color: #657422;">rules =</span> shewhart.rules)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 11
+ $ call      : language qcc(data = data_pistonring$diameter, type = "xbar.one", rules = shewhart.rules)
+ $ type      : chr "xbar.one"
+ $ data.name : chr "data_pistonring$diameter"
+ $ data      : num [1:200, 1] 74 74 74 74 74 ...
+  ..- attr(*, "dimnames")=List of 2
+ $ statistics: Named num [1:200] 74 74 74 74 74 ...
+  ..- attr(*, "names")= chr [1:200] "1" "2" "3" "4" ...
+ $ sizes     : int [1:200] 1 1 1 1 1 1 1 1 1 1 ...
+ $ center    : num 74
+ $ std.dev   : num 0.01
+ $ nsigmas   : num 3
+ $ limits    : num [1, 1:2] 74 74
+  ..- attr(*, "dimnames")=List of 2
+ $ violations:List of 2
+ - attr(*, "class")= chr "qcc"</code></pre>
+</div>
+</div>
+<p>Gráfico de pareto.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">data_defeito <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb9-2">  <span class="fu" style="color: #4758AB;">tribble</span>(<span class="sc" style="color: #5E5E5E;">~</span><span class="st" style="color: #20794D;">"tipo"</span>, <span class="sc" style="color: #5E5E5E;">~</span><span class="st" style="color: #20794D;">"qtd"</span>, <span class="sc" style="color: #5E5E5E;">~</span><span class="st" style="color: #20794D;">"custo"</span>,</span>
+<span id="cb9-3">          <span class="st" style="color: #20794D;">"riscos"</span>, <span class="dv" style="color: #AD0000;">201</span>, <span class="fl" style="color: #AD0000;">4287.60</span>,</span>
+<span id="cb9-4">          <span class="st" style="color: #20794D;">"Manchas"</span>,<span class="dv" style="color: #AD0000;">78</span>,<span class="fl" style="color: #AD0000;">2423.46</span>,</span>
+<span id="cb9-5">          <span class="st" style="color: #20794D;">"Dobras"</span>,<span class="dv" style="color: #AD0000;">47</span>,<span class="fl" style="color: #AD0000;">1118.60</span>,</span>
+<span id="cb9-6">          <span class="st" style="color: #20794D;">"Furos"</span>,<span class="dv" style="color: #AD0000;">31</span>,<span class="fl" style="color: #AD0000;">8946.60</span>,</span>
+<span id="cb9-7">          <span class="st" style="color: #20794D;">"Rasgos"</span>,<span class="dv" style="color: #AD0000;">15</span>,<span class="fl" style="color: #AD0000;">1864.05</span>)</span>
+<span id="cb9-8"></span>
+<span id="cb9-9">pareto_defeito <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb9-10">  data_defeito <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb9-11">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> tipo, <span class="at" style="color: #657422;">y=</span> qtd))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb9-12">  <span class="fu" style="color: #4758AB;">stat_pareto</span>(<span class="at" style="color: #657422;">bars.fill =</span> <span class="st" style="color: #20794D;">"lightblue"</span>)</span>
+<span id="cb9-13"></span>
+<span id="cb9-14">pareto_custo <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb9-15">  data_defeito <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb9-16">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> tipo, <span class="at" style="color: #657422;">y=</span> custo))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb9-17">  <span class="fu" style="color: #4758AB;">stat_pareto</span>(<span class="at" style="color: #657422;">bars.fill =</span> <span class="st" style="color: #20794D;">"navy"</span>)</span>
+<span id="cb9-18"></span>
+<span id="cb9-19">data_defeito <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb9-20">  <span class="fu" style="color: #4758AB;">ggplot</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">x =</span> tipo, <span class="at" style="color: #657422;">y =</span> custo))<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb9-21">  <span class="fu" style="color: #4758AB;">stat_pareto</span>(<span class="at" style="color: #657422;">bars.fill =</span> <span class="st" style="color: #20794D;">"navy"</span>)<span class="sc" style="color: #5E5E5E;">+</span></span>
+<span id="cb9-22">  <span class="fu" style="color: #4758AB;">annotate</span>(<span class="st" style="color: #20794D;">"plot_npc"</span>, </span>
+<span id="cb9-23">            <span class="at" style="color: #657422;">npcx =</span> <span class="st" style="color: #20794D;">"right"</span>, </span>
+<span id="cb9-24">            <span class="at" style="color: #657422;">npcy =</span> <span class="st" style="color: #20794D;">"middle"</span>,</span>
+<span id="cb9-25">            <span class="at" style="color: #657422;">label =</span>pareto_defeito )</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<p>Gráfico de sentimento candlestick chart.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="fu" style="color: #4758AB;">getSymbols</span>(<span class="st" style="color: #20794D;">"MORTGAGE30US"</span>, <span class="at" style="color: #657422;">src=</span> <span class="st" style="color: #20794D;">"FRED"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "MORTGAGE30US"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="fu" style="color: #4758AB;">chart_Series</span>(MORTGAGE30US)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;">getSymbols</span>(<span class="st" style="color: #20794D;">"VIXCLS"</span>, <span class="at" style="color: #657422;">src=</span> <span class="st" style="color: #20794D;">"FRED"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "VIXCLS"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><span class="fu" style="color: #4758AB;">chart_Series</span>(VIXCLS)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;">getSymbols</span>(<span class="st" style="color: #20794D;">"DGS10"</span>, <span class="at" style="color: #657422;">src=</span> <span class="st" style="color: #20794D;">"FRED"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "DGS10"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><span class="fu" style="color: #4758AB;">chart_Series</span>(DGS10)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;">getSymbols</span>(<span class="st" style="color: #20794D;">"VALE"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "VALE"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><span class="fu" style="color: #4758AB;">chartSeries</span>(VALE)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Gráfico de análise multidimensional Alluvial.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1">plot_mtcars <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb22-2">  mtcars <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb22-3">  <span class="fu" style="color: #4758AB;">alluvial_wide</span>(<span class="at" style="color: #657422;">max_variables =</span> <span class="dv" style="color: #AD0000;">5</span>) </span>
+<span id="cb22-4">  </span>
+<span id="cb22-5"><span class="fu" style="color: #4758AB;">add_marginal_histograms</span>(plot_mtcars, mtcars)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Gráfico PCA</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1">iris <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb23-2">  <span class="fu" style="color: #4758AB;">select</span>(<span class="sc" style="color: #5E5E5E;">-</span>Species) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb23-3">  <span class="fu" style="color: #4758AB;">prcomp</span>(<span class="at" style="color: #657422;">center =</span> <span class="cn" style="color: #8f5902;">TRUE</span>, <span class="at" style="color: #657422;">scale. =</span> <span class="cn" style="color: #8f5902;">TRUE</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb23-4">  factoextra<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">fviz_pca_biplot</span>(<span class="at" style="color: #657422;">geom.ind =</span> <span class="st" style="color: #20794D;">"point"</span>,</span>
+<span id="cb23-5">                              <span class="at" style="color: #657422;">habillage =</span> iris<span class="sc" style="color: #5E5E5E;">$</span>Species,</span>
+<span id="cb23-6">                              <span class="at" style="color: #657422;">addEllipses =</span> <span class="cn" style="color: #8f5902;">TRUE</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<ul>
+<li><p>Etapas de analise de resultados, validação, modelagem ou comunicação.</p></li>
+<li><p>Inclusão em documento técnico reproduzível.</p></li>
+<li><p>Comunicação de descobertas ou resultados de trabalhos técnicos</p></li>
+<li><p>Documentação ou treinamento de pessoal.</p></li>
+</ul>
+</section>
+<section id="fa-6-qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<ul>
+<li><p>Aperfeiçoar as técnicas de representação, exploração e comunicação de estudos técnicos.</p></li>
+<li><p>Facilitar o entendimento das informações contidas nos documentos técnicos poupando tempo e dinheiro, permitindo a replicação e experimentos e consequentemente busca por melhoria.</p></li>
+<li><p>Facilitar o reconhecimento de registros, estudos, descobertas em pesquisas futuras.</p></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Exploração</category>
+  <category>Comunicação</category>
+  <guid>https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats.html</guid>
+  <pubDate>Wed, 28 Sep 2022 03:00:00 GMT</pubDate>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/chart_stats/chart_title.png" medium="image" type="image/png" height="141" width="144"/>
+</item>
 <item>
   <title>Como construir tabela para artigo técnico - gtsummary</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>

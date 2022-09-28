@@ -1,47 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/dummy-post/post.html</loc>
-    <lastmod>2022-08-05T02:47:06.977Z</lastmod>
+    <loc>https://carvalhoribeiro.netlify.app/about.html</loc>
+    <lastmod>2022-09-24T01:49:16.293Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/index.html</loc>
-    <lastmod>2022-09-13T15:41:19.997Z</lastmod>
+    <lastmod>2022-09-28T15:29:28.076Z</lastmod>
   </url>
   <url>
-    <loc>https://carvalhoribeiro.netlify.app/blog.html</loc>
-    <lastmod>2022-08-05T02:50:39.592Z</lastmod>
+    <loc>https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats.html</loc>
+    <lastmod>2022-09-28T15:29:40.542Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/confusion-matrix/index.html</loc>
-    <lastmod>2022-08-26T00:56:57.706Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/about.html</loc>
-    <lastmod>2022-08-22T00:33:03.681Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/welcome/index.html</loc>
-    <lastmod>2022-08-26T01:00:35.866Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet.html</loc>
-    <lastmod>2022-08-26T01:03:30.978Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar.html</loc>
-    <lastmod>2022-08-26T01:05:41.612Z</lastmod>
+    <lastmod>2022-09-24T01:49:28.703Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/histogram/histogram.html</loc>
-    <lastmod>2022-08-29T00:18:02.924Z</lastmod>
+    <lastmod>2022-09-24T01:49:30.554Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar.html</loc>
+    <lastmod>2022-09-24T01:49:31.732Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet.html</loc>
+    <lastmod>2022-09-24T01:49:32.725Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition.html</loc>
-    <lastmod>2022-08-29T00:51:30.761Z</lastmod>
+    <lastmod>2022-09-24T01:49:33.677Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/table_stats/table_stats.html</loc>
-    <lastmod>2022-09-13T15:41:19.151Z</lastmod>
+    <lastmod>2022-09-27T23:37:52.393Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/welcome/index.html</loc>
+    <lastmod>2022-09-24T01:49:37.148Z</lastmod>
   </url>
 </urlset>
