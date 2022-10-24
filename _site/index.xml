@@ -10,7 +10,148 @@
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>
 <generator>quarto-1.0.18</generator>
-<lastBuildDate>Wed, 28 Sep 2022 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Mon, 24 Oct 2022 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Como comunicar dados em artigos técnicos no R - Quarto</title>
+  <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
+  <link>https://carvalhoribeiro.netlify.app/posts/comm-stats/comm_stat.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Vídeo tema para este post em <a href="https://youtu.be/F0YbmZuC2BM" target="_blank">Como comunicar dados em artigos técnicos no R - Quarto</a></p>
+</div>
+</div>
+</div>
+<section id="fa-1-o-que-é-comunicação-de-dados" class="level3">
+<h3 class="anchored" data-anchor-id="fa-1-o-que-é-comunicação-de-dados"> <span style="color: #5AC8BE ;"><strong>O que é comunicação de dados</strong></span></h3>
+<ul>
+<li><p>Em um contexto mais geral, seria o processo relativo a transação de dados e ou informações entre 2 ou mais agentes.</p></li>
+<li><p>Em um contexto mais específico que será tratado nesse post é a demonstração de resultado técnico ou experimento em documentos(e.g.&nbsp;dossiê, poster scientific, blog, livro etc)</p></li>
+<li><p>Muito mais do que um documento, são ideias.</p></li>
+</ul>
+</section>
+<section id="fa-2-qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<ul>
+<li><p>Dar suporte para ação adequada/eficiente em situações específicas usando sinais que podem ser visuais como escrita, fórmulas, gráficos e código reproduzível.</p></li>
+<li><p>Facilitar a aplicação do conceito <strong><em>techinical writing</em></strong> , facilitar a compreenção e por consequencia a busca por melhorias.</p></li>
+</ul>
+</section>
+<section id="fa-3-de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<ul>
+<li><p>Necessidade de compreenção, reprodução ou melhoria de um processo.</p></li>
+<li><p>Escasses de recursos vs necessidade de melhoria da produtividade global dos fatores.</p></li>
+<li><p>Necessidade de transparência, credibilidade e consistência.</p></li>
+</ul>
+<div id="fig-tables" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/interstate.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Modelo de rodovidas interestaduais nos Estados Unidos iniciado em 1919 e finalizado 1995.</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/levittown.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Modelo de suburbio 1947-1951 Levittown Long Island Estados Unidos, modelo que está sendo usado até 2022.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figura 1: Exemplo de ações implementadas através do uso de reprodutibilidade de experimentos e ideias.</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="fa-4-como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<ul>
+<li><strong>Ferramenta:</strong> Quarto, rmarkdown, jupyter notebook, word, excel.</li>
+</ul>
+<div id="fig-communication" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/communication.png" class="img-fluid figure-img" width="1350"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figura 2: Processo de comunicação de dados técnicos</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p><strong>Conceito:</strong> Uso de elementos que facilitem processo de comunicação como <strong><em>equations, citations, cross-reference, footnotes, embedded code, code chunck, inline code</em></strong>.</p></li>
+<li><p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> e <a href="https://quarto.org/docs/get-started/" target="_blank">quarto</a></p></li>
+<li><p>Para instalar o quarto pub clique no link acima e siga os procedimentos(next&gt;next&gt;next). Após a instalação a opção criar um novo documento quarto vai aparecer automaticamente no RStudio.</p></li>
+</ul>
+<div id="fig-new_quarto" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 65.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/new_quarto.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Para criar um novo documento usando o quarto</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 35.0%;justify-content: center;">
+<div id="fig-new_quarto_2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/new_quarto_2.png" class="img-fluid figure-img" data-ref-parent="fig-new_quarto"></p>
+<p></p><figcaption class="figure-caption">(a) Para escolher o formato que o documento será gerado. No caso de escolher PDF será necessário instalar o pacote tinytex (demora um pouco)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figura 3: Gerando novo documento usando quarto_pub</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>Código descrito no vídeo aqui:</li>
+</ul>
+</section>
+<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<ul>
+<li>Publicação intranet</li>
+<li>Github</li>
+<li>Zenodo</li>
+<li>Kaggle</li>
+<li>Paperswithcode</li>
+<li>NCBI - National Center for Biotecnology Information</li>
+<li>Serviço Brasileiro de Respostas técnicas</li>
+<li>Blog/Books/Poster</li>
+</ul>
+</section>
+<section id="fa-6-qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<ul>
+<li><p>Melhoria da articulação permitindo expor com mais clareza os detalhes técnicos e os benefícios a respeito da ideia proposta.</p></li>
+<li><p>Reutilização da ideia original (ao invés de partir do zero) mas incrementando melhorias, reduzindo tempo de implementação e se livrando de obstaculos ao longo do caminho consequentemente poupando recursos o que remete a continuidade e consistência.</p></li>
+<li><p>Incremento de qualidade e acessibilidade ao conheicmento, bens ou serviços resultando da melhoria das padrão de vida pessoas.</p></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Comunicação</category>
+  <guid>https://carvalhoribeiro.netlify.app/posts/comm-stats/comm_stat.html</guid>
+  <pubDate>Mon, 24 Oct 2022 03:00:00 GMT</pubDate>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/comm-stats/comm_figure.png" medium="image" type="image/png" height="137" width="144"/>
+</item>
 <item>
   <title>Como construir gráficos para artigo técnico</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
@@ -316,7 +457,7 @@
   <category>Comunicação</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats.html</guid>
   <pubDate>Wed, 28 Sep 2022 03:00:00 GMT</pubDate>
-  <media:content url="https://carvalhoribeiro.netlify.app/posts/chart_stats/chart_title.png" medium="image" type="image/png" height="141" width="144"/>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/chart_stats/chart_title.png" medium="image" type="image/png" height="138" width="144"/>
 </item>
 <item>
   <title>Como construir tabela para artigo técnico - gtsummary</title>
@@ -3398,7 +3539,7 @@ Slutsky, David. 2014. <span>“The Use of Tables.”</span> <em>Journal of Wrist
   <category>Modelos</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/table_stats/table_stats.html</guid>
   <pubDate>Mon, 12 Sep 2022 03:00:00 GMT</pubDate>
-  <media:content url="https://carvalhoribeiro.netlify.app/posts/table_stats/table.png" medium="image" type="image/png" height="98" width="144"/>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/table_stats/table.png" medium="image" type="image/png" height="119" width="144"/>
 </item>
 <item>
   <title>Como Identificar padrões em dados - gráfico de dispersão</title>

@@ -196,6 +196,7 @@ data_defeito %>%
             npcx = "right", 
             npcy = "middle",
             label =pareto_defeito )
+
 ```
 
 Gráfico de sentimento candlestick chart.

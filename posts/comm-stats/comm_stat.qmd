@@ -1,0 +1,87 @@
+---
+title: "Como comunicar dados em artigos técnicos no R - Quarto"
+author: "Marcelo Carvalho dos Anjos"
+date: "2022-10-24"
+categories: [Comunicação]
+image: "comm_figure.png"
+lang: pt
+---
+
+::: {.callout-tip appearance="simple"}
+Vídeo tema para este post em [Como comunicar dados em artigos técnicos no R - Quarto](https://youtu.be/F0YbmZuC2BM){target="_blank"}
+:::
+
+### {{< fa 1 >}} [**O que é comunicação de dados**]{style="color: #5AC8BE ;"}
+
+-   Em um contexto mais geral, seria o processo relativo a transação de dados e ou informações entre 2 ou mais agentes.
+
+-   Em um contexto mais específico que será tratado nesse post é a demonstração de resultado técnico ou experimento em documentos(e.g. dossiê, poster scientific, blog, livro etc)
+
+-   Muito mais do que um documento, são ideias.
+
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+
+-   Dar suporte para ação adequada/eficiente em situações específicas usando sinais que podem ser visuais como escrita, fórmulas, gráficos e código reproduzível.
+
+-   Facilitar a aplicação do conceito ***techinical writing*** , facilitar a compreenção e por consequencia a busca por melhorias.
+
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+
+-   Necessidade de compreenção, reprodução ou melhoria de um processo.
+
+-   Escasses de recursos vs necessidade de melhoria da produtividade global dos fatores.
+
+-   Necessidade de transparência, credibilidade e consistência.
+
+::: {#fig-tables layout-ncol="2"}
+![Modelo de rodovidas interestaduais nos Estados Unidos iniciado em 1919 e finalizado 1995.](interstate.png)
+
+![Modelo de suburbio 1947-1951 Levittown Long Island Estados Unidos, modelo que está sendo usado até 2022.](levittown.jpg)
+
+Exemplo de ações implementadas através do uso de reprodutibilidade de experimentos e ideias.
+:::
+
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
+
+-   **Ferramenta:** Quarto, rmarkdown, jupyter notebook, word, excel.
+
+::: {#fig-communication layout-ncol="1"}
+![](communication.png){width="1350"}
+
+Processo de comunicação de dados técnicos
+:::
+
+-   **Conceito:** Uso de elementos que facilitem processo de comunicação como ***equations, citations, cross-reference, footnotes, embedded code, code chunck, inline code***.
+
+-   Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/){target="_blank"} e [quarto](https://quarto.org/docs/get-started/){target="_blank"}
+
+-   Para instalar o quarto pub clique no link acima e siga os procedimentos(next\>next\>next). Após a instalação a opção criar um novo documento quarto vai aparecer automaticamente no RStudio.
+
+::: {#fig-new_quarto layout="[65,35]" layout-valign="top"}
+![Para criar um novo documento usando o quarto](new_quarto.png)
+
+![Para escolher o formato que o documento será gerado. No caso de escolher PDF será necessário instalar o pacote tinytex (demora um pouco)](new_quarto_2.png){#fig-new_quarto_2}
+
+Gerando novo documento usando quarto_pub
+:::
+
+-   Código descrito no vídeo aqui: 
+
+### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+
+-   Publicação intranet
+-   Github
+-   Zenodo
+-   Kaggle
+-   Paperswithcode
+-   NCBI - National Center for Biotecnology Information
+-   Serviço Brasileiro de Respostas técnicas
+-   Blog/Books/Poster
+
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
+
+-   Melhoria da articulação permitindo expor com mais clareza os detalhes técnicos e os benefícios a respeito da ideia proposta.
+
+-   Reutilização da ideia original (ao invés de partir do zero) mas incrementando melhorias, reduzindo tempo de implementação e se livrando de obstaculos ao longo do caminho consequentemente poupando recursos o que remete a continuidade e consistência.
+
+-   Incremento de qualidade e acessibilidade ao conheicmento, bens ou serviços resultando da melhoria das padrão de vida pessoas.
