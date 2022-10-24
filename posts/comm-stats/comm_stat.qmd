@@ -65,7 +65,7 @@ Processo de comunicação de dados técnicos
 Gerando novo documento usando quarto_pub
 :::
 
--   Código descrito no vídeo [aqui](https://raw.githubusercontent.com/factorialmap/analise_exploratoria/main/comm_teste.qmd "Você precisará do quarto para editar e gerar o documento")
+-   Código descrito no vídeo [aqui](https://raw.githubusercontent.com/factorialmap/analise_exploratoria/main/comm_teste.qmd "Você precisará do quarto para editar e gerar o documento"){target="_blank"} 
 
 ### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 
