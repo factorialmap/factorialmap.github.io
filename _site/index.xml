@@ -10,7 +10,7 @@
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>
 <generator>quarto-1.2.313</generator>
-<lastBuildDate>Mon, 28 Nov 2022 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Tue, 29 Nov 2022 03:00:00 GMT</lastBuildDate>
 <item>
   <title>Modelo preditivo | tidymodels decision tree rpart diabetes</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
@@ -25,7 +25,7 @@
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Vídeo tema para este post em <a href="https://youtu.be/p-wiv5wnLMw" target="_blank">Tidymodels decision tree model diabetes - rpart</a></p>
+<p>Vídeo tema para este post em <a href="https://youtu.be/u-zED9AAA4A" target="_blank">Tidymodels decision tree model diabetes - rpart</a></p>
 </div>
 </div>
 </div>
@@ -90,9 +90,8 @@ Clique aqui para mostrar dados complementares sobre Pima Indian Diabetes
 <div class="code-with-filename-file">
 <pre><strong>Packages</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># packages       ---------------------------------------------------------------</span></span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
-<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(tidymodels)</span></code></pre></div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidymodels)</span></code></pre></div>
 </div>
 </div>
 <div class="cell">
@@ -234,12 +233,17 @@ Clique aqui para mostrar dados complementares sobre Pima Indian Diabetes
 <span id="cb11-2">  <span class="fu" style="color: #4758AB;">tribble</span>(<span class="sc" style="color: #5E5E5E;">~</span>pregnant, <span class="sc" style="color: #5E5E5E;">~</span>glucose, <span class="sc" style="color: #5E5E5E;">~</span>pressure,<span class="sc" style="color: #5E5E5E;">~</span>triceps,<span class="sc" style="color: #5E5E5E;">~</span>insulin, <span class="sc" style="color: #5E5E5E;">~</span>mass, <span class="sc" style="color: #5E5E5E;">~</span>pedigree, <span class="sc" style="color: #5E5E5E;">~</span>age,</span>
 <span id="cb11-3">          <span class="dv" style="color: #AD0000;">2</span>,<span class="dv" style="color: #AD0000;">87</span>,<span class="dv" style="color: #AD0000;">68</span>,<span class="dv" style="color: #AD0000;">34</span>,<span class="dv" style="color: #AD0000;">77</span>,<span class="dv" style="color: #AD0000;">38</span>,<span class="fl" style="color: #AD0000;">0.41</span>,<span class="dv" style="color: #AD0000;">25</span>)</span>
 <span id="cb11-4"></span>
-<span id="cb11-5"><span class="fu" style="color: #4758AB;">predict</span>(mdl_fit_rpart_pima, <span class="at" style="color: #657422;">new_data =</span> new_data_pima)</span>
-<span id="cb11-6"></span>
-<span id="cb11-7"></span>
-<span id="cb11-8">mdl_fit_rpart_pima <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb11-9">  <span class="fu" style="color: #4758AB;">extract_fit_engine</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb11-10">  vip<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">vip</span>()</span></code></pre></div>
+<span id="cb11-5"><span class="fu" style="color: #4758AB;">predict</span>(mdl_fit_rpart_pima, <span class="at" style="color: #657422;">new_data =</span> new_data_pima)</span></code></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Variable Importance</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1">mdl_fit_rpart_pima <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb12-2">  <span class="fu" style="color: #4758AB;">extract_fit_engine</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb12-3">  vip<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">vip</span>()</span></code></pre></div>
 </div>
 </div>
 </section>
@@ -263,7 +267,7 @@ Clique aqui para mostrar dados complementares sobre Pima Indian Diabetes
  ]]></description>
   <category>Modelos</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/dtrpart.html</guid>
-  <pubDate>Mon, 28 Nov 2022 03:00:00 GMT</pubDate>
+  <pubDate>Tue, 29 Nov 2022 03:00:00 GMT</pubDate>
   <media:content url="https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/decision_tree.png" medium="image" type="image/png" height="132" width="144"/>
 </item>
 <item>

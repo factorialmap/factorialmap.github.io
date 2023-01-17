@@ -2,7 +2,7 @@
 title: "Modelo preditivo | tidymodels decision tree rpart diabetes "
 subtitle: "Modelo machine learning de árvore de decisão usando rpart, tidymodels e dados de diabetes"
 author: "Marcelo Carvalho dos Anjos"
-date: "2022-11-28"
+date: "2022-11-29"
 categories: [Modelos]
 image: "decision_tree.png"
 execute: 
@@ -10,7 +10,7 @@ execute:
 ---
 
 ::: {.callout-tip appearance="simple"}
-Vídeo tema para este post em [Tidymodels decision tree model diabetes - rpart](https://youtu.be/p-wiv5wnLMw){target="_blank"}
+Vídeo tema para este post em [Tidymodels decision tree model diabetes - rpart](https://youtu.be/u-zED9AAA4A){target="_blank"}
 :::
 
 ### {{< fa 1 >}} [**O que é modelo de arvore de decisão**]{style="color: #5AC8BE ;"}
@@ -66,7 +66,6 @@ O conjunto de dados é o Pima Indians Diabetes Database disponível na Universid
 
 ```{r packages, filename ="Packages", eval = FALSE} 
 
-# packages       ---------------------------------------------------------------
 library(tidyverse)
 library(tidymodels)
 
@@ -183,8 +182,9 @@ new_data_pima <-
           2,87,68,34,77,38,0.41,25)
 
 predict(mdl_fit_rpart_pima, new_data = new_data_pima)
+```
 
-
+```{r variable_importance, filename ="Variable Importance", eval = FALSE} 
 mdl_fit_rpart_pima %>% 
   extract_fit_engine() %>% 
   vip::vip()
