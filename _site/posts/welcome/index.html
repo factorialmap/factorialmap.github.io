@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.18">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 </style>
 
 
@@ -38,8 +43,6 @@ ul.task-list{list-style: none;}
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,26 +73,29 @@ ul.task-list{list-style: none;}
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <a class="navbar-brand" href="../../index.html">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Carvalho Ribeiro Blog</span>
-  </a>
+    </a>
+  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">Info</a>
+    <a class="nav-link" href="../../about.html">
+ <span class="menu-text">Info</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://youtube.com/carvalhoribeiro"><i class="bi bi-youtube" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/factorialmap"><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div class="quarto-toggle-container">
@@ -104,18 +110,18 @@ ul.task-list{list-style: none;}
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc">
+    <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Conteúdo</h2>
    
   <ul>
-  <li><a href="#fa-1-por-que-este-blog-e-o-canal-no-youtube" id="toc-fa-1-por-que-este-blog-e-o-canal-no-youtube" class="nav-link active" data-scroll-target="#fa-1-por-que-este-blog-e-o-canal-no-youtube"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Por que este blog e o canal no YouTube ?</strong></span></a></li>
-  <li><a href="#fa-2-como-serão-divididos-os-tópicos" id="toc-fa-2-como-serão-divididos-os-tópicos" class="nav-link" data-scroll-target="#fa-2-como-serão-divididos-os-tópicos"><i class="fa-solid fa-2" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como serão divididos os tópicos ?</strong></span></a></li>
-  <li><a href="#fa-3-como-será-divido-cada-post" id="toc-fa-3-como-será-divido-cada-post" class="nav-link" data-scroll-target="#fa-3-como-será-divido-cada-post"><i class="fa-solid fa-3" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como será divido cada post ?</strong></span></a></li>
+  <li><a href="#fa-1-por-que-este-blog-e-o-canal-no-youtube" id="toc-fa-1-por-que-este-blog-e-o-canal-no-youtube" class="nav-link active" data-scroll-target="#fa-1-por-que-este-blog-e-o-canal-no-youtube"> <span style="color: #5AC8BE ;"><strong>Por que este blog e o canal no YouTube ?</strong></span></a></li>
+  <li><a href="#fa-2-como-serão-divididos-os-tópicos" id="toc-fa-2-como-serão-divididos-os-tópicos" class="nav-link" data-scroll-target="#fa-2-como-serão-divididos-os-tópicos"> <span style="color: #5AC8BE ;"><strong>Como serão divididos os tópicos ?</strong></span></a></li>
+  <li><a href="#fa-3-como-será-divido-cada-post" id="toc-fa-3-como-será-divido-cada-post" class="nav-link" data-scroll-target="#fa-3-como-será-divido-cada-post"> <span style="color: #5AC8BE ;"><strong>Como será divido cada post ?</strong></span></a></li>
   </ul>
 </nav>
 </nav>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
@@ -152,6 +158,7 @@ ul.task-list{list-style: none;}
       <p class="date">August 3, 2022</p>
     </div>
   </div>
+  
     
   </div>
   
@@ -169,7 +176,7 @@ ul.task-list{list-style: none;}
 </div>
 </div>
 <section id="fa-1-por-que-este-blog-e-o-canal-no-youtube" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-por-que-este-blog-e-o-canal-no-youtube"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Por que este blog e o canal no YouTube ?</strong></span></h3>
+<h3 class="anchored" data-anchor-id="fa-1-por-que-este-blog-e-o-canal-no-youtube"> <span style="color: #5AC8BE ;"><strong>Por que este blog e o canal no YouTube ?</strong></span></h3>
 <p>Em 2040 o Brasil terá uma população mais urbana e mais madura. A necessidade de aumento de produtividade no país estará em rota de colisão com a demanda por mão de obra qualificada em países desenvolvidos que estarão com suas populações diminuindo.</p>
 <p>O objetivo do canal e do blog é tentar auxiliar na melhoria de processos para que estejamos mais preparados quando chegarmos em 2040.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -179,7 +186,7 @@ ul.task-list{list-style: none;}
 </div>
 </section>
 <section id="fa-2-como-serão-divididos-os-tópicos" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-como-serão-divididos-os-tópicos"><i class="fa-solid fa-2" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como serão divididos os tópicos ?</strong></span></h3>
+<h3 class="anchored" data-anchor-id="fa-2-como-serão-divididos-os-tópicos"> <span style="color: #5AC8BE ;"><strong>Como serão divididos os tópicos ?</strong></span></h3>
 <div class="callout-tip callout callout-style-simple callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -192,14 +199,14 @@ Clique aqui pra abrir os detalhes
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><i class="fa-solid fa-1" aria-hidden="true"></i> . Demanda, definição do problema, objetivos e métricas de sucesso - Contém a origem e tipos de necessidade que é o que torna todo o restante do trabalho necessário.</p>
-<p><i class="fa-solid fa-2" aria-hidden="true"></i> . Dados - Contém conceitos com o objetivo de estimular a observação, abstração e entendimento sobre o que são dados.</p>
-<p><i class="fa-solid fa-3" aria-hidden="true"></i> . Ferramentas - Contém ferramentas como R(RStudio), Oracle SQL*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.</p>
-<p><i class="fa-solid fa-4" aria-hidden="true"></i> . Exploração - Contém visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.</p>
-<p><i class="fa-solid fa-5" aria-hidden="true"></i> . Modelos - Contém alguns tipos de modelos descritivos, preditivos, inferenciais, otimização entre outros.</p>
-<p><i class="fa-solid fa-6" aria-hidden="true"></i> . Versionamento e Reprodutibilidade - Contém processos para desenvolvimento de documentos reproduzíveis usando versionamento github, git, criação de documentos quarto_pub e rmardown, criação de livros bookdown entre outros.</p>
-<p><i class="fa-solid fa-7" aria-hidden="true"></i> . Comunicação - Contém abordagens sobre comunicação das estatísticas e relatórios técnicos.</p>
-<p><i class="fa-solid fa-8" aria-hidden="true"></i> . Aplicação - Contém histórico de ações e aplicações dos projetos.</p>
+<p> . Demanda, definição do problema, objetivos e métricas de sucesso - Contém a origem e tipos de necessidade que é o que torna todo o restante do trabalho necessário.</p>
+<p> . Dados - Contém conceitos com o objetivo de estimular a observação, abstração e entendimento sobre o que são dados.</p>
+<p> . Ferramentas - Contém ferramentas como R(RStudio), Oracle SQL*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.</p>
+<p> . Exploração - Contém visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.</p>
+<p> . Modelos - Contém alguns tipos de modelos descritivos, preditivos, inferenciais, otimização entre outros.</p>
+<p> . Versionamento e Reprodutibilidade - Contém processos para desenvolvimento de documentos reproduzíveis usando versionamento github, git, criação de documentos quarto_pub e rmardown, criação de livros bookdown entre outros.</p>
+<p> . Comunicação - Contém abordagens sobre comunicação das estatísticas e relatórios técnicos.</p>
+<p> . Aplicação - Contém histórico de ações e aplicações dos projetos.</p>
 </div>
 </div>
 </div>
@@ -210,14 +217,14 @@ Clique aqui pra abrir os detalhes
 </div>
 </section>
 <section id="fa-3-como-será-divido-cada-post" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-como-será-divido-cada-post"><i class="fa-solid fa-3" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como será divido cada post ?</strong></span></h3>
+<h3 class="anchored" data-anchor-id="fa-3-como-será-divido-cada-post"> <span style="color: #5AC8BE ;"><strong>Como será divido cada post ?</strong></span></h3>
 <p>Em 2001 para facilitar o entendimento dos profissionais da operação em industria eu escolhi um padrão que ao longo do tempo vem se mostrando eficiente e utilizarei aqui.</p>
-<p><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> - O que é : qual a ideia do que está sendo abordado ?</p>
-<p><i class="fa-solid fa-bullseye" aria-hidden="true"></i> - Qual o objetivo : por que isso está sendo ou foi desenvolvido ?</p>
-<p><i class="fa-solid fa-clipboard-question" aria-hidden="true"></i> - De onde vem : quais as necessidades ou origem dessa demanda ? A motivação ?</p>
-<p><i class="fa-solid fa-file-code" aria-hidden="true"></i> - Como fazer : qual o procedimento, código, sequência ou fluxo ?</p>
-<p><i class="fa-solid fa-users" aria-hidden="true"></i> - Pra onde vai : quem é o consumidor disso ? Qual a aplicação prática ?</p>
-<p><i class="fa-solid fa-circle-check" aria-hidden="true"></i> - Qual o resultado : descrição dos resultados previstos ou comprovados.</p>
+<p> - O que é : qual a ideia do que está sendo abordado ?</p>
+<p> - Qual o objetivo : por que isso está sendo ou foi desenvolvido ?</p>
+<p> - De onde vem : quais as necessidades ou origem dessa demanda ? A motivação ?</p>
+<p> - Como fazer : qual o procedimento, código, sequência ou fluxo ?</p>
+<p> - Pra onde vai : quem é o consumidor disso ? Qual a aplicação prática ?</p>
+<p> - Qual o resultado : descrição dos resultados previstos ou comprovados.</p>
 
 
 </section>
@@ -237,7 +244,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   const toggleBodyColorPrimary = () => {
-    toggleBodyColorMode(window.document.querySelector("link#quarto-bootstrap"));
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
   }
   toggleBodyColorPrimary();  
   const disableStylesheet = (stylesheets) => {
@@ -291,6 +301,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       }
     }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
   }
   const isFileUrl = () => { 
     return window.location.protocol === 'file:';
@@ -342,7 +362,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {
@@ -364,7 +386,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -392,31 +431,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

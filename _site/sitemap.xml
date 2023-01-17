@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://carvalhoribeiro.netlify.app/about.html</loc>
-    <lastmod>2022-09-24T01:49:16.293Z</lastmod>
+    <lastmod>2022-11-27T12:13:46.578Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/index.html</loc>
-    <lastmod>2022-10-24T21:53:24.057Z</lastmod>
+    <lastmod>2023-01-17T01:41:40.228Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats.html</loc>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/confusion-matrix/index.html</loc>
-    <lastmod>2022-09-24T01:49:28.703Z</lastmod>
+    <lastmod>2022-11-27T01:01:59.616Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/histogram/histogram.html</loc>
@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet.html</loc>
-    <lastmod>2022-09-24T01:49:32.725Z</lastmod>
+    <lastmod>2022-11-27T01:01:42.961Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition.html</loc>
@@ -38,10 +38,14 @@
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/welcome/index.html</loc>
-    <lastmod>2022-09-24T01:49:37.148Z</lastmod>
+    <lastmod>2022-11-27T12:03:48.615Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/comm-stats/comm_stat.html</loc>
-    <lastmod>2022-10-24T21:53:22.576Z</lastmod>
+    <lastmod>2022-11-27T01:51:48.926Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/dtrpart.html</loc>
+    <lastmod>2023-01-17T01:41:51.072Z</lastmod>
   </url>
 </urlset>

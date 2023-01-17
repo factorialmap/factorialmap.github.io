@@ -9,8 +9,263 @@
 <link>https://carvalhoribeiro.netlify.app/index.html</link>
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>
-<generator>quarto-1.0.18</generator>
-<lastBuildDate>Mon, 24 Oct 2022 03:00:00 GMT</lastBuildDate>
+<generator>quarto-1.2.313</generator>
+<lastBuildDate>Mon, 28 Nov 2022 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Modelo preditivo | tidymodels decision tree rpart diabetes</title>
+  <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
+  <link>https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/dtrpart.html</link>
+  <description><![CDATA[ 
+
+
+
+<div class="callout-tip callout callout-style-simple">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Vídeo tema para este post em <a href="https://youtu.be/p-wiv5wnLMw" target="_blank">Tidymodels decision tree model diabetes - rpart</a></p>
+</div>
+</div>
+</div>
+<section id="fa-1-o-que-é-modelo-de-arvore-de-decisão" class="level3">
+<h3 class="anchored" data-anchor-id="fa-1-o-que-é-modelo-de-arvore-de-decisão"> <span style="color: #5AC8BE ;"><strong>O que é modelo de arvore de decisão</strong></span></h3>
+<ul>
+<li>Decision tree models são modelos árvore de decisão baseadas em instruções <strong>if-then</strong>/<strong>e se</strong> utilizando os dados preditores. <span class="citation" data-cites="kuhn2013">@kuhn2013</span>, chap 8</li>
+<li>Exemplo: if temperatura_corporal &gt;= 38 and dor_no_corpo = SIM then doente = SIM else doente = NAO</li>
+<li>O modelo que iremos usar é o rpart também conhecido por particionamento recursivo.</li>
+</ul>
+</section>
+<section id="fa-2-qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<ul>
+<li>Prever a probabilidade de um paciente ter diabetes com base em medidas de diagnóstico incluídas no conjunto de dados.</li>
+<li>Todos os pacientes são mulheres de no mínimo 21 anos de idade e descendencia de Indios Pima</li>
+<li>Nos dados temos variáveis preditoras (independentes) e uma variável de resposta (dependente).</li>
+<li>Variáveis independentes incluem o número de gestações, massa(IMC), nível de insulina, idade, espessura da pele entre outras.</li>
+</ul>
+</section>
+<section id="fa-3-de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<ul>
+<li>Necessidade de praticar a construção de modelos machine learning usando o framework tidymodels.</li>
+</ul>
+</section>
+<section id="fa-4-como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<p><strong>Pacotes</strong></p>
+<p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a></p>
+<p><strong>Dados</strong></p>
+<p>O conjunto de dados é o Pima Indians Diabetes Database disponível na Universidade da California Irvine Machine Learning Repository, no <a href="https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database" target="_blank">kaggle</a> e também no pacote <code>mlbench</code> no R.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Clique aqui para mostrar dados complementares sobre Pima Indian Diabetes
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Pima US são povos indígenas, e hoje vivem principalmente em três reservas no Arizona: A Reserva do Rio Gila, A Reserva do Rio Salgado, A Reserva Ak-Chin</p></li>
+<li><p>Os índios Pima do Arizona são estudados por mais de 30 anos e intrigam os pesquisadores porque sofrem de uma das taxas mais altas de diabetes do mundo.</p></li>
+<li><p>Entre os índios Pima mexicanos, 5,6% dos homens e 8,5% das mulheres tinham diabetes, enquanto nos índios Pima do US 34,2% dos homens e 40,8% das mulheres tinham a doença (P &lt; 0,01) prevalências significativamente maior nos americanos.</p></li>
+<li><p>Cerca de metade dos Pimas do Arizona com 40 anos ou mais tem diabetes de início adulto, uma condição na qual a insulina é produzida em quantidades insuficientes para atender às necessidades do corpo.</p></li>
+<li><p>Estão severamente acima do peso sendo os jovens estão acima da média nos EUA onde 1 a cada 4 são considerados obesos.</p></li>
+<li><p>Outro problema no grupo e insuficiência renal decorrente do diabetes sendo que 60% dos Pimas do Arizona desenvolvem doença renal relacionada ao diabetes contra 30% da população americana.</p></li>
+<li><p>Expectativa de vida dos Pima é muito menor do que a média nacional 72/M 78/F. Nos Pima 53/M e 63/F</p></li>
+</ul>
+</div>
+</div>
+</div>
+<p><strong>Fluxo de trabalho</strong></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/tidymodels_flowchart.png" class="img-fluid" width="1200"></p>
+<p><strong>Código reproduzível</strong></p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Packages</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># packages       ---------------------------------------------------------------</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(tidyverse)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(tidymodels)</span></code></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Data</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="fu" style="color: #4758AB;">data</span>(PimaIndiansDiabetes, <span class="at" style="color: #657422;">package =</span> <span class="st" style="color: #20794D;">"mlbench"</span>)</span>
+<span id="cb2-2"></span>
+<span id="cb2-3">data_pima <span class="ot" style="color: #003B4F;">&lt;-</span> PimaIndiansDiabetes <span class="sc" style="color: #5E5E5E;">%&gt;%</span> janitor<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">clean_names</span>()</span>
+<span id="cb2-4"></span>
+<span id="cb2-5">data_pima <span class="sc" style="color: #5E5E5E;">%&gt;%</span> funModeling<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">df_status</span>()</span>
+<span id="cb2-6">data_pima <span class="sc" style="color: #5E5E5E;">%&gt;%</span> funModeling<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">plot_num</span>()</span>
+<span id="cb2-7"></span>
+<span id="cb2-8">data_pima_clean <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb2-9">  data_pima <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb2-10">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="fu" style="color: #4758AB;">across</span>(<span class="fu" style="color: #4758AB;">c</span>(<span class="st" style="color: #20794D;">"pregnant"</span><span class="sc" style="color: #5E5E5E;">:</span><span class="st" style="color: #20794D;">"mass"</span>), <span class="sc" style="color: #5E5E5E;">~</span><span class="fu" style="color: #4758AB;">ifelse</span>(.x<span class="sc" style="color: #5E5E5E;">==</span><span class="dv" style="color: #AD0000;">0</span>,<span class="cn" style="color: #8f5902;">NA</span>,.x))) </span></code></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Explore</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1">data_pima_clean <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;">select</span>(glucose, insulin, mass, diabetes) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb3-3">  GGally<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">ggpairs</span>(<span class="fu" style="color: #4758AB;">aes</span>(<span class="at" style="color: #657422;">color =</span> diabetes, <span class="at" style="color: #657422;">alpha =</span><span class="fl" style="color: #AD0000;">0.3</span>))</span></code></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Split the data</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1">split_pima <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">initial_split</span>(data_pima_clean, <span class="at" style="color: #657422;">strata =</span> diabetes)</span>
+<span id="cb4-2">train_pima <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">training</span>(split_pima)</span>
+<span id="cb4-3">test_pima <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">testing</span>(split_pima)</span>
+<span id="cb4-4"></span>
+<span id="cb4-5">resample_pima <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">vfold_cv</span>(train_pima, <span class="at" style="color: #657422;">strata =</span> diabetes, <span class="at" style="color: #657422;">v=</span><span class="dv" style="color: #AD0000;">5</span>)</span></code></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Pre processing</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1">rec_pima <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb5-2">  <span class="fu" style="color: #4758AB;">recipe</span>(diabetes<span class="sc" style="color: #5E5E5E;">~</span>., <span class="at" style="color: #657422;">data =</span> train_pima) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb5-3">  <span class="fu" style="color: #4758AB;">step_impute_knn</span>(<span class="fu" style="color: #4758AB;">all_predictors</span>()) </span></code></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Model Specification</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">mdl_spec_rpart_pima <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb6-2">  <span class="fu" style="color: #4758AB;">decision_tree</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb6-3">  <span class="fu" style="color: #4758AB;">set_engine</span>(<span class="st" style="color: #20794D;">"rpart"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb6-4">  <span class="fu" style="color: #4758AB;">set_mode</span>(<span class="st" style="color: #20794D;">"classification"</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb6-5">  <span class="fu" style="color: #4758AB;">set_args</span>(<span class="at" style="color: #657422;">cost_complexity=</span> <span class="fu" style="color: #4758AB;">tune</span>(),</span>
+<span id="cb6-6">           <span class="at" style="color: #657422;">tree_depth =</span> <span class="fu" style="color: #4758AB;">tune</span>(),</span>
+<span id="cb6-7">           <span class="at" style="color: #657422;">min_n =</span> <span class="fu" style="color: #4758AB;">tune</span>())</span></code></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Model Workflow</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">wkfl_rpart_pima <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb7-2">  <span class="fu" style="color: #4758AB;">workflow</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb7-3">  <span class="fu" style="color: #4758AB;">add_recipe</span>(rec_pima) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb7-4">  <span class="fu" style="color: #4758AB;">add_model</span>(mdl_spec_rpart_pima)</span></code></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Hyperparameter tune</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;"># grid spec      ---------------------------------------------------------------</span></span>
+<span id="cb8-2">grid_pima <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb8-3">  <span class="fu" style="color: #4758AB;">grid_regular</span>(<span class="fu" style="color: #4758AB;">cost_complexity</span>(),</span>
+<span id="cb8-4">               <span class="fu" style="color: #4758AB;">tree_depth</span>(),</span>
+<span id="cb8-5">               <span class="fu" style="color: #4758AB;">min_n</span>(),</span>
+<span id="cb8-6">               <span class="at" style="color: #657422;">levels =</span> <span class="dv" style="color: #AD0000;">3</span>)</span>
+<span id="cb8-7"></span>
+<span id="cb8-8"><span class="co" style="color: #5E5E5E;"># tune grid      ---------------------------------------------------------------</span></span>
+<span id="cb8-9">doParallel<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">registerDoParallel</span>()</span>
+<span id="cb8-10"></span>
+<span id="cb8-11"><span class="fu" style="color: #4758AB;">set.seed</span>(<span class="dv" style="color: #AD0000;">123</span>)</span>
+<span id="cb8-12">tune_grid_rpart_pima <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb8-13">  <span class="fu" style="color: #4758AB;">tune_grid</span>(wkfl_rpart_pima,</span>
+<span id="cb8-14">            <span class="at" style="color: #657422;">resamples =</span> resample_pima,</span>
+<span id="cb8-15">            <span class="at" style="color: #657422;">grid =</span> grid_pima,</span>
+<span id="cb8-16">            <span class="at" style="color: #657422;">metrics =</span> <span class="fu" style="color: #4758AB;">metric_set</span>(roc_auc,accuracy),</span>
+<span id="cb8-17">            <span class="at" style="color: #657422;">control =</span> <span class="fu" style="color: #4758AB;">control_grid</span>(<span class="at" style="color: #657422;">save_pred =</span> <span class="cn" style="color: #8f5902;">TRUE</span>))</span>
+<span id="cb8-18"></span>
+<span id="cb8-19">best_grid_rpart_pima <span class="ot" style="color: #003B4F;">&lt;-</span> tune_grid_rpart_pima <span class="sc" style="color: #5E5E5E;">%&gt;%</span> <span class="fu" style="color: #4758AB;">select_best</span>(<span class="at" style="color: #657422;">metric=</span> <span class="st" style="color: #20794D;">"roc_auc"</span>)</span>
+<span id="cb8-20"></span>
+<span id="cb8-21"><span class="co" style="color: #5E5E5E;">#final wkfl</span></span>
+<span id="cb8-22">final_wkfl_rpart_pima <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb8-23">  <span class="fu" style="color: #4758AB;">finalize_workflow</span>(wkfl_rpart_pima, best_grid_rpart_pima)</span></code></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Model Evaluating</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1">mdl_eval_rpart_pima <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb9-2">  final_wkfl_rpart_pima <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb9-3">  <span class="fu" style="color: #4758AB;">last_fit</span>(split_pima)</span>
+<span id="cb9-4"></span>
+<span id="cb9-5">mdl_eval_rpart_pima <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb9-6">  <span class="fu" style="color: #4758AB;">extract_fit_engine</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb9-7">  rpart.plot<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">rpart.plot</span>(<span class="at" style="color: #657422;">cex =</span> <span class="fl" style="color: #AD0000;">0.6</span>,</span>
+<span id="cb9-8">                         <span class="at" style="color: #657422;">type =</span> <span class="dv" style="color: #AD0000;">3</span>,</span>
+<span id="cb9-9">                         <span class="at" style="color: #657422;">roundint =</span> <span class="cn" style="color: #8f5902;">FALSE</span>)</span></code></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Model Fit</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1">mdl_fit_rpart_pima <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb10-2">  final_wkfl_rpart_pima <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb10-3">  <span class="fu" style="color: #4758AB;">fit</span>(data_pima_clean)</span></code></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Make predictions</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1">new_data_pima <span class="ot" style="color: #003B4F;">&lt;-</span> </span>
+<span id="cb11-2">  <span class="fu" style="color: #4758AB;">tribble</span>(<span class="sc" style="color: #5E5E5E;">~</span>pregnant, <span class="sc" style="color: #5E5E5E;">~</span>glucose, <span class="sc" style="color: #5E5E5E;">~</span>pressure,<span class="sc" style="color: #5E5E5E;">~</span>triceps,<span class="sc" style="color: #5E5E5E;">~</span>insulin, <span class="sc" style="color: #5E5E5E;">~</span>mass, <span class="sc" style="color: #5E5E5E;">~</span>pedigree, <span class="sc" style="color: #5E5E5E;">~</span>age,</span>
+<span id="cb11-3">          <span class="dv" style="color: #AD0000;">2</span>,<span class="dv" style="color: #AD0000;">87</span>,<span class="dv" style="color: #AD0000;">68</span>,<span class="dv" style="color: #AD0000;">34</span>,<span class="dv" style="color: #AD0000;">77</span>,<span class="dv" style="color: #AD0000;">38</span>,<span class="fl" style="color: #AD0000;">0.41</span>,<span class="dv" style="color: #AD0000;">25</span>)</span>
+<span id="cb11-4"></span>
+<span id="cb11-5"><span class="fu" style="color: #4758AB;">predict</span>(mdl_fit_rpart_pima, <span class="at" style="color: #657422;">new_data =</span> new_data_pima)</span>
+<span id="cb11-6"></span>
+<span id="cb11-7"></span>
+<span id="cb11-8">mdl_fit_rpart_pima <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb11-9">  <span class="fu" style="color: #4758AB;">extract_fit_engine</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
+<span id="cb11-10">  vip<span class="sc" style="color: #5E5E5E;">::</span><span class="fu" style="color: #4758AB;">vip</span>()</span></code></pre></div>
+</div>
+</div>
+</section>
+<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<ul>
+<li>Repositório de documento criados para praticar o desenvolvimento de modelos de previsão usando tidymodels.</li>
+</ul>
+</section>
+<section id="fa-6-qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<ul>
+<li><p>Aperfeiçoamento das técnicas de construção de modelos usando tidymodels.</p></li>
+<li><p>Criação de modelo de previsão que pode ser melhorado e aproveitado projetos futuros.</p></li>
+<li><p>Estimular a geração de ideias, dúvidas e conhecimento acerca do problema e também na construção de modelos de previsão.</p></li>
+</ul>
+
+
+</section>
+
+ ]]></description>
+  <category>Modelos</category>
+  <guid>https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/dtrpart.html</guid>
+  <pubDate>Mon, 28 Nov 2022 03:00:00 GMT</pubDate>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/decision_tree.png" medium="image" type="image/png" height="132" width="144"/>
+</item>
 <item>
   <title>Como comunicar dados em artigos técnicos no R - Quarto</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
@@ -71,7 +326,7 @@
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figura 1: Exemplo de ações implementadas através do uso de reprodutibilidade de experimentos e ideias.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1: Exemplo de ações implementadas através do uso de reprodutibilidade de experimentos e ideias.</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -87,7 +342,7 @@
 <p><img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/communication.png" class="img-fluid figure-img" width="1350"></p>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figura 2: Processo de comunicação de dados técnicos</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;2: Processo de comunicação de dados técnicos</figcaption><p></p>
 </figure>
 </div>
 <ul>
@@ -115,7 +370,7 @@
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figura 3: Gerando novo documento usando quarto_pub</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;3: Gerando novo documento usando quarto_pub</figcaption><p></p>
 </figure>
 </div>
 <ul>
@@ -5552,7 +5807,7 @@ Clique aqui pra abrir os detalhes
   <category>Aplicação</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/welcome/index.html</guid>
   <pubDate>Wed, 03 Aug 2022 03:00:00 GMT</pubDate>
-  <media:content url="https://carvalhoribeiro.netlify.app/posts/welcome/demographic_shift.png" medium="image" type="image/png" height="139" width="144"/>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/welcome/demographic_shift.png" medium="image" type="image/png" height="132" width="144"/>
 </item>
 </channel>
 </rss>
