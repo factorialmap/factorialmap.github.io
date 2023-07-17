@@ -13,28 +13,28 @@ execute:
 Vídeo tema para este post em [Comunicar trabalhos técnicos em apresentações no R com Quarto](https://youtu.be/DBXeRUYvt3E){target="_blank"}
 :::
 
-### {{< fa 1 >}} [**O que é este exercício** ]{style="color: #5AC8BE ;"}
+### {{< fa 1 >}} [**O que é isto?**]{style="color: #5AC8BE ;"}
 
--   Como fazer relatório técnico e científico usando ferramenta `Quarto` no formado de apresentações de slides em `reveljs`.
+-   Como fazer relatório técnico e científico usando `Quarto` e `reveljs` para publicações no formado de apresentações de slides.
 
-### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+### {{< fa 2 >}} [**Qual é o objetivo?**]{style="color: #5AC8BE ;"}
 
--   Facilitar a publicação dos experimentos realizados pelo pesquisador ou melhorista de processos.
+-   Facilitar a comunicação de experimentos feitos por pesquisadores ou melhoristas de processos.
 
-### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+### {{< fa 3 >}} [**De onde vem a demanda?**]{style="color: #5AC8BE ;"}
 
--   Necessidade de desenvolver pesquisas reprodusíveis.
--   Direcionar os esforços mais para o conteúdo da pesquisa e menos para ferramentas de apresentação.
+-   Desenvolver pesquisas que possas ser reproduzidas por outros pesquisadores.
+-   Direcionar mais esforços para o desenvolvimento do conteúdo da pesquisa e menos para ferramentas de apresentação.
 
-### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
+### {{< fa 4 >}} [**Como fazer isto?**]{style="color: #5AC8BE ;"}
 
 **Pacotes**
 
-Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/){target="_blank"}, [sjplot](https://github.com/strengejacke/sjPlot/){target="_blank"}, [gt](https://github.com/rstudio/gt){target="_blank"}, [gtExtras](https://github.com/jthomasmock/gtExtras){target="_blank"}, e  [funModeling](https://github.com/pablo14/funModeling){target="_blank"}
+Para reproduzir o código apresentado neste exercício, os seguintes pacotes são necessário: [tidyverse](https://www.tidyverse.org/){target="_blank"}, [sjplot](https://github.com/strengejacke/sjPlot/){target="_blank"}, [gt](https://github.com/rstudio/gt){target="_blank"}, [gtExtras](https://github.com/jthomasmock/gtExtras){target="_blank"}, e  [funModeling](https://github.com/pablo14/funModeling){target="_blank"}
 
 **Dados**
 
-O conjunto de dados é o gapminder disponível no pacote [gapminder](https://www.rdocumentation.org/packages/gapminder/versions/0.3.0){target="_blank"} no R podendo ser acessado via código `install.package("gapminder)`
+O conjunto de dados que será usado aqui é o gapminder disponível no pacote [gapminder](https://www.rdocumentation.org/packages/gapminder/versions/0.3.0){target="_blank"} no R e pode ser acessado via código `install.package("gapminder)`
 
 **Time line das ferramentas disponíveis ao longo do tempo**
 
@@ -182,16 +182,16 @@ sjPlot::tab_model(mdl_mtcars)
 
 ```
 
-### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+### {{< fa 5 >}} [**Quem é o consumidor?**]{style="color: #5AC8BE ;"}
 
 -   Pesquisadores e profissionais que precisam comunicar suas pesquisas e experimentos.
 
 -   Melhoristas de processo que precisam de documentos reproduzíveis em seus projetos.
 
-### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
+### {{< fa 6 >}} [**Qual o resultado?**]{style="color: #5AC8BE ;"}
 
 -   Aperfeiçoar habilidades na comunicação dos resultados dos experimentos..
 
--   Facilitar a comunicação entre pesquisadores. Tidyverse usa design for humans ( %\>% significa e então).
+-   Facilitar a comunicação entre pesquisadores. Tidyverse usa design for humans `%\>%` significa `e então or and then`.
 
 -   Melhorar produtividade na manufatura e serviços através da replicação dessas ações e experimentos.
