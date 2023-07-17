@@ -577,7 +577,7 @@ font-style: inherit;">tab_model</span>(mdl_mtcars)</span></code></pre></div>
 
 
 
-<div class="callout-tip callout callout-style-simple">
+<div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -587,16 +587,16 @@ font-style: inherit;">tab_model</span>(mdl_mtcars)</span></code></pre></div>
 </div>
 </div>
 </div>
-<section id="fa-1-o-que-é-modelo-de-arvore-de-decisão" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-modelo-de-arvore-de-decisão"> <span style="color: #5AC8BE ;"><strong>O que é modelo de arvore de decisão</strong></span></h3>
+<section id="fa-1-o-que-é-isto" class="level3">
+<h3 class="anchored" data-anchor-id="fa-1-o-que-é-isto"> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></h3>
 <ul>
 <li>Decision tree models são modelos árvore de decisão baseadas em instruções <strong>if-then</strong>/<strong>e se</strong> utilizando os dados preditores. <span class="citation" data-cites="kuhn2013">@kuhn2013</span>, chap 8</li>
 <li>Exemplo: if temperatura_corporal &gt;= 38 and dor_no_corpo = SIM then doente = SIM else doente = NAO</li>
 <li>O modelo que iremos usar é o rpart também conhecido por particionamento recursivo.</li>
 </ul>
 </section>
-<section id="fa-2-qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<section id="fa-2-qual-é-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="fa-2-qual-é-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></h3>
 <ul>
 <li>Prever a probabilidade de um paciente ter diabetes com base em medidas de diagnóstico incluídas no conjunto de dados.</li>
 <li>Todos os pacientes são mulheres de no mínimo 21 anos de idade e descendencia de Indios Pima</li>
@@ -605,23 +605,23 @@ font-style: inherit;">tab_model</span>(mdl_mtcars)</span></code></pre></div>
 </ul>
 </section>
 <section id="fa-3-de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></h3>
 <ul>
 <li>Necessidade de praticar a construção de modelos machine learning usando o framework tidymodels.</li>
 </ul>
 </section>
-<section id="fa-4-como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<section id="fa-4-como-fazer-isto" class="level3">
+<h3 class="anchored" data-anchor-id="fa-4-como-fazer-isto"> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></h3>
 <p><strong>Pacotes</strong></p>
 <p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a></p>
 <p><strong>Dados</strong></p>
 <p>O conjunto de dados é o Pima Indians Diabetes Database disponível na Universidade da California Irvine Machine Learning Repository, no <a href="https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database" target="_blank">kaggle</a> e também no pacote <code>mlbench</code> no R.</p>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Clique aqui para mostrar dados complementares sobre Pima Indian Diabetes
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -641,7 +641,7 @@ Clique aqui para mostrar dados complementares sobre Pima Indian Diabetes
 </div>
 </div>
 <p><strong>Fluxo de trabalho</strong></p>
-<p><img src="https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/tidymodels_flowchart.png" class="img-fluid" width="1200"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/tidymodels_flowchart.png" class="quarto-discovered-preview-image img-fluid" width="1200"></p>
 <p><strong>Código reproduzível</strong></p>
 <div class="cell">
 <div class="code-with-filename">
@@ -1107,14 +1107,14 @@ font-style: inherit;">vip</span>()</span></code></pre></div>
 </div>
 </div>
 </section>
-<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<section id="fa-5-quem-é-o-consumidor" class="level3">
+<h3 class="anchored" data-anchor-id="fa-5-quem-é-o-consumidor"> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></h3>
 <ul>
 <li>Repositório de documento criados para praticar o desenvolvimento de modelos de previsão usando tidymodels.</li>
 </ul>
 </section>
 <section id="fa-6-qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoamento das técnicas de construção de modelos usando tidymodels.</p></li>
 <li><p>Criação de modelo de previsão que pode ser melhorado e aproveitado projetos futuros.</p></li>

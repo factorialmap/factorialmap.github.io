@@ -13,24 +13,24 @@ execute:
 Vídeo tema para este post em [Tidymodels decision tree model diabetes - rpart](https://youtu.be/u-zED9AAA4A){target="_blank"}
 :::
 
-### {{< fa 1 >}} [**O que é modelo de arvore de decisão**]{style="color: #5AC8BE ;"}
+### {{< fa 1 >}} [**O que é isto?**]{style="color: #5AC8BE ;"}
 
 -   Decision tree models são modelos árvore de decisão baseadas em instruções **if-then**/**e se** utilizando os dados preditores. @kuhn2013, chap 8
 -   Exemplo: if temperatura_corporal \>= 38 and dor_no_corpo = SIM then doente = SIM else doente = NAO
 -   O modelo que iremos usar é o rpart também conhecido por particionamento recursivo.
 
-### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+### {{< fa 2 >}} [**Qual é o objetivo?**]{style="color: #5AC8BE ;"}
 
 -   Prever a probabilidade de um paciente ter diabetes com base em medidas de diagnóstico incluídas no conjunto de dados.
 -   Todos os pacientes são mulheres de no mínimo 21 anos de idade e descendencia de Indios Pima
 -   Nos dados temos variáveis preditoras (independentes) e uma variável de resposta (dependente).
 -   Variáveis independentes incluem o número de gestações, massa(IMC), nível de insulina, idade, espessura da pele entre outras.
 
-### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+### {{< fa 3 >}} [**De onde vem a demanda?**]{style="color: #5AC8BE ;"}
 
 -   Necessidade de praticar a construção de modelos machine learning usando o framework tidymodels.
 
-### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
+### {{< fa 4 >}} [**Como fazer isto?**]{style="color: #5AC8BE ;"}
 
 **Pacotes**
 
@@ -38,7 +38,7 @@ Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](ht
 
 **Dados**
 
-O conjunto de dados é o Pima Indians Diabetes Database disponível na Universidade da California Irvine Machine Learning Repository, no [kaggle](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database){target="_blank"} e também no pacote `mlbench` no R. 
+O conjunto de dados é o Pima Indians Diabetes Database disponível na Universidade da California Irvine Machine Learning Repository, no [kaggle](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database){target="_blank"} e também no pacote `mlbench` no R.
 
 ::: {.callout-tip collapse="true"}
 ## Clique aqui para mostrar dados complementares sobre Pima Indian Diabetes
@@ -64,14 +64,14 @@ O conjunto de dados é o Pima Indians Diabetes Database disponível na Universid
 
 **Código reproduzível**
 
-```{r packages, filename ="Packages", eval = FALSE} 
+```{r packages, filename ="Packages", eval = FALSE}
 
 library(tidyverse)
 library(tidymodels)
 
 ```
 
-```{r data, filename ="Data", eval = FALSE} 
+```{r data, filename ="Data", eval = FALSE}
 
 data(PimaIndiansDiabetes, package = "mlbench")
 
@@ -85,15 +85,14 @@ data_pima_clean <-
   mutate(across(c("pregnant":"mass"), ~ifelse(.x==0,NA,.x))) 
 ```
 
-```{r explore, filename ="Explore", eval = FALSE} 
+```{r explore, filename ="Explore", eval = FALSE}
 data_pima_clean %>% 
   select(glucose, insulin, mass, diabetes) %>% 
   GGally::ggpairs(aes(color = diabetes, alpha =0.3))
 
 ```
 
-
-```{r split, filename ="Split the data", eval = FALSE} 
+```{r split, filename ="Split the data", eval = FALSE}
 split_pima <- initial_split(data_pima_clean, strata = diabetes)
 train_pima <- training(split_pima)
 test_pima <- testing(split_pima)
@@ -102,14 +101,13 @@ resample_pima <- vfold_cv(train_pima, strata = diabetes, v=5)
 
 ```
 
-```{r pre-processing, filename ="Pre processing", eval = FALSE} 
+```{r pre-processing, filename ="Pre processing", eval = FALSE}
 rec_pima <- 
   recipe(diabetes~., data = train_pima) %>% 
   step_impute_knn(all_predictors()) 
 ```
 
-
-```{r mdl_spec, filename ="Model Specification", eval = FALSE} 
+```{r mdl_spec, filename ="Model Specification", eval = FALSE}
 mdl_spec_rpart_pima <- 
   decision_tree() %>% 
   set_engine("rpart") %>% 
@@ -119,16 +117,14 @@ mdl_spec_rpart_pima <-
            min_n = tune())
 ```
 
-
-```{r workflow, filename ="Model Workflow", eval = FALSE} 
+```{r workflow, filename ="Model Workflow", eval = FALSE}
 wkfl_rpart_pima <- 
   workflow() %>% 
   add_recipe(rec_pima) %>% 
   add_model(mdl_spec_rpart_pima)
 ```
 
-
-```{r tune_parameter, filename ="Hyperparameter tune", eval = FALSE} 
+```{r tune_parameter, filename ="Hyperparameter tune", eval = FALSE}
 # grid spec      ---------------------------------------------------------------
 grid_pima <- 
   grid_regular(cost_complexity(),
@@ -167,7 +163,7 @@ mdl_eval_rpart_pima %>%
                          roundint = FALSE)
 ```
 
-```{r mdl_fit, filename ="Model Fit", eval = FALSE} 
+```{r mdl_fit, filename ="Model Fit", eval = FALSE}
 
 mdl_fit_rpart_pima <- 
   final_wkfl_rpart_pima %>% 
@@ -175,7 +171,7 @@ mdl_fit_rpart_pima <-
 
 ```
 
-```{r make_predictions, filename ="Make predictions", eval = FALSE} 
+```{r make_predictions, filename ="Make predictions", eval = FALSE}
 
 new_data_pima <- 
   tribble(~pregnant, ~glucose, ~pressure,~triceps,~insulin, ~mass, ~pedigree, ~age,
@@ -184,17 +180,17 @@ new_data_pima <-
 predict(mdl_fit_rpart_pima, new_data = new_data_pima)
 ```
 
-```{r variable_importance, filename ="Variable Importance", eval = FALSE} 
+```{r variable_importance, filename ="Variable Importance", eval = FALSE}
 mdl_fit_rpart_pima %>% 
   extract_fit_engine() %>% 
   vip::vip()
 ```
 
-### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+### {{< fa 5 >}} [**Quem é o consumidor?**]{style="color: #5AC8BE ;"}
 
 -   Repositório de documento criados para praticar o desenvolvimento de modelos de previsão usando tidymodels.
 
-### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
+### {{< fa 6 >}} [**Qual o resultado?**]{style="color: #5AC8BE ;"}
 
 -   Aperfeiçoamento das técnicas de construção de modelos usando tidymodels.
 
