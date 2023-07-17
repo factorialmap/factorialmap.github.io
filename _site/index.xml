@@ -30,7 +30,7 @@
 </div>
 </div>
 <section id="fa-1-o-que-é-este-exercício" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-este-exercício"> <span style="color: #5AC8BE ;"><strong>O que é este exercício </strong></span></h3>
+<h3 class="anchored" data-anchor-id="fa-1-o-que-é-este-exercício"> <span style="color: #5AC8BE ;"><strong>O que é este exercício</strong></span></h3>
 <ul>
 <li>Como fazer relatório técnico e científico usando ferramenta <code>Quarto</code> no formado de apresentações de slides em <code>reveljs</code>.</li>
 </ul>
@@ -51,13 +51,13 @@
 <section id="fa-4-como-fazer" class="level3">
 <h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <p><strong>Pacotes</strong></p>
-<p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a>, <a href="https://github.com/strengejacke/sjPlot/" target="_blank">sjplot</a>, <a href="https://github.com/rstudio/gt" target="_blank">gt</a>, <a href="https://github.com/jthomasmock/gtExtras" target="_blank">gtExtras</a> e [funModeling](<a href="https://github.com/rstudio/gt" target="_blank">gt</a>{target=“_blank”}</p>
+<p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a>, <a href="https://github.com/strengejacke/sjPlot/" target="_blank">sjplot</a>, <a href="https://github.com/rstudio/gt" target="_blank">gt</a>, <a href="https://github.com/jthomasmock/gtExtras" target="_blank">gtExtras</a>, e <a href="https://github.com/pablo14/funModeling" target="_blank">funModeling</a></p>
 <p><strong>Dados</strong></p>
-<p>O conjunto de dados é o gapminder disponível no pacote <a href="https://www.rdocumentation.org/packages/gapminder/versions/0.3.0" target="_blank">gapminder</a> , no R podendo ser acessado via código <code>install.package("gapminder)</code></p>
+<p>O conjunto de dados é o gapminder disponível no pacote <a href="https://www.rdocumentation.org/packages/gapminder/versions/0.3.0" target="_blank">gapminder</a> no R podendo ser acessado via código <code>install.package("gapminder)</code></p>
 <p><strong>Time line das ferramentas disponíveis ao longo do tempo</strong></p>
 <p><img src="https://carvalhoribeiro.netlify.app/posts/presentation_reveljs/research_communication_flow.png" class="quarto-discovered-preview-image img-fluid" width="1200"></p>
 <p><strong>Código reproduzível</strong></p>
-<p>O YML file é o cabeçalho do documento onde colocamo o título entre outros detalhes do documento como por exemplo as configurações globais que serão reproduzidas nas demais partes do documento.</p>
+<p>O YML file é o cabeçalho do documento onde são inseridos o título, subtítulo entre outros detalhes do documento como por exemplo as configurações globais que serão reproduzidas nas demais partes do documento.</p>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">

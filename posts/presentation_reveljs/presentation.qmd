@@ -13,7 +13,7 @@ execute:
 Vídeo tema para este post em [Comunicar trabalhos técnicos em apresentações no R com Quarto](https://youtu.be/DBXeRUYvt3E){target="_blank"}
 :::
 
-### {{< fa 1 >}} [**O que é este exercício **]{style="color: #5AC8BE ;"}
+### {{< fa 1 >}} [**O que é este exercício** ]{style="color: #5AC8BE ;"}
 
 -   Como fazer relatório técnico e científico usando ferramenta `Quarto` no formado de apresentações de slides em `reveljs`.
 
@@ -30,14 +30,11 @@ Vídeo tema para este post em [Comunicar trabalhos técnicos em apresentações 
 
 **Pacotes**
 
-Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/){target="_blank"}, 
-[sjplot](https://github.com/strengejacke/sjPlot/){target="_blank"}, [gt](https://github.com/rstudio/gt){target="_blank"},
-[gtExtras](https://github.com/jthomasmock/gtExtras){target="_blank"} e [funModeling]([gt](https://github.com/rstudio/gt){target="_blank"}{target="_blank"}
+Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/){target="_blank"}, [sjplot](https://github.com/strengejacke/sjPlot/){target="_blank"}, [gt](https://github.com/rstudio/gt){target="_blank"}, [gtExtras](https://github.com/jthomasmock/gtExtras){target="_blank"}, e  [funModeling](https://github.com/pablo14/funModeling){target="_blank"}
 
 **Dados**
 
-O conjunto de dados é o gapminder disponível no pacote [gapminder](https://www.rdocumentation.org/packages/gapminder/versions/0.3.0){target="_blank"} , no R podendo ser acessado via código `install.package("gapminder)`  
-
+O conjunto de dados é o gapminder disponível no pacote [gapminder](https://www.rdocumentation.org/packages/gapminder/versions/0.3.0){target="_blank"} no R podendo ser acessado via código `install.package("gapminder)`
 
 **Time line das ferramentas disponíveis ao longo do tempo**
 
@@ -45,9 +42,7 @@ O conjunto de dados é o gapminder disponível no pacote [gapminder](https://www
 
 **Código reproduzível**
 
-
-O YML file é o cabeçalho do documento onde colocamo o título entre outros detalhes do documento como por exemplo as configurações globais que serão reproduzidas nas demais partes do documento.
-
+O YML file é o cabeçalho do documento onde são inseridos o título, subtítulo entre outros detalhes do documento como por exemplo as configurações globais que serão reproduzidas nas demais partes do documento.
 
 ```{r yml-file, filename ="yml", eval = FALSE}
 
@@ -66,7 +61,6 @@ execute:
 ```
 
 O resumo geralmente consiste em textos e pequenos códigos `inline`
-
 
 ```{r resumo , filename ="resumo", eval = FALSE}
 
@@ -188,7 +182,6 @@ sjPlot::tab_model(mdl_mtcars)
 
 ```
 
-
 ### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 
 -   Pesquisadores e profissionais que precisam comunicar suas pesquisas e experimentos.
@@ -199,6 +192,6 @@ sjPlot::tab_model(mdl_mtcars)
 
 -   Aperfeiçoar habilidades na comunicação dos resultados dos experimentos..
 
--   Facilitar a comunicação entre pesquisadores. Tidyverse usa design for humans ( %>% significa e então).
+-   Facilitar a comunicação entre pesquisadores. Tidyverse usa design for humans ( %\>% significa e então).
 
 -   Melhorar produtividade na manufatura e serviços através da replicação dessas ações e experimentos.
