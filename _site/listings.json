@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/resamples/resamples.html",
       "/posts/presentation_reveljs/presentation.html",
       "/posts/decision-tree-rpart/dtrpart.html",
       "/posts/comm-stats/comm_stat.html",

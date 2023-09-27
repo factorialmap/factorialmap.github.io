@@ -6,7 +6,7 @@
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/index.html</loc>
-    <lastmod>2023-07-17T13:56:06.175Z</lastmod>
+    <lastmod>2023-09-27T16:25:25.080Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats.html</loc>
@@ -51,5 +51,9 @@
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/presentation_reveljs/presentation.html</loc>
     <lastmod>2023-07-17T13:01:16.723Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/resamples/resamples.html</loc>
+    <lastmod>2023-09-27T16:25:23.000Z</lastmod>
   </url>
 </urlset>

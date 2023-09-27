@@ -1,0 +1,17 @@
+{
+  "listing": "/index.html",
+  "items": [
+    "/posts/resamples/resamples.html",
+    "/posts/presentation_reveljs/presentation.html",
+    "/posts/decision-tree-rpart/dtrpart.html",
+    "/posts/comm-stats/comm_stat.html",
+    "/posts/chart_stats/plot_stats.html",
+    "/posts/table_stats/table_stats.html",
+    "/posts/pattern-recognition/pattern_recognition.html",
+    "/posts/histogram/histogram.html",
+    "/posts/importar-visualizar/importar_visualizar.html",
+    "/posts/neural-net-nnet/neuralnet.html",
+    "/posts/confusion-matrix/index.html",
+    "/posts/welcome/index.html"
+  ]
+}

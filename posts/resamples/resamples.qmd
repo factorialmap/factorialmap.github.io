@@ -1,0 +1,150 @@
+---
+title: "Modelo preditivo | Amostra e reamostragens "
+subtitle: "Funções úteis split de dados e resample que serão usados na validação e ajuste de modelos"
+author: "Marcelo Carvalho dos Anjos"
+date: "2023-09-29"
+categories: [Modelos]
+image: "resample.png"
+execute: 
+  output: FALSE
+---
+
+
+::: {.callout-tip appearance="simple"} 
+Vídeo tema para este post em [Amostra e reamostragem com Rsample](https://youtu.be/xpZFLWg5CZA){target="_blank"}
+:::
+
+### {{< fa 1 >}} [**O que é isto?**]{style="color: #5AC8BE ;"}
+
+-   É a separação de um conjunto de dados em porções as quais serão usadas para diferentes etapas do modelo.
+-   A separação de um conjunto de dados em amostra de treino e teste é padrão na construção de modelos de machine learning e deep learning
+
+### {{< fa 2 >}} [**Qual é o objetivo?**]{style="color: #5AC8BE ;"}
+
+-   Melhorar a acuracidade dos modelos é um dos principais objetivos uma vez que alguns modelos se adaptam muito rapidamente aos padrões dos dados de treino(decoram) e se estes forem usados para teste podem ter a acuracidade comprometida.
+-   As técnicas de reamostragem auxiliam no equilibro entre `bias` e `variance`
+
+### {{< fa 3 >}} [**De onde vem a demanda?**]{style="color: #5AC8BE ;"}
+
+-   Melhorar o desempenho e acuracidade dos modelos.
+
+### {{< fa 4 >}} [**Como fazer isto?**]{style="color: #5AC8BE ;"}
+
+**Pacotes**
+
+Para reproduzir os códigos abaixo serão necessários os pacotes [tidyverse](https://www.tidyverse.org/){target="_blank"} , [tidymodels](https://www.tidymodels.org/){target="_blank"},[tidyquant](https://github.com/business-science/tidyquant){target="_blank"} e [quantmod](https://github.com/joshuaulrich/quantmod){target="_blank"}
+
+**Dados**
+
+Foram usados dados do conjunto `ames housing`,`DGS10`e`EWZ`como exemplo. Todos eles são possíveis acessar através dos códigos descritos abaixo.
+
+**Etapa do projeto**
+
+![](resample_flowchart.png){width="1200"}
+
+**Código reproduzível**
+
+```{r packages, filename ="Packages", eval = FALSE}
+
+# packages ----------------------------------------------------------------
+library(tidyverse)
+library(tidymodels)
+library(tidyquant)
+library(quantmod) #freadR
+library(scales)
+```
+
+```{r models, filename ="Models", eval = FALSE}
+
+
+# data --------------------------------------------------------------------
+#ames housing case
+data(ames)
+
+data_ames <- 
+  ames %>%
+  mutate(Sale_Price = log10(Sale_Price))
+
+# simple split ------------------------------------------------------------
+split_ames <- initial_split(ames, strata = Sale_Price)
+train_ames <- training(split_ames)
+test_ames <- testing(split_ames)
+
+# validation split --------------------------------------------------------
+split_val_ames <- initial_validation_split(ames, strata = Sale_Price)
+train_val_ames <- training(split_val_ames)
+val_ames <- validation(split_val_ames)
+test_val_ames <- testing(split_val_ames)
+
+# time split --------------------------------------------------------------
+data_10y <- tq_get("DGS10", get = "economic.data")
+
+data_10y %>% 
+  ggplot(aes(x = date, y = price))+
+  geom_line()
+
+split_10y <- initial_time_split(data_10y)
+train_10y <- training(split_10y)
+test_10y <- testing(split_10y)
+
+train_10y %>% tail()
+test_10y %>% head()
+
+c(max(train_10y$date), min(test_10y$date))
+
+# time split lag ----------------------------------------------------------
+split_10y_lag <- initial_time_split(data_10y, lag = 20)
+train_10y_lag <- training(split_10y_lag)
+test_10y_lag <- testing(split_10y_lag)
+
+train_10y_lag %>% tail()
+test_10y_lag %>% head()
+c(max(train_10y_lag$date), min(test_10y_lag$date))
+
+# resample simple ---------------------------------------------------------
+resample_ames <- vfold_cv(train_ames, strata = Sale_Price, v=10)
+resample_ames
+
+# resample time -----------------------------------------------------------
+resample_10y <- rolling_origin(train_10y_lag,
+                               initial = 50,
+                               assess = 10)
+
+# resample group ----------------------------------------------------------
+set.seed(1353)
+car_split <- group_initial_split(mtcars, cyl)
+train_data <- training(car_split)
+test_data <- testing(car_split)
+
+# resample time group -----------------------------------------------------
+getSymbols("EWZ")
+
+chartSeries(EWZ)
+
+#xts o df
+ibov_usd <- fortify.zoo(EWZ) %>% janitor::clean_names()
+
+#reamostragem por grupo
+resample_ibov_usd <- 
+  ibov_usd %>% 
+  mutate(ym = as.POSIXlt(index)$year + 1900) %>% 
+  nest(data = c(-ym)) %>% 
+  rolling_origin(cumulative = FALSE)
+
+analysis(resample_ibov_usd$splits[[2]]) 
+
+assessment(resample_ibov_usd$splits[[2]]) 
+
+```
+
+### {{< fa 5 >}} [**Quem é o consumidor?**]{style="color: #5AC8BE ;"}
+
+-   As amostras e reamostragens serão usadas durante a etapa de construção, ajuste e validação de modelos
+
+### {{< fa 6 >}} [**Qual o resultado?**]{style="color: #5AC8BE ;"}
+
+-   Aperfeiçoamento das técnicas separação entre dados de treino, teste, validação e reamostragem mais adequados para cada caso.
+
+-   Facilitar o trabalho e melhorar o processo para o grupo responsável pelas próximas etapas no projeto.
+
+-   Permitir a aplicação prática dos resultados dos modelos através da melhoria de acuracidade e poder preditivo gerando benefícios para os usuários do modelo e para a sociedade.
