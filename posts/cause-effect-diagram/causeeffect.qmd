@@ -10,6 +10,7 @@ bibliography: references.bib
 ### {{< fa 1 >}} [**O que é o diagrama de causa e efeito**]{style="color: #5AC8BE ;"}
 
 -   O diagrama de causa e efeito ou diagrama de Ishikawa é uma ferramenta gráfica que facilita identificar uma relação significativa sob diversos pontos de vista entre o efeito e suas possíveis causas @werkema2021 . Foi originalmente proposto pelo engenheiro químico japonês Kaoru Ishikawa em 1943, e aperfeiçoado nos anos seguintes.
+-   Conforme @kume1987 construir um gráfico de causa e efeito que seja útil exige esforço, treinamento da equipe e tempo. Pessoas que tem sucesso na solução de problemas de controle de qualidade são aqueles bem sucedidas na construção de diagramas de causa e efeito úteis.
 
 ![Figura - Diagrama de causa e efeito](diagrama_causa_efeito.png)
 

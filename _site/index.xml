@@ -24,6 +24,7 @@
 <h3 class="anchored" data-anchor-id="o-que-é-o-diagrama-de-causa-e-efeito"> <span style="color: #5AC8BE ;"><strong>O que é o diagrama de causa e efeito</strong></span></h3>
 <ul>
 <li>O diagrama de causa e efeito ou diagrama de Ishikawa é uma ferramenta gráfica que facilita identificar uma relação significativa sob diversos pontos de vista entre o efeito e suas possíveis causas <span class="citation" data-cites="werkema2021">Werkema (2021)</span> . Foi originalmente proposto pelo engenheiro químico japonês Kaoru Ishikawa em 1943, e aperfeiçoado nos anos seguintes.</li>
+<li>Conforme <span class="citation" data-cites="kume1987">Kume (1987)</span> construir um gráfico de causa e efeito que seja útil exige esforço, treinamento da equipe e tempo. Pessoas que tem sucesso na solução de problemas de controle de qualidade são aqueles bem sucedidas na construção de diagramas de causa e efeito úteis.</li>
 </ul>
 <div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -201,6 +202,9 @@ font-style: inherit;">"Diagrama de causa e efeito"</span>)</span></code></pre></
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
 <div id="ref-helena2022" class="csl-entry">
 Helena, Lucia. 2022. <span>“Educação Midiática: Uma visão filosófica - Nova Acrópole.”</span> <a href="https://www.youtube.com/">https://www.youtube.com/</a>.
+</div>
+<div id="ref-kume1987" class="csl-entry">
+Kume, Hitoshi. 1987. <em>Statistical Methods for Quality Improvement</em>. 1ª edição. Tokyo: Productivity Press.
 </div>
 <div id="ref-shatz2024" class="csl-entry">
 Shatz, Itamar. 2024. <span>“The Curse of Knowledge: A Difficulty in Understanding Less-Informed Perspectives <span></span> Effectiviology.”</span> <a href="https://effectiviology.com/curse-of-knowledge/">https://effectiviology.com/curse-of-knowledge/</a>.
