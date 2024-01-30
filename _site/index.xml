@@ -6,11 +6,214 @@
       version="2.0">
 <channel>
 <title>Carvalho Ribeiro Blog</title>
-<link>https://carvalhoribeiro.netlify.app/index.html</link>
+<link>https://carvalhoribeiro.netlify.app/</link>
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>
-<generator>quarto-1.3.263</generator>
-<lastBuildDate>Fri, 29 Sep 2023 03:00:00 GMT</lastBuildDate>
+<generator>quarto-1.4.531</generator>
+<lastBuildDate>Sun, 28 Jan 2024 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Diagrama de Causa e Efeito</title>
+  <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
+  <link>https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/causeeffect.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="o-que-é-o-diagrama-de-causa-e-efeito" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-o-diagrama-de-causa-e-efeito"> <span style="color: #5AC8BE ;"><strong>O que é o diagrama de causa e efeito</strong></span></h3>
+<ul>
+<li>O diagrama de causa e efeito ou diagrama de Ishikawa é uma ferramenta gráfica que facilita identificar uma relação significativa sob diversos pontos de vista entre o efeito e suas possíveis causas <span class="citation" data-cites="werkema2021">Werkema (2021)</span> . Foi originalmente proposto pelo engenheiro químico japonês Kaoru Ishikawa em 1943, e aperfeiçoado nos anos seguintes.</li>
+</ul>
+<div class="img-fluid quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/diagrama_causa_efeito.png" class="img-fluid figure-img"></p>
+<figcaption>Figura - Diagrama de causa e efeito</figcaption>
+</figure>
+</div>
+</section>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<ul>
+<li><p>Estimular a interação entre as pessoas, ambiente e instrumetos usados na busca de causas que unfluenciam no efeito.</p></li>
+<li><p>Permitir que todos os envolvidos contribuam com ideias e pontos de vista.</p></li>
+<li><p>Facilitar a identificação de possíveis causas sobre o efeito proposto.</p></li>
+</ul>
+</section>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<ul>
+<li><p>Necessidade de analisar um efeito sober diversos pontos de vista os quais podem estar relacionados ou não.</p></li>
+<li><p>De acordo com <span class="citation" data-cites="shatz2024">Shatz (2024)</span> , um viés cognitivo conhecido como a maldição do conhecimento faz com que as pessoas não consigam compreender adequadamente a perspectiva de quem não possui tantas informações quanto elas. Uma pessoa experiente em uma tarefa pode ter dificuldades para ensinar iniciantes por pressupor intuitivamente que as coisas são obvias para eles, logo também são óbvias para o iniciante, mesmo que não seja o caso. O diagrama de causa e efeito pode ser útil nesses casos, pois quanto bem empregado rompe a barreira do medo e coleta a perspectiva de vários membros da equipe sobre determinado problema os quais os resultados podem ser reveladores e muito úteis.</p></li>
+<li><p>Obter pontos de vistas diferentes pode ser fundamental durante um processo de melhoria contínua. Conforme <span class="citation" data-cites="helena2022">Helena (2022)</span> , tente imaginar um fato <code>Um veículo bateu em um poste</code> e imagine também algumas versões desse fato.</p>
+<ul>
+<li><p>Versão física: Um corpo foi machucado, um carro amassado e um poste derrubado.</p></li>
+<li><p>Versão economica: O custo do medicamento, o custo do carro, o custo do poste, o tempo perdido, trabalho necessário para recompor o ambiente.</p></li>
+<li><p>Versão social: Pessoas abaladas, assustadas, uma criança que passava no local chorou muito, e o motorista ficou em estado de choque.</p></li>
+<li><p>Versão analítica: A velocidade não era adequada para pista, a posição do sinaleiro não dava uma boa visibilidade para o motorista, o automóvel tem uma característica mecanica que provoca frenagem muito brusca.</p></li>
+<li><p>Versão ampla: Considerar as versões anteriores e trabalhar em uma decisão que beneficie os envolvidos, vendo a parcela de responsabilidade de cada um e como o problema pode ser resolvido com o mínimo dano. A ideia é reduzir os impactos negativos para a sociedade, ao memo tempo impedir que motorista seja massacrado e penalizado por aquilo que não tenha sido de seu controle. Que situações desse tipo, possam ser corrigidas e melhoradas minimizando ou neutralizando os fatores responsáveis pelo problema e reduzindo a probabilidade que o mesmo ocorra no futuro.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<ul>
+<li><p>Em uma ponta você colocar o efeito, e as ideias sobre as possíveis causas aparentes são coletadas de times multidisciplinares.</p></li>
+<li><p>Você pode usar uma folha de papel e se preferir usar o R você pode usar o pacote <code>qcc</code> criado por <span class="citation" data-cites="scrucca2004">(<strong>scrucca2004?</strong>)</span></p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(qcc)</span>
+<span id="cb1-2"></span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cause.and.effect</span>(</span>
+<span id="cb1-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cause =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">list</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Equipamento =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Problema freq. </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> na maquina </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> de montar caixas"</span>),</span>
+<span id="cb1-5">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Processo =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Manual </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> desatualizado"</span>),</span>
+<span id="cb1-6">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Pessoas =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Rotatividade </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> de pessoal"</span>),</span>
+<span id="cb1-7">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Materiais =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Embalagens com </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> padrão diferente"</span>),</span>
+<span id="cb1-8">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">Ambiente =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Variação brusca </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> de temperatura"</span>),</span>
+<span id="cb1-9">               Gestão <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Indicador inadequado"</span>)),</span>
+<span id="cb1-10">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">effect=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Atrazo na </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> entrega"</span>,</span>
+<span id="cb1-11">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Diagrama de causa e efeito"</span>)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/causeeffect_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<ul>
+<li>Os resultados coletados na análise do diagrama de causa e efeito são conhecidas como <code>causas aparentes</code> e são utilizados na identificação da <code>causa raiz</code> onde é possível usar a técnica de cinco porques. Enquanto a técnica dos cinco porques tem o foco na profundidade das relações de causa e efeito, o diagrama de causa e efeito tem o foco nas diferentes perspectivas nessas relações. Em resumo, mesmo os pontos de vista sendo diferentes por serem coletados por diferentes membros da equipe, eles tendem a convergir em relação ao problema. Por exemplo se considerarmos que a causa aparente do atrazo na entrega seja problemas frequentes na maquina de montar caixa. Quando usamos a técnica de cinco porques, poderia ficar assim:
+<ul>
+<li><strong>Por que a maquina de montar caixas tem problemas frequentes?</strong>
+<ul>
+<li>Por que as caixas possuem formatos diferentes, estão abauladas e as ventosas de sucção da maquina se desgastam rapidamente</li>
+</ul></li>
+<li><strong>Por que as caixas vem com padrão diferente?</strong>
+<ul>
+<li>Por que elas vem de plantas e fornecedores diferentes e sem controle muito rígido de forma e uniformidade.</li>
+</ul></li>
+<li><strong>Por que não tem controle de uniformidade?</strong>
+<ul>
+<li>Por que há necessidade de redução de custos e as compras são feitas em lotes muito grandes e com base no preço.</li>
+</ul></li>
+<li><strong>Por que as compras são feitas com base no preço?</strong>
+<ul>
+<li>Por que a consultoria que nos apóia e que sugeriu o procedimento tem sua receita baseada na economia que ela faz. Quanto mais custos ela cortar, melhor ela será recompensada mesmo que sem a intenção isso possa ampliar os problemas no longo prazo para o nosso negócio, portanto, o indicador é inadequado e é um problema de gestão.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<ul>
+<li>Possibilita coletar, analisar e compreender os efeitos e possíveis causas de um problema sob diversos pontos de vista.</li>
+<li>Possibilia maior cooperação e participação de todos na busca da melhoria contínua dos processos.</li>
+<li>Geram dados importantes para estratégias de ação e comunicação a cerca de um determinado problema.</li>
+</ul>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-helena2022" class="csl-entry">
+Helena, Lucia. 2022. <span>“Educação Midiática: Uma visão filosófica - Nova Acrópole.”</span> <a href="https://www.youtube.com/">https://www.youtube.com/</a>.
+</div>
+<div id="ref-shatz2024" class="csl-entry">
+Shatz, Itamar. 2024. <span>“The Curse of Knowledge: A Difficulty in Understanding Less-Informed Perspectives <span></span> Effectiviology.”</span> <a href="https://effectiviology.com/curse-of-knowledge/">https://effectiviology.com/curse-of-knowledge/</a>.
+</div>
+<div id="ref-werkema2021" class="csl-entry">
+Werkema, Cristina. 2021. <em>Métodos PDCA e Demaic e Suas Ferramentas Analíticas</em>. 1ª edição. GEN Atlas.
+</div>
+</div></section></div> ]]></description>
+  <category>Modelos</category>
+  <guid>https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/causeeffect.html</guid>
+  <pubDate>Sun, 28 Jan 2024 03:00:00 GMT</pubDate>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/diagrama_causa_efeito.png" medium="image" type="image/png" height="76" width="144"/>
+</item>
 <item>
   <title>Modelo preditivo | Amostra e reamostragens</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
@@ -8310,7 +8513,7 @@ font-style: inherit;">"grey90"</span>)</span></code></pre></div>
 <item>
   <title>Avaliar resultados de modelo preditivo com matriz de confusão</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
-  <link>https://carvalhoribeiro.netlify.app/posts/confusion-matrix/index.html</link>
+  <link>https://carvalhoribeiro.netlify.app/posts/confusion-matrix/</link>
   <description><![CDATA[ 
 
 
@@ -8768,14 +8971,14 @@ Diferença entre incidência e prevalencia
 
  ]]></description>
   <category>Modelos</category>
-  <guid>https://carvalhoribeiro.netlify.app/posts/confusion-matrix/index.html</guid>
+  <guid>https://carvalhoribeiro.netlify.app/posts/confusion-matrix/</guid>
   <pubDate>Wed, 03 Aug 2022 03:00:00 GMT</pubDate>
   <media:content url="https://carvalhoribeiro.netlify.app/posts/confusion-matrix/confusion_matrix.png" medium="image" type="image/png" height="77" width="144"/>
 </item>
 <item>
   <title>Motivação para o blog</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
-  <link>https://carvalhoribeiro.netlify.app/posts/welcome/index.html</link>
+  <link>https://carvalhoribeiro.netlify.app/posts/welcome/</link>
   <description><![CDATA[ 
 
 
@@ -8853,7 +9056,7 @@ Clique aqui pra abrir os detalhes
   <category>Versionamento</category>
   <category>Comunicação</category>
   <category>Aplicação</category>
-  <guid>https://carvalhoribeiro.netlify.app/posts/welcome/index.html</guid>
+  <guid>https://carvalhoribeiro.netlify.app/posts/welcome/</guid>
   <pubDate>Wed, 03 Aug 2022 03:00:00 GMT</pubDate>
 </item>
 </channel>

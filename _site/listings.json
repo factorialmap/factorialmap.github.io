@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/cause-effect-diagram/causeeffect.html",
       "/posts/resamples/resamples.html",
       "/posts/presentation_reveljs/presentation.html",
       "/posts/decision-tree-rpart/dtrpart.html",
