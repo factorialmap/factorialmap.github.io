@@ -15,11 +15,11 @@ bibliography: references.bib
 
 ### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 
--   Estimular a interação entre as pessoas, ambiente e instrumetos usados na busca de causas que unfluenciam no efeito.
+-   Estimular a interação entre as pessoas, processo, instrumentos, ambiente e sistemas na busca de possíveis causas que podem unfluenciar ou gerar um determinado efeito.
 
 -   Permitir que todos os envolvidos contribuam com ideias e pontos de vista.
 
--   Facilitar a identificação de possíveis causas sobre o efeito proposto.
+-   Facilitar a identificação de possíveis causas e os pesos dessas causas aparentes sobre o efeito observado.
 
 ### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
 
