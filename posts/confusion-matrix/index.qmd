@@ -7,8 +7,9 @@ image: "confusion_matrix.png"
 ---
 
 ::: {.callout-tip appearance="simple"}
-Vídeo tema para este post [Avaliar resultados de modelo preditivo com matriz de confusão](https://youtu.be/eqvmtYXh_C4){target="_blank"}
+Vídeo tema para este post em [Avaliar resultados de modelo preditivo com matriz de confusão](https://youtu.be/eqvmtYXh_C4){target="_blank"}
 :::
+
 
 ### {{< fa 1 >}} [**O que é uma matriz de confusão**]{style="color: #5AC8BE ;"}
 
@@ -51,31 +52,31 @@ library(tidyverse)
 library(tidymodels)
 
 #check
-two_class_example %>% filter(Class1 >0.5) %>% janitor::tabyl(truth)
+two_class_example |>  filter(Class1 >0.5)  |>  janitor::tabyl(truth)
 
 #exemplo de tabela cruzada usando janitor
-two_class_example %>% 
-  janitor::tabyl(truth, predicted) %>% 
-  janitor::adorn_totals(where = c("col", "row")) %>% 
+two_class_example |>  
+  janitor::tabyl(truth, predicted) |>  
+  janitor::adorn_totals(where = c("col", "row"))  |>  
   janitor::adorn_title()
 
 #trocando nomes
-two_class_example %>% 
+two_class_example |>
   conf_mat(truth =truth, estimate =predicted, dnn =c("vlr_previsto","vlr_real"))
 
 #plot heatmap
-two_class_example %>% 
-  conf_mat(truth = truth, estimate = predicted) %>% 
+two_class_example |>
+  conf_mat(truth = truth, estimate = predicted) |>
   autoplot(type = "heatmap")
 
 #acuracia- prop de acertos do modelo total de acerto / total previu
-two_class_example %>% 
+two_class_example |>
   accuracy(truth= truth, estimate = predicted)
 
 #sensibilidade ou recall é a proporção de casos positivos classif corretamente
 #Raio X de aeroporto prioriza sensitivity
 #diagnóstico de cancer também pois o não diagnóstico resulta em atraso no tratamento
-two_class_example %>% 
+two_class_example |>
   yardstick::sens(truth= truth, estimate = predicted)
 
 #Recall métrica útil nos casos em que o Falso Negativo supera o falso positivol
@@ -85,40 +86,40 @@ two_class_example %>%
 #acidentalmente a uma pessoa infectada e deixá-la se misturar com a população 
 #saudável,espalhando o vírus contagioso. 
 #Agora você pode entender por que a acuracidade foi uma métrica ruim para modelo.
-two_class_example %>% 
-  yardstick::recall(truth= truth, estimate = predicted)
+two_class_example |>
+  recall(truth= truth, estimate = predicted)
 
 #kappa
-two_class_example %>% 
-  yardstick::kap(truth= truth, estimate = predicted)
+two_class_example |>
+  kap(truth= truth, estimate = predicted)
 
 #npv
-two_class_example %>% 
-  yardstick::npv(truth= truth, estimate = predicted)
+two_class_example |>
+  npv(truth= truth, estimate = predicted)
 
 #ppv
-two_class_example %>% 
-  yardstick::ppv(truth= truth, estimate = predicted)
+two_class_example |>
+  ppv(truth= truth, estimate = predicted)
 
 #A precisão é util nos casos em que os falsos positivos são uma preocupação 
 #maior do que os falsos negativos.
 #A precisão é importante em sistemas de recomendação de música ou vídeo, 
 #sites de comércio eletrônico, etc. Resultados errados podem levar à perda de 
 #clientes e prejudicar o negócio.
-two_class_example %>% 
-  yardstick::precision(truth= truth, estimate = predicted)
+two_class_example |>
+  precision(truth= truth, estimate = predicted)
 
 #spec
-two_class_example %>% 
-  yardstick::spec(truth= truth, estimate = predicted)
+two_class_example |>
+  spec(truth= truth, estimate = predicted)
 
 #roc_curve
-two_class_example %>% 
-  roc_curve(truth = truth, estimate = Class1 ) %>% autoplot()
+two_class_example |>
+  roc_curve(truth, Class1 ) |> autoplot()
 
 #roc_auc
-two_class_example %>% 
-  roc_auc(truth = truth, estimate = Class1 )
+two_class_example |>
+  roc_auc(truth, Class1 )
 
 ```
 

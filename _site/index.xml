@@ -8518,25 +8518,26 @@ font-style: inherit;">"grey90"</span>)</span></code></pre></div>
 
 
 
-<div class="callout-tip callout callout-style-simple">
+
+<div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Vídeo tema para este post <a href="https://youtu.be/eqvmtYXh_C4" target="_blank">Avaliar resultados de modelo preditivo com matriz de confusão</a></p>
+<p>Vídeo tema para este post em <a href="https://youtu.be/eqvmtYXh_C4" target="_blank">Avaliar resultados de modelo preditivo com matriz de confusão</a></p>
 </div>
 </div>
 </div>
-<section id="fa-1-o-que-é-uma-matriz-de-confusão" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-uma-matriz-de-confusão"> <span style="color: #5AC8BE ;"><strong>O que é uma matriz de confusão</strong></span></h3>
+<section id="o-que-é-uma-matriz-de-confusão" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-uma-matriz-de-confusão"> <span style="color: #5AC8BE ;"><strong>O que é uma matriz de confusão</strong></span></h3>
 <ul>
 <li><p>Tabela que facilita a visualização das previsões corretas e as erradas em modelos de classificação.</p></li>
 <li><p>Possibilita a interpretação dos resultados sobre diversos pontos de vista desde que tenhamos os <strong>valores reais e os valores previstos pelo modelo.</strong></p>
-<div class="quarto-figure quarto-figure-center">
+<div class="img-fluid quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/confusion-matrix/confusion_matrix.png" class="img-fluid figure-img" width="605"></p>
-<p></p><figcaption class="figure-caption">Matriz de confusão</figcaption><p></p>
+<figcaption>Matriz de confusão</figcaption>
 </figure>
 </div>
 <ul>
@@ -8547,22 +8548,22 @@ font-style: inherit;">"grey90"</span>)</span></code></pre></div>
 </ul></li>
 </ul>
 </section>
-<section id="fa-2-qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
 <li><p>Por ser visual ajuda a responder rapidamente será que meu modelo teve um bom desempenho, onde deu errado, como posso corrigir ?</p></li>
 <li><p>As diversas saídas de previõe permite a criação de indicadores que serão uteis nos ajustes mais adequados conforme a necessidade do trabalho que está sendo desenvolvido.</p></li>
 </ul>
 </section>
-<section id="fa-3-de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
 <li><p>Em 1904 Karl Pearson criou a tabela de contingência. Por que precisamos e uma matriz de confusao se tevem a acuracidade ?</p></li>
 <li><p>Imagine prever quantas pessoas estao infectadas com um virus contagioso antes de apresentar sintomas e isola-las da populacao saudavel.</p></li>
 </ul>
 </section>
-<section id="fa-4-como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a><br>
 O principal pacote que será usando para analisar uma matriz de confusão é o pacote <a href="https://yardstick.tidymodels.org/" target="_blank">yardstick</a> que já é carregado quando chamamos o pacote <strong>tidymodels</strong>.</p>
 <div class="cell">
@@ -8581,15 +8582,15 @@ background-color: null;
 font-style: inherit;">#check</span></span>
 <span id="cb1-6">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+font-style: inherit;">|&gt;</span>  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">filter</span>(Class1 <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">&gt;</span><span class="fl" style="color: #AD0000;
 background-color: null;
-font-style: inherit;">0.5</span>) <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">0.5</span>)  <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> janitor<span class="sc" style="color: #5E5E5E;
+font-style: inherit;">|&gt;</span>  janitor<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -8604,14 +8605,14 @@ background-color: null;
 font-style: inherit;">#exemplo de tabela cruzada usando janitor</span></span>
 <span id="cb3-2">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
+font-style: inherit;">|&gt;</span>  </span>
 <span id="cb3-3">  janitor<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">tabyl</span>(truth, predicted) <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
+font-style: inherit;">|&gt;</span>  </span>
 <span id="cb3-4">  janitor<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
@@ -8624,9 +8625,9 @@ font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"col"</span>, <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"row"</span>)) <span class="sc" style="color: #5E5E5E;
+font-style: inherit;">"row"</span>))  <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
+font-style: inherit;">|&gt;</span>  </span>
 <span id="cb3-5">  janitor<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
@@ -8644,7 +8645,7 @@ background-color: null;
 font-style: inherit;">#trocando nomes</span></span>
 <span id="cb5-2">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
+font-style: inherit;">|&gt;</span></span>
 <span id="cb5-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">conf_mat</span>(<span class="at" style="color: #657422;
@@ -8671,7 +8672,7 @@ background-color: null;
 font-style: inherit;">#plot heatmap</span></span>
 <span id="cb7-2">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
+font-style: inherit;">|&gt;</span></span>
 <span id="cb7-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">conf_mat</span>(<span class="at" style="color: #657422;
@@ -8680,7 +8681,7 @@ font-style: inherit;">truth =</span> truth, <span class="at" style="color: #6574
 background-color: null;
 font-style: inherit;">estimate =</span> predicted) <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
+font-style: inherit;">|&gt;</span></span>
 <span id="cb7-4">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">autoplot</span>(<span class="at" style="color: #657422;
@@ -8689,14 +8690,18 @@ font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"heatmap"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/confusion-matrix/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/confusion-matrix/index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#acuracia- prop de acertos do modelo total de acerto / total previu</span></span>
 <span id="cb8-2">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
+font-style: inherit;">|&gt;</span></span>
 <span id="cb8-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">accuracy</span>(<span class="at" style="color: #657422;
@@ -8721,7 +8726,7 @@ background-color: null;
 font-style: inherit;">#diagnóstico de cancer também pois o não diagnóstico resulta em atraso no tratamento</span></span>
 <span id="cb10-4">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
+font-style: inherit;">|&gt;</span></span>
 <span id="cb10-5">  yardstick<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
@@ -8760,10 +8765,8 @@ background-color: null;
 font-style: inherit;">#Agora você pode entender por que a acuracidade foi uma métrica ruim para modelo.</span></span>
 <span id="cb12-8">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
-<span id="cb12-9">  yardstick<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb12-9">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">recall</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -8781,10 +8784,8 @@ background-color: null;
 font-style: inherit;">#kappa</span></span>
 <span id="cb14-2">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
-<span id="cb14-3">  yardstick<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb14-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">kap</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -8802,10 +8803,8 @@ background-color: null;
 font-style: inherit;">#npv</span></span>
 <span id="cb16-2">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
-<span id="cb16-3">  yardstick<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb16-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">npv</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -8823,10 +8822,8 @@ background-color: null;
 font-style: inherit;">#ppv</span></span>
 <span id="cb18-2">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
-<span id="cb18-3">  yardstick<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb18-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ppv</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -8856,10 +8853,8 @@ background-color: null;
 font-style: inherit;">#clientes e prejudicar o negócio.</span></span>
 <span id="cb20-6">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
-<span id="cb20-7">  yardstick<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb20-7">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">precision</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -8877,10 +8872,8 @@ background-color: null;
 font-style: inherit;">#spec</span></span>
 <span id="cb22-2">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
-<span id="cb22-3">  yardstick<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+font-style: inherit;">|&gt;</span></span>
+<span id="cb22-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">spec</span>(<span class="at" style="color: #657422;
 background-color: null;
@@ -8898,34 +8891,30 @@ background-color: null;
 font-style: inherit;">#roc_curve</span></span>
 <span id="cb24-2">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
+font-style: inherit;">|&gt;</span></span>
 <span id="cb24-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">roc_curve</span>(<span class="at" style="color: #657422;
+font-style: inherit;">roc_curve</span>(truth, Class1 ) <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">truth =</span> truth, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">estimate =</span> Class1 ) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+font-style: inherit;">|&gt;</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">autoplot</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/confusion-matrix/index_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/confusion-matrix/index_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">#roc_auc</span></span>
 <span id="cb25-2">two_class_example <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
+font-style: inherit;">|&gt;</span></span>
 <span id="cb25-3">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">roc_auc</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">truth =</span> truth, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">estimate =</span> Class1 )</span></code></pre></div>
+font-style: inherit;">roc_auc</span>(truth, Class1 )</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric .estimator .estimate
@@ -8933,12 +8922,12 @@ font-style: inherit;">estimate =</span> Class1 )</span></code></pre></div>
 1 roc_auc binary         0.939</code></pre>
 </div>
 </div>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Diferença entre incidência e prevalencia
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -8952,14 +8941,14 @@ Diferença entre incidência e prevalencia
 </div>
 </div>
 </section>
-<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
 <li>A próxima etapa é o ajuste, finalização e comunicação do modelo.</li>
 </ul>
 </section>
-<section id="fa-6-qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoar as técnicas de avaliação de performance de modelos poupando tempo e dinheiro.</p></li>
 <li><p>Facilitar o processo de busca por melhorias nos modelos de previsão.</p></li>
