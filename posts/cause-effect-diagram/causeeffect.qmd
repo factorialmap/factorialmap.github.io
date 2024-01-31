@@ -9,7 +9,8 @@ bibliography: references.bib
 
 ### {{< fa 1 >}} [**O que é o diagrama de causa e efeito**]{style="color: #5AC8BE ;"}
 
--   O diagrama de causa e efeito ou diagrama de Ishikawa é uma ferramenta gráfica que facilita identificar uma relação significativa sob diversos pontos de vista entre o efeito e suas possíveis causas @werkema2021 . Foi originalmente proposto pelo engenheiro químico japonês Kaoru Ishikawa em 1943, e aperfeiçoado nos anos seguintes.
+-   O diagrama de causa e efeito é uma ferramenta que ajuda a representar com certa facilidade a estrutura do pensamento humano diante de situações e problemas complicados de se resolver.
+-   Por se tratar de uma ferramenta gráfica, facilita identificar uma relação significativa sob diversos pontos de vista entre o efeito e suas possíveis causas @werkema2021 .
 -   Conforme @kume1987 construir um gráfico de causa e efeito que seja útil exige esforço, treinamento da equipe e tempo. Pessoas que tem sucesso na solução de problemas de controle de qualidade são aqueles bem sucedidas na construção de diagramas de causa e efeito úteis.
 
 ![Figura - Diagrama de causa e efeito](diagrama_causa_efeito.png)
@@ -24,21 +25,23 @@ bibliography: references.bib
 
 ### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
 
--   Necessidade de analisar um efeito sober diversos pontos de vista os quais podem estar relacionados ou não.
+-   Um professor Kaoru Ishikawa na universidade de Tokyo usou um diagrama para sintetizar opiniões de engenheiros nas fábricas durante discussões sobre qualidade em 1953. Alunos de Ishikawa empregaram o método para organizar fatores em atividades de pesquisa @kume1987.
+
+-   Pela simplicidade e eficiência da ferramenta, ela foi adotada e incorporada aos JIS (Japanese Industrial Standards).
 
 -   De acordo com @shatz2024 , um viés cognitivo conhecido como a maldição do conhecimento faz com que as pessoas não consigam compreender adequadamente a perspectiva de quem não possui tantas informações quanto elas. Uma pessoa experiente em uma tarefa pode ter dificuldades para ensinar iniciantes por pressupor intuitivamente que as coisas são obvias para eles, logo também são óbvias para o iniciante, mesmo que não seja o caso. O diagrama de causa e efeito pode ser útil nesses casos, pois quanto bem empregado rompe a barreira do medo e coleta a perspectiva de vários membros da equipe sobre determinado problema os quais os resultados podem ser reveladores e muito úteis.
 
 -   Obter pontos de vistas diferentes pode ser fundamental durante um processo de melhoria contínua. Conforme @helena2022 , tente imaginar um fato `Um veículo bateu em um poste` e imagine também algumas versões desse fato.
 
-    -   Versão física: Um corpo foi machucado, um carro amassado e um poste derrubado.
+    -   **Versão física:** Um corpo foi machucado, um carro amassado e um poste derrubado.
 
-    -   Versão economica: O custo do medicamento, o custo do carro, o custo do poste, o tempo perdido, trabalho necessário para recompor o ambiente.
+    -   **Versão economica:** O custo do medicamento, o custo do carro, o custo do poste, o tempo perdido, trabalho necessário para recompor o ambiente.
 
-    -   Versão social: Pessoas abaladas, assustadas, uma criança que passava no local chorou muito, e o motorista ficou em estado de choque.
+    -   **Versão social:** Pessoas abaladas, assustadas, uma criança que passava no local chorou muito, e o motorista ficou em estado de choque.
 
-    -   Versão analítica: A velocidade não era adequada para pista, a posição do sinaleiro não dava uma boa visibilidade para o motorista, o automóvel tem uma característica mecanica que provoca frenagem muito brusca.
+    -   **Versão analítica:** A velocidade não era adequada para pista, a posição do sinaleiro não dava uma boa visibilidade para o motorista, o automóvel tem uma característica mecanica que provoca frenagem muito brusca.
 
-    -   Versão ampla: Considerar as versões anteriores e trabalhar em uma decisão que beneficie os envolvidos, vendo a parcela de responsabilidade de cada um e como o problema pode ser resolvido com o mínimo dano. A ideia é reduzir os impactos negativos para a sociedade, ao memo tempo impedir que motorista seja massacrado e penalizado por aquilo que não tenha sido de seu controle. Que situações desse tipo, possam ser corrigidas e melhoradas minimizando ou neutralizando os fatores responsáveis pelo problema e reduzindo a probabilidade que o mesmo ocorra no futuro.
+    -   **Versão ampla:** Considerar as versões anteriores e trabalhar em uma decisão que beneficie os envolvidos, vendo a parcela de responsabilidade de cada um e como o problema pode ser resolvido com o mínimo dano. A ideia é reduzir os impactos negativos para a sociedade, ao memo tempo impedir que motorista seja massacrado e penalizado por aquilo que não tenha sido de seu controle. Que situações desse tipo, possam ser corrigidas e melhoradas minimizando ou neutralizando os fatores responsáveis pelo problema e reduzindo a probabilidade que o mesmo ocorra no futuro.
 
 ### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
 
