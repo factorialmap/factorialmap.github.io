@@ -25,11 +25,11 @@ bibliography: references.bib
 
 ### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
 
--   Um professor Kaoru Ishikawa na universidade de Tokyo usou um diagrama para sintetizar opiniões de engenheiros nas fábricas durante discussões sobre qualidade em 1953. Alunos de Ishikawa empregaram o método para organizar fatores em atividades de pesquisa @kume1987.
+-   Um professor na universidade de Tokyo Kaoru Ishikawa, usou um diagrama para sintetizar opiniões de engenheiros nas fábricas durante discussões sobre qualidade em 1953. Conforme @kume1987, alunos de Ishikawa também empregaram o método para organizar fatores em suas atividades de pesquisa.
 
 -   Pela simplicidade e eficiência da ferramenta, ela foi adotada e incorporada aos JIS (Japanese Industrial Standards).
 
--   De acordo com @shatz2024 , um viés cognitivo conhecido como a maldição do conhecimento faz com que as pessoas não consigam compreender adequadamente a perspectiva de quem não possui tantas informações quanto elas. Uma pessoa experiente em uma tarefa pode ter dificuldades para ensinar iniciantes por pressupor intuitivamente que as coisas são obvias para eles, logo também são óbvias para o iniciante, mesmo que não seja o caso. O diagrama de causa e efeito pode ser útil nesses casos, pois quanto bem empregado rompe a barreira do medo e coleta a perspectiva de vários membros da equipe sobre determinado problema os quais os resultados podem ser reveladores e muito úteis.
+-   De acordo com @shatz2024 , um viés cognitivo conhecido como a maldição do conhecimento faz com que as pessoas não consigam compreender adequadamente a perspectiva de quem não possui tantas informações quanto elas. Uma pessoa experiente em uma tarefa pode ter dificuldades para ensinar iniciantes por pressupor intuitivamente que as coisas são obvias para eles, logo também são óbvias para o iniciante, mesmo que não seja o caso. O diagrama de causa e efeito pode ser útil nesses casos, pois quando bem empregado, rompe a barreira do medo e coleta a perspectiva de vários membros da equipe sobre determinado problema resultados os quais, podem ser reveladores e muito úteis.
 
 -   Obter pontos de vistas diferentes pode ser fundamental durante um processo de melhoria contínua. Conforme @helena2022 , tente imaginar um fato `Um veículo bateu em um poste` e imagine também algumas versões desse fato.
 
