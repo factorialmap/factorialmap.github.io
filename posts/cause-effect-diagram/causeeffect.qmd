@@ -31,7 +31,7 @@ bibliography: references.bib
 
 -   De acordo com @shatz2024 , um viés cognitivo conhecido como a maldição do conhecimento faz com que as pessoas não consigam compreender adequadamente a perspectiva de quem não possui tantas informações quanto elas. Uma pessoa experiente em uma tarefa pode ter dificuldades para ensinar iniciantes por pressupor intuitivamente que as coisas são obvias para eles, logo também são óbvias para o iniciante, mesmo que não seja o caso. O diagrama de causa e efeito pode ser útil nesses casos, pois quando bem empregado, rompe a barreira do medo e coleta a perspectiva de vários membros da equipe sobre determinado problema resultados os quais, podem ser reveladores e muito úteis.
 
--   Obter pontos de vistas diferentes pode ser fundamental durante um processo de melhoria contínua. Conforme @helena2022 , tente imaginar um fato `Um veículo bateu em um poste` e imagine também algumas versões desse fato.
+-   Obter pontos de vistas diferentes pode ser fundamental durante um processo de melhoria contínua. Conforme @helena2022 , tente imaginar um fato **Um veículo bateu em um poste** e imagine também algumas versões desse fato.
 
     -   **Versão física:** Um corpo foi machucado, um carro amassado e um poste derrubado.
 
@@ -68,7 +68,7 @@ cause.and.effect(
 
 ### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 
--   Os resultados coletados na análise do diagrama de causa e efeito são conhecidas como `causas aparentes` e são utilizados na identificação da `causa raiz` onde é possível usar a técnica de cinco porques. Enquanto a técnica dos cinco porques tem o foco na profundidade das relações de causa e efeito, o diagrama de causa e efeito tem o foco nas diferentes perspectivas nessas relações. Em resumo, mesmo os pontos de vista sendo diferentes por serem coletados por diferentes membros da equipe, eles tendem a convergir em relação ao problema. Por exemplo se considerarmos que a causa aparente do atrazo na entrega seja problemas frequentes na maquina de montar caixa. Quando usamos a técnica de cinco porques, poderia ficar assim:
+-   Os resultados coletados na análise do diagrama de causa e efeito são conhecidas como **causas aparentes** e são utilizados na identificação da **causa raiz** onde é possível usar a técnica de cinco porques. Enquanto a técnica dos cinco porques tem o foco na profundidade das relações de causa e efeito, o diagrama de causa e efeito tem o foco nas diferentes perspectivas nessas relações. Em resumo, mesmo os pontos de vista sendo diferentes por serem coletados por diferentes membros da equipe, eles tendem a convergir em relação ao problema. Por exemplo se considerarmos que a causa aparente do atrazo na entrega seja problemas frequentes na maquina de montar caixa. Quando usamos a técnica de cinco porques, poderia ficar assim:
     -   **Por que a maquina de montar caixas tem problemas frequentes?**
         -   Por que as caixas possuem formatos diferentes, estão abauladas e as ventosas de sucção da maquina se desgastam rapidamente
     -   **Por que as caixas vem com padrão diferente?**
