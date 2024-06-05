@@ -23,7 +23,7 @@
 <section id="o-que-é-o-pacote-gt" class="level3">
 <h3 class="anchored" data-anchor-id="o-que-é-o-pacote-gt"> <span style="color: #5AC8BE ;"><strong>O que é o pacote GT</strong></span></h3>
 <ul>
-<li>É um pacote com funções úteis para criação de tabelas em documentos.</li>
+<li>É um pacote com funções úteis para criação de tabelas em documentos <span class="citation" data-cites="gt">Iannone et al. (2024)</span>.</li>
 <li>Tem como base o princípio tidy que busca o equilibrio na interface homem maquina, homem homem e reprodutibilidade.</li>
 </ul>
 </section>
@@ -228,23 +228,23 @@ font-style: inherit;">md</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
 <div class="cell-output-display">
-<div id="vuqmkywrzv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vuqmkywrzv table {
+<div id="iqaakodxvd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iqaakodxvd table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vuqmkywrzv thead, #vuqmkywrzv tbody, #vuqmkywrzv tfoot, #vuqmkywrzv tr, #vuqmkywrzv td, #vuqmkywrzv th {
+#iqaakodxvd thead, #iqaakodxvd tbody, #iqaakodxvd tfoot, #iqaakodxvd tr, #iqaakodxvd td, #iqaakodxvd th {
   border-style: none;
 }
 
-#vuqmkywrzv p {
+#iqaakodxvd p {
   margin: 0;
   padding: 0;
 }
 
-#vuqmkywrzv .gt_table {
+#iqaakodxvd .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -270,12 +270,12 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-left-color: #D3D3D3;
 }
 
-#vuqmkywrzv .gt_caption {
+#iqaakodxvd .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vuqmkywrzv .gt_title {
+#iqaakodxvd .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -287,7 +287,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-bottom-width: 0;
 }
 
-#vuqmkywrzv .gt_subtitle {
+#iqaakodxvd .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -299,7 +299,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-top-width: 0;
 }
 
-#vuqmkywrzv .gt_heading {
+#iqaakodxvd .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -311,13 +311,13 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-right-color: #D3D3D3;
 }
 
-#vuqmkywrzv .gt_bottom_border {
+#iqaakodxvd .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vuqmkywrzv .gt_col_headings {
+#iqaakodxvd .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -332,7 +332,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-right-color: #D3D3D3;
 }
 
-#vuqmkywrzv .gt_col_heading {
+#iqaakodxvd .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -352,7 +352,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   overflow-x: hidden;
 }
 
-#vuqmkywrzv .gt_column_spanner_outer {
+#iqaakodxvd .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -364,15 +364,15 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 4px;
 }
 
-#vuqmkywrzv .gt_column_spanner_outer:first-child {
+#iqaakodxvd .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vuqmkywrzv .gt_column_spanner_outer:last-child {
+#iqaakodxvd .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vuqmkywrzv .gt_column_spanner {
+#iqaakodxvd .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -384,11 +384,11 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   width: 100%;
 }
 
-#vuqmkywrzv .gt_spanner_row {
+#iqaakodxvd .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vuqmkywrzv .gt_group_heading {
+#iqaakodxvd .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -414,7 +414,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   text-align: left;
 }
 
-#vuqmkywrzv .gt_empty_group_heading {
+#iqaakodxvd .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -429,15 +429,15 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   vertical-align: middle;
 }
 
-#vuqmkywrzv .gt_from_md > :first-child {
+#iqaakodxvd .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vuqmkywrzv .gt_from_md > :last-child {
+#iqaakodxvd .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vuqmkywrzv .gt_row {
+#iqaakodxvd .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -456,7 +456,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   overflow-x: hidden;
 }
 
-#vuqmkywrzv .gt_stub {
+#iqaakodxvd .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -469,7 +469,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 5px;
 }
 
-#vuqmkywrzv .gt_stub_row_group {
+#iqaakodxvd .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -483,15 +483,15 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   vertical-align: top;
 }
 
-#vuqmkywrzv .gt_row_group_first td {
+#iqaakodxvd .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vuqmkywrzv .gt_row_group_first th {
+#iqaakodxvd .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vuqmkywrzv .gt_summary_row {
+#iqaakodxvd .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -501,16 +501,16 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 5px;
 }
 
-#vuqmkywrzv .gt_first_summary_row {
+#iqaakodxvd .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vuqmkywrzv .gt_first_summary_row.thick {
+#iqaakodxvd .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vuqmkywrzv .gt_last_summary_row {
+#iqaakodxvd .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -520,7 +520,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-bottom-color: #D3D3D3;
 }
 
-#vuqmkywrzv .gt_grand_summary_row {
+#iqaakodxvd .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -530,7 +530,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 5px;
 }
 
-#vuqmkywrzv .gt_first_grand_summary_row {
+#iqaakodxvd .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -540,7 +540,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-top-color: #D3D3D3;
 }
 
-#vuqmkywrzv .gt_last_grand_summary_row_top {
+#iqaakodxvd .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -550,11 +550,11 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-bottom-color: #D3D3D3;
 }
 
-#vuqmkywrzv .gt_striped {
+#iqaakodxvd .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vuqmkywrzv .gt_table_body {
+#iqaakodxvd .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -563,7 +563,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-bottom-color: #D3D3D3;
 }
 
-#vuqmkywrzv .gt_footnotes {
+#iqaakodxvd .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -577,7 +577,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-right-color: #D3D3D3;
 }
 
-#vuqmkywrzv .gt_footnote {
+#iqaakodxvd .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -586,7 +586,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 5px;
 }
 
-#vuqmkywrzv .gt_sourcenotes {
+#iqaakodxvd .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -600,7 +600,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-right-color: #D3D3D3;
 }
 
-#vuqmkywrzv .gt_sourcenote {
+#iqaakodxvd .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -608,63 +608,63 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 5px;
 }
 
-#vuqmkywrzv .gt_left {
+#iqaakodxvd .gt_left {
   text-align: left;
 }
 
-#vuqmkywrzv .gt_center {
+#iqaakodxvd .gt_center {
   text-align: center;
 }
 
-#vuqmkywrzv .gt_right {
+#iqaakodxvd .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vuqmkywrzv .gt_font_normal {
+#iqaakodxvd .gt_font_normal {
   font-weight: normal;
 }
 
-#vuqmkywrzv .gt_font_bold {
+#iqaakodxvd .gt_font_bold {
   font-weight: bold;
 }
 
-#vuqmkywrzv .gt_font_italic {
+#iqaakodxvd .gt_font_italic {
   font-style: italic;
 }
 
-#vuqmkywrzv .gt_super {
+#iqaakodxvd .gt_super {
   font-size: 65%;
 }
 
-#vuqmkywrzv .gt_footnote_marks {
+#iqaakodxvd .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vuqmkywrzv .gt_asterisk {
+#iqaakodxvd .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vuqmkywrzv .gt_indent_1 {
+#iqaakodxvd .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vuqmkywrzv .gt_indent_2 {
+#iqaakodxvd .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vuqmkywrzv .gt_indent_3 {
+#iqaakodxvd .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vuqmkywrzv .gt_indent_4 {
+#iqaakodxvd .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vuqmkywrzv .gt_indent_5 {
+#iqaakodxvd .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -758,9 +758,14 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
 </iframe>
 
 
+
 </section>
 
- ]]></description>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-gt" class="csl-entry">
+Iannone, Richard, Joe Cheng, Barret Schloerke, Ellis Hughes, Alexandra Lauer, and JooYoung Seo. 2024. <span>“Gt: Easily Create Presentation-Ready Display Tables.”</span> <a href="https://CRAN.R-project.org/package=gt">https://CRAN.R-project.org/package=gt</a>.
+</div>
+</div></section></div> ]]></description>
   <category>Comunicação</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/table-gt/table_gt.html</guid>
   <pubDate>Mon, 06 May 2024 03:00:00 GMT</pubDate>

@@ -7,11 +7,12 @@ image: "tbl_gt.png"
 execute: 
   warning: false
   message: false
+bibliography: references.bib
 ---
 
 ### {{< fa 1 >}} [**O que é o pacote GT**]{style="color: #5AC8BE ;"}
 
--   É um pacote com funções úteis para criação de tabelas em documentos.
+-   É um pacote com funções úteis para criação de tabelas em documentos @gt.
 -   Tem como base o princípio tidy que busca o equilibrio na interface homem maquina, homem homem e reprodutibilidade.
 
 ### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
@@ -26,13 +27,11 @@ execute:
 
 -   Da simplicidade e código mais legível na produção de documentos técnicos e científicos.
 
-
 ### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
 
 -   Para o exemplo será usado o conjunto dados `gapminder` . Se não tiver o pacote gapminder instalado, para instalar é `install.packages("gapminder")`.
 
-
-```{r} 
+```{r}
 
 # packages ----------------------------------------------------------------
 library(tidyverse)
@@ -74,17 +73,17 @@ gapminder %>%
 -   Manuais de treinamento de equipe.
 
 -   Portal de comunicação de informações do negócio.
-    
+
 ### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
 
--   Facilita a construção de tabela e melhor comunicação dos dados. 
+-   Facilita a construção de tabela e melhor comunicação dos dados.
 
--   Possibilia a reprodução rápida e prática da tabela através da reutilização e adaptação dos códigos usadas na construção por outros membros do time. 
+-   Possibilia a reprodução rápida e prática da tabela através da reutilização e adaptação dos códigos usadas na construção por outros membros do time.
 
 -   Melhora a consistência na apresentação de dados reduzindo os riscos de erros de digitação entre outras inconsistências.
 
+Vídeo tema para este post
 
-Vídeo tema para este post 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LBOkK8cH8ao?si=TFUS3f0gfqnrNUDy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LBOkK8cH8ao?si=TFUS3f0gfqnrNUDy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+</iframe>
