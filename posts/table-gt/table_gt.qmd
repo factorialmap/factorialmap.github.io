@@ -9,12 +9,6 @@ execute:
   message: false
 ---
 
-Vídeo tema para este post 
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LBOkK8cH8ao?si=TFUS3f0gfqnrNUDy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
-
 ### {{< fa 1 >}} [**O que é o pacote GT**]{style="color: #5AC8BE ;"}
 
 -   É um pacote com funções úteis para criação de tabelas em documentos.
@@ -88,3 +82,9 @@ gapminder %>%
 -   Possibilia a reprodução rápida e prática da tabela através da reutilização e adaptação dos códigos usadas na construção por outros membros do time. 
 
 -   Melhora a consistência na apresentação de dados reduzindo os riscos de erros de digitação entre outras inconsistências.
+
+
+Vídeo tema para este post 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LBOkK8cH8ao?si=TFUS3f0gfqnrNUDy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
