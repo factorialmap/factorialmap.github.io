@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/table-gt/table_gt.html",
       "/posts/cause-effect-diagram/causeeffect.html",
       "/posts/resamples/resamples.html",
       "/posts/presentation_reveljs/presentation.html",

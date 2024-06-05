@@ -1,0 +1,90 @@
+---
+title: "Formatar tabelas para publicar artigos no R com GT package"
+author: "Marcelo Carvalho dos Anjos"
+date: "2024-05-06"
+categories: [Comunicação]
+image: "tbl_gt.png"
+execute: 
+  warning: false
+  message: false
+---
+
+Vídeo tema para este post 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LBOkK8cH8ao?si=TFUS3f0gfqnrNUDy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+
+### {{< fa 1 >}} [**O que é o pacote GT**]{style="color: #5AC8BE ;"}
+
+-   É um pacote com funções úteis para criação de tabelas em documentos.
+-   Tem como base o princípio tidy que busca o equilibrio na interface homem maquina, homem homem e reprodutibilidade.
+
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+
+-   Facilitar a construção de tabelas em documentos técnicos e científicos.
+
+-   Permitir a construção de ampla variedade de tabelas.
+
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+
+-   Da elaboração de documentos reproduzíveis.
+
+-   Da simplicidade e código mais legível na produção de documentos técnicos e científicos.
+
+
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
+
+-   Para o exemplo será usado o conjunto dados `gapminder` . Se não tiver o pacote gapminder instalado, para instalar é `install.packages("gapminder")`.
+
+
+```{r} 
+
+# packages ----------------------------------------------------------------
+library(tidyverse)
+library(gt)
+library(gapminder)
+
+
+# tbl ---------------------------------------------------------------------
+
+gapminder %>% 
+  filter(year == 2007 & lifeExp >81) %>% 
+  gt(groupname_col = "continent") %>% 
+  tab_header(title = md("**Tabela1: Expectativa de vida vs renda**"),
+             subtitle = "Apenas países com exp > 81") %>% 
+  tab_options(heading.align = "left",
+              column_labels.border.top.color = "black",
+              column_labels.border.top.width = px(3)) %>% 
+  cols_align(align = "right", columns = 1:4) %>% 
+  fmt_number(columns = c(lifeExp, pop),
+             decimals = 0) %>% 
+  fmt_currency(columns = c(gdpPercap),
+               currency = "USD") %>% 
+  tab_footnote(
+    footnote = "Renda menor que a média restante",
+    locations = cells_body(columns = c(gdpPercap),
+                           rows = gdpPercap < 35000)) %>% 
+  tab_footnote(
+    footnote = "GDP(PPP) purchasing power parity",
+    locations = cells_column_labels(columns = c(gdpPercap))
+  ) %>% 
+  tab_source_note(md("**Fonte**: Gapminder"))
+
+```
+
+### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+
+-   Comunicação de pesquisas técnicas e científicas.
+
+-   Manuais de treinamento de equipe.
+
+-   Portal de comunicação de informações do negócio.
+    
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
+
+-   Facilita a construção de tabela e melhor comunicação dos dados. 
+
+-   Possibilia a reprodução rápida e prática da tabela através da reutilização e adaptação dos códigos usadas na construção por outros membros do time. 
+
+-   Melhora a consistência na apresentação de dados reduzindo os riscos de erros de digitação entre outras inconsistências.
