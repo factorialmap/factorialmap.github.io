@@ -2,13 +2,9 @@
 title: "Como importar e visualizar dados - Titanic dataset parte1"
 author: "Marcelo Carvalho dos Anjos"
 date: "2022-08-07"
-categories: [Exploração]
+categories: [Exploração de dados]
 image: "data_import.png"
 ---
-
-::: {.callout-tip appearance="simple"}
-Vídeo tema para este post [Como importar e visualizar dados - Titanic dataset parte1](https://youtu.be/p-wiv5wnLMw){target="_blank"}
-:::
 
 ### {{< fa 1 >}} [**O que é importação e visualização de dados**]{style="color: #5AC8BE ;"}
 
@@ -231,3 +227,7 @@ train_titanic %>%
 -   Facilitar a comunicação com os envolvidos no projeto.
 
 -   Melhorar e estimular a geração de ideias através da interação entre os membros do projeto.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/p-wiv5wnLMw?si=VNbb9wKkbDJ4aXIS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+</iframe>

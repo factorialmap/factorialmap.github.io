@@ -9,10 +9,6 @@ execute:
   output: FALSE
 ---
 
-::: {.callout-tip appearance="simple"}
-Vídeo tema para este post em [Comunicar trabalhos técnicos em apresentações no R com Quarto](https://youtu.be/DBXeRUYvt3E){target="_blank"}
-:::
-
 ### {{< fa 1 >}} [**O que é isto?**]{style="color: #5AC8BE ;"}
 
 -   Como fazer relatório técnico e científico usando `Quarto` e `reveljs` para publicações no formado de apresentações de slides.
@@ -30,7 +26,7 @@ Vídeo tema para este post em [Comunicar trabalhos técnicos em apresentações 
 
 **Pacotes**
 
-Para reproduzir o código apresentado neste exercício, os seguintes pacotes são necessário: [tidyverse](https://www.tidyverse.org/){target="_blank"}, [sjplot](https://github.com/strengejacke/sjPlot/){target="_blank"}, [gt](https://github.com/rstudio/gt){target="_blank"}, [gtExtras](https://github.com/jthomasmock/gtExtras){target="_blank"}, e  [funModeling](https://github.com/pablo14/funModeling){target="_blank"}
+Para reproduzir o código apresentado neste exercício, os seguintes pacotes são necessário: [tidyverse](https://www.tidyverse.org/){target="_blank"}, [sjplot](https://github.com/strengejacke/sjPlot/){target="_blank"}, [gt](https://github.com/rstudio/gt){target="_blank"}, [gtExtras](https://github.com/jthomasmock/gtExtras){target="_blank"}, e [funModeling](https://github.com/pablo14/funModeling){target="_blank"}
 
 **Dados**
 
@@ -195,3 +191,5 @@ sjPlot::tab_model(mdl_mtcars)
 -   Facilitar a comunicação entre pesquisadores. Tidyverse usa design for humans `%\>%` significa `e então or and then`.
 
 -   Melhorar produtividade na manufatura e serviços através da replicação dessas ações e experimentos.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DBXeRUYvt3E?si=CO_qlKrD45Q5DR2u" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

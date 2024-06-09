@@ -9,11 +9,6 @@ execute:
   output: FALSE
 ---
 
-
-::: {.callout-tip appearance="simple"} 
-Vídeo tema para este post em [Amostra e reamostragem com Rsample](https://youtu.be/xpZFLWg5CZA){target="_blank"}
-:::
-
 ### {{< fa 1 >}} [**O que é isto?**]{style="color: #5AC8BE ;"}
 
 -   É a separação de um conjunto de dados em porções as quais serão usadas para diferentes etapas do modelo.
@@ -148,3 +143,5 @@ assessment(resample_ibov_usd$splits[[2]])
 -   Facilitar o trabalho e melhorar o processo para o grupo responsável pelas próximas etapas no projeto.
 
 -   Permitir a aplicação prática dos resultados dos modelos através da melhoria de acuracidade e poder preditivo gerando benefícios para os usuários do modelo e para a sociedade.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xpZFLWg5CZA?si=Ia-Wmvk3SkpccRry" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

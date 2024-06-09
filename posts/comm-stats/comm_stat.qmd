@@ -7,10 +7,6 @@ image: "comm_figure.png"
 lang: pt
 ---
 
-::: {.callout-tip appearance="simple"}
-Vídeo tema para este post em [Como comunicar dados em artigos técnicos no R - Quarto](https://youtu.be/F0YbmZuC2BM){target="_blank"}
-:::
-
 ### {{< fa 1 >}} [**O que é comunicação de dados**]{style="color: #5AC8BE ;"}
 
 -   Em um contexto mais geral, seria o processo relativo a transação de dados e ou informações entre 2 ou mais agentes.
@@ -65,7 +61,7 @@ Processo de comunicação de dados técnicos
 Gerando novo documento usando quarto_pub
 :::
 
--   Código descrito no vídeo [aqui](https://raw.githubusercontent.com/factorialmap/analise_exploratoria/main/comm_teste.qmd "Você precisará do quarto para editar e gerar o documento"){target="_blank"} 
+-   Código descrito no vídeo [aqui](https://raw.githubusercontent.com/factorialmap/analise_exploratoria/main/comm_teste.qmd "Você precisará do quarto para editar e gerar o documento"){target="_blank"}
 
 ### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 
@@ -85,3 +81,5 @@ Gerando novo documento usando quarto_pub
 -   Reutilização da ideia original (ao invés de partir do zero) mas incrementando melhorias, reduzindo tempo de implementação e se livrando de obstaculos ao longo do caminho consequentemente poupando recursos o que remete a continuidade e consistência.
 
 -   Incremento de qualidade e acessibilidade ao conheicmento, bens ou serviços resultando da melhoria das padrão de vida pessoas.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F0YbmZuC2BM?si=RKIAy2dLDf-tuS00" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

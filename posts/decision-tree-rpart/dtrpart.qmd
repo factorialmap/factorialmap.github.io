@@ -9,10 +9,6 @@ execute:
   output: FALSE
 ---
 
-::: {.callout-tip appearance="simple"}
-Vídeo tema para este post em [Tidymodels decision tree model diabetes - rpart](https://youtu.be/u-zED9AAA4A){target="_blank"}
-:::
-
 ### {{< fa 1 >}} [**O que é isto?**]{style="color: #5AC8BE ;"}
 
 -   Decision tree models são modelos árvore de decisão baseadas em instruções **if-then**/**e se** utilizando os dados preditores. @kuhn2013, chap 8
@@ -197,3 +193,5 @@ mdl_fit_rpart_pima %>%
 -   Criação de modelo de previsão que pode ser melhorado e aproveitado projetos futuros.
 
 -   Estimular a geração de ideias, dúvidas e conhecimento acerca do problema e também na construção de modelos de previsão.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/u-zED9AAA4A?si=T2kpIfJ7_cMSFMvD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

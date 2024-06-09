@@ -6,10 +6,6 @@ categories: [Modelos]
 image: "neural_class.png"
 ---
 
-::: {.callout-tip appearance="simple"}
-Vídeo tema para este post [Redes neurais artificiais no R com nnet package](https://youtu.be/UKXYGGzHc0A){target="_blank"}
-:::
-
 ### {{< fa 1 >}} [**O que é um modelo de rede neural**]{style="color: #5AC8BE ;"}
 
 -   Rede neural é uma técnica que usa nós interconectados ou neuronios em uma estrutura de camadas com o objetivo de resolver problemas de previsão.
@@ -17,11 +13,11 @@ Vídeo tema para este post [Redes neurais artificiais no R com nnet package](htt
     ::: panel-tabset
     ## Rede neural regressão
 
-    ![Rede Neural - Regressão](neural_reg.png){alt="Rede Neural - Regressão" width="500"}
+    ![Rede Neural - Regressão](neural_reg.png){width="500"}
 
     ## Rede neural Classificação
 
-    ![Rede Neural - Classificação](neural_class.png){alt="Rede Neural - Classificação" width="500"}
+    ![Rede Neural - Classificação](neural_class.png){width="500"}
     :::
 
 ### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
@@ -121,3 +117,5 @@ NeuralNetTools::plotnet(mdl_fit_nn_iris,pad_x=0.55, circle_col = "grey90")
 -   Facilitar o processo de classificação.
 
 -   Melhorar o processo de produção, qualidade do produto, satisfação do consumidor e competitividade do negócio.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UKXYGGzHc0A?si=_FgCJHxo17RpQ09h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

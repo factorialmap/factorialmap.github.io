@@ -2,13 +2,9 @@
 title: "Como analisar distribuição em dados - histograma curva normal"
 author: "Marcelo Carvalho dos Anjos"
 date: "2022-08-21"
-categories: [Exploração]
+categories: [Exploração de dados]
 image: "diametro_histogram.png"
 ---
-
-::: {.callout-tip appearance="simple"}
-Vídeo tema para este post [Como analisar distribuição em dados - histograma curva normal](https://youtu.be/YLrmz43Ib1M){target="_blank"}
-:::
 
 ### {{< fa 1 >}} [**O que é histograma**]{style="color: #5AC8BE ;"}
 
@@ -139,3 +135,7 @@ ames %>%
 -   Facilitar o reconhecimento de determinados padrões que poderão influenciar nas decisões.
 
 -   Melhorar o entendimento sobre a natureza dos dados.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YLrmz43Ib1M?si=iqcOuLNUYKymC_05" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+</iframe>

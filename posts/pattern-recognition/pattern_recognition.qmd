@@ -2,13 +2,9 @@
 title: "Como Identificar padrões em dados - gráfico de dispersão"
 author: "Marcelo Carvalho dos Anjos"
 date: "2022-08-28"
-categories: [Exploração]
+categories: [Exploração de dados]
 image: "pattern_recognition.png"
 ---
-
-::: {.callout-tip appearance="simple"}
-Vídeo tema para este post em [Como Identificar padrões em dados - gráfico de dispersão](https://youtu.be/YLrmz43Ib1M){target="_blank"}
-:::
 
 ### {{< fa 1 >}} [**O que são padrões em dados**]{style="color: #5AC8BE ;"}
 
@@ -102,3 +98,7 @@ crime_time %>%
 ### {{< fa 7 >}} [**Referência**]{style="color: #5AC8BE ;"}
 
 ![A arte da estatística: Como aprender a partir de dados por David Spiegelhalter, George Schlesinger](art_of_statistic.jpg){width="650"}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YLrmz43Ib1M?si=NtUqqen52Ol8MaUs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+</iframe>

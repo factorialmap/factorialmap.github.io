@@ -6,10 +6,6 @@ categories: [Modelos]
 image: "confusion_matrix.png"
 ---
 
-::: {.callout-tip appearance="simple"}
-Vídeo tema para este post em [Avaliar resultados de modelo preditivo com matriz de confusão](https://youtu.be/eqvmtYXh_C4){target="_blank"}
-:::
-
 
 ### {{< fa 1 >}} [**O que é uma matriz de confusão**]{style="color: #5AC8BE ;"}
 
@@ -144,3 +140,5 @@ Fonte: Departament of health - NY State at https://www.health.ny.gov/diseases/ch
 -   Facilitar o processo de busca por melhorias nos modelos de previsão.
 
 -   Melhorar a comunicação dos resultados.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eqvmtYXh_C4?si=BdK-o8tNlGr9Ja7E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

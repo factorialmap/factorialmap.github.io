@@ -2,7 +2,7 @@
 title: "Como construir gráficos para artigo técnico "
 author: "Marcelo Carvalho dos Anjos"
 date: "2022-09-28"
-categories: [Exploração, Comunicação]
+categories: [Exploração de dados, Comunicação]
 image: "chart_title.png"
 ---
 
@@ -241,7 +241,6 @@ iris %>%
                               addEllipses = TRUE)
 
 ```
-
 
 ### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 
