@@ -2,7 +2,7 @@
 title: "Diagrama de Causa e Efeito"
 author: "Marcelo Carvalho dos Anjos"
 date: "2024-01-28"
-categories: [Modelos]
+categories: [Demanda]
 image: "diagrama_causa_efeito.png"
 bibliography: references.bib
 ---

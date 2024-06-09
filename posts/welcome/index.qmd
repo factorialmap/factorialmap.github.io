@@ -2,7 +2,7 @@
 title: "Motivação para o blog"
 author: "Marcelo Carvalho dos Anjos"
 date: "2022-08-03"
-categories: [Demanda, Dados,Ferramentas, Exploração, Modelos, Versionamento, Comunicação, Aplicação]
+categories: [Demanda]
 ---
 
 ::: {.callout-tip appearance="simple"}
@@ -26,7 +26,7 @@ O objetivo do canal e do blog é tentar auxiliar na melhoria de processos para q
 
 {{< fa 2 >}} . Dados - Contém conceitos com o objetivo de estimular a observação, abstração e entendimento sobre o que são dados.
 
-{{< fa 3 >}} . Ferramentas - Contém ferramentas como R(RStudio), Oracle SQL*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.
+{{< fa 3 >}} . Ferramentas - Contém ferramentas como R(RStudio), Oracle SQL\*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.
 
 {{< fa 4 >}} . Exploração - Contém visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.
 

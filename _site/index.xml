@@ -10059,7 +10059,8 @@ Diferença entre incidência e prevalencia
 
 
 
-<div class="callout-tip callout callout-style-simple">
+
+<div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -10069,24 +10070,24 @@ Diferença entre incidência e prevalencia
 </div>
 </div>
 </div>
-<section id="fa-1-por-que-este-blog-e-o-canal-no-youtube" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-por-que-este-blog-e-o-canal-no-youtube"> <span style="color: #5AC8BE ;"><strong>Por que este blog e o canal no YouTube ?</strong></span></h3>
+<section id="por-que-este-blog-e-o-canal-no-youtube" class="level3">
+<h3 class="anchored" data-anchor-id="por-que-este-blog-e-o-canal-no-youtube"> <span style="color: #5AC8BE ;"><strong>Por que este blog e o canal no YouTube ?</strong></span></h3>
 <p>Em 2040 o Brasil terá uma população mais urbana e mais madura. A necessidade de aumento de produtividade no país estará em rota de colisão com a demanda por mão de obra qualificada em países desenvolvidos que estarão com suas populações diminuindo.</p>
 <p>O objetivo do canal e do blog é tentar auxiliar na melhoria de processos para que estejamos mais preparados quando chegarmos em 2040.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/welcome/demographic_shift.png" class="img-fluid figure-img" width="602"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/welcome/demographic_shift.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="602"></p>
 </figure>
 </div>
 </section>
-<section id="fa-2-como-serão-divididos-os-tópicos" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-como-serão-divididos-os-tópicos"> <span style="color: #5AC8BE ;"><strong>Como serão divididos os tópicos ?</strong></span></h3>
-<div class="callout-tip callout callout-style-simple callout-captioned">
+<section id="como-serão-divididos-os-tópicos" class="level3">
+<h3 class="anchored" data-anchor-id="como-serão-divididos-os-tópicos"> <span style="color: #5AC8BE ;"><strong>Como serão divididos os tópicos ?</strong></span></h3>
+<div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Clique aqui pra abrir os detalhes
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -10106,12 +10107,12 @@ Clique aqui pra abrir os detalhes
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/welcome/tumb.png" class="img-fluid figure-img"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/welcome/tumb.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </section>
-<section id="fa-3-como-será-divido-cada-post" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-como-será-divido-cada-post"> <span style="color: #5AC8BE ;"><strong>Como será divido cada post ?</strong></span></h3>
+<section id="como-será-divido-cada-post" class="level3">
+<h3 class="anchored" data-anchor-id="como-será-divido-cada-post"> <span style="color: #5AC8BE ;"><strong>Como será divido cada post ?</strong></span></h3>
 <p>Em 2001 para facilitar o entendimento dos profissionais da operação em industria eu escolhi um padrão que ao longo do tempo vem se mostrando eficiente e utilizarei aqui.</p>
 <p> - O que é : qual a ideia do que está sendo abordado ?</p>
 <p> - Qual o objetivo : por que isso está sendo ou foi desenvolvido ?</p>
@@ -10125,13 +10126,6 @@ Clique aqui pra abrir os detalhes
 
  ]]></description>
   <category>Demanda</category>
-  <category>Dados</category>
-  <category>Ferramentas</category>
-  <category>Exploração</category>
-  <category>Modelos</category>
-  <category>Versionamento</category>
-  <category>Comunicação</category>
-  <category>Aplicação</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/welcome/</guid>
   <pubDate>Wed, 03 Aug 2022 03:00:00 GMT</pubDate>
 </item>

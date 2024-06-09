@@ -181,4 +181,6 @@ mtcars %>%
 Papiros escritos em Hierático em 2550 antes de Cristo final do reinado de Khufu(Queops) e usados para registrar atividades durante a construção da pirâmide de Khufu. Créditos: Museu do Cairo, Egito.
 :::
 
+Video sobre os exemplos utilizados neste artigo
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Vhuo96UdFu8?si=kYZ4EIQupOn8I5Xn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

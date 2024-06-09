@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,7 +19,7 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
 </style>
@@ -43,13 +43,21 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -58,8 +66,10 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -71,55 +81,56 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Carvalho Ribeiro Blog</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
- <span class="menu-text">Info</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Info</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://youtube.com/carvalhoribeiro"><i class="bi bi-youtube" role="img">
+    <a class="nav-link" href="https://youtube.com/carvalhoribeiro"> <i class="bi bi-youtube" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/factorialmap"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/factorialmap"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div class="quarto-toggle-container">
-                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-              </div>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Conteúdo</h2>
    
   <ul>
-  <li><a href="#fa-1-por-que-este-blog-e-o-canal-no-youtube" id="toc-fa-1-por-que-este-blog-e-o-canal-no-youtube" class="nav-link active" data-scroll-target="#fa-1-por-que-este-blog-e-o-canal-no-youtube"> <span style="color: #5AC8BE ;"><strong>Por que este blog e o canal no YouTube ?</strong></span></a></li>
-  <li><a href="#fa-2-como-serão-divididos-os-tópicos" id="toc-fa-2-como-serão-divididos-os-tópicos" class="nav-link" data-scroll-target="#fa-2-como-serão-divididos-os-tópicos"> <span style="color: #5AC8BE ;"><strong>Como serão divididos os tópicos ?</strong></span></a></li>
-  <li><a href="#fa-3-como-será-divido-cada-post" id="toc-fa-3-como-será-divido-cada-post" class="nav-link" data-scroll-target="#fa-3-como-será-divido-cada-post"> <span style="color: #5AC8BE ;"><strong>Como será divido cada post ?</strong></span></a></li>
+  <li><a href="#por-que-este-blog-e-o-canal-no-youtube" id="toc-por-que-este-blog-e-o-canal-no-youtube" class="nav-link active" data-scroll-target="#por-que-este-blog-e-o-canal-no-youtube"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Por que este blog e o canal no YouTube ?</strong></span></a></li>
+  <li><a href="#como-serão-divididos-os-tópicos" id="toc-como-serão-divididos-os-tópicos" class="nav-link" data-scroll-target="#como-serão-divididos-os-tópicos"><i class="fa-solid fa-2" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como serão divididos os tópicos ?</strong></span></a></li>
+  <li><a href="#como-será-divido-cada-post" id="toc-como-será-divido-cada-post" class="nav-link" data-scroll-target="#como-será-divido-cada-post"><i class="fa-solid fa-3" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como será divido cada post ?</strong></span></a></li>
   </ul>
 </nav>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
     </div>
@@ -131,19 +142,12 @@ ul.task-list li input[type="checkbox"] {
 <h1 class="title">Motivação para o blog</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Demanda</div>
-    <div class="quarto-category">Dados</div>
-    <div class="quarto-category">Ferramentas</div>
-    <div class="quarto-category">Exploração</div>
-    <div class="quarto-category">Modelos</div>
-    <div class="quarto-category">Versionamento</div>
-    <div class="quarto-category">Comunicação</div>
-    <div class="quarto-category">Aplicação</div>
   </div>
   </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-right">
 
     <div>
     <div class="quarto-title-meta-heading">Author</div>
@@ -163,9 +167,11 @@ ul.task-list li input[type="checkbox"] {
   </div>
   
 
+
 </header>
 
-<div class="callout-tip callout callout-style-simple">
+
+<div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -175,56 +181,56 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<section id="fa-1-por-que-este-blog-e-o-canal-no-youtube" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-por-que-este-blog-e-o-canal-no-youtube"> <span style="color: #5AC8BE ;"><strong>Por que este blog e o canal no YouTube ?</strong></span></h3>
+<section id="por-que-este-blog-e-o-canal-no-youtube" class="level3">
+<h3 class="anchored" data-anchor-id="por-que-este-blog-e-o-canal-no-youtube"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Por que este blog e o canal no YouTube ?</strong></span></h3>
 <p>Em 2040 o Brasil terá uma população mais urbana e mais madura. A necessidade de aumento de produtividade no país estará em rota de colisão com a demanda por mão de obra qualificada em países desenvolvidos que estarão com suas populações diminuindo.</p>
 <p>O objetivo do canal e do blog é tentar auxiliar na melhoria de processos para que estejamos mais preparados quando chegarmos em 2040.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="demographic_shift.png" class="img-fluid figure-img" width="602"></p>
+<p><img src="demographic_shift.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="602"></p>
 </figure>
 </div>
 </section>
-<section id="fa-2-como-serão-divididos-os-tópicos" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-como-serão-divididos-os-tópicos"> <span style="color: #5AC8BE ;"><strong>Como serão divididos os tópicos ?</strong></span></h3>
-<div class="callout-tip callout callout-style-simple callout-captioned">
+<section id="como-serão-divididos-os-tópicos" class="level3">
+<h3 class="anchored" data-anchor-id="como-serão-divididos-os-tópicos"><i class="fa-solid fa-2" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como serão divididos os tópicos ?</strong></span></h3>
+<div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Clique aqui pra abrir os detalhes
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p> . Demanda, definição do problema, objetivos e métricas de sucesso - Contém a origem e tipos de necessidade que é o que torna todo o restante do trabalho necessário.</p>
-<p> . Dados - Contém conceitos com o objetivo de estimular a observação, abstração e entendimento sobre o que são dados.</p>
-<p> . Ferramentas - Contém ferramentas como R(RStudio), Oracle SQL*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.</p>
-<p> . Exploração - Contém visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.</p>
-<p> . Modelos - Contém alguns tipos de modelos descritivos, preditivos, inferenciais, otimização entre outros.</p>
-<p> . Versionamento e Reprodutibilidade - Contém processos para desenvolvimento de documentos reproduzíveis usando versionamento github, git, criação de documentos quarto_pub e rmardown, criação de livros bookdown entre outros.</p>
-<p> . Comunicação - Contém abordagens sobre comunicação das estatísticas e relatórios técnicos.</p>
-<p> . Aplicação - Contém histórico de ações e aplicações dos projetos.</p>
+<p><i class="fa-solid fa-1" aria-hidden="true"></i> . Demanda, definição do problema, objetivos e métricas de sucesso - Contém a origem e tipos de necessidade que é o que torna todo o restante do trabalho necessário.</p>
+<p><i class="fa-solid fa-2" aria-hidden="true"></i> . Dados - Contém conceitos com o objetivo de estimular a observação, abstração e entendimento sobre o que são dados.</p>
+<p><i class="fa-solid fa-3" aria-hidden="true"></i> . Ferramentas - Contém ferramentas como R(RStudio), Oracle SQL*plus, Oracle SNO, SPSS, Sphinx, Qlikview, PowerBI e excel.</p>
+<p><i class="fa-solid fa-4" aria-hidden="true"></i> . Exploração - Contém visualização de dados, análise exploratória, tabelas, queries, planilhas de excel, folhas de verificação etc.</p>
+<p><i class="fa-solid fa-5" aria-hidden="true"></i> . Modelos - Contém alguns tipos de modelos descritivos, preditivos, inferenciais, otimização entre outros.</p>
+<p><i class="fa-solid fa-6" aria-hidden="true"></i> . Versionamento e Reprodutibilidade - Contém processos para desenvolvimento de documentos reproduzíveis usando versionamento github, git, criação de documentos quarto_pub e rmardown, criação de livros bookdown entre outros.</p>
+<p><i class="fa-solid fa-7" aria-hidden="true"></i> . Comunicação - Contém abordagens sobre comunicação das estatísticas e relatórios técnicos.</p>
+<p><i class="fa-solid fa-8" aria-hidden="true"></i> . Aplicação - Contém histórico de ações e aplicações dos projetos.</p>
 </div>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="tumb.png" class="img-fluid figure-img"></p>
+<p><img src="tumb.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
 </section>
-<section id="fa-3-como-será-divido-cada-post" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-como-será-divido-cada-post"> <span style="color: #5AC8BE ;"><strong>Como será divido cada post ?</strong></span></h3>
+<section id="como-será-divido-cada-post" class="level3">
+<h3 class="anchored" data-anchor-id="como-será-divido-cada-post"><i class="fa-solid fa-3" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como será divido cada post ?</strong></span></h3>
 <p>Em 2001 para facilitar o entendimento dos profissionais da operação em industria eu escolhi um padrão que ao longo do tempo vem se mostrando eficiente e utilizarei aqui.</p>
-<p> - O que é : qual a ideia do que está sendo abordado ?</p>
-<p> - Qual o objetivo : por que isso está sendo ou foi desenvolvido ?</p>
-<p> - De onde vem : quais as necessidades ou origem dessa demanda ? A motivação ?</p>
-<p> - Como fazer : qual o procedimento, código, sequência ou fluxo ?</p>
-<p> - Pra onde vai : quem é o consumidor disso ? Qual a aplicação prática ?</p>
-<p> - Qual o resultado : descrição dos resultados previstos ou comprovados.</p>
+<p><i class="fa-solid fa-lightbulb" aria-hidden="true"></i> - O que é : qual a ideia do que está sendo abordado ?</p>
+<p><i class="fa-solid fa-bullseye" aria-hidden="true"></i> - Qual o objetivo : por que isso está sendo ou foi desenvolvido ?</p>
+<p><i class="fa-solid fa-clipboard-question" aria-hidden="true"></i> - De onde vem : quais as necessidades ou origem dessa demanda ? A motivação ?</p>
+<p><i class="fa-solid fa-file-code" aria-hidden="true"></i> - Como fazer : qual o procedimento, código, sequência ou fluxo ?</p>
+<p><i class="fa-solid fa-users" aria-hidden="true"></i> - Pra onde vai : quem é o consumidor disso ? Qual a aplicação prática ?</p>
+<p><i class="fa-solid fa-circle-check" aria-hidden="true"></i> - Qual o resultado : descrição dos resultados previstos ou comprovados.</p>
 
 
 </section>
@@ -271,6 +277,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -339,13 +372,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -372,9 +407,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -410,10 +459,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -423,8 +471,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -439,6 +496,238 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -481,6 +770,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <script src="https://utteranc.es/client.js" repo="factorialmap/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
 </script>
 </div> <!-- /content -->
+
 
 
 
