@@ -80,7 +80,7 @@ gapminder %>%
 
 -   Possibilia a reprodução rápida e prática da tabela através da reutilização e adaptação dos códigos usadas na construção por outros membros do time.
 
--   Melhora a consistência na apresentação de dados reduzindo os riscos de erros de digitação entre outras inconsistências.
+-   Melhora a consistência na apresentação de dados reduzindo os riscos de erros de digitação, entre outras inconsistências.
 
 Vídeo tema para este post
 
