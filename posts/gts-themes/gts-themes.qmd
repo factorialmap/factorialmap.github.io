@@ -1,0 +1,177 @@
+---
+title: "Formatando tabelas e dados usando themes e gtsummary package no R"
+author: "Marcelo Carvalho dos Anjos"
+date: "2024-06-16"
+categories: [Comunicação]
+image: "fig-gts-theme.png"
+execute: 
+  warning: false
+  message: false
+bibliography: references.bib
+---
+
+### {{< fa 1 >}} [**O que são themes no pacote gtsummary**]{style="color: #5AC8BE ;"}
+
+-   São funções que criam presets de tabelas para criação de documentos técnicos.
+
+-   A função faz parte do pacote gtsummary. Mas informações sobre o pacote @gtsummary.
+
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+
+-   Os temas são úteis na criação de tabelas impactando nas características visuais e funcionais em uma tabela.
+
+-   Dar praticidade para criação de tabelas em documentos técnicos
+
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+
+-   Necessidade de adequação das apresentações conforme requisitos de revistas e ou instituições responsáveis pela publicação de conteúdo técnico.
+
+-   Facilitar a construção rápida de tabelas conforme padrões pré determinados.
+
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
+
+#### Theme compact
+
+```{r}
+#| label: cod_compact
+
+#get packages
+library(tidyverse)
+library(gtsummary)
+library(gtExtras)
+library(survival)
+library(survminer)
+library(labelled)
+
+
+#get data
+data_iris <- iris %>% janitor::clean_names()
+data_mtcars <- mtcars
+
+#compact theme
+reset_gtsummary_theme()
+theme_gtsummary_compact()
+
+data_iris %>% tbl_summary(by = species)
+
+```
+
+#### Theme EDA exploratory data analysis
+
+```{r}
+#| label: cod_eda
+
+
+#eda theme
+reset_gtsummary_theme()
+theme_gtsummary_eda()
+
+data_iris %>% tbl_summary(by = species)
+
+```
+
+#### Theme journal
+
+```{r}
+#| label: cod_journal
+#| eval: false
+
+reset_gtsummary_theme()
+theme_gtsummary_journal(journal = "jama")
+data_iris %>% tbl_summary(by = species)
+
+reset_gtsummary_theme()
+theme_gtsummary_journal(journal = "lancet")
+data_iris %>% tbl_summary(by = species)
+
+reset_gtsummary_theme()
+theme_gtsummary_journal(journal = "nejm")
+data_iris %>% tbl_summary(by = species)
+
+```
+
+```{r}
+#| label: cod_journal_1
+
+reset_gtsummary_theme()
+theme_gtsummary_journal(journal = "qjecon")
+data_iris %>% tbl_summary(by = species)
+
+```
+
+#### Theme language
+
+```{r}
+#| label: cod_language
+
+reset_gtsummary_theme()
+theme_gtsummary_compact()
+theme_gtsummary_language(language = "pt")
+
+data_iris %>% tbl_summary(by = species) %>% add_p()
+
+```
+
+#### Theme sd theme
+
+```{r}
+#| label: cod_sd
+
+reset_gtsummary_theme()
+theme_gtsummary_mean_sd()
+
+data_iris %>% tbl_summary(by = species)
+
+
+
+```
+
+#### Theme custom
+
+Neste exemplo do livro de @kume1993, queremos saber se há diferença entre o peso de pães que são fabricados em diferentes maquinas (maquina 1 e maquia 2)
+
+```{r}
+#| label: cod_custom
+
+data_pad <- read.csv("https://raw.githubusercontent.com/factorialmap/hitoshi_kume_database/main/data_baker_66.csv")
+
+
+data_pad %>% 
+  pivot_longer(cols = -c(dia, padeiro),
+               names_to = c("maquina","amostra"),
+               names_sep = "_",
+               values_to = "peso") %>% 
+  tbl_summary(by = maquina,
+              include = peso) %>% 
+  add_difference() %>% 
+  as_gt() %>% 
+  tab_header(title = md("**Experimento maquina de pães 1 e 2**"),
+             subtitle = "Peso dos pães em gramas") %>% 
+  tab_options(heading.align = "left",
+              column_labels.border.top.color = "black",
+              column_labels.border.top.width = px(3))
+
+
+```
+
+### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+
+-   Comunicação de pesquisas técnicas e científicas.
+
+-   Manuais de treinamento de equipe.
+
+-   Portal de comunicação de informações do negócio.
+
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
+
+-   Facilita a construção de tabela e melhor comunicação dos dados.
+
+-   Possibilia a reprodução rápida e prática da tabela.
+
+-   Melhora a consistência na apresentação de dados.
+
+Vídeo tema para este post
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f-C8VBYXols?si=7t7q8zO7Lu3Nr8OK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+</iframe>

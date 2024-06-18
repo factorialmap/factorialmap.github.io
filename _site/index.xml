@@ -10,7 +10,3413 @@
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>
 <generator>quarto-1.4.550</generator>
-<lastBuildDate>Mon, 06 May 2024 03:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 16 Jun 2024 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Formatando tabelas e dados usando themes e gtsummary package no R</title>
+  <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
+  <link>https://carvalhoribeiro.netlify.app/posts/gts-themes/gts-themes.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="o-que-são-themes-no-pacote-gtsummary" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-são-themes-no-pacote-gtsummary"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que são themes no pacote gtsummary</strong></span></h3>
+<ul>
+<li><p>São funções que criam presets de tabelas para criação de documentos técnicos.</p></li>
+<li><p>A função faz parte do pacote gtsummary. Mas informações sobre o pacote <span class="citation" data-cites="gtsummary">Sjoberg et al. (2021)</span>.</p></li>
+</ul>
+</section>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<ul>
+<li><p>Os temas são úteis na criação de tabelas impactando nas características visuais e funcionais em uma tabela.</p></li>
+<li><p>Dar praticidade para criação de tabelas em documentos técnicos</p></li>
+</ul>
+</section>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<ul>
+<li><p>Necessidade de adequação das apresentações conforme requisitos de revistas e ou instituições responsáveis pela publicação de conteúdo técnico.</p></li>
+<li><p>Facilitar a construção rápida de tabelas conforme padrões pré determinados.</p></li>
+</ul>
+</section>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<section id="theme-compact" class="level4">
+<h4 class="anchored" data-anchor-id="theme-compact">Theme compact</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#get packages</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(gtsummary)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(gtExtras)</span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(survival)</span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(survminer)</span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(labelled)</span>
+<span id="cb1-8"></span>
+<span id="cb1-9"></span>
+<span id="cb1-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#get data</span></span>
+<span id="cb1-11">data_iris <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> iris <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> janitor<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">clean_names</span>()</span>
+<span id="cb1-12">data_mtcars <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> mtcars</span>
+<span id="cb1-13"></span>
+<span id="cb1-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#compact theme</span></span>
+<span id="cb1-15"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reset_gtsummary_theme</span>()</span>
+<span id="cb1-16"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_gtsummary_compact</span>()</span>
+<span id="cb1-17"></span>
+<span id="cb1-18">data_iris <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tbl_summary</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> species)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<div id="pvxyrvorch" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pvxyrvorch table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#pvxyrvorch thead, #pvxyrvorch tbody, #pvxyrvorch tfoot, #pvxyrvorch tr, #pvxyrvorch td, #pvxyrvorch th {
+  border-style: none;
+}
+
+#pvxyrvorch p {
+  margin: 0;
+  padding: 0;
+}
+
+#pvxyrvorch .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pvxyrvorch .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#pvxyrvorch .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pvxyrvorch .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pvxyrvorch .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pvxyrvorch .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pvxyrvorch .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pvxyrvorch .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pvxyrvorch .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pvxyrvorch .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pvxyrvorch .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pvxyrvorch .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pvxyrvorch .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#pvxyrvorch .gt_group_heading {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#pvxyrvorch .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pvxyrvorch .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pvxyrvorch .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pvxyrvorch .gt_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pvxyrvorch .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pvxyrvorch .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#pvxyrvorch .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#pvxyrvorch .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#pvxyrvorch .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pvxyrvorch .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#pvxyrvorch .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#pvxyrvorch .gt_last_summary_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pvxyrvorch .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pvxyrvorch .gt_first_grand_summary_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pvxyrvorch .gt_last_grand_summary_row_top {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pvxyrvorch .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pvxyrvorch .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pvxyrvorch .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pvxyrvorch .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pvxyrvorch .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pvxyrvorch .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pvxyrvorch .gt_left {
+  text-align: left;
+}
+
+#pvxyrvorch .gt_center {
+  text-align: center;
+}
+
+#pvxyrvorch .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pvxyrvorch .gt_font_normal {
+  font-weight: normal;
+}
+
+#pvxyrvorch .gt_font_bold {
+  font-weight: bold;
+}
+
+#pvxyrvorch .gt_font_italic {
+  font-style: italic;
+}
+
+#pvxyrvorch .gt_super {
+  font-size: 65%;
+}
+
+#pvxyrvorch .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#pvxyrvorch .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#pvxyrvorch .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#pvxyrvorch .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#pvxyrvorch .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#pvxyrvorch .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#pvxyrvorch .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="<strong>setosa</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>setosa</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>versicolor</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>versicolor</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>virginica</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>virginica</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">sepal_length</td>
+<td class="gt_row gt_center" headers="stat_1">5.00 (4.80, 5.20)</td>
+<td class="gt_row gt_center" headers="stat_2">5.90 (5.60, 6.30)</td>
+<td class="gt_row gt_center" headers="stat_3">6.50 (6.23, 6.90)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">sepal_width</td>
+<td class="gt_row gt_center" headers="stat_1">3.40 (3.20, 3.68)</td>
+<td class="gt_row gt_center" headers="stat_2">2.80 (2.53, 3.00)</td>
+<td class="gt_row gt_center" headers="stat_3">3.00 (2.80, 3.18)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">petal_length</td>
+<td class="gt_row gt_center" headers="stat_1">1.50 (1.40, 1.58)</td>
+<td class="gt_row gt_center" headers="stat_2">4.35 (4.00, 4.60)</td>
+<td class="gt_row gt_center" headers="stat_3">5.55 (5.10, 5.88)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">petal_width</td>
+<td class="gt_row gt_center" headers="stat_1">0.20 (0.20, 0.30)</td>
+<td class="gt_row gt_center" headers="stat_2">1.30 (1.20, 1.50)</td>
+<td class="gt_row gt_center" headers="stat_3">2.00 (1.80, 2.30)</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Median (IQR)</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="theme-eda-exploratory-data-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="theme-eda-exploratory-data-analysis">Theme EDA exploratory data analysis</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#eda theme</span></span>
+<span id="cb2-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reset_gtsummary_theme</span>()</span>
+<span id="cb2-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_gtsummary_eda</span>()</span>
+<span id="cb2-4"></span>
+<span id="cb2-5">data_iris <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tbl_summary</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> species)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<div id="oxldnoslke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oxldnoslke table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#oxldnoslke thead, #oxldnoslke tbody, #oxldnoslke tfoot, #oxldnoslke tr, #oxldnoslke td, #oxldnoslke th {
+  border-style: none;
+}
+
+#oxldnoslke p {
+  margin: 0;
+  padding: 0;
+}
+
+#oxldnoslke .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#oxldnoslke .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#oxldnoslke .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#oxldnoslke .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#oxldnoslke .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oxldnoslke .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oxldnoslke .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#oxldnoslke .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#oxldnoslke .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#oxldnoslke .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#oxldnoslke .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#oxldnoslke .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#oxldnoslke .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#oxldnoslke .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#oxldnoslke .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#oxldnoslke .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#oxldnoslke .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#oxldnoslke .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#oxldnoslke .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oxldnoslke .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#oxldnoslke .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#oxldnoslke .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#oxldnoslke .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oxldnoslke .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#oxldnoslke .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#oxldnoslke .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oxldnoslke .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oxldnoslke .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#oxldnoslke .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oxldnoslke .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#oxldnoslke .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#oxldnoslke .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oxldnoslke .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oxldnoslke .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#oxldnoslke .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#oxldnoslke .gt_left {
+  text-align: left;
+}
+
+#oxldnoslke .gt_center {
+  text-align: center;
+}
+
+#oxldnoslke .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#oxldnoslke .gt_font_normal {
+  font-weight: normal;
+}
+
+#oxldnoslke .gt_font_bold {
+  font-weight: bold;
+}
+
+#oxldnoslke .gt_font_italic {
+  font-style: italic;
+}
+
+#oxldnoslke .gt_super {
+  font-size: 65%;
+}
+
+#oxldnoslke .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#oxldnoslke .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#oxldnoslke .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#oxldnoslke .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#oxldnoslke .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#oxldnoslke .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#oxldnoslke .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="<strong>setosa</strong>, N = 50" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>setosa</strong>, N = 50</th>
+<th id="<strong>versicolor</strong>, N = 50" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>versicolor</strong>, N = 50</th>
+<th id="<strong>virginica</strong>, N = 50" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>virginica</strong>, N = 50</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">sepal_length</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Median (IQR)</td>
+<td class="gt_row gt_center" headers="stat_1">5.00 (4.80, 5.20)</td>
+<td class="gt_row gt_center" headers="stat_2">5.90 (5.60, 6.30)</td>
+<td class="gt_row gt_center" headers="stat_3">6.50 (6.23, 6.90)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Mean (SD)</td>
+<td class="gt_row gt_center" headers="stat_1">5.01 (0.35)</td>
+<td class="gt_row gt_center" headers="stat_2">5.94 (0.52)</td>
+<td class="gt_row gt_center" headers="stat_3">6.59 (0.64)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Range</td>
+<td class="gt_row gt_center" headers="stat_1">4.30, 5.80</td>
+<td class="gt_row gt_center" headers="stat_2">4.90, 7.00</td>
+<td class="gt_row gt_center" headers="stat_3">4.90, 7.90</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">sepal_width</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Median (IQR)</td>
+<td class="gt_row gt_center" headers="stat_1">3.40 (3.20, 3.68)</td>
+<td class="gt_row gt_center" headers="stat_2">2.80 (2.53, 3.00)</td>
+<td class="gt_row gt_center" headers="stat_3">3.00 (2.80, 3.18)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Mean (SD)</td>
+<td class="gt_row gt_center" headers="stat_1">3.43 (0.38)</td>
+<td class="gt_row gt_center" headers="stat_2">2.77 (0.31)</td>
+<td class="gt_row gt_center" headers="stat_3">2.97 (0.32)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Range</td>
+<td class="gt_row gt_center" headers="stat_1">2.30, 4.40</td>
+<td class="gt_row gt_center" headers="stat_2">2.00, 3.40</td>
+<td class="gt_row gt_center" headers="stat_3">2.20, 3.80</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">petal_length</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Median (IQR)</td>
+<td class="gt_row gt_center" headers="stat_1">1.50 (1.40, 1.58)</td>
+<td class="gt_row gt_center" headers="stat_2">4.35 (4.00, 4.60)</td>
+<td class="gt_row gt_center" headers="stat_3">5.55 (5.10, 5.88)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Mean (SD)</td>
+<td class="gt_row gt_center" headers="stat_1">1.46 (0.17)</td>
+<td class="gt_row gt_center" headers="stat_2">4.26 (0.47)</td>
+<td class="gt_row gt_center" headers="stat_3">5.55 (0.55)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Range</td>
+<td class="gt_row gt_center" headers="stat_1">1.00, 1.90</td>
+<td class="gt_row gt_center" headers="stat_2">3.00, 5.10</td>
+<td class="gt_row gt_center" headers="stat_3">4.50, 6.90</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">petal_width</td>
+<td class="gt_row gt_center" headers="stat_1"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_2"><br>
+</td>
+<td class="gt_row gt_center" headers="stat_3"><br>
+</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Median (IQR)</td>
+<td class="gt_row gt_center" headers="stat_1">0.20 (0.20, 0.30)</td>
+<td class="gt_row gt_center" headers="stat_2">1.30 (1.20, 1.50)</td>
+<td class="gt_row gt_center" headers="stat_3">2.00 (1.80, 2.30)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Mean (SD)</td>
+<td class="gt_row gt_center" headers="stat_1">0.25 (0.11)</td>
+<td class="gt_row gt_center" headers="stat_2">1.33 (0.20)</td>
+<td class="gt_row gt_center" headers="stat_3">2.03 (0.27)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Range</td>
+<td class="gt_row gt_center" headers="stat_1">0.10, 0.60</td>
+<td class="gt_row gt_center" headers="stat_2">1.00, 1.80</td>
+<td class="gt_row gt_center" headers="stat_3">1.40, 2.50</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="theme-journal" class="level4">
+<h4 class="anchored" data-anchor-id="theme-journal">Theme journal</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reset_gtsummary_theme</span>()</span>
+<span id="cb3-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_gtsummary_journal</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">journal =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"jama"</span>)</span>
+<span id="cb3-3">data_iris <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tbl_summary</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> species)</span>
+<span id="cb3-4"></span>
+<span id="cb3-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reset_gtsummary_theme</span>()</span>
+<span id="cb3-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_gtsummary_journal</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">journal =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"lancet"</span>)</span>
+<span id="cb3-7">data_iris <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tbl_summary</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> species)</span>
+<span id="cb3-8"></span>
+<span id="cb3-9"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reset_gtsummary_theme</span>()</span>
+<span id="cb3-10"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_gtsummary_journal</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">journal =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"nejm"</span>)</span>
+<span id="cb3-11">data_iris <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tbl_summary</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> species)</span></code></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reset_gtsummary_theme</span>()</span>
+<span id="cb4-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_gtsummary_journal</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">journal =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"qjecon"</span>)</span>
+<span id="cb4-3">data_iris <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tbl_summary</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> species)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<div id="sldnosduac" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sldnosduac table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#sldnosduac thead, #sldnosduac tbody, #sldnosduac tfoot, #sldnosduac tr, #sldnosduac td, #sldnosduac th {
+  border-style: none;
+}
+
+#sldnosduac p {
+  margin: 0;
+  padding: 0;
+}
+
+#sldnosduac .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#sldnosduac .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#sldnosduac .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#sldnosduac .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#sldnosduac .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sldnosduac .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sldnosduac .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sldnosduac .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#sldnosduac .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#sldnosduac .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#sldnosduac .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#sldnosduac .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#sldnosduac .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#sldnosduac .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#sldnosduac .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#sldnosduac .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#sldnosduac .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#sldnosduac .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#sldnosduac .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sldnosduac .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#sldnosduac .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#sldnosduac .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#sldnosduac .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sldnosduac .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#sldnosduac .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#sldnosduac .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sldnosduac .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sldnosduac .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#sldnosduac .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sldnosduac .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#sldnosduac .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sldnosduac .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sldnosduac .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sldnosduac .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sldnosduac .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sldnosduac .gt_left {
+  text-align: left;
+}
+
+#sldnosduac .gt_center {
+  text-align: center;
+}
+
+#sldnosduac .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#sldnosduac .gt_font_normal {
+  font-weight: normal;
+}
+
+#sldnosduac .gt_font_bold {
+  font-weight: bold;
+}
+
+#sldnosduac .gt_font_italic {
+  font-style: italic;
+}
+
+#sldnosduac .gt_super {
+  font-size: 65%;
+}
+
+#sldnosduac .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#sldnosduac .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#sldnosduac .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#sldnosduac .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#sldnosduac .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sldnosduac .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sldnosduac .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header gt_col_headings">
+<th id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="<strong>setosa</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>setosa</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>versicolor</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>versicolor</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>virginica</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>virginica</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="vertical-align: top"><p>sepal_length</p></td>
+<td class="gt_row gt_center" headers="stat_1"><p>5.00 (4.80, 5.20)</p></td>
+<td class="gt_row gt_center" headers="stat_2"><p>5.90 (5.60, 6.30)</p></td>
+<td class="gt_row gt_center" headers="stat_3"><p>6.50 (6.23, 6.90)</p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="vertical-align: top"><p>sepal_width</p></td>
+<td class="gt_row gt_center" headers="stat_1"><p>3.40 (3.20, 3.68)</p></td>
+<td class="gt_row gt_center" headers="stat_2"><p>2.80 (2.53, 3.00)</p></td>
+<td class="gt_row gt_center" headers="stat_3"><p>3.00 (2.80, 3.18)</p></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label" style="vertical-align: top"><p>petal_length</p></td>
+<td class="gt_row gt_center" headers="stat_1"><p>1.50 (1.40, 1.58)</p></td>
+<td class="gt_row gt_center" headers="stat_2"><p>4.35 (4.00, 4.60)</p></td>
+<td class="gt_row gt_center" headers="stat_3"><p>5.55 (5.10, 5.88)</p></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label" style="vertical-align: top"><p>petal_width</p></td>
+<td class="gt_row gt_center" headers="stat_1"><p>0.20 (0.20, 0.30)</p></td>
+<td class="gt_row gt_center" headers="stat_2"><p>1.30 (1.20, 1.50)</p></td>
+<td class="gt_row gt_center" headers="stat_3"><p>2.00 (1.80, 2.30)</p></td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Median (IQR)</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="theme-language" class="level4">
+<h4 class="anchored" data-anchor-id="theme-language">Theme language</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reset_gtsummary_theme</span>()</span>
+<span id="cb5-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_gtsummary_compact</span>()</span>
+<span id="cb5-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_gtsummary_language</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">language =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pt"</span>)</span>
+<span id="cb5-4"></span>
+<span id="cb5-5">data_iris <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tbl_summary</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> species) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">add_p</span>()</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<div id="yazvoekjco" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yazvoekjco table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yazvoekjco thead, #yazvoekjco tbody, #yazvoekjco tfoot, #yazvoekjco tr, #yazvoekjco td, #yazvoekjco th {
+  border-style: none;
+}
+
+#yazvoekjco p {
+  margin: 0;
+  padding: 0;
+}
+
+#yazvoekjco .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yazvoekjco .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yazvoekjco .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yazvoekjco .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yazvoekjco .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yazvoekjco .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yazvoekjco .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yazvoekjco .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yazvoekjco .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yazvoekjco .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yazvoekjco .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yazvoekjco .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yazvoekjco .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yazvoekjco .gt_group_heading {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yazvoekjco .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yazvoekjco .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yazvoekjco .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yazvoekjco .gt_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yazvoekjco .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yazvoekjco .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yazvoekjco .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yazvoekjco .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yazvoekjco .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yazvoekjco .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yazvoekjco .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yazvoekjco .gt_last_summary_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yazvoekjco .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yazvoekjco .gt_first_grand_summary_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yazvoekjco .gt_last_grand_summary_row_top {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yazvoekjco .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yazvoekjco .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yazvoekjco .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yazvoekjco .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yazvoekjco .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yazvoekjco .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yazvoekjco .gt_left {
+  text-align: left;
+}
+
+#yazvoekjco .gt_center {
+  text-align: center;
+}
+
+#yazvoekjco .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yazvoekjco .gt_font_normal {
+  font-weight: normal;
+}
+
+#yazvoekjco .gt_font_bold {
+  font-weight: bold;
+}
+
+#yazvoekjco .gt_font_italic {
+  font-style: italic;
+}
+
+#yazvoekjco .gt_super {
+  font-size: 65%;
+}
+
+#yazvoekjco .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yazvoekjco .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yazvoekjco .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yazvoekjco .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yazvoekjco .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yazvoekjco .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yazvoekjco .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="<strong>Características</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Características</strong></th>
+<th id="<strong>setosa</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>setosa</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>versicolor</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>versicolor</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>virginica</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>virginica</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>Valor p</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Valor p</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">sepal_length</td>
+<td class="gt_row gt_center" headers="stat_1">5.00 (4.80, 5.20)</td>
+<td class="gt_row gt_center" headers="stat_2">5.90 (5.60, 6.30)</td>
+<td class="gt_row gt_center" headers="stat_3">6.50 (6.23, 6.90)</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">sepal_width</td>
+<td class="gt_row gt_center" headers="stat_1">3.40 (3.20, 3.68)</td>
+<td class="gt_row gt_center" headers="stat_2">2.80 (2.53, 3.00)</td>
+<td class="gt_row gt_center" headers="stat_3">3.00 (2.80, 3.18)</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">petal_length</td>
+<td class="gt_row gt_center" headers="stat_1">1.50 (1.40, 1.58)</td>
+<td class="gt_row gt_center" headers="stat_2">4.35 (4.00, 4.60)</td>
+<td class="gt_row gt_center" headers="stat_3">5.55 (5.10, 5.88)</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">petal_width</td>
+<td class="gt_row gt_center" headers="stat_1">0.20 (0.20, 0.30)</td>
+<td class="gt_row gt_center" headers="stat_2">1.30 (1.20, 1.50)</td>
+<td class="gt_row gt_center" headers="stat_3">2.00 (1.80, 2.30)</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="5" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mediana (AIQ)</td>
+</tr>
+<tr class="even">
+<td colspan="5" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> Teste de Kruskal-Wallis</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="theme-sd-theme" class="level4">
+<h4 class="anchored" data-anchor-id="theme-sd-theme">Theme sd theme</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">reset_gtsummary_theme</span>()</span>
+<span id="cb6-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_gtsummary_mean_sd</span>()</span>
+<span id="cb6-3"></span>
+<span id="cb6-4">data_iris <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tbl_summary</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> species)</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<div id="yziezokdqv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yziezokdqv table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yziezokdqv thead, #yziezokdqv tbody, #yziezokdqv tfoot, #yziezokdqv tr, #yziezokdqv td, #yziezokdqv th {
+  border-style: none;
+}
+
+#yziezokdqv p {
+  margin: 0;
+  padding: 0;
+}
+
+#yziezokdqv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yziezokdqv .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yziezokdqv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yziezokdqv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yziezokdqv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yziezokdqv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yziezokdqv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yziezokdqv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yziezokdqv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yziezokdqv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yziezokdqv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yziezokdqv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yziezokdqv .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yziezokdqv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yziezokdqv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yziezokdqv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yziezokdqv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yziezokdqv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yziezokdqv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yziezokdqv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yziezokdqv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yziezokdqv .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yziezokdqv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yziezokdqv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yziezokdqv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yziezokdqv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yziezokdqv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yziezokdqv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yziezokdqv .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yziezokdqv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yziezokdqv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yziezokdqv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yziezokdqv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yziezokdqv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yziezokdqv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yziezokdqv .gt_left {
+  text-align: left;
+}
+
+#yziezokdqv .gt_center {
+  text-align: center;
+}
+
+#yziezokdqv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yziezokdqv .gt_font_normal {
+  font-weight: normal;
+}
+
+#yziezokdqv .gt_font_bold {
+  font-weight: bold;
+}
+
+#yziezokdqv .gt_font_italic {
+  font-style: italic;
+}
+
+#yziezokdqv .gt_super {
+  font-size: 65%;
+}
+
+#yziezokdqv .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yziezokdqv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yziezokdqv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yziezokdqv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yziezokdqv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yziezokdqv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yziezokdqv .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="<strong>setosa</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>setosa</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>versicolor</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>versicolor</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>virginica</strong>, N = 50<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>virginica</strong>, N = 50<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">sepal_length</td>
+<td class="gt_row gt_center" headers="stat_1">5.01 (0.35)</td>
+<td class="gt_row gt_center" headers="stat_2">5.94 (0.52)</td>
+<td class="gt_row gt_center" headers="stat_3">6.59 (0.64)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">sepal_width</td>
+<td class="gt_row gt_center" headers="stat_1">3.43 (0.38)</td>
+<td class="gt_row gt_center" headers="stat_2">2.77 (0.31)</td>
+<td class="gt_row gt_center" headers="stat_3">2.97 (0.32)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">petal_length</td>
+<td class="gt_row gt_center" headers="stat_1">1.46 (0.17)</td>
+<td class="gt_row gt_center" headers="stat_2">4.26 (0.47)</td>
+<td class="gt_row gt_center" headers="stat_3">5.55 (0.55)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">petal_width</td>
+<td class="gt_row gt_center" headers="stat_1">0.25 (0.11)</td>
+<td class="gt_row gt_center" headers="stat_2">1.33 (0.20)</td>
+<td class="gt_row gt_center" headers="stat_3">2.03 (0.27)</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="odd">
+<td colspan="4" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (SD)</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="theme-custom" class="level4">
+<h4 class="anchored" data-anchor-id="theme-custom">Theme custom</h4>
+<p>Neste exemplo do livro de <span class="citation" data-cites="kume1993">Kume (1993)</span>, queremos saber se há diferença entre o peso de pães que são fabricados em diferentes maquinas (maquina 1 e maquia 2)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1">data_pad <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read.csv</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"https://raw.githubusercontent.com/factorialmap/hitoshi_kume_database/main/data_baker_66.csv"</span>)</span>
+<span id="cb7-2"></span>
+<span id="cb7-3"></span>
+<span id="cb7-4">data_pad <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">pivot_longer</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">cols =</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(dia, padeiro),</span>
+<span id="cb7-6">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">names_to =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"maquina"</span>,<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"amostra"</span>),</span>
+<span id="cb7-7">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">names_sep =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"_"</span>,</span>
+<span id="cb7-8">               <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">values_to =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"peso"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tbl_summary</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> maquina,</span>
+<span id="cb7-10">              <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">include =</span> peso) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">add_difference</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">as_gt</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_header</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">md</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"**Experimento maquina de pães 1 e 2**"</span>),</span>
+<span id="cb7-14">             <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Peso dos pães em gramas"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tab_options</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">heading.align =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"left"</span>,</span>
+<span id="cb7-16">              <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">column_labels.border.top.color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"black"</span>,</span>
+<span id="cb7-17">              <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">column_labels.border.top.width =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">px</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>))</span></code></pre></div>
+<div class="cell-output-display">
+<div>
+<div id="tweaajnnqj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tweaajnnqj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#tweaajnnqj thead, #tweaajnnqj tbody, #tweaajnnqj tfoot, #tweaajnnqj tr, #tweaajnnqj td, #tweaajnnqj th {
+  border-style: none;
+}
+
+#tweaajnnqj p {
+  margin: 0;
+  padding: 0;
+}
+
+#tweaajnnqj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#tweaajnnqj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#tweaajnnqj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#tweaajnnqj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#tweaajnnqj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: left;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tweaajnnqj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tweaajnnqj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 3px;
+  border-top-color: #000000;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#tweaajnnqj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#tweaajnnqj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#tweaajnnqj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#tweaajnnqj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#tweaajnnqj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#tweaajnnqj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#tweaajnnqj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#tweaajnnqj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#tweaajnnqj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#tweaajnnqj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#tweaajnnqj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#tweaajnnqj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tweaajnnqj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#tweaajnnqj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#tweaajnnqj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#tweaajnnqj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tweaajnnqj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#tweaajnnqj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#tweaajnnqj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tweaajnnqj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tweaajnnqj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#tweaajnnqj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tweaajnnqj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#tweaajnnqj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#tweaajnnqj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tweaajnnqj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tweaajnnqj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#tweaajnnqj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#tweaajnnqj .gt_left {
+  text-align: left;
+}
+
+#tweaajnnqj .gt_center {
+  text-align: center;
+}
+
+#tweaajnnqj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#tweaajnnqj .gt_font_normal {
+  font-weight: normal;
+}
+
+#tweaajnnqj .gt_font_bold {
+  font-weight: bold;
+}
+
+#tweaajnnqj .gt_font_italic {
+  font-style: italic;
+}
+
+#tweaajnnqj .gt_super {
+  font-size: 65%;
+}
+
+#tweaajnnqj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#tweaajnnqj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#tweaajnnqj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#tweaajnnqj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#tweaajnnqj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#tweaajnnqj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#tweaajnnqj .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+
+<table class="gt_table table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="6" class="gt_heading gt_title gt_font_normal"><strong>Experimento maquina de pães 1 e 2</strong></th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Peso dos pães em gramas</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="<strong>Characteristic</strong>" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col"><strong>Characteristic</strong></th>
+<th id="<strong>maquina1</strong>, N = 80<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>maquina1</strong>, N = 80<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>maquina2</strong>, N = 80<span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>1</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>maquina2</strong>, N = 80<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span></th>
+<th id="<strong>Difference</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Difference</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
+<th id="<strong>95% CI</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2,3</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>95% CI</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2,3</sup></span></th>
+<th id="<strong>p-value</strong><span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;&quot;><sup>2</sup></span>" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>p-value</strong><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">peso</td>
+<td class="gt_row gt_center" headers="stat_1">204.9 (4.6)</td>
+<td class="gt_row gt_center" headers="stat_2">210.5 (3.6)</td>
+<td class="gt_row gt_center" headers="estimate">-5.6</td>
+<td class="gt_row gt_center" headers="ci">-6.9, -4.3</td>
+<td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
+</tr>
+</tbody><tfoot class="gt_footnotes">
+<tr class="even">
+<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Mean (SD)</td>
+</tr>
+<tr class="odd">
+<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>2</sup></span> Welch Two Sample t-test</td>
+</tr>
+<tr class="even">
+<td colspan="6" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>3</sup></span> CI = Confidence Interval</td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<ul>
+<li><p>Comunicação de pesquisas técnicas e científicas.</p></li>
+<li><p>Manuais de treinamento de equipe.</p></li>
+<li><p>Portal de comunicação de informações do negócio.</p></li>
+</ul>
+</section>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<ul>
+<li><p>Facilita a construção de tabela e melhor comunicação dos dados.</p></li>
+<li><p>Possibilia a reprodução rápida e prática da tabela.</p></li>
+<li><p>Melhora a consistência na apresentação de dados.</p></li>
+</ul>
+<p>Vídeo tema para este post</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/f-C8VBYXols?si=7t7q8zO7Lu3Nr8OK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-kume1993" class="csl-entry">
+Kume, Hitoshi. 1993. <em>Metodos Estatisticos Para Melhoria Da Qualidade</em>. 9ª edição. Gente.
+</div>
+<div id="ref-gtsummary" class="csl-entry">
+Sjoberg, Daniel D., Karissa Whiting, Michael Curry, Jessica A. Lavery, and Joseph Larmarange. 2021. <span>“Reproducible Summary Tables with the Gtsummary Package.”</span> <em><span>The R Journal</span></em> 13: 570–80. <a href="https://doi.org/10.32614/RJ-2021-053">https://doi.org/10.32614/RJ-2021-053</a>.
+</div>
+</div></section></div> ]]></description>
+  <category>Comunicação</category>
+  <guid>https://carvalhoribeiro.netlify.app/posts/gts-themes/gts-themes.html</guid>
+  <pubDate>Sun, 16 Jun 2024 03:00:00 GMT</pubDate>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/gts-themes/fig-gts-theme.png" medium="image" type="image/png" height="107" width="144"/>
+</item>
 <item>
   <title>Formatar tabelas para publicar artigos no R com GT package</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
@@ -228,23 +3634,23 @@ font-style: inherit;">md</span>(<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
 <div class="cell-output-display">
-<div id="iqaakodxvd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#iqaakodxvd table {
+<div id="ocvvbjzcwy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ocvvbjzcwy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#iqaakodxvd thead, #iqaakodxvd tbody, #iqaakodxvd tfoot, #iqaakodxvd tr, #iqaakodxvd td, #iqaakodxvd th {
+#ocvvbjzcwy thead, #ocvvbjzcwy tbody, #ocvvbjzcwy tfoot, #ocvvbjzcwy tr, #ocvvbjzcwy td, #ocvvbjzcwy th {
   border-style: none;
 }
 
-#iqaakodxvd p {
+#ocvvbjzcwy p {
   margin: 0;
   padding: 0;
 }
 
-#iqaakodxvd .gt_table {
+#ocvvbjzcwy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -270,12 +3676,12 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-left-color: #D3D3D3;
 }
 
-#iqaakodxvd .gt_caption {
+#ocvvbjzcwy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#iqaakodxvd .gt_title {
+#ocvvbjzcwy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -287,7 +3693,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-bottom-width: 0;
 }
 
-#iqaakodxvd .gt_subtitle {
+#ocvvbjzcwy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -299,7 +3705,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-top-width: 0;
 }
 
-#iqaakodxvd .gt_heading {
+#ocvvbjzcwy .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -311,13 +3717,13 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-right-color: #D3D3D3;
 }
 
-#iqaakodxvd .gt_bottom_border {
+#ocvvbjzcwy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#iqaakodxvd .gt_col_headings {
+#ocvvbjzcwy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -332,7 +3738,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-right-color: #D3D3D3;
 }
 
-#iqaakodxvd .gt_col_heading {
+#ocvvbjzcwy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -352,7 +3758,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   overflow-x: hidden;
 }
 
-#iqaakodxvd .gt_column_spanner_outer {
+#ocvvbjzcwy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -364,15 +3770,15 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 4px;
 }
 
-#iqaakodxvd .gt_column_spanner_outer:first-child {
+#ocvvbjzcwy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#iqaakodxvd .gt_column_spanner_outer:last-child {
+#ocvvbjzcwy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#iqaakodxvd .gt_column_spanner {
+#ocvvbjzcwy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -384,11 +3790,11 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   width: 100%;
 }
 
-#iqaakodxvd .gt_spanner_row {
+#ocvvbjzcwy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#iqaakodxvd .gt_group_heading {
+#ocvvbjzcwy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -414,7 +3820,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   text-align: left;
 }
 
-#iqaakodxvd .gt_empty_group_heading {
+#ocvvbjzcwy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -429,15 +3835,15 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   vertical-align: middle;
 }
 
-#iqaakodxvd .gt_from_md > :first-child {
+#ocvvbjzcwy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#iqaakodxvd .gt_from_md > :last-child {
+#ocvvbjzcwy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#iqaakodxvd .gt_row {
+#ocvvbjzcwy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -456,7 +3862,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   overflow-x: hidden;
 }
 
-#iqaakodxvd .gt_stub {
+#ocvvbjzcwy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -469,7 +3875,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 5px;
 }
 
-#iqaakodxvd .gt_stub_row_group {
+#ocvvbjzcwy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -483,15 +3889,15 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   vertical-align: top;
 }
 
-#iqaakodxvd .gt_row_group_first td {
+#ocvvbjzcwy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#iqaakodxvd .gt_row_group_first th {
+#ocvvbjzcwy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#iqaakodxvd .gt_summary_row {
+#ocvvbjzcwy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -501,16 +3907,16 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 5px;
 }
 
-#iqaakodxvd .gt_first_summary_row {
+#ocvvbjzcwy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#iqaakodxvd .gt_first_summary_row.thick {
+#ocvvbjzcwy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#iqaakodxvd .gt_last_summary_row {
+#ocvvbjzcwy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -520,7 +3926,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-bottom-color: #D3D3D3;
 }
 
-#iqaakodxvd .gt_grand_summary_row {
+#ocvvbjzcwy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -530,7 +3936,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 5px;
 }
 
-#iqaakodxvd .gt_first_grand_summary_row {
+#ocvvbjzcwy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -540,7 +3946,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-top-color: #D3D3D3;
 }
 
-#iqaakodxvd .gt_last_grand_summary_row_top {
+#ocvvbjzcwy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -550,11 +3956,11 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-bottom-color: #D3D3D3;
 }
 
-#iqaakodxvd .gt_striped {
+#ocvvbjzcwy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#iqaakodxvd .gt_table_body {
+#ocvvbjzcwy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -563,7 +3969,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-bottom-color: #D3D3D3;
 }
 
-#iqaakodxvd .gt_footnotes {
+#ocvvbjzcwy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -577,7 +3983,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-right-color: #D3D3D3;
 }
 
-#iqaakodxvd .gt_footnote {
+#ocvvbjzcwy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -586,7 +3992,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 5px;
 }
 
-#iqaakodxvd .gt_sourcenotes {
+#ocvvbjzcwy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -600,7 +4006,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   border-right-color: #D3D3D3;
 }
 
-#iqaakodxvd .gt_sourcenote {
+#ocvvbjzcwy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -608,63 +4014,63 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
   padding-right: 5px;
 }
 
-#iqaakodxvd .gt_left {
+#ocvvbjzcwy .gt_left {
   text-align: left;
 }
 
-#iqaakodxvd .gt_center {
+#ocvvbjzcwy .gt_center {
   text-align: center;
 }
 
-#iqaakodxvd .gt_right {
+#ocvvbjzcwy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#iqaakodxvd .gt_font_normal {
+#ocvvbjzcwy .gt_font_normal {
   font-weight: normal;
 }
 
-#iqaakodxvd .gt_font_bold {
+#ocvvbjzcwy .gt_font_bold {
   font-weight: bold;
 }
 
-#iqaakodxvd .gt_font_italic {
+#ocvvbjzcwy .gt_font_italic {
   font-style: italic;
 }
 
-#iqaakodxvd .gt_super {
+#ocvvbjzcwy .gt_super {
   font-size: 65%;
 }
 
-#iqaakodxvd .gt_footnote_marks {
+#ocvvbjzcwy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#iqaakodxvd .gt_asterisk {
+#ocvvbjzcwy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#iqaakodxvd .gt_indent_1 {
+#ocvvbjzcwy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#iqaakodxvd .gt_indent_2 {
+#ocvvbjzcwy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#iqaakodxvd .gt_indent_3 {
+#ocvvbjzcwy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#iqaakodxvd .gt_indent_4 {
+#ocvvbjzcwy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#iqaakodxvd .gt_indent_5 {
+#ocvvbjzcwy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -751,7 +4157,7 @@ font-style: inherit;">"**Fonte**: Gapminder"</span>))</span></code></pre></div>
 <ul>
 <li><p>Facilita a construção de tabela e melhor comunicação dos dados.</p></li>
 <li><p>Possibilia a reprodução rápida e prática da tabela através da reutilização e adaptação dos códigos usadas na construção por outros membros do time.</p></li>
-<li><p>Melhora a consistência na apresentação de dados reduzindo os riscos de erros de digitação entre outras inconsistências.</p></li>
+<li><p>Melhora a consistência na apresentação de dados reduzindo os riscos de erros de digitação, entre outras inconsistências.</p></li>
 </ul>
 <p>Vídeo tema para este post</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/LBOkK8cH8ao?si=TFUS3f0gfqnrNUDy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
@@ -787,7 +4193,7 @@ Iannone, Richard, Joe Cheng, Barret Schloerke, Ellis Hughes, Alexandra Lauer, an
 <li>Por se tratar de uma ferramenta gráfica, facilita identificar uma relação significativa sob diversos pontos de vista entre o efeito e suas possíveis causas <span class="citation" data-cites="werkema2021">Werkema (2021)</span> .</li>
 <li>Conforme <span class="citation" data-cites="kume1987">Kume (1987)</span> construir um gráfico de causa e efeito que seja útil exige esforço, treinamento da equipe e tempo. Pessoas que tem sucesso na solução de problemas de controle de qualidade são aqueles bem sucedidas na construção de diagramas de causa e efeito úteis.</li>
 </ul>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/diagrama_causa_efeito.png" class="img-fluid figure-img"></p>
 <figcaption>Figura - Diagrama de causa e efeito</figcaption>
@@ -975,7 +4381,7 @@ Shatz, Itamar. 2024. <span>“The Curse of Knowledge: A Difficulty in Understand
 Werkema, Cristina. 2021. <em>Métodos PDCA e Demaic e Suas Ferramentas Analíticas</em>. 1ª edição. GEN Atlas.
 </div>
 </div></section></div> ]]></description>
-  <category>Modelos</category>
+  <category>Demanda</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/causeeffect.html</guid>
   <pubDate>Sun, 28 Jan 2024 03:00:00 GMT</pubDate>
   <media:content url="https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/diagrama_causa_efeito.png" medium="image" type="image/png" height="62" width="144"/>
@@ -985,6 +4391,7 @@ Werkema, Cristina. 2021. <em>Métodos PDCA e Demaic e Suas Ferramentas Analític
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
   <link>https://carvalhoribeiro.netlify.app/posts/resamples/resamples.html</link>
   <description><![CDATA[ 
+
 
 
 
@@ -998,34 +4405,34 @@ Werkema, Cristina. 2021. <em>Métodos PDCA e Demaic e Suas Ferramentas Analític
 </div>
 </div>
 </div>
-<section id="fa-1-o-que-é-isto" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-isto"> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></h3>
+<section id="o-que-é-isto" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-isto"> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></h3>
 <ul>
 <li>É a separação de um conjunto de dados em porções as quais serão usadas para diferentes etapas do modelo.</li>
 <li>A separação de um conjunto de dados em amostra de treino e teste é padrão na construção de modelos de machine learning e deep learning</li>
 </ul>
 </section>
-<section id="fa-2-qual-é-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-qual-é-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></h3>
+<section id="qual-é-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-é-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></h3>
 <ul>
 <li>Melhorar a acuracidade dos modelos é um dos principais objetivos uma vez que alguns modelos se adaptam muito rapidamente aos padrões dos dados de treino(decoram) e se estes forem usados para teste podem ter a acuracidade comprometida.</li>
 <li>As técnicas de reamostragem auxiliam no equilibro entre <code>bias</code> e <code>variance</code></li>
 </ul>
 </section>
-<section id="fa-3-de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></h3>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></h3>
 <ul>
 <li>Melhorar o desempenho e acuracidade dos modelos.</li>
 </ul>
 </section>
-<section id="fa-4-como-fazer-isto" class="level3">
-<h3 class="anchored" data-anchor-id="fa-4-como-fazer-isto"> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></h3>
+<section id="como-fazer-isto" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer-isto"> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></h3>
 <p><strong>Pacotes</strong></p>
 <p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a>,<a href="https://github.com/business-science/tidyquant" target="_blank">tidyquant</a> e <a href="https://github.com/joshuaulrich/quantmod" target="_blank">quantmod</a></p>
 <p><strong>Dados</strong></p>
 <p>Foram usados dados do conjunto <code>ames housing</code>,<code>DGS10</code>e<code>EWZ</code>como exemplo. Todos eles são possíveis acessar através dos códigos descritos abaixo.</p>
 <p><strong>Etapa do projeto</strong></p>
-<p><img src="https://carvalhoribeiro.netlify.app/posts/resamples/resample_flowchart.png" class="quarto-discovered-preview-image img-fluid" width="1200"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/resamples/resample_flowchart.png" class="img-fluid" width="1200"></p>
 <p><strong>Código reproduzível</strong></p>
 <div class="cell">
 <div class="code-with-filename">
@@ -1395,14 +4802,14 @@ font-style: inherit;">2</span>]]) </span></code></pre></div>
 </div>
 </div>
 </section>
-<section id="fa-5-quem-é-o-consumidor" class="level3">
-<h3 class="anchored" data-anchor-id="fa-5-quem-é-o-consumidor"> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></h3>
+<section id="quem-é-o-consumidor" class="level3">
+<h3 class="anchored" data-anchor-id="quem-é-o-consumidor"> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></h3>
 <ul>
 <li>As amostras e reamostragens serão usadas durante a etapa de construção, ajuste e validação de modelos</li>
 </ul>
 </section>
-<section id="fa-6-qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></h3>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoamento das técnicas separação entre dados de treino, teste, validação e reamostragem mais adequados para cada caso.</p></li>
 <li><p>Facilitar o trabalho e melhorar o processo para o grupo responsável pelas próximas etapas no projeto.</p></li>
@@ -1426,6 +4833,7 @@ font-style: inherit;">2</span>]]) </span></code></pre></div>
 
 
 
+
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1436,33 +4844,33 @@ font-style: inherit;">2</span>]]) </span></code></pre></div>
 </div>
 </div>
 </div>
-<section id="fa-1-o-que-é-isto" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-isto"> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></h3>
+<section id="o-que-é-isto" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-isto"> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></h3>
 <ul>
 <li>Como fazer relatório técnico e científico usando <code>Quarto</code> e <code>reveljs</code> para publicações no formado de apresentações de slides.</li>
 </ul>
 </section>
-<section id="fa-2-qual-é-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-qual-é-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></h3>
+<section id="qual-é-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-é-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></h3>
 <ul>
 <li>Facilitar a comunicação de experimentos feitos por pesquisadores ou melhoristas de processos.</li>
 </ul>
 </section>
-<section id="fa-3-de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></h3>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></h3>
 <ul>
 <li>Desenvolver pesquisas que possas ser reproduzidas por outros pesquisadores.</li>
 <li>Direcionar mais esforços para o desenvolvimento do conteúdo da pesquisa e menos para ferramentas de apresentação.</li>
 </ul>
 </section>
-<section id="fa-4-como-fazer-isto" class="level3">
-<h3 class="anchored" data-anchor-id="fa-4-como-fazer-isto"> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></h3>
+<section id="como-fazer-isto" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer-isto"> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></h3>
 <p><strong>Pacotes</strong></p>
 <p>Para reproduzir o código apresentado neste exercício, os seguintes pacotes são necessário: <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a>, <a href="https://github.com/strengejacke/sjPlot/" target="_blank">sjplot</a>, <a href="https://github.com/rstudio/gt" target="_blank">gt</a>, <a href="https://github.com/jthomasmock/gtExtras" target="_blank">gtExtras</a>, e <a href="https://github.com/pablo14/funModeling" target="_blank">funModeling</a></p>
 <p><strong>Dados</strong></p>
 <p>O conjunto de dados que será usado aqui é o gapminder disponível no pacote <a href="https://www.rdocumentation.org/packages/gapminder/versions/0.3.0" target="_blank">gapminder</a> no R e pode ser acessado via código <code>install.package("gapminder)</code></p>
 <p><strong>Time line das ferramentas disponíveis ao longo do tempo</strong></p>
-<p><img src="https://carvalhoribeiro.netlify.app/posts/presentation_reveljs/research_communication_flow.png" class="quarto-discovered-preview-image img-fluid" width="1200"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/presentation_reveljs/research_communication_flow.png" class="img-fluid" width="1200"></p>
 <p><strong>Código reproduzível</strong></p>
 <p>O YML file é o cabeçalho do documento onde são inseridos o título, subtítulo entre outros detalhes do documento como por exemplo as configurações globais que serão reproduzidas nas demais partes do documento.</p>
 <div class="cell">
@@ -1952,15 +5360,15 @@ font-style: inherit;">tab_model</span>(mdl_mtcars)</span></code></pre></div>
 </div>
 </div>
 </section>
-<section id="fa-5-quem-é-o-consumidor" class="level3">
-<h3 class="anchored" data-anchor-id="fa-5-quem-é-o-consumidor"> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></h3>
+<section id="quem-é-o-consumidor" class="level3">
+<h3 class="anchored" data-anchor-id="quem-é-o-consumidor"> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></h3>
 <ul>
 <li><p>Pesquisadores e profissionais que precisam comunicar suas pesquisas e experimentos.</p></li>
 <li><p>Melhoristas de processo que precisam de documentos reproduzíveis em seus projetos.</p></li>
 </ul>
 </section>
-<section id="fa-6-qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></h3>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoar habilidades na comunicação dos resultados dos experimentos..</p></li>
 <li><p>Facilitar a comunicação entre pesquisadores. Tidyverse usa design for humans <code>%\&gt;%</code> significa <code>e então or and then</code>.</p></li>
@@ -1984,6 +5392,7 @@ font-style: inherit;">tab_model</span>(mdl_mtcars)</span></code></pre></div>
 
 
 
+
 <div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -1994,16 +5403,16 @@ font-style: inherit;">tab_model</span>(mdl_mtcars)</span></code></pre></div>
 </div>
 </div>
 </div>
-<section id="fa-1-o-que-é-isto" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-isto"> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></h3>
+<section id="o-que-é-isto" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-isto"> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></h3>
 <ul>
 <li>Decision tree models são modelos árvore de decisão baseadas em instruções <strong>if-then</strong>/<strong>e se</strong> utilizando os dados preditores. <span class="citation" data-cites="kuhn2013">@kuhn2013</span>, chap 8</li>
 <li>Exemplo: if temperatura_corporal &gt;= 38 and dor_no_corpo = SIM then doente = SIM else doente = NAO</li>
 <li>O modelo que iremos usar é o rpart também conhecido por particionamento recursivo.</li>
 </ul>
 </section>
-<section id="fa-2-qual-é-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-qual-é-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></h3>
+<section id="qual-é-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-é-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></h3>
 <ul>
 <li>Prever a probabilidade de um paciente ter diabetes com base em medidas de diagnóstico incluídas no conjunto de dados.</li>
 <li>Todos os pacientes são mulheres de no mínimo 21 anos de idade e descendencia de Indios Pima</li>
@@ -2011,14 +5420,14 @@ font-style: inherit;">tab_model</span>(mdl_mtcars)</span></code></pre></div>
 <li>Variáveis independentes incluem o número de gestações, massa(IMC), nível de insulina, idade, espessura da pele entre outras.</li>
 </ul>
 </section>
-<section id="fa-3-de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></h3>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></h3>
 <ul>
 <li>Necessidade de praticar a construção de modelos machine learning usando o framework tidymodels.</li>
 </ul>
 </section>
-<section id="fa-4-como-fazer-isto" class="level3">
-<h3 class="anchored" data-anchor-id="fa-4-como-fazer-isto"> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></h3>
+<section id="como-fazer-isto" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer-isto"> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></h3>
 <p><strong>Pacotes</strong></p>
 <p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a></p>
 <p><strong>Dados</strong></p>
@@ -2048,7 +5457,7 @@ Clique aqui para mostrar dados complementares sobre Pima Indian Diabetes
 </div>
 </div>
 <p><strong>Fluxo de trabalho</strong></p>
-<p><img src="https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/tidymodels_flowchart.png" class="quarto-discovered-preview-image img-fluid" width="1200"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/tidymodels_flowchart.png" class="img-fluid" width="1200"></p>
 <p><strong>Código reproduzível</strong></p>
 <div class="cell">
 <div class="code-with-filename">
@@ -2514,14 +5923,14 @@ font-style: inherit;">vip</span>()</span></code></pre></div>
 </div>
 </div>
 </section>
-<section id="fa-5-quem-é-o-consumidor" class="level3">
-<h3 class="anchored" data-anchor-id="fa-5-quem-é-o-consumidor"> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></h3>
+<section id="quem-é-o-consumidor" class="level3">
+<h3 class="anchored" data-anchor-id="quem-é-o-consumidor"> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></h3>
 <ul>
 <li>Repositório de documento criados para praticar o desenvolvimento de modelos de previsão usando tidymodels.</li>
 </ul>
 </section>
-<section id="fa-6-qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></h3>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoamento das técnicas de construção de modelos usando tidymodels.</p></li>
 <li><p>Criação de modelo de previsão que pode ser melhorado e aproveitado projetos futuros.</p></li>
@@ -2545,75 +5954,74 @@ font-style: inherit;">vip</span>()</span></code></pre></div>
 
 
 
-<div class="callout-tip callout callout-style-simple">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Vídeo tema para este post em <a href="https://youtu.be/F0YbmZuC2BM" target="_blank">Como comunicar dados em artigos técnicos no R - Quarto</a></p>
-</div>
-</div>
-</div>
-<section id="fa-1-o-que-é-comunicação-de-dados" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-comunicação-de-dados"> <span style="color: #5AC8BE ;"><strong>O que é comunicação de dados</strong></span></h3>
+
+<section id="o-que-é-comunicação-de-dados" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-comunicação-de-dados"> <span style="color: #5AC8BE ;"><strong>O que é comunicação de dados</strong></span></h3>
 <ul>
 <li><p>Em um contexto mais geral, seria o processo relativo a transação de dados e ou informações entre 2 ou mais agentes.</p></li>
 <li><p>Em um contexto mais específico que será tratado nesse post é a demonstração de resultado técnico ou experimento em documentos(e.g.&nbsp;dossiê, poster scientific, blog, livro etc)</p></li>
 <li><p>Muito mais do que um documento, são ideias.</p></li>
 </ul>
 </section>
-<section id="fa-2-qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
 <li><p>Dar suporte para ação adequada/eficiente em situações específicas usando sinais que podem ser visuais como escrita, fórmulas, gráficos e código reproduzível.</p></li>
 <li><p>Facilitar a aplicação do conceito <strong><em>techinical writing</em></strong> , facilitar a compreenção e por consequencia a busca por melhorias.</p></li>
 </ul>
 </section>
-<section id="fa-3-de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
 <li><p>Necessidade de compreenção, reprodução ou melhoria de um processo.</p></li>
 <li><p>Escasses de recursos vs necessidade de melhoria da produtividade global dos fatores.</p></li>
 <li><p>Necessidade de transparência, credibilidade e consistência.</p></li>
 </ul>
 <div id="fig-tables" class="quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/interstate.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Modelo de rodovidas interestaduais nos Estados Unidos iniciado em 1919 e finalizado 1995.</figcaption><p></p>
+<figcaption>Modelo de rodovidas interestaduais nos Estados Unidos iniciado em 1919 e finalizado 1995.</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/levittown.jpg" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Modelo de suburbio 1947-1951 Levittown Long Island Estados Unidos, modelo que está sendo usado até 2022.</figcaption><p></p>
+<figcaption>Modelo de suburbio 1947-1951 Levittown Long Island Estados Unidos, modelo que está sendo usado até 2022.</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figura&nbsp;1: Exemplo de ações implementadas através do uso de reprodutibilidade de experimentos e ideias.</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;1: Exemplo de ações implementadas através do uso de reprodutibilidade de experimentos e ideias.
+</figcaption>
 </figure>
 </div>
 </section>
-<section id="fa-4-como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <ul>
 <li><strong>Ferramenta:</strong> Quarto, rmarkdown, jupyter notebook, word, excel.</li>
 </ul>
 <div id="fig-communication" class="quarto-layout-panel">
-<figure class="figure">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/communication.png" class="img-fluid figure-img" width="1350"></p>
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-communication-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/communication.png" class="img-fluid figure-img" width="1350">
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figura&nbsp;2: Processo de comunicação de dados técnicos</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-communication-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;2: Processo de comunicação de dados técnicos
+</figcaption>
 </figure>
 </div>
 <ul>
@@ -2622,34 +6030,42 @@ font-style: inherit;">vip</span>()</span></code></pre></div>
 <li><p>Para instalar o quarto pub clique no link acima e siga os procedimentos(next&gt;next&gt;next). Após a instalação a opção criar um novo documento quarto vai aparecer automaticamente no RStudio.</p></li>
 </ul>
 <div id="fig-new_quarto" class="quarto-layout-panel">
-<figure class="figure">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-new_quarto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 65.0%;justify-content: center;">
+<div class="quarto-layout-cell" style="flex-basis: 65.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/new_quarto.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Para criar um novo documento usando o quarto</figcaption><p></p>
+<figcaption>Para criar um novo documento usando o quarto</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 35.0%;justify-content: center;">
-<div id="fig-new_quarto_2" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/new_quarto_2.png" class="img-fluid figure-img" data-ref-parent="fig-new_quarto"></p>
-<p></p><figcaption class="figure-caption">(a) Para escolher o formato que o documento será gerado. No caso de escolher PDF será necessário instalar o pacote tinytex (demora um pouco)</figcaption><p></p>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-new_quarto" style="flex-basis: 35.0%;justify-content: flex-start;">
+<div id="fig-new_quarto_2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-new_quarto_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://carvalhoribeiro.netlify.app/posts/comm-stats/new_quarto_2.png" class="img-fluid figure-img" data-ref-parent="fig-new_quarto">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-new_quarto_2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Para escolher o formato que o documento será gerado. No caso de escolher PDF será necessário instalar o pacote tinytex (demora um pouco)
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figura&nbsp;3: Gerando novo documento usando quarto_pub</figcaption><p></p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-new_quarto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;3: Gerando novo documento usando quarto_pub
+</figcaption>
 </figure>
 </div>
 <ul>
 <li>Código descrito no vídeo <a href="https://raw.githubusercontent.com/factorialmap/analise_exploratoria/main/comm_teste.qmd" target="_blank" title="Você precisará do quarto para editar e gerar o documento">aqui</a></li>
 </ul>
 </section>
-<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
 <li>Publicação intranet</li>
 <li>Github</li>
@@ -2661,13 +6077,15 @@ font-style: inherit;">vip</span>()</span></code></pre></div>
 <li>Blog/Books/Poster</li>
 </ul>
 </section>
-<section id="fa-6-qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
 <li><p>Melhoria da articulação permitindo expor com mais clareza os detalhes técnicos e os benefícios a respeito da ideia proposta.</p></li>
 <li><p>Reutilização da ideia original (ao invés de partir do zero) mas incrementando melhorias, reduzindo tempo de implementação e se livrando de obstaculos ao longo do caminho consequentemente poupando recursos o que remete a continuidade e consistência.</p></li>
 <li><p>Incremento de qualidade e acessibilidade ao conheicmento, bens ou serviços resultando da melhoria das padrão de vida pessoas.</p></li>
 </ul>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F0YbmZuC2BM?si=RKIAy2dLDf-tuS00" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
 
 
 </section>
@@ -2686,7 +6104,8 @@ font-style: inherit;">vip</span>()</span></code></pre></div>
 
 
 
-<div class="callout-tip callout callout-style-simple">
+
+<div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -2696,8 +6115,8 @@ font-style: inherit;">vip</span>()</span></code></pre></div>
 </div>
 </div>
 </div>
-<section id="fa-1-o-que-é-um-gráfico" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-um-gráfico"> <span style="color: #5AC8BE ;"><strong>O que é um gráfico</strong></span></h3>
+<section id="o-que-é-um-gráfico" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-um-gráfico"> <span style="color: #5AC8BE ;"><strong>O que é um gráfico</strong></span></h3>
 <ul>
 <li><p>Um meio eficiente de representação e comunicação de dados e pode conter uma quantidade de significativa de informação.</p></li>
 <li><p>Formato visual de representação de dados que é interpretado em grande velocidade pelo cerebro e que permite ações ou decisões mais rápidas.</p></li>
@@ -2705,26 +6124,26 @@ font-style: inherit;">vip</span>()</span></code></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/chart_types.png" class="img-fluid figure-img" width="1390"></p>
-<p></p><figcaption class="figure-caption">Alguns tipos de gráficos</figcaption><p></p>
+<figcaption>Alguns tipos de gráficos</figcaption>
 </figure>
 </div>
 </section>
-<section id="fa-2-qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
 <li><p>Facilitar a identificação de padrões, tendências e discrepancias nos dados transformando em informações.</p></li>
 <li><p>Permitir ações imediatas ou gerar informação complementar para que ações possam ser tomadas posteriormente.</p></li>
 </ul>
 </section>
-<section id="fa-3-de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
 <li><p>Necessidade de representação de dados que potencialize o desenvolvimento de estratégias e ações.</p></li>
 <li><p>Necessidade de algo que fortaleça o argumento em um estudo ou pesquisa.</p></li>
 </ul>
 </section>
-<section id="fa-4-como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://github.com/aphalo/ggpmisc/" target="_blank">ggpmisc</a>, <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a>, <a href="https://luca-scr.github.io/qcc/articles/qcc.html" target="_blank">qcc</a>, <a href="http://rpkgs.datanovia.com/ggpubr/index.html" target="_blank">ggpubr</a>, <a href="http://rcontrolcharts.com/" target="_blank">ggQC</a>, <a href="https://www.quantmod.com/" target="_blank">quantmod</a> e <a href="https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html" target="_blank">ggalluvial</a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
@@ -2811,7 +6230,11 @@ font-style: inherit;">stat_compare_means</span>(<span class="at" style="color: #
 background-color: null;
 font-style: inherit;">comparisons =</span> group_compar1)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Plotando estatístics no corpo do gráfico.</p>
@@ -2862,7 +6285,11 @@ font-style: inherit;">table.theme =</span> <span class="fu" style="color: #4758A
 background-color: null;
 font-style: inherit;">ttheme_gtdark</span>())</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Plotando fórmulas no corpo do gráfico.</p>
@@ -2905,7 +6332,11 @@ font-style: inherit;">label.x =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"right"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Plotando dados no corpo do gráfico.</p>
@@ -2994,7 +6425,11 @@ font-style: inherit;">y=</span>y, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">label =</span> tb))</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Gráfico de cause efeito.</p>
@@ -3038,15 +6473,20 @@ background-color: null;
 font-style: inherit;">"efeito"</span></span>
 <span id="cb6-8">)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Modelo para auxiliar na escolha de gráfico de controle.</p>
-<div class="cell" data-warning="false" data-fig-width="6.5">
+<div class="cell" data-warning="false" data-fig-width="6.5" data-layout-align="default">
 <div class="cell-output-display">
 <div>
-<p>
-</p><pre class="mermaid" data-tooltip-selector="#mermaid-tooltip-1">flowchart LR
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
     A[dados] --&gt;B{qual tipo \n de dados?}
     B --&gt;C[Contínuo]
     B --&gt;D[Discreta/\nAtributos]
@@ -3062,10 +6502,8 @@ font-style: inherit;">"efeito"</span></span>
     K--&gt;N[U Contagem de \ndefeitos por UN]
     K--&gt;O[P Proporção de \ndefeitos por UN]
 </pre>
-<div id="mermaid-tooltip-1" class="mermaidTooltip">
-
 </div>
-<p></p>
+<p></p></figure><p></p>
 </div>
 </div>
 </div>
@@ -3097,7 +6535,11 @@ font-style: inherit;">"xbar.one"</span>,</span>
 background-color: null;
 font-style: inherit;">rules =</span> shewhart.rules)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 11
@@ -3266,7 +6708,11 @@ font-style: inherit;">"middle"</span>,</span>
 background-color: null;
 font-style: inherit;">label =</span>pareto_defeito )</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="960"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Gráfico de sentimento candlestick chart.</p>
@@ -3287,7 +6733,11 @@ font-style: inherit;">"FRED"</span>)</span></code></pre></div>
 background-color: null;
 font-style: inherit;">chart_Series</span>(MORTGAGE30US)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3305,7 +6755,11 @@ font-style: inherit;">"FRED"</span>)</span></code></pre></div>
 background-color: null;
 font-style: inherit;">chart_Series</span>(VIXCLS)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3323,7 +6777,11 @@ font-style: inherit;">"FRED"</span>)</span></code></pre></div>
 background-color: null;
 font-style: inherit;">chart_Series</span>(DGS10)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 <div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -3337,7 +6795,11 @@ font-style: inherit;">"VALE"</span>)</span></code></pre></div>
 background-color: null;
 font-style: inherit;">chartSeries</span>(VALE)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Gráfico de análise multidimensional Alluvial.</p>
@@ -3360,7 +6822,11 @@ font-style: inherit;">5</span>) </span>
 background-color: null;
 font-style: inherit;">add_marginal_histograms</span>(plot_mtcars, mtcars)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Gráfico PCA</p>
@@ -3408,12 +6874,16 @@ font-style: inherit;">addEllipses =</span> <span class="cn" style="color: #8f590
 background-color: null;
 font-style: inherit;">TRUE</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
 <li><p>Etapas de analise de resultados, validação, modelagem ou comunicação.</p></li>
 <li><p>Inclusão em documento técnico reproduzível.</p></li>
@@ -3421,8 +6891,8 @@ font-style: inherit;">TRUE</span>)</span></code></pre></div>
 <li><p>Documentação ou treinamento de pessoal.</p></li>
 </ul>
 </section>
-<section id="fa-6-qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoar as técnicas de representação, exploração e comunicação de estudos técnicos.</p></li>
 <li><p>Facilitar o entendimento das informações contidas nos documentos técnicos poupando tempo e dinheiro, permitindo a replicação e experimentos e consequentemente busca por melhoria.</p></li>
@@ -3433,7 +6903,7 @@ font-style: inherit;">TRUE</span>)</span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>Exploração</category>
+  <category>Exploração de dados</category>
   <category>Comunicação</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats.html</guid>
   <pubDate>Wed, 28 Sep 2022 03:00:00 GMT</pubDate>
@@ -7180,7 +10650,8 @@ Slutsky, David. 2014. <span>“The Use of Tables.”</span> <em>Journal of Wrist
 
 
 
-<div class="callout-tip callout callout-style-simple">
+
+<div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -7190,8 +10661,8 @@ Slutsky, David. 2014. <span>“The Use of Tables.”</span> <em>Journal of Wrist
 </div>
 </div>
 </div>
-<section id="fa-1-o-que-são-padrões-em-dados" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-são-padrões-em-dados"> <span style="color: #5AC8BE ;"><strong>O que são padrões em dados</strong></span></h3>
+<section id="o-que-são-padrões-em-dados" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-são-padrões-em-dados"> <span style="color: #5AC8BE ;"><strong>O que são padrões em dados</strong></span></h3>
 <ul>
 <li><p>Padrões são fenômenos que se repetem de forma regular com base em alguma regra ou em condições definidas.</p></li>
 <li><p>Padrões nos permite fazer comparações e com isso deu origem a descobertas e invenções as quais são resultados da habilidade humanda de reconhecer padrões.</p></li>
@@ -7201,19 +10672,19 @@ Slutsky, David. 2014. <span>“The Use of Tables.”</span> <em>Journal of Wrist
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/linear_b.png" class="img-fluid figure-img" width="1390"></p>
-<p></p><figcaption class="figure-caption">Tabuleta de barro micenica de 1200 antes de Cristo com informações sobre a distrubição de couro bovino, suíno e veado aos sapateiros - PY Ub 1318</figcaption><p></p>
+<figcaption>Tabuleta de barro micenica de 1200 antes de Cristo com informações sobre a distrubição de couro bovino, suíno e veado aos sapateiros - PY Ub 1318</figcaption>
 </figure>
 </div>
 </section>
-<section id="fa-2-qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
 <li><p>Permitir que possamos fazer previsões e ou explicar melhor o fenômeno.</p></li>
 <li><p>Encontrar dados relevantes para que consigamos replicar esses fenomenos para construir coisas que melhorem e simplifiquem nossa vida</p></li>
 </ul>
 </section>
-<section id="fa-3-de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
 <li><p>Da necessidade de investigar as características com visão ampla sobre diversos pontos de vista PDCA.</p></li>
 <li><p>No exemplo utilizado <strong>a)Quem eram as vítimas ?</strong> <strong>b)Em que período ele as intoxicava ?</strong> <strong>c)Em qual período de tempo ?</strong></p></li>
@@ -7221,12 +10692,12 @@ Slutsky, David. 2014. <span>“The Use of Tables.”</span> <em>Journal of Wrist
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pdca_2.png" class="img-fluid figure-img" width="1390"></p>
-<p></p><figcaption class="figure-caption">PDCA - Etapa 2</figcaption><p></p>
+<figcaption>PDCA - Etapa 2</figcaption>
 </figure>
 </div>
 </section>
-<section id="fa-4-como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://exts.ggplot2.tidyverse.org/ggExtra.html/" target="_blank">ggExtra</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a><br>
 </p>
 <p>O dados podem ser baixados no github de <a href="https://github.com/dspiegel29/ArtofStatistics" target="_blank">David Spiegelhalter</a></p>
@@ -7360,7 +10831,7 @@ font-style: inherit;">"histogram"</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -7427,38 +10898,38 @@ font-style: inherit;">1</span>))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
 <li>A próxima etapa pra quem usa o PDCA é a busca pelas causas fundamentais do problema.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pdca.png" class="img-fluid figure-img" width="1390"></p>
-<p></p><figcaption class="figure-caption">PDCA - Etapa 3</figcaption><p></p>
+<figcaption>PDCA - Etapa 3</figcaption>
 </figure>
 </div>
 </section>
-<section id="fa-6-qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoar as técnicas de análise de fenômeno encurtando o tempo para explicação ou solução de algum problema</p></li>
 <li><p>Facilitar a replicação do fenômeno e consequentemente a comunicação.</p></li>
 <li><p>Melhorar as chances de sucesso na solução de problemas ou fazer qualquer coisa bem.</p></li>
 </ul>
 </section>
-<section id="fa-7-referência" class="level3">
-<h3 class="anchored" data-anchor-id="fa-7-referência"> <span style="color: #5AC8BE ;"><strong>Referência</strong></span></h3>
+<section id="referência" class="level3">
+<h3 class="anchored" data-anchor-id="referência"> <span style="color: #5AC8BE ;"><strong>Referência</strong></span></h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/art_of_statistic.jpg" class="img-fluid figure-img" width="650"></p>
-<p></p><figcaption class="figure-caption">A arte da estatística: Como aprender a partir de dados por David Spiegelhalter, George Schlesinger</figcaption><p></p>
+<figcaption>A arte da estatística: Como aprender a partir de dados por David Spiegelhalter, George Schlesinger</figcaption>
 </figure>
 </div>
 
@@ -7466,7 +10937,7 @@ font-style: inherit;">1</span>))</span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>Exploração</category>
+  <category>Exploração de dados</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition.html</guid>
   <pubDate>Sun, 28 Aug 2022 03:00:00 GMT</pubDate>
   <media:content url="https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition.png" medium="image" type="image/png" height="116" width="144"/>
@@ -7479,7 +10950,8 @@ font-style: inherit;">1</span>))</span></code></pre></div>
 
 
 
-<div class="callout-tip callout callout-style-simple">
+
+<div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -7489,26 +10961,26 @@ font-style: inherit;">1</span>))</span></code></pre></div>
 </div>
 </div>
 </div>
-<section id="fa-1-o-que-é-histograma" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-histograma"> <span style="color: #5AC8BE ;"><strong>O que é histograma</strong></span></h3>
+<section id="o-que-é-histograma" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-histograma"> <span style="color: #5AC8BE ;"><strong>O que é histograma</strong></span></h3>
 <ul>
 <li>Gráfico que mostra como os dados coletados (amostra) estão distribuidos. Também mostra a média e como esses dados estão distante da média (desvio padrão e variância).</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/histogram/histogram.png" class="img-fluid figure-img" width="1390"></p>
-<p></p><figcaption class="figure-caption">Histograma</figcaption><p></p>
+<figcaption>Histograma</figcaption>
 </figure>
 </div>
 </section>
-<section id="fa-2-qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
 <li>Obter uma resposta racional que auxilie na decisão (pre processamento, estudo do outlier, escolha do modelo mais adequado, identificação distorções na realidade).</li>
 </ul>
 </section>
-<section id="fa-3-de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <p><strong>De questões como:</strong></p>
 <ul>
 <li><p>Como está a distribuição de renda da população ?</p></li>
@@ -7516,12 +10988,12 @@ font-style: inherit;">1</span>))</span></code></pre></div>
 <li><p>Como está a distribuição de altura das pessoas em determinada região?</p></li>
 <li><p>Será que se eu separar em grupos eu consigo atender melhor as necessidades ?</p></li>
 </ul>
-<div class="callout-tip callout callout-style-simple callout-captioned">
+<div class="callout callout-style-simple callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Clique aqui pra abrir os detalhes
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -7540,12 +11012,12 @@ Clique aqui pra abrir os detalhes
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/histogram/anova.png" class="img-fluid figure-img" width="1390"></p>
-<p></p><figcaption class="figure-caption">Histograma base para Anova</figcaption><p></p>
+<figcaption>Histograma base para Anova</figcaption>
 </figure>
 </div>
 </section>
-<section id="fa-4-como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://rcompanion.org/handbook/" target="_blank">rcompanion</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a>, <a href="http://rpkgs.datanovia.com/ggpubr/index.html" target="_blank">ggpubr</a>, <a href="http://pablo14.github.io/funModeling/articles/funModeling_quickstart.html" target="_blank">funmodeling</a>,<a href="https://cran.r-project.org/web/packages/skimr/vignettes/skimr.html" target="_blank">skimr</a><br>
 </p>
 <p>Gráfico usando rcompanion</p>
@@ -7590,7 +11062,11 @@ font-style: inherit;">plotNormalHistogram</span>(iris<span class="sc" style="col
 background-color: null;
 font-style: inherit;">$</span>Sepal.Length)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/histogram/histogram_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/histogram/histogram_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Gráfico usando funModeling</p>
@@ -7606,7 +11082,11 @@ font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">plot_num</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/histogram/histogram_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/histogram/histogram_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Gráfico usando skimr</p>
@@ -7630,7 +11110,7 @@ font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">skim</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <caption>Data summary</caption>
 <tbody>
 <tr class="odd">
@@ -7672,7 +11152,7 @@ font-style: inherit;">skim</span>()</span></code></pre></div>
 </tbody>
 </table>
 <p><strong>Variable type: factor</strong></p>
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 15%">
 <col style="width: 10%">
@@ -8015,7 +11495,7 @@ font-style: inherit;">skim</span>()</span></code></pre></div>
 </tbody>
 </table>
 <p><strong>Variable type: numeric</strong></p>
-<table class="table table-sm table-striped">
+<table class="table table-sm table-striped small">
 <colgroup>
 <col style="width: 16%">
 <col style="width: 8%">
@@ -8532,7 +12012,11 @@ font-style: inherit;">rug =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
 font-style: inherit;">TRUE</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/histogram/histogram_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/histogram/histogram_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Gráfico usando base raincloud</p>
@@ -8580,18 +12064,22 @@ font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">stat_halfeye</span>()</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/histogram/histogram_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/histogram/histogram_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
 <li>Vai para a etapa de pre processamento ou ajuste de coleta de dados.</li>
 </ul>
 </section>
-<section id="fa-6-qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoar a avalição preliminar dos dados através da análise de distribuição.</p></li>
 <li><p>Facilitar o reconhecimento de determinados padrões que poderão influenciar nas decisões.</p></li>
@@ -8602,7 +12090,7 @@ font-style: inherit;">stat_halfeye</span>()</span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>Exploração</category>
+  <category>Exploração de dados</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/histogram/histogram.html</guid>
   <pubDate>Sun, 21 Aug 2022 03:00:00 GMT</pubDate>
   <media:content url="https://carvalhoribeiro.netlify.app/posts/histogram/diametro_histogram.png" medium="image" type="image/png" height="131" width="144"/>
@@ -8615,7 +12103,8 @@ font-style: inherit;">stat_halfeye</span>()</span></code></pre></div>
 
 
 
-<div class="callout-tip callout callout-style-simple">
+
+<div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -8625,8 +12114,8 @@ font-style: inherit;">stat_halfeye</span>()</span></code></pre></div>
 </div>
 </div>
 </div>
-<section id="fa-1-o-que-é-importação-e-visualização-de-dados" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-importação-e-visualização-de-dados"> <span style="color: #5AC8BE ;"><strong>O que é importação e visualização de dados</strong></span></h3>
+<section id="o-que-é-importação-e-visualização-de-dados" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-importação-e-visualização-de-dados"> <span style="color: #5AC8BE ;"><strong>O que é importação e visualização de dados</strong></span></h3>
 <ul>
 <li><p>É a etapa onde é feita extração de dados e avaliação se os mesmos podem contribuir para a solução do problema a ser resolvido.</p></li>
 <li><p>A visualização é uma forma intuitiva de traçar relações possíveis entre os dados e o desfecho permitindo a geração de questões e levantamento de hipóteses.</p></li>
@@ -8634,13 +12123,13 @@ font-style: inherit;">stat_halfeye</span>()</span></code></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/data_import.png" class="img-fluid figure-img" width="1390"></p>
-<p></p><figcaption class="figure-caption">Processo de projeto kaizen</figcaption><p></p>
+<figcaption>Processo de projeto kaizen</figcaption>
 </figure>
 </div></li>
 </ul>
 </section>
-<section id="fa-2-qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
 <li><p>Disponibilizar recursos revelantes para solução dos problemas</p></li>
 <li><p>Filtrar dados relevantes dos não relevantes, entender a natureza dos dados se são realmente ruídos ou carecem de representação.</p></li>
@@ -8648,15 +12137,15 @@ font-style: inherit;">stat_halfeye</span>()</span></code></pre></div>
 <li><p>Gerar novas questões e hipóteses que poderão utilizar novos dados ou um resultado de interação entre os existentes.</p></li>
 </ul>
 </section>
-<section id="fa-3-de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
 <li><p>A extração e visualização dos dados vem da necessidade de encontrar variáveis que expliquem o fenômeno e ajudem a prever eventos futuros.</p></li>
 <li><p>Melhorar e estimular a geração de ideias através da interação entre os envolvidos.</p></li>
 </ul>
 </section>
-<section id="fa-4-como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a>, <a href="http://rpkgs.datanovia.com/ggpubr/index.html" target="_blank">ggpubr</a>, <a href="http://pablo14.github.io/funModeling/articles/funModeling_quickstart.html" target="_blank">funmodeling</a>, <a href="https://cran.r-project.org/web/packages/ggalluvial/vignettes/ggalluvial.html" target="_blank">ggalluvial</a> e <a href="https://cran.r-project.org/web/packages/visdat/vignettes/using_visdat.html" target="_blank">visdat</a><br>
 </p>
 <p>O dados podem ser baixados no <a href="https://www.kaggle.com/competitions/titanic/data" target="_blank">Kaggle titanic dataset</a></p>
@@ -8813,18 +12302,18 @@ font-style: inherit;">vis_dat</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/visdat-chart-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Gráfico Visdat - Características das variáveis</figcaption><p></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/visdat-chart-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<figcaption>Gráfico Visdat - Características das variáveis</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Como faço pra visualizar dados faltantes quando o conjunto for grande ?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
@@ -8874,8 +12363,8 @@ font-style: inherit;">theme_pubclean</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/correlation-chart-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Gráfico de correlação de Spearman</figcaption><p></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/correlation-chart-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<figcaption>Gráfico de correlação de Spearman</figcaption>
 </figure>
 </div>
 </div>
@@ -8911,7 +12400,7 @@ font-style: inherit;">0.5</span>)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -8954,7 +12443,7 @@ font-style: inherit;">~</span>sex)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -8997,7 +12486,7 @@ font-style: inherit;">~</span>pclass)</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -9082,7 +12571,7 @@ font-style: inherit;">"survived"</span>))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -9125,7 +12614,7 @@ font-style: inherit;">factor</span>(survived)))</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -9181,7 +12670,7 @@ font-style: inherit;">stat_compare_means</span>()</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -9246,15 +12735,15 @@ font-style: inherit;">desc</span>(n))</span></code></pre></div>
 </div>
 </div>
 </section>
-<section id="fa-5-pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="fa-5-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
 <li><p>A próxima etapa é comunicar os resultados junto aos membros do projeto sobre as relações encontradas permitindo a interção e levantamento de novas necessidades ou hipóteses.</p></li>
 <li><p>Posteriormente, vem as etapas de pré processamento, modelo, validação e submissão.</p></li>
 </ul>
 </section>
-<section id="fa-6-qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoar a técnica de observação e representação de dados.</p></li>
 <li><p>Facilitar a comunicação com os envolvidos no projeto.</p></li>
@@ -9265,7 +12754,7 @@ font-style: inherit;">desc</span>(n))</span></code></pre></div>
 </section>
 
  ]]></description>
-  <category>Exploração</category>
+  <category>Exploração de dados</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar.html</guid>
   <pubDate>Sun, 07 Aug 2022 03:00:00 GMT</pubDate>
   <media:content url="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/data_import.png" medium="image" type="image/png" height="74" width="144"/>
@@ -9278,7 +12767,8 @@ font-style: inherit;">desc</span>(n))</span></code></pre></div>
 
 
 
-<div class="callout-tip callout callout-style-simple">
+
+<div class="callout callout-style-simple callout-tip">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -9288,26 +12778,26 @@ font-style: inherit;">desc</span>(n))</span></code></pre></div>
 </div>
 </div>
 </div>
-<section id="fa-1-o-que-é-um-modelo-de-rede-neural" class="level3">
-<h3 class="anchored" data-anchor-id="fa-1-o-que-é-um-modelo-de-rede-neural"> <span style="color: #5AC8BE ;"><strong>O que é um modelo de rede neural</strong></span></h3>
+<section id="o-que-é-um-modelo-de-rede-neural" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-um-modelo-de-rede-neural"> <span style="color: #5AC8BE ;"><strong>O que é um modelo de rede neural</strong></span></h3>
 <ul>
 <li><p>Rede neural é uma técnica que usa nós interconectados ou neuronios em uma estrutura de camadas com o objetivo de resolver problemas de previsão.</p>
-<div class="panel-tabset">
+<div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">Rede neural regressão</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Rede neural Classificação</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neural_reg.png" class="img-fluid figure-img" alt="Rede Neural - Regressão" width="500"></p>
-<p></p><figcaption class="figure-caption">Rede Neural - Regressão</figcaption><p></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neural_reg.png" class="img-fluid figure-img" width="500"></p>
+<figcaption>Rede Neural - Regressão</figcaption>
 </figure>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neural_class.png" class="img-fluid figure-img" alt="Rede Neural - Classificação" width="500"></p>
-<p></p><figcaption class="figure-caption">Rede Neural - Classificação</figcaption><p></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neural_class.png" class="img-fluid figure-img" width="500"></p>
+<figcaption>Rede Neural - Classificação</figcaption>
 </figure>
 </div>
 </div>
@@ -9315,23 +12805,23 @@ font-style: inherit;">desc</span>(n))</span></code></pre></div>
 </div></li>
 </ul>
 </section>
-<section id="fa-2-qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="fa-2-qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
 <li><p>A técnica é muito utilizada na solução de problemas de classificação onde o resultado(desfecho) é uma classe (e.g.&nbsp;gato, cachorro, cavalo).</p></li>
 <li><p>Neste exemplo, nós usaremos como exemplo uma linha de produção com sensores que registram características como largura e comprimento da pétala e sepala dos três tipos de flores iris: <strong>setosa</strong>, <strong>versicolor</strong> e <strong>virgínica</strong>.</p></li>
 <li><p>Nosso objetivo é fazer um modelo de previsão o qual com base nessas características, consiga classificar cada tipo de flor e separá-las corretamente.</p></li>
 </ul>
 </section>
-<section id="fa-3-de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="fa-3-de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
 <li><p>Vem do uso de sistemas que utilizam visão computacional, processamento de linguagem natural em seu funcionamento como por exemplo veículos semi-autonomos, linhas de produção de veículos, controle de qualidade de autopeças entre outros.</p></li>
 <li><p>A primeira rede neural artificial foi implementada em 1958 por Frank Rosenblat e se chamava <strong>Perceptron</strong> e naquela época já se falava que era um embrião de um computador eletronico que seria capaz de andar, falar, ver, escrever e se reproduzir. <a href="https://www.nytimes.com/1958/07/13/archives/electronic-brain-teaches-itself.html" target="_blank">Materia New York Times</a></p></li>
 </ul>
 </section>
-<section id="fa-4-como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="fa-4-como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <p>Neste exemplo usaremos os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a>, <a href="https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html" target="_blank">janitor</a>, <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a>, <a href="https://cran.r-project.org/web/packages/nnet/index.html" target="_blank">nnet</a> e <a href="https://www.jstatsoft.org/article/view/v085i11" target="_blank">neuralnettools</a></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
@@ -9569,19 +13059,23 @@ font-style: inherit;">circle_col =</span> <span class="st" style="color: #20794D
 background-color: null;
 font-style: inherit;">"grey90"</span>)</span></code></pre></div>
 <div class="cell-output-display">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet_files/figure-html/plot-neural-net-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet_files/figure-html/plot-neural-net-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-<section id="fa-6-pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
 <li><p>Um modelos de previsão de classificação pode ser embarcado dentro do sistema de produção.</p></li>
 <li><p>O modelo que fizemos é bastante simples e serve apenas como base para aprendizado, como próximo passo o uso de validação cruzada (cross validation) pode ser uma excelente opção para complementar o que aprendemos aqui.</p></li>
 </ul>
 </section>
-<section id="fa-6-qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="fa-6-qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoar as técnicas de contrução de modelos e solução de problemas de classificação para que estes possam auxiliar na produtividade da industria de flores que usamos como exemplo.</p></li>
 <li><p>Facilitar o processo de classificação.</p></li>
@@ -9621,7 +13115,7 @@ font-style: inherit;">"grey90"</span>)</span></code></pre></div>
 <ul>
 <li><p>Tabela que facilita a visualização das previsões corretas e as erradas em modelos de classificação.</p></li>
 <li><p>Possibilita a interpretação dos resultados sobre diversos pontos de vista desde que tenhamos os <strong>valores reais e os valores previstos pelo modelo.</strong></p>
-<div class="img-fluid quarto-figure quarto-figure-center">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://carvalhoribeiro.netlify.app/posts/confusion-matrix/confusion_matrix.png" class="img-fluid figure-img" width="605"></p>
 <figcaption>Matriz de confusão</figcaption>
@@ -10125,7 +13619,7 @@ Clique aqui pra abrir os detalhes
 </section>
 
  ]]></description>
-  <category>Demanda</category>
+  <category>Demanda ou problema</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/welcome/</guid>
   <pubDate>Wed, 03 Aug 2022 03:00:00 GMT</pubDate>
 </item>
