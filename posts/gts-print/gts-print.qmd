@@ -1,0 +1,104 @@
+---
+title: "Impressão de tabelas em formatos pdf e html em Quarto documents"
+author: "Marcelo Carvalho dos Anjos"
+date: "2024-08-11"
+categories: [Comunicação]
+image: "fig-gts-theme.png"
+execute: 
+  warning: false
+  message: false
+---
+
+### {{< fa 1 >}} [**O que é a impressão de tabelas gtsummary**]{style="color: #5AC8BE ;"}
+
+-   É a etapa onde é gerado os documentos em diferentes formatos
+
+-   Existem diferentes pacotes auxiliares que são uteis na formatação da tabela durante a impressão em pdf e html.
+
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+
+-   Gerar a tabela no formato desejado com detalhes específicos definidos pelo usuário.
+
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+
+-   Necessidade de atender padrões exigidos por quem irá publicar o documento.
+
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
+
+1. Primeiramente crie um documento quarto usando o menu File>New File>Quarto document>.
+
+2. Em seguida, escolha o nome e formato de saída desejado, neste caso HTML.
+
+3. Após o documento criado, insira os códigos abaixo e clique em renderizar para testar os formatos de saída.
+
+```{r}
+#| label: documento
+#| message: false
+
+# packages ----------------------------------------------------------------
+
+library(tidyverse)
+library(gtsummary)
+library(quarto)
+
+data_iris <- iris %>% janitor::clean_names()
+
+#descriptive analysis
+gts_summary_iris <- 
+  data_iris %>% 
+  tbl_summary(by = species) %>% 
+  add_p() %>% 
+  add_stat_label() %>% 
+  modify_spanning_header(
+    all_stat_cols() ~ "**Iris Species**")
+
+```
+
+Este método irá gerar uma saída da tabela no formato gt.
+
+```{r}
+#as_gt 
+gts_summary_iris %>% as_gt()
+
+```
+
+Este método irá gerar uma saída da tabela no formato flex table muito parecida com a apresentada em tela.
+
+```{r}
+#flex table
+gts_summary_iris %>% as_flex_table()
+
+```
+
+Este método irá gerar uma saída da tabela no formato hux table.
+
+```{r}
+#huxtable
+gts_summary_iris %>% as_hux_table()
+
+```
+
+Este método irá gerar uma saída da tabela no formato xlsx (esta será salvo na pasta onde você gerar o documento)
+
+```{r}
+#xls
+gts_summary_iris %>%  as_hux_xlsx(
+  file = "table_1.xlsx")
+
+```
+
+### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+
+-   Relatórios reproduzíveis em quarto documents.
+
+-   Tabelas para análises e publicações futuras em projetos de pesquisa
+
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
+
+-   Facilita a construção de tabela e melhor comunicação dos dados.
+
+-   Possibilia a reprodução rápida e prática da tabela.
+
+-   Melhora a consistência na apresentação de dados.
+
+Vídeo tema para este post

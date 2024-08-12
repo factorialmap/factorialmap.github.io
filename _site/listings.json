@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/gts-print/gts-print.html",
       "/posts/gts-themes/gts-themes.html",
       "/posts/table-gt/table_gt.html",
       "/posts/cause-effect-diagram/causeeffect.html",
