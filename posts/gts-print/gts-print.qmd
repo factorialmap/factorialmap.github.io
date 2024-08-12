@@ -3,7 +3,7 @@ title: "Impressão de tabelas em formatos pdf e html em Quarto documents"
 author: "Marcelo Carvalho dos Anjos"
 date: "2024-08-11"
 categories: [Comunicação]
-image: "fig-gts-theme.png"
+image: "fig-gts-print.png"
 execute: 
   warning: false
   message: false
