@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marcelo Carvalho dos Anjos">
-<meta name="dcterms.date" content="2023-07-16">
+<meta name="dcterms.date" content="2024-08-15">
 
-<title>Comunicar trabalhos técnicos em apresentações no R com Quarto – Carvalho Ribeiro Blog</title>
+<title>Interpretando PCA Analáse de componentes principais – Carvalho Ribeiro Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -158,12 +158,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Conteúdo</h2>
    
   <ul>
-  <li><a href="#o-que-é-isto" id="toc-o-que-é-isto" class="nav-link active" data-scroll-target="#o-que-é-isto"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></a></li>
-  <li><a href="#qual-é-o-objetivo" id="toc-qual-é-o-objetivo" class="nav-link" data-scroll-target="#qual-é-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></a></li>
-  <li><a href="#de-onde-vem-a-demanda" id="toc-de-onde-vem-a-demanda" class="nav-link" data-scroll-target="#de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></a></li>
-  <li><a href="#como-fazer-isto" id="toc-como-fazer-isto" class="nav-link" data-scroll-target="#como-fazer-isto"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></a></li>
-  <li><a href="#quem-é-o-consumidor" id="toc-quem-é-o-consumidor" class="nav-link" data-scroll-target="#quem-é-o-consumidor"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></a></li>
-  <li><a href="#qual-o-resultado" id="toc-qual-o-resultado" class="nav-link" data-scroll-target="#qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></a></li>
+  <li><a href="#o-que-é-a-interpretação-pca-análise-de-componentes-principais" id="toc-o-que-é-a-interpretação-pca-análise-de-componentes-principais" class="nav-link active" data-scroll-target="#o-que-é-a-interpretação-pca-análise-de-componentes-principais"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a interpretação PCA Análise de Componentes Principais</strong></span></a></li>
+  <li><a href="#qual-o-objetivo" id="toc-qual-o-objetivo" class="nav-link" data-scroll-target="#qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></a></li>
+  <li><a href="#de-onde-vem-a-demanda" id="toc-de-onde-vem-a-demanda" class="nav-link" data-scroll-target="#de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></a></li>
+  <li><a href="#como-fazer" id="toc-como-fazer" class="nav-link" data-scroll-target="#como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></a></li>
+  <li><a href="#pra-onde-vai-quem-é-o-cliente" id="toc-pra-onde-vai-quem-é-o-cliente" class="nav-link" data-scroll-target="#pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></a></li>
+  <li><a href="#qual-o-resultado" id="toc-qual-o-resultado" class="nav-link" data-scroll-target="#qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></a></li>
   </ul>
 </nav>
 </nav>
@@ -176,10 +176,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Comunicar trabalhos técnicos em apresentações no R com Quarto</h1>
-<p class="subtitle lead">Comunicar resultados no formato apresentação de slides em reveljs</p>
+<h1 class="title">Interpretando PCA Analáse de componentes principais</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Comunicação</div>
+    <div class="quarto-category">Exploração de dados</div>
   </div>
   </div>
 
@@ -197,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 16, 2023</p>
+      <p class="date">August 15, 2024</p>
     </div>
   </div>
   
@@ -209,202 +208,242 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-simple callout-tip">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Vídeo tema para este post em <a href="https://youtu.be/DBXeRUYvt3E" target="_blank">Comunicar trabalhos técnicos em apresentações no R com Quarto</a></p>
-</div>
-</div>
-</div>
-<section id="o-que-é-isto" class="level3">
-<h3 class="anchored" data-anchor-id="o-que-é-isto"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></h3>
+<section id="o-que-é-a-interpretação-pca-análise-de-componentes-principais" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-a-interpretação-pca-análise-de-componentes-principais"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a interpretação PCA Análise de Componentes Principais</strong></span></h3>
 <ul>
-<li>Como fazer relatório técnico e científico usando <code>Quarto</code> e <code>reveljs</code> para publicações no formado de apresentações de slides.</li>
+<li><p>Envolve compreender como os dados originais são transformados e representados em um novo espaço de dimensões reduzidas.</p></li>
+<li><p>Verificar a variância explicada de cada componente principal.</p></li>
+<li><p>Analisar os componentes principais como loadings, scores, rotations, coordenadas, cos2 entre outros elementos.</p></li>
 </ul>
 </section>
-<section id="qual-é-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="qual-é-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></h3>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
-<li>Facilitar a comunicação de experimentos feitos por pesquisadores ou melhoristas de processos.</li>
+<li><p>Compreender as principais características dos dados representadas pelas direções de maior variância na PCA.</p></li>
+<li><p>Compreender a existência de correlações ou seja, se houver duas ou mais variáveis altamente correlacionadas, estas provavelmente serão representadas por um único componente.</p></li>
+<li><p>Verificar a existência de outliers, que é representado na PCA onde um ponto pode estar muito longo do centro da distribuição.</p></li>
 </ul>
 </section>
 <section id="de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></h3>
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
-<li>Desenvolver pesquisas que possas ser reproduzidas por outros pesquisadores.</li>
-<li>Direcionar mais esforços para o desenvolvimento do conteúdo da pesquisa e menos para ferramentas de apresentação.</li>
+<li><p>Necessidade de resolver o problema da maldição da dimensionalidade que são situações onde o número de variáveis(dimensões) é muito grande, e o volume de dados necessário para obter estimativas precisas também aumenta exponencialmente. Isso pode levar a problemas de superajuste e dificuldade de encontrar padrões significativos nos dados.</p></li>
+<li><p>Dificuldade de definir variáveis mais importantes o que pode levar a problemas no ajuste de modelos ou instabilidades em modelos de predição.</p></li>
+<li><p>Necessidade de reduzir ruído e variabilidade nos dados os quais podem afetar na precisão dos modelos estatísticos e machine learning.</p></li>
+<li><p>Necessidade de otimizar o armazenamento e processamento dos dados, principalmente quando se lida com conjuntos de dados muito grandes.</p></li>
+<li><p>Necessidade de melhorar a visualização de dados facilitando a compreensão dos padrões e relações entre as variáveis.</p></li>
 </ul>
 </section>
-<section id="como-fazer-isto" class="level3">
-<h3 class="anchored" data-anchor-id="como-fazer-isto"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></h3>
-<p><strong>Pacotes</strong></p>
-<p>Para reproduzir o código apresentado neste exercício, os seguintes pacotes são necessário: <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a>, <a href="https://github.com/strengejacke/sjPlot/" target="_blank">sjplot</a>, <a href="https://github.com/rstudio/gt" target="_blank">gt</a>, <a href="https://github.com/jthomasmock/gtExtras" target="_blank">gtExtras</a>, e <a href="https://github.com/pablo14/funModeling" target="_blank">funModeling</a></p>
-<p><strong>Dados</strong></p>
-<p>O conjunto de dados que será usado aqui é o gapminder disponível no pacote <a href="https://www.rdocumentation.org/packages/gapminder/versions/0.3.0" target="_blank">gapminder</a> no R e pode ser acessado via código <code>install.package("gapminder)</code></p>
-<p><strong>Time line das ferramentas disponíveis ao longo do tempo</strong></p>
-<p><img src="research_communication_flow.png" class="img-fluid" width="1200"></p>
-<p><strong>Código reproduzível</strong></p>
-<p>O YML file é o cabeçalho do documento onde são inseridos o título, subtítulo entre outros detalhes do documento como por exemplo as configurações globais que serão reproduzidas nas demais partes do documento.</p>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<p>Esses são os pacotes e dados que serão usados nesse exemplo</p>
 <div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>yml</strong></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pacotes</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#dados</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>iris <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">"Minha pesquisa"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">"Marcelo Carvalho"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>format<span class="sc">:</span> </span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  revealjs<span class="sc">:</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    chalkboard<span class="sc">:</span> true</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    multiplex<span class="sc">:</span> true</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>editor<span class="sc">:</span> visual</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>execute<span class="sc">:</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  echo<span class="sc">:</span> true</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<p>O resumo geralmente consiste em textos e pequenos códigos <code>inline</code></p>
+<p>PCA usando a função <code>prcomp</code> da base R</p>
 <div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>resumo</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode r code-annotation-code code-with-copy"><code class="sourceCode r"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Resumo - SLIDE1</span></span>
-<span id="annotated-cell-2-2"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>   Apresentações são formas comums de comunicação de resultados de expementos</span>
-<span id="annotated-cell-2-4"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>   Existem muitas ferramentas disponíveis</span>
-<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>   Este exercício vai mostrar algumas <span class="st">`</span><span class="at">quarto</span><span class="st">`</span> e <span class="st">`</span><span class="at">reveljs</span><span class="st">`</span></span>
-<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Objetivo - SLIDE2</span></span>
-<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>   Facilitar a publicação de experimentos realizados por pesquisadores e melhoristas de processos</span>
-<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Pacotes - SLIDE3</span></span>
-<span id="annotated-cell-2-14"><a href="#annotated-cell-2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-15"><a href="#annotated-cell-2-15" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>   Neste trabalho foram usados os seguintes pacotes do R</span>
-<span id="annotated-cell-2-16"><a href="#annotated-cell-2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-17"><a href="#annotated-cell-2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#Código inserido no code-chunk</span></span>
-<span id="annotated-cell-2-18"><a href="#annotated-cell-2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="annotated-cell-2-19"><a href="#annotated-cell-2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="annotated-cell-2-20"><a href="#annotated-cell-2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="annotated-cell-2-21"><a href="#annotated-cell-2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="annotated-cell-2-22"><a href="#annotated-cell-2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="annotated-cell-2-23"><a href="#annotated-cell-2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#Resultado gerado</span></span>
-<span id="annotated-cell-2-24"><a href="#annotated-cell-2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1.  Facilita o manuseio de dados</span></span>
-<span id="annotated-cell-2-25"><a href="#annotated-cell-2-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2.  Facilita a construção de modelos</span></span>
-<span id="annotated-cell-2-26"><a href="#annotated-cell-2-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3.  Facilita a padronização dos nomes das variáveis</span></span>
-<span id="annotated-cell-2-27"><a href="#annotated-cell-2-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4.  Concentra os dados que serão usados no exercício</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pca_prcomp</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pca_iris_prc <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>species) <span class="sc">%&gt;%</span> <span class="fu">prcomp</span>(<span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale. =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#plot</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(pca_iris_prc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pca-explore_files/figure-html/prcomp-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<p>O corpo consiste em código reproduzível</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pca_result_prcomp</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>loadings_prc <span class="ot">&lt;-</span> pca_iris_prc<span class="sc">$</span>rotation</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>scores_prc   <span class="ot">&lt;-</span> pca_iris_prc<span class="sc">$</span>x</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>variance_prc <span class="ot">&lt;-</span> (pca_iris_prc<span class="sc">$</span>sdev)<span class="sc">^</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>PCA usando o pacote <code>factomineR</code>e <code>factoextra</code></p>
 <div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>corpo</strong></pre>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#model pca</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pca_iris_fcm <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> <span class="fu">PCA</span>(<span class="at">scale.unit =</span> <span class="cn">TRUE</span>, <span class="at">quali.sup =</span> <span class="dv">5</span>, <span class="at">graph =</span> <span class="cn">TRUE</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pca-explore_files/figure-html/factominer-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Dados - SLIDE4</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>   A base de dados utilizada será a <span class="st">`</span><span class="at">Gapminder</span><span class="st">`</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>   Possui <span class="st">`</span><span class="at">r nrow(gapminder)</span><span class="st">`</span> linhas e <span class="st">`</span><span class="at">r ncol(gapminder)</span><span class="st">`</span> colunas.</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>   Os detalhes da estrutura são apresentados abaixo</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">## gerar os detalhes da estrutura de dados</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> <span class="fu">glimpse</span>()</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Exploração - SLIDE5</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">%&gt;%</span> funModeling<span class="sc">::</span><span class="fu">df_status</span>()</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Método - SLIDE6</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span><span class="er">$</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>Y_i<span class="ot">=</span> \beta_0 <span class="sc">+</span> \beta_1 X_i <span class="sc">+</span> \epsilon_i</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span><span class="er">$</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="er">$</span>Y_i<span class="sc">$</span><span class="er">=</span> Variável dependente</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>\beta_0<span class="sc">$</span><span class="er">=</span> Constante ou Intercept</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>\beta_1<span class="sc">$</span><span class="er">=</span> Coeficiente ou Slope</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>X_i<span class="sc">$</span><span class="er">=</span> Variável independente</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="sc">$</span>\epsilon_i<span class="sc">$</span><span class="er">=</span> <span class="fu">Erro</span> (desvio)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Modelo - SLIDE7</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>mdl_gapminder <span class="ot">&lt;-</span> </span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>  gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">qty_year =</span> year <span class="sc">-</span> <span class="dv">2007</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_nest</span>(country) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mdl =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(lifeExp<span class="sc">~</span>qty_year, <span class="at">data =</span> .x))) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">result =</span> <span class="fu">map</span>(mdl, broom<span class="sc">::</span>glance)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, result) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(result)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="do">## Plotar modelo - SLIDE8</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="co">#| output-location: slide</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-line-numbers: "2|4"</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>mdl_gapminder <span class="sc">%&gt;%</span> </span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> r.squared, <span class="at">y =</span> <span class="fu">fct_reorder</span>(country, r.squared)))<span class="sc">+</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">guide =</span> <span class="fu">guide_axis</span>(<span class="at">check.overlap =</span> <span class="cn">TRUE</span>))<span class="sc">+</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="do">## Conclusão - SLIDE9</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>   <span class="st">`</span><span class="at">r mdl_gapminder %&gt;% filter(country == "Brazil") %&gt;% select(r.squared) %&gt;% </span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="at">mutate(r.squared = scales::percent(r.squared, accuracy = 0.1))</span><span class="st">`</span> da </span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>variação na expectativa de vida no Brasil é explicada pela variação do tempo.</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span>   Consigo aprofundar nas pesquisas para compreender se há outros fatores que talvez possam explicar as correlações ?</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="do">## Complemento1 - SLIDE10</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="co">#| output-location: column</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtExtras)</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(FANG, </span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>     <span class="at">package =</span> <span class="st">"tidyquant"</span>)</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>data_fang <span class="ot">&lt;-</span> FANG</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>data_fang <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(symbol) <span class="sc">%&gt;%</span>  </span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">price =</span> <span class="fu">list</span>(adjusted)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt_plt_sparkline</span>(</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>    price,</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">same_limit =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="at">fig_dim =</span> <span class="fu">c</span>(<span class="dv">20</span>,<span class="dv">40</span>),</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">"ref_median"</span>)</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="do">## Complemento2 - SLIDE11</span></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>mdl_mtcars <span class="ot">&lt;-</span> <span class="fu">lm</span>(mpg<span class="sc">~</span>wt <span class="sc">+</span> cyl, <span class="at">data =</span> mtcars)</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>sjPlot<span class="sc">::</span><span class="fu">tab_model</span>(mdl_mtcars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pca-explore_files/figure-html/factominer-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pca_result_factominer explore</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>loadings_fcm  <span class="ot">&lt;-</span> <span class="fu">sweep</span>(pca_iris_fcm<span class="sc">$</span>var<span class="sc">$</span>coord,<span class="dv">2</span>,<span class="fu">sqrt</span>(pca_iris_fcm<span class="sc">$</span>eig[,<span class="dv">1</span>]), <span class="at">FUN =</span> <span class="st">"/"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>scores_fcm   <span class="ot">&lt;-</span> pca_iris_fcm<span class="sc">$</span>ind<span class="sc">$</span>coord</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>variance_fcm <span class="ot">&lt;-</span> pca_iris_fcm<span class="sc">$</span>eig</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#plot</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(pca_iris_fcm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pca-explore_files/figure-html/factominer-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>PCA usando o pacote <code>tidymodels</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pca tidymodels</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pca_iris_tdm <span class="ot">&lt;-</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  iris <span class="sc">%&gt;%</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">recipe</span>(species<span class="sc">~</span>.) <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pca_iris_tdm<span class="sc">$</span>steps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     Length Class          Mode
+[1,]  9     step_normalize list
+[2,] 13     step_pca       list</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pca_result_tidymodels</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>loadings_tdm <span class="ot">&lt;-</span> pca_iris_tdm<span class="sc">$</span>steps[[<span class="dv">2</span>]]<span class="sc">$</span>res<span class="sc">$</span>rotation</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>scores_tdm   <span class="ot">&lt;-</span> <span class="fu">bake</span>(pca_iris_tdm, <span class="at">new_data =</span> <span class="cn">NULL</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>variance_tdm <span class="ot">&lt;-</span> (pca_iris_tdm<span class="sc">$</span>steps[[<span class="dv">2</span>]]<span class="sc">$</span>res<span class="sc">$</span>sdev)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#plot</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>data_plot <span class="ot">&lt;-</span>  <span class="fu">tidy</span>(pca_iris_tdm,<span class="dv">2</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>data_plot <span class="sc">%&gt;%</span> </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(component <span class="sc">%in%</span> <span class="fu">paste0</span>(<span class="st">"PC"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>value, <span class="at">y=</span>terms, <span class="at">fill =</span> terms))<span class="sc">+</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span>component, <span class="at">scales =</span> <span class="st">"free"</span>)<span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"BrBG"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="pca-explore_files/figure-html/tidymodels-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Conclusão usando os diferentes tipos de pacotes e funções e responendo a questão. Será que há diferença nos resultados quando uso prcomp, factomineR ou tidymodels ?</p>
+<p>Loadings usando os diferentes pacotes sendo prc = <code>prcomp</code>, fcm = <code>factominer</code> e tdm = <code>tidymodels</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#conclusão</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>loadings_prc <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    PC1         PC2        PC3        PC4
+sepal_length  0.5210659 -0.37741762  0.7195664  0.2612863
+sepal_width  -0.2693474 -0.92329566 -0.2443818 -0.1235096
+petal_length  0.5804131 -0.02449161 -0.1421264 -0.8014492
+petal_width   0.5648565 -0.06694199 -0.6342727  0.5235971</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>loadings_fcm <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  Dim.1      Dim.2      Dim.3      Dim.4
+sepal_length  0.5210659 0.37741762 -0.7195664 -0.2612863
+sepal_width  -0.2693474 0.92329566  0.2443818  0.1235096
+petal_length  0.5804131 0.02449161  0.1421264  0.8014492
+petal_width   0.5648565 0.06694199  0.6342727 -0.5235971</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>loadings_tdm <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                    PC1         PC2        PC3        PC4
+sepal_length  0.5210659 -0.37741762  0.7195664  0.2612863
+sepal_width  -0.2693474 -0.92329566 -0.2443818 -0.1235096
+petal_length  0.5804131 -0.02449161 -0.1421264 -0.8014492
+petal_width   0.5648565 -0.06694199 -0.6342727  0.5235971</code></pre>
+</div>
+</div>
+<p>Scores usando os diferentes pacotes sendo prc = <code>prcomp</code>, fcm = <code>factominer</code> e tdm = <code>tidymodels</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>scores_prc   <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           PC1        PC2         PC3          PC4
+[1,] -2.257141 -0.4784238  0.12727962  0.024087508
+[2,] -2.074013  0.6718827  0.23382552  0.102662845
+[3,] -2.356335  0.3407664 -0.04405390  0.028282305
+[4,] -2.291707  0.5953999 -0.09098530 -0.065735340
+[5,] -2.381863 -0.6446757 -0.01568565 -0.035802870
+[6,] -2.068701 -1.4842053 -0.02687825  0.006586116</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>scores_fcm   <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      Dim.1      Dim.2       Dim.3       Dim.4
+1 -2.264703  0.4800266 -0.12770602 -0.02416820
+2 -2.080961 -0.6741336 -0.23460885 -0.10300677
+3 -2.364229 -0.3419080  0.04420148 -0.02837705
+4 -2.299384 -0.5973945  0.09129011  0.06595556
+5 -2.389842  0.6468354  0.01573820  0.03592281
+6 -2.075631  1.4891775  0.02696829 -0.00660818</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>scores_tdm   <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  species   PC1    PC2     PC3      PC4
+  &lt;fct&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+1 setosa  -2.26 -0.478  0.127   0.0241 
+2 setosa  -2.07  0.672  0.234   0.103  
+3 setosa  -2.36  0.341 -0.0441  0.0283 
+4 setosa  -2.29  0.595 -0.0910 -0.0657 
+5 setosa  -2.38 -0.645 -0.0157 -0.0358 
+6 setosa  -2.07 -1.48  -0.0269  0.00659</code></pre>
+</div>
+</div>
+<p>Variância usando os diferentes pacotes sendo prc = <code>prcomp</code>, fcm = <code>factominer</code> e tdm = <code>tidymodels</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>variance_prc <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.91849782 0.91403047 0.14675688 0.02071484</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>variance_fcm <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       eigenvalue percentage of variance cumulative percentage of variance
+comp 1 2.91849782             72.9624454                          72.96245
+comp 2 0.91403047             22.8507618                          95.81321
+comp 3 0.14675688              3.6689219                          99.48213
+comp 4 0.02071484              0.5178709                         100.00000</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>variance_tdm <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.91849782 0.91403047 0.14675688 0.02071484</code></pre>
 </div>
 </div>
 </section>
-<section id="quem-é-o-consumidor" class="level3">
-<h3 class="anchored" data-anchor-id="quem-é-o-consumidor"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></h3>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
-<li><p>Pesquisadores e profissionais que precisam comunicar suas pesquisas e experimentos.</p></li>
-<li><p>Melhoristas de processo que precisam de documentos reproduzíveis em seus projetos.</p></li>
+<li><p>São utilizados como suporte em documentos técnicos e científicos.</p></li>
+<li><p>São utilizados como variáveis substitutas não correlacionadas em modelos machine learning.</p></li>
 </ul>
 </section>
 <section id="qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></h3>
+<h3 class="anchored" data-anchor-id="qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
-<li><p>Aperfeiçoar habilidades na comunicação dos resultados dos experimentos..</p></li>
-<li><p>Facilitar a comunicação entre pesquisadores. Tidyverse usa design for humans <code>%\&gt;%</code> significa <code>e então or and then</code>.</p></li>
-<li><p>Melhorar produtividade na manufatura e serviços através da replicação dessas ações e experimentos.</p></li>
+<li><p>Facilita a análise, compreensão, explicação e comunicação dos dados.</p></li>
+<li><p>Possibilia a compreensão melhor dos dados auxiliando na solução de um problema prático ou científico.</p></li>
+<li><p>Melhora a consistência na apresentação de dados.</p></li>
 </ul>
+<p>Vídeo tema para este post</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BmeBIWW4fsI?si=_H0RL85dbrlww7b3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
 
 
 </section>

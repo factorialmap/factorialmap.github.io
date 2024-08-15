@@ -1,0 +1,179 @@
+---
+title: "Interpretando PCA Analáse de componentes principais"
+author: "Marcelo Carvalho dos Anjos"
+date: "2024-08-15"
+categories: [Exploração de dados]
+image: "pca_fig.png"
+execute: 
+  warning: false
+  message: false
+---
+
+### {{< fa 1 >}} [**O que é a interpretação PCA Análise de Componentes Principais**]{style="color: #5AC8BE ;"}
+
+-   Envolve compreender como os dados originais são transformados e representados em um novo espaço de dimensões reduzidas.
+
+-   Verificar a variância explicada de cada componente principal.
+
+-   Analisar os componentes principais como loadings, scores, rotations, coordenadas, cos2 entre outros elementos.
+
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+
+-   Compreender as principais características dos dados representadas pelas direções de maior variância na PCA.
+
+-   Compreender a existência de correlações ou seja, se houver duas ou mais variáveis altamente correlacionadas, estas provavelmente serão representadas por um único componente.
+
+-   Verificar a existência de outliers, que é representado na PCA onde um ponto pode estar muito longo do centro da distribuição.
+
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+
+-   Necessidade de resolver o problema da maldição da dimensionalidade que são situações onde o número de variáveis(dimensões) é muito grande, e o volume de dados necessário para obter estimativas precisas também aumenta exponencialmente. Isso pode levar a problemas de superajuste e dificuldade de encontrar padrões significativos nos dados.
+
+-   Dificuldade de definir variáveis mais importantes o que pode levar a problemas no ajuste de modelos ou instabilidades em modelos de predição.
+
+-   Necessidade de reduzir ruído e variabilidade nos dados os quais podem afetar na precisão dos modelos estatísticos e machine learning.
+
+-   Necessidade de otimizar o armazenamento e processamento dos dados, principalmente quando se lida com conjuntos de dados muito grandes.
+
+-   Necessidade de melhorar a visualização de dados facilitando a compreensão dos padrões e relações entre as variáveis.
+
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
+
+Esses são os pacotes e dados que serão usados nesse exemplo
+
+```{r}
+#| label: pca
+
+# pacotes
+library(tidyverse)
+library(janitor)
+library(FactoMineR)
+library(factoextra)
+library(tidymodels)
+library(corrplot)
+library(caret)
+library(broom)
+library(patchwork)
+
+#dados
+data(iris)
+iris <- iris %>% janitor::clean_names()
+
+```
+
+PCA usando a função `prcomp` da base R
+
+```{r}
+#| label: prcomp
+
+#pca_prcomp
+pca_iris_prc <- iris %>% select(-species) %>% prcomp(center = TRUE, scale. = TRUE)
+
+#plot
+fviz_pca_var(pca_iris_prc)
+
+#pca_result_prcomp
+loadings_prc <- pca_iris_prc$rotation
+scores_prc   <- pca_iris_prc$x
+variance_prc <- (pca_iris_prc$sdev)^2
+
+```
+
+PCA usando o pacote `factomineR`e `factoextra`
+
+```{r}
+#| label: factominer
+
+#model pca
+pca_iris_fcm <- iris %>% PCA(scale.unit = TRUE, quali.sup = 5, graph = TRUE )
+
+#pca_result_factominer explore
+loadings_fcm  <- sweep(pca_iris_fcm$var$coord,2,sqrt(pca_iris_fcm$eig[,1]), FUN = "/")
+scores_fcm   <- pca_iris_fcm$ind$coord
+variance_fcm <- pca_iris_fcm$eig
+
+#plot
+fviz_pca_var(pca_iris_fcm)
+
+```
+
+PCA usando o pacote `tidymodels`
+
+```{r}
+#| label: tidymodels
+
+#pca tidymodels
+pca_iris_tdm <- 
+  iris %>% 
+  recipe(species~.) %>%
+  step_normalize(all_numeric_predictors()) %>% 
+  step_pca(all_numeric_predictors()) %>% 
+  prep()
+
+summary(pca_iris_tdm$steps)
+
+#pca_result_tidymodels
+loadings_tdm <- pca_iris_tdm$steps[[2]]$res$rotation
+scores_tdm   <- bake(pca_iris_tdm, new_data = NULL)
+variance_tdm <- (pca_iris_tdm$steps[[2]]$res$sdev)^2
+
+#plot
+data_plot <-  tidy(pca_iris_tdm,2)
+
+data_plot %>% 
+  filter(component %in% paste0("PC", 1:2)) %>% 
+  ggplot(aes(x=value, y=terms, fill = terms))+
+  geom_col()+
+  facet_grid(~component, scales = "free")+
+  scale_fill_brewer(palette = "BrBG")
+```
+
+Conclusão usando os diferentes tipos de pacotes e funções e responendo a questão. Será que há diferença nos resultados quando uso prcomp, factomineR ou tidymodels ?
+
+Loadings usando os diferentes pacotes sendo prc = `prcomp`, fcm = `factominer` e tdm = `tidymodels`
+
+```{r}
+#conclusão
+loadings_prc %>% head()
+loadings_fcm %>% head()
+loadings_tdm %>% head()
+
+```
+
+Scores usando os diferentes pacotes sendo prc = `prcomp`, fcm = `factominer` e tdm = `tidymodels`
+
+
+```{r}
+
+scores_prc   %>% head()
+scores_fcm   %>% head()
+scores_tdm   %>% head()
+```
+
+Variância usando os diferentes pacotes sendo prc = `prcomp`, fcm = `factominer` e tdm = `tidymodels`
+
+```{r}
+variance_prc %>% head()
+variance_fcm %>% head()
+variance_tdm %>% head()
+```
+
+### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+
+-   São utilizados como suporte em documentos técnicos e científicos.
+
+-   São utilizados como variáveis substitutas não correlacionadas em modelos machine learning.
+
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
+
+-   Facilita a análise, compreensão, explicação e comunicação dos dados.
+
+-   Possibilia a compreensão melhor dos dados auxiliando na solução de um problema prático ou científico.
+
+-   Melhora a consistência na apresentação de dados.
+
+Vídeo tema para este post
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BmeBIWW4fsI?si=_H0RL85dbrlww7b3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+</iframe>
