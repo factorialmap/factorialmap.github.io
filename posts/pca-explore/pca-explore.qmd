@@ -7,21 +7,22 @@ image: "pca_fig.png"
 execute: 
   warning: false
   message: false
+bibliography: references.bib
 ---
 
 ### {{< fa 1 >}} [**O que é a interpretação de Análise de Componentes Principais PCA**]{style="color: #5AC8BE ;"}
 
 -   Envolve compreender como os dados originais são transformados e representados em um novo espaço de dimensões reduzidas.
 
--   Verificar a variância explicada de cada componente principal.
+-   Verificar a variância explicada de cada componente principal @lê2008
 
--   Analisar os componentes principais como loadings, scores, rotations, coordenadas, cos2 entre outros elementos.
+-   Analisar os componentes principais como loadings, scores, rotations, coordenadas, cos2 entre outros elementos @Kassambara
 
 ### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 
 -   Compreender as principais características dos dados representadas pelas direções de maior variância na PCA.
 
--   Compreender a existência de correlações ou seja, se houver duas ou mais variáveis altamente correlacionadas, estas provavelmente serão representadas por um único componente.
+-   Compreender a existência de correlações ou seja, se houver duas ou mais variáveis altamente correlacionadas, estas provavelmente serão representadas por um único componente @kuhn2013
 
 -   Verificar a existência de outliers, que é representado na PCA onde um ponto pode estar muito longo do centro da distribuição.
 
@@ -29,11 +30,11 @@ execute:
 
 -   Necessidade de resolver o problema da maldição da dimensionalidade que são situações onde o número de variáveis(dimensões) é muito grande, e o volume de dados necessários para obter estimativas precisas também aumenta exponencialmente. Isso pode levar a problemas de superajuste e dificuldade de encontrar padrões significativos nos dados.
 
--   Dificuldade de encontrar variáveis mais importantes o que pode levar a problemas no ajuste e instabilidades em modelos de predição.
+-   Dificuldade de encontrar variáveis mais importantes o que pode levar a problemas no ajuste e instabilidades em modelos de predição
 
 -   Necessidade de reduzir ruído e variabilidade nos dados os quais podem afetar na precisão dos modelos estatísticos e machine learning.
 
--   Necessidade de otimizar o armazenamento e processamento dos dados, principalmente em situações onde os conjuntos de dados são muito grandes.
+-   Necessidade de otimizar o armazenamento e processamento dos dados, principalmente em situações onde os conjuntos de dados são muito grandes @spiegelhalter2021
 
 -   Necessidade de melhorar a visualização de dados facilitando a compreensão dos padrões e relações entre as variáveis.
 

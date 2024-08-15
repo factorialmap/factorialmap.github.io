@@ -24,15 +24,15 @@
 <h3 class="anchored" data-anchor-id="o-que-é-a-interpretação-de-análise-de-componentes-principais-pca"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a interpretação de Análise de Componentes Principais PCA</strong></span></h3>
 <ul>
 <li><p>Envolve compreender como os dados originais são transformados e representados em um novo espaço de dimensões reduzidas.</p></li>
-<li><p>Verificar a variância explicada de cada componente principal.</p></li>
-<li><p>Analisar os componentes principais como loadings, scores, rotations, coordenadas, cos2 entre outros elementos.</p></li>
+<li><p>Verificar a variância explicada de cada componente principal <span class="citation" data-cites="lê2008">Lê, and Husson (2008)</span></p></li>
+<li><p>Analisar os componentes principais como loadings, scores, rotations, coordenadas, cos2 entre outros elementos <span class="citation" data-cites="Kassambara"><span>“Practical Guide to Principal Component Methods in r (Multivariate Analysis Book 2) (English Edition) eBook : Kassambara, Alboukadel: Amazon.com.br: Livros”</span> (n.d.)</span></p></li>
 </ul>
 </section>
 <section id="qual-o-objetivo" class="level3">
 <h3 class="anchored" data-anchor-id="qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
 <li><p>Compreender as principais características dos dados representadas pelas direções de maior variância na PCA.</p></li>
-<li><p>Compreender a existência de correlações ou seja, se houver duas ou mais variáveis altamente correlacionadas, estas provavelmente serão representadas por um único componente.</p></li>
+<li><p>Compreender a existência de correlações ou seja, se houver duas ou mais variáveis altamente correlacionadas, estas provavelmente serão representadas por um único componente <span class="citation" data-cites="kuhn2013">Kuhn and Johnson (2013)</span></p></li>
 <li><p>Verificar a existência de outliers, que é representado na PCA onde um ponto pode estar muito longo do centro da distribuição.</p></li>
 </ul>
 </section>
@@ -40,9 +40,9 @@
 <h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
 <li><p>Necessidade de resolver o problema da maldição da dimensionalidade que são situações onde o número de variáveis(dimensões) é muito grande, e o volume de dados necessários para obter estimativas precisas também aumenta exponencialmente. Isso pode levar a problemas de superajuste e dificuldade de encontrar padrões significativos nos dados.</p></li>
-<li><p>Dificuldade de encontrar variáveis mais importantes o que pode levar a problemas no ajuste e instabilidades em modelos de predição.</p></li>
+<li><p>Dificuldade de encontrar variáveis mais importantes o que pode levar a problemas no ajuste e instabilidades em modelos de predição</p></li>
 <li><p>Necessidade de reduzir ruído e variabilidade nos dados os quais podem afetar na precisão dos modelos estatísticos e machine learning.</p></li>
-<li><p>Necessidade de otimizar o armazenamento e processamento dos dados, principalmente em situações onde os conjuntos de dados são muito grandes.</p></li>
+<li><p>Necessidade de otimizar o armazenamento e processamento dos dados, principalmente em situações onde os conjuntos de dados são muito grandes <span class="citation" data-cites="spiegelhalter2021">Spiegelhalter (2021)</span></p></li>
 <li><p>Necessidade de melhorar a visualização de dados facilitando a compreensão dos padrões e relações entre as variáveis.</p></li>
 </ul>
 </section>
@@ -538,9 +538,23 @@ font-style: inherit;">head</span>()</span></code></pre></div>
 </iframe>
 
 
+
 </section>
 
- ]]></description>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-kuhn2013" class="csl-entry">
+Kuhn, Max, and Kjell Johnson. 2013. <em>Applied Predictive Modeling</em>. 2013ª edição. New York: Springer.
+</div>
+<div id="ref-lê2008" class="csl-entry">
+Lê, Josse, and F Husson. 2008. <span>“Lê, s., Josse, j. &amp; Husson, f. (2008). FactoMineR: An r Package for Multivariate Analysis. Journal of Statistical Software. 25(1). Pp. 1-18.”</span> <a href="http://factominer.free.fr/factomethods/principal-components-analysis.html">http://factominer.free.fr/factomethods/principal-components-analysis.html</a>.
+</div>
+<div id="ref-Kassambara" class="csl-entry">
+<span>“Practical Guide to Principal Component Methods in r (Multivariate Analysis Book 2) (English Edition) eBook : Kassambara, Alboukadel: Amazon.com.br: Livros.”</span> n.d.
+</div>
+<div id="ref-spiegelhalter2021" class="csl-entry">
+Spiegelhalter, David. 2021. <em>The Art of Statistics: How to Learn from Data</em>. Basic Books.
+</div>
+</div></section></div> ]]></description>
   <category>Exploração de dados</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/pca-explore/pca-explore.html</guid>
   <pubDate>Thu, 15 Aug 2024 03:00:00 GMT</pubDate>
