@@ -9,7 +9,7 @@
 <meta name="author" content="Marcelo Carvalho dos Anjos">
 <meta name="dcterms.date" content="2024-08-15">
 
-<title>Interpretando PCA Analáse de componentes principais – Carvalho Ribeiro Blog</title>
+<title>Interpretando Análise de componentes principais PCA – Carvalho Ribeiro Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -158,7 +158,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Conteúdo</h2>
    
   <ul>
-  <li><a href="#o-que-é-a-interpretação-pca-análise-de-componentes-principais" id="toc-o-que-é-a-interpretação-pca-análise-de-componentes-principais" class="nav-link active" data-scroll-target="#o-que-é-a-interpretação-pca-análise-de-componentes-principais"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a interpretação PCA Análise de Componentes Principais</strong></span></a></li>
+  <li><a href="#o-que-é-a-interpretação-de-análise-de-componentes-principais-pca" id="toc-o-que-é-a-interpretação-de-análise-de-componentes-principais-pca" class="nav-link active" data-scroll-target="#o-que-é-a-interpretação-de-análise-de-componentes-principais-pca"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a interpretação de Análise de Componentes Principais PCA</strong></span></a></li>
   <li><a href="#qual-o-objetivo" id="toc-qual-o-objetivo" class="nav-link" data-scroll-target="#qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></a></li>
   <li><a href="#de-onde-vem-a-demanda" id="toc-de-onde-vem-a-demanda" class="nav-link" data-scroll-target="#de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></a></li>
   <li><a href="#como-fazer" id="toc-como-fazer" class="nav-link" data-scroll-target="#como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></a></li>
@@ -176,7 +176,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Interpretando PCA Analáse de componentes principais</h1>
+<h1 class="title">Interpretando Análise de componentes principais PCA</h1>
   <div class="quarto-categories">
     <div class="quarto-category">Exploração de dados</div>
   </div>
@@ -208,8 +208,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="o-que-é-a-interpretação-pca-análise-de-componentes-principais" class="level3">
-<h3 class="anchored" data-anchor-id="o-que-é-a-interpretação-pca-análise-de-componentes-principais"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a interpretação PCA Análise de Componentes Principais</strong></span></h3>
+<section id="o-que-é-a-interpretação-de-análise-de-componentes-principais-pca" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-a-interpretação-de-análise-de-componentes-principais-pca"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a interpretação de Análise de Componentes Principais PCA</strong></span></h3>
 <ul>
 <li><p>Envolve compreender como os dados originais são transformados e representados em um novo espaço de dimensões reduzidas.</p></li>
 <li><p>Verificar a variância explicada de cada componente principal.</p></li>
@@ -227,16 +227,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="de-onde-vem-a-demanda" class="level3">
 <h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
-<li><p>Necessidade de resolver o problema da maldição da dimensionalidade que são situações onde o número de variáveis(dimensões) é muito grande, e o volume de dados necessário para obter estimativas precisas também aumenta exponencialmente. Isso pode levar a problemas de superajuste e dificuldade de encontrar padrões significativos nos dados.</p></li>
-<li><p>Dificuldade de definir variáveis mais importantes o que pode levar a problemas no ajuste de modelos ou instabilidades em modelos de predição.</p></li>
+<li><p>Necessidade de resolver o problema da maldição da dimensionalidade que são situações onde o número de variáveis(dimensões) é muito grande, e o volume de dados necessários para obter estimativas precisas também aumenta exponencialmente. Isso pode levar a problemas de superajuste e dificuldade de encontrar padrões significativos nos dados.</p></li>
+<li><p>Dificuldade de encontrar variáveis mais importantes o que pode levar a problemas no ajuste e instabilidades em modelos de predição.</p></li>
 <li><p>Necessidade de reduzir ruído e variabilidade nos dados os quais podem afetar na precisão dos modelos estatísticos e machine learning.</p></li>
-<li><p>Necessidade de otimizar o armazenamento e processamento dos dados, principalmente quando se lida com conjuntos de dados muito grandes.</p></li>
+<li><p>Necessidade de otimizar o armazenamento e processamento dos dados, principalmente em situações onde os conjuntos de dados são muito grandes.</p></li>
 <li><p>Necessidade de melhorar a visualização de dados facilitando a compreensão dos padrões e relações entre as variáveis.</p></li>
 </ul>
 </section>
 <section id="como-fazer" class="level3">
 <h3 class="anchored" data-anchor-id="como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
-<p>Esses são os pacotes e dados que serão usados nesse exemplo</p>
+<p>Os pacotes e conjunto de dados abaixo são necessários para fazer o exercício. Basta instalá-los, ou se já tiver eles instalados em seu ambiente R, é só chamá-los usando a função <code>library</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pacotes</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -244,14 +244,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#dados</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>iris <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#dados</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>iris <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> janitor<span class="sc">::</span><span class="fu">clean_names</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>PCA usando a função <code>prcomp</code> da base R</p>
 <div class="cell">

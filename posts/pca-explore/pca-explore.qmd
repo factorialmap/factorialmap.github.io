@@ -1,5 +1,5 @@
 ---
-title: "Interpretando PCA Analáse de componentes principais"
+title: "Interpretando Análise de componentes principais PCA"
 author: "Marcelo Carvalho dos Anjos"
 date: "2024-08-15"
 categories: [Exploração de dados]
@@ -9,7 +9,7 @@ execute:
   message: false
 ---
 
-### {{< fa 1 >}} [**O que é a interpretação PCA Análise de Componentes Principais**]{style="color: #5AC8BE ;"}
+### {{< fa 1 >}} [**O que é a interpretação de Análise de Componentes Principais PCA**]{style="color: #5AC8BE ;"}
 
 -   Envolve compreender como os dados originais são transformados e representados em um novo espaço de dimensões reduzidas.
 
@@ -27,19 +27,19 @@ execute:
 
 ### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
 
--   Necessidade de resolver o problema da maldição da dimensionalidade que são situações onde o número de variáveis(dimensões) é muito grande, e o volume de dados necessário para obter estimativas precisas também aumenta exponencialmente. Isso pode levar a problemas de superajuste e dificuldade de encontrar padrões significativos nos dados.
+-   Necessidade de resolver o problema da maldição da dimensionalidade que são situações onde o número de variáveis(dimensões) é muito grande, e o volume de dados necessários para obter estimativas precisas também aumenta exponencialmente. Isso pode levar a problemas de superajuste e dificuldade de encontrar padrões significativos nos dados.
 
--   Dificuldade de definir variáveis mais importantes o que pode levar a problemas no ajuste de modelos ou instabilidades em modelos de predição.
+-   Dificuldade de encontrar variáveis mais importantes o que pode levar a problemas no ajuste e instabilidades em modelos de predição.
 
 -   Necessidade de reduzir ruído e variabilidade nos dados os quais podem afetar na precisão dos modelos estatísticos e machine learning.
 
--   Necessidade de otimizar o armazenamento e processamento dos dados, principalmente quando se lida com conjuntos de dados muito grandes.
+-   Necessidade de otimizar o armazenamento e processamento dos dados, principalmente em situações onde os conjuntos de dados são muito grandes.
 
 -   Necessidade de melhorar a visualização de dados facilitando a compreensão dos padrões e relações entre as variáveis.
 
 ### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
 
-Esses são os pacotes e dados que serão usados nesse exemplo
+Os pacotes e conjunto de dados abaixo são necessários para fazer o exercício. Basta instalá-los, ou se já tiver eles instalados em seu ambiente R, é só chamá-los usando a função `library`
 
 ```{r}
 #| label: pca
@@ -50,10 +50,6 @@ library(janitor)
 library(FactoMineR)
 library(factoextra)
 library(tidymodels)
-library(corrplot)
-library(caret)
-library(broom)
-library(patchwork)
 
 #dados
 data(iris)
@@ -141,7 +137,6 @@ loadings_tdm %>% head()
 ```
 
 Scores usando os diferentes pacotes sendo prc = `prcomp`, fcm = `factominer` e tdm = `tidymodels`
-
 
 ```{r}
 
