@@ -25,7 +25,7 @@
 <ul>
 <li><p>Envolve compreender como os dados originais são transformados e representados em um novo espaço de dimensões reduzidas.</p></li>
 <li><p>Verificar a variância explicada de cada componente principal <span class="citation" data-cites="lê2008">Lê, and Husson (2008)</span></p></li>
-<li><p>Analisar os componentes principais como loadings, scores, rotations, coordenadas, cos2 entre outros elementos <span class="citation" data-cites="Kassambara"><span>“Practical Guide to Principal Component Methods in r (Multivariate Analysis Book 2) (English Edition) eBook : Kassambara, Alboukadel: Amazon.com.br: Livros”</span> (n.d.)</span></p></li>
+<li><p>Analisar os componentes principais como loadings, scores, rotations, coordenadas, cos2 entre outros elementos <span class="citation" data-cites="kassambara">Kassambara (n.d.)</span></p></li>
 </ul>
 </section>
 <section id="qual-o-objetivo" class="level3">
@@ -542,14 +542,14 @@ font-style: inherit;">head</span>()</span></code></pre></div>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-kassambara" class="csl-entry">
+Kassambara, Alboukadel. n.d. <em>Practical Guide To Principal Component Methods in R</em>.
+</div>
 <div id="ref-kuhn2013" class="csl-entry">
 Kuhn, Max, and Kjell Johnson. 2013. <em>Applied Predictive Modeling</em>. 2013ª edição. New York: Springer.
 </div>
 <div id="ref-lê2008" class="csl-entry">
 Lê, Josse, and F Husson. 2008. <span>“Lê, s., Josse, j. &amp; Husson, f. (2008). FactoMineR: An r Package for Multivariate Analysis. Journal of Statistical Software. 25(1). Pp. 1-18.”</span> <a href="http://factominer.free.fr/factomethods/principal-components-analysis.html">http://factominer.free.fr/factomethods/principal-components-analysis.html</a>.
-</div>
-<div id="ref-Kassambara" class="csl-entry">
-<span>“Practical Guide to Principal Component Methods in r (Multivariate Analysis Book 2) (English Edition) eBook : Kassambara, Alboukadel: Amazon.com.br: Livros.”</span> n.d.
 </div>
 <div id="ref-spiegelhalter2021" class="csl-entry">
 Spiegelhalter, David. 2021. <em>The Art of Statistics: How to Learn from Data</em>. Basic Books.

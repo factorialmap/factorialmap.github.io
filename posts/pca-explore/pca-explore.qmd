@@ -16,7 +16,7 @@ bibliography: references.bib
 
 -   Verificar a variância explicada de cada componente principal @lê2008
 
--   Analisar os componentes principais como loadings, scores, rotations, coordenadas, cos2 entre outros elementos @Kassambara
+-   Analisar os componentes principais como loadings, scores, rotations, coordenadas, cos2 entre outros elementos @kassambara
 
 ### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 
