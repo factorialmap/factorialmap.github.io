@@ -1,6 +1,6 @@
 ---
 title: "Info"
-image: images/channel_logo.png
+image: images/marcelo_youtube.png
 about:
   template: trestles
   image-width: 7em
