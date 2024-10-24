@@ -1,0 +1,225 @@
+---
+title: "Visualização de dados usando Python"
+author: "Marcelo Carvalho dos Anjos"
+date: "2024-10-22"
+categories: [Exploração de dados]
+image: "img_plot.png"
+execute: 
+  warning: false
+  message: false
+---
+
+### {{< fa 1 >}} [**O que é a visualização de dados**]{style="color: #5AC8BE ;"}
+
+-   É uma etapa importante no processo de ciência dos dados onde o cientista busca por determinados padrões, distribuição, tendências ou formatos específicos os quais fornecem informações relevantes para as próximas etapas durante uma análise ou avaliação de seus resultados.
+
+
+### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
+
+-   Dar ao cientísta uma perspectiva diferente de interação com os dados que está analisando. Aumentando as possibilidades na identificação de características as quais não seriam possíveis usando outros formatos de apresentação. Isso permite traçar cenários, hipóteses e possíveis relações de causa-e-efeito.
+
+### {{< fa 3 >}} [**De onde vem a demanda**]{style="color: #5AC8BE ;"}
+
+-   Vem da necessidade de obter um formato de apresentação de dados que seja compreendido pelo cerebro humano de maneira mais eficiência e rápida.
+
+
+### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
+
+Primeiro precisamos importar as bibliotecas do Python. Neste caso importaremos inicialmente as bibliotecas pandas e numpy que são usadas para manipulação de dados assim como `tidyverse`, `dplyr` e `tidyr` no R.
+
+Também faremos a importação dos dados iris que já esta armazenado na biblioteca `sklearn`
+
+
+```{python}
+
+from sklearn import datasets
+import pandas as pd
+import numpy as np
+
+data_iris = datasets.load_iris() #get data
+
+```
+
+O próximo passo é converter o dataset em um pandas dataframe. Para quem vem do R, o pandas é um pacote similar ao `tidyverse` e `SQL` que facilita o manuseio, tratamento e manipulação de dados.
+
+```{python}
+
+df_iris = pd.DataFrame(
+    data = np.c_[data_iris["data"], data_iris["target"]],
+    columns= data_iris["feature_names"] + ["target"]
+    )
+```
+
+Vamos verificar alguns registros do conjunto de dados usando pandas.
+
+```{python}
+
+df_iris.head(5)
+
+```
+
+Vamos criar uma variável categórica armazenando as classes do dataseet que são **setosa, versicolor e virginica* e **
+
+```{python}
+
+species = []
+
+for i in range(len(df_iris["target"])):
+    if df_iris["target"][i] == 0:
+        species.append("setosa")
+    elif df_iris["target"][i] == 1:
+        species.append("versicolor")
+    else:
+        species.append("virginica")
+
+df_iris["species"] = species
+
+```
+
+Vamos fazer uma análise descritiva.
+
+```{python}
+
+df_iris.groupby('species').size()
+
+df_iris.describe()
+
+```
+
+Vamos plotar um gráfico de correlação do conjunto de dados usando a biblioteca `matplotlib`
+
+```{python}
+
+import matplotlib.pyplot as plt
+
+df_iris.head(5)
+
+df_iris.columns
+
+df_iris.plot(
+    kind = "scatter",
+    x = 'sepal length (cm)',
+    y = 'sepal width (cm)')
+
+```
+
+Vamos plotar um gráfico semelhante ao anterior usando a biblioteca `seaborn`
+
+```{python}
+
+import seaborn as sns
+
+sns_iris = sns.load_dataset("iris")
+
+sns.pairplot(sns_iris, hue = "species")
+
+```
+
+Agora vamos fazer o mesmo usando a biblioteca `plotnine`. Esta biblioteca foi desenvolvida usando como base o pacote `ggplot2` o que pode facilitar a interpretação do código e também a construção de gráficos mais complexos usando o Python.
+
+```{python}
+
+from plotnine import ggplot, aes, geom_point
+
+(
+    ggplot(sns_iris)
+    + aes(x = 'sepal_length', y = 'petal_length', fill = 'species')
+    + geom_point()
+)
+
+
+```
+
+Agora vamos construir um modelo machine learning usando a biblioteca `sklearn` usando o conjunto iris dataset para facilitar o entendimento.
+
+Chamaremos a biblioteca, construiremos a matriz, e faremos o split de dados em treino e teste.  
+```{python}
+from sklearn.model_selection import train_test_split
+
+#design matrix
+X = df_iris.drop(["target", "species"], axis = 1)
+
+#converting a numpy array petal length petal width
+X = X.to_numpy()[:, (2,3)]
+y = df_iris["target"]
+
+#split  into train and test set
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size = 0.5, random_state=42)
+
+```
+
+Vamos especificar o modelo a ser usado, neste caso vamos usar regressão logística.
+
+```{python}
+
+from sklearn.linear_model import LogisticRegression
+
+log_reg = LogisticRegression()
+log_reg.fit(X_train, y_train)
+
+```
+
+Vamos fazer a previsão usando o conjunto de treino
+
+```{python}
+
+mdl_pred_logreg_iris = log_reg.predict(X_train)
+
+mdl_pred_logreg_iris
+
+```
+
+Vamos fazer a previsão usando o conjunto de teste
+
+```{python}
+
+tes_prediction = log_reg.predict(X_test)
+
+tes_prediction
+
+```
+
+Vamos avaliar a performance do modelo usando o conjunto de treino
+
+```{python}
+
+from sklearn import metrics
+
+print("Precision, Recall, Confusion Matrix, in training\n")
+
+print(metrics.classification_report(y_train, mdl_pred_logreg_iris, digits = 3))
+
+print(metrics.confusion_matrix(y_train, mdl_pred_logreg_iris))
+
+```
+
+Vamos avaliar a performance do modelo usando o conjunto de teste
+
+```{python}
+
+print("Precision, Recall, Confusion Matrix, in testing\n")
+
+print(metrics.classification_report(y_test, tes_prediction, digits = 3))
+
+#confusion matrix
+print(metrics.confusion_matrix(y_test, tes_prediction))
+
+```
+
+### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
+
+-   Se for nas fases iniciais de exploração o próximo passo é a construção de hipoteses e cenários.
+
+-   Se for nas fases de validações e análise de resultados, a próxima etapa seria a construção de conclusões.
+
+
+### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
+
+-   Facilita a análise, compreensão, explicação e comunicação dos dados.
+
+-   Possibilia que a análise dos dados sejam vistos com outra perspectiva.
+
+-   Melhora a consistência na apresentação de dados.
+
+Vídeo tema para este post
+

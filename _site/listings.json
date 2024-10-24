@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/python-plots/py-plots.html",
       "/posts/pca-explore/pca-explore.html",
       "/posts/gts-print/gts-print.html",
       "/posts/gts-themes/gts-themes.html",

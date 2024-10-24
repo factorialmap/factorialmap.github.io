@@ -9,8 +9,1028 @@
 <link>https://carvalhoribeiro.netlify.app/</link>
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>
-<generator>quarto-1.5.56</generator>
-<lastBuildDate>Thu, 15 Aug 2024 03:00:00 GMT</lastBuildDate>
+<generator>quarto-1.5.57</generator>
+<lastBuildDate>Tue, 22 Oct 2024 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Visualização de dados usando Python</title>
+  <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
+  <link>https://carvalhoribeiro.netlify.app/posts/python-plots/py-plots.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="o-que-é-a-visualização-de-dados" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-a-visualização-de-dados"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a visualização de dados</strong></span></h3>
+<ul>
+<li>É uma etapa importante no processo de ciência dos dados onde o cientista busca por determinados padrões, distribuição, tendências ou formatos específicos os quais fornecem informações relevantes para as próximas etapas durante uma análise ou avaliação de seus resultados.</li>
+</ul>
+</section>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<ul>
+<li>Dar ao cientísta uma perspectiva diferente de interação com os dados que está analisando. Aumentando as possibilidades na identificação de características as quais não seriam possíveis usando outros formatos de apresentação. Isso permite traçar cenários, hipóteses e possíveis relações de causa-e-efeito.</li>
+</ul>
+</section>
+<section id="de-onde-vem-a-demanda" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<ul>
+<li>Vem da necessidade de obter um formato de apresentação de dados que seja compreendido pelo cerebro humano de maneira mais eficiência e rápida.</li>
+</ul>
+</section>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<p>Primeiro precisamos importar as bibliotecas do Python. Neste caso importaremos inicialmente as bibliotecas pandas e numpy que são usadas para manipulação de dados assim como <code>tidyverse</code>, <code>dplyr</code> e <code>tidyr</code> no R.</p>
+<p>Também faremos a importação dos dados iris que já esta armazenado na biblioteca <code>sklearn</code></p>
+<div id="ee71643d" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> datasets</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb1-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb1-4"></span>
+<span id="cb1-5">data_iris <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> datasets.load_iris() <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#get data</span></span></code></pre></div>
+</div>
+<p>O próximo passo é converter o dataset em um pandas dataframe. Para quem vem do R, o pandas é um pacote similar ao <code>tidyverse</code> e <code>SQL</code> que facilita o manuseio, tratamento e manipulação de dados.</p>
+<div id="ad66a087" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">df_iris <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame(</span>
+<span id="cb2-2">    data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.c_[data_iris[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"data"</span>], data_iris[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"target"</span>]],</span>
+<span id="cb2-3">    columns<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> data_iris[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"feature_names"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"target"</span>]</span>
+<span id="cb2-4">    )</span></code></pre></div>
+</div>
+<p>Vamos verificar alguns registros do conjunto de dados usando pandas.</p>
+<div id="71dbadfb" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">df_iris.head(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sepal length (cm)</th>
+<th data-quarto-table-cell-role="th">sepal width (cm)</th>
+<th data-quarto-table-cell-role="th">petal length (cm)</th>
+<th data-quarto-table-cell-role="th">petal width (cm)</th>
+<th data-quarto-table-cell-role="th">target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>5.1</td>
+<td>3.5</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>4.9</td>
+<td>3.0</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>4.7</td>
+<td>3.2</td>
+<td>1.3</td>
+<td>0.2</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>4.6</td>
+<td>3.1</td>
+<td>1.5</td>
+<td>0.2</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>5.0</td>
+<td>3.6</td>
+<td>1.4</td>
+<td>0.2</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Vamos criar uma variável categórica armazenando as classes do dataseet que são <strong>setosa, versicolor e virginica* e </strong></p>
+<div id="e225e2cd" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">species <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb4-2"></span>
+<span id="cb4-3"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(df_iris[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"target"</span>])):</span>
+<span id="cb4-4">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> df_iris[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"target"</span>][i] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>:</span>
+<span id="cb4-5">        species.append(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"setosa"</span>)</span>
+<span id="cb4-6">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">elif</span> df_iris[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"target"</span>][i] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>:</span>
+<span id="cb4-7">        species.append(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"versicolor"</span>)</span>
+<span id="cb4-8">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span>:</span>
+<span id="cb4-9">        species.append(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"virginica"</span>)</span>
+<span id="cb4-10"></span>
+<span id="cb4-11">df_iris[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"species"</span>] <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> species</span></code></pre></div>
+</div>
+<p>Vamos fazer uma análise descritiva.</p>
+<div id="0b00a86e" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">df_iris.groupby(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'species'</span>).size()</span>
+<span id="cb5-2"></span>
+<span id="cb5-3">df_iris.describe()</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">sepal length (cm)</th>
+<th data-quarto-table-cell-role="th">sepal width (cm)</th>
+<th data-quarto-table-cell-role="th">petal length (cm)</th>
+<th data-quarto-table-cell-role="th">petal width (cm)</th>
+<th data-quarto-table-cell-role="th">target</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>150.000000</td>
+<td>150.000000</td>
+<td>150.000000</td>
+<td>150.000000</td>
+<td>150.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>5.843333</td>
+<td>3.057333</td>
+<td>3.758000</td>
+<td>1.199333</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>0.828066</td>
+<td>0.435866</td>
+<td>1.765298</td>
+<td>0.762238</td>
+<td>0.819232</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>4.300000</td>
+<td>2.000000</td>
+<td>1.000000</td>
+<td>0.100000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>5.100000</td>
+<td>2.800000</td>
+<td>1.600000</td>
+<td>0.300000</td>
+<td>0.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>5.800000</td>
+<td>3.000000</td>
+<td>4.350000</td>
+<td>1.300000</td>
+<td>1.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>6.400000</td>
+<td>3.300000</td>
+<td>5.100000</td>
+<td>1.800000</td>
+<td>2.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>7.900000</td>
+<td>4.400000</td>
+<td>6.900000</td>
+<td>2.500000</td>
+<td>2.000000</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Vamos plotar um gráfico de correlação do conjunto de dados usando a biblioteca <code>matplotlib</code></p>
+<div id="ade68c01" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb6-2"></span>
+<span id="cb6-3">df_iris.head(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>)</span>
+<span id="cb6-4"></span>
+<span id="cb6-5">df_iris.columns</span>
+<span id="cb6-6"></span>
+<span id="cb6-7">df_iris.plot(</span>
+<span id="cb6-8">    kind <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"scatter"</span>,</span>
+<span id="cb6-9">    x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'sepal length (cm)'</span>,</span>
+<span id="cb6-10">    y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'sepal width (cm)'</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/python-plots/py-plots_files/figure-html/cell-7-output-1.png" width="589" height="432" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Vamos plotar um gráfico semelhante ao anterior usando a biblioteca <code>seaborn</code></p>
+<div id="295ce3f0" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> seaborn <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> sns</span>
+<span id="cb7-2"></span>
+<span id="cb7-3">sns_iris <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> sns.load_dataset(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"iris"</span>)</span>
+<span id="cb7-4"></span>
+<span id="cb7-5">sns.pairplot(sns_iris, hue <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"species"</span>)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/python-plots/py-plots_files/figure-html/cell-8-output-1.png" width="1069" height="947" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Agora vamos fazer o mesmo usando a biblioteca <code>plotnine</code>. Esta biblioteca foi desenvolvida usando como base o pacote <code>ggplot2</code> o que pode facilitar a interpretação do código e também a construção de gráficos mais complexos usando o Python.</p>
+<div id="39f44d68" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> plotnine <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> ggplot, aes, geom_point</span>
+<span id="cb8-2"></span>
+<span id="cb8-3">(</span>
+<span id="cb8-4">    ggplot(sns_iris)</span>
+<span id="cb8-5">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> aes(x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'sepal_length'</span>, y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'petal_length'</span>, fill <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'species'</span>)</span>
+<span id="cb8-6">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> geom_point()</span>
+<span id="cb8-7">)</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/python-plots/py-plots_files/figure-html/cell-9-output-1.png" width="640" height="480" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Agora vamos construir um modelo machine learning usando a biblioteca <code>sklearn</code> usando o conjunto iris dataset para facilitar o entendimento.</p>
+<p>Chamaremos a biblioteca, construiremos a matriz, e faremos o split de dados em treino e teste.</p>
+<div id="f5c45846" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn.model_selection <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> train_test_split</span>
+<span id="cb9-2"></span>
+<span id="cb9-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#design matrix</span></span>
+<span id="cb9-4">X <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df_iris.drop([<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"target"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"species"</span>], axis <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb9-5"></span>
+<span id="cb9-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#converting a numpy array petal length petal width</span></span>
+<span id="cb9-7">X <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> X.to_numpy()[:, (<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>)]</span>
+<span id="cb9-8">y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> df_iris[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"target"</span>]</span>
+<span id="cb9-9"></span>
+<span id="cb9-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#split  into train and test set</span></span>
+<span id="cb9-11">X_train, X_test, y_train, y_test <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> train_test_split(X,y, test_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>, random_state<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">42</span>)</span></code></pre></div>
+</div>
+<p>Vamos especificar o modelo a ser usado, neste caso vamos usar regressão logística.</p>
+<div id="a7c3ba26" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn.linear_model <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> LogisticRegression</span>
+<span id="cb10-2"></span>
+<span id="cb10-3">log_reg <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> LogisticRegression()</span>
+<span id="cb10-4">log_reg.fit(X_train, y_train)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: black;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 1ex;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</a></style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow fitted">&nbsp;&nbsp;LogisticRegression<a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LogisticRegression.html">?<span>Documentation for LogisticRegression</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></label><div class="sk-toggleable__content fitted"><pre>LogisticRegression()</pre></div> </div></div></div></div>
+</div>
+</div>
+<p>Vamos fazer a previsão usando o conjunto de treino</p>
+<div id="0611cfca" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">mdl_pred_logreg_iris <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> log_reg.predict(X_train)</span>
+<span id="cb11-2"></span>
+<span id="cb11-3">mdl_pred_logreg_iris</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>array([1., 2., 1., 0., 1., 2., 0., 0., 1., 2., 0., 2., 0., 0., 2., 1., 2.,
+       2., 2., 2., 1., 0., 0., 1., 2., 0., 0., 0., 1., 2., 0., 2., 2., 0.,
+       1., 1., 2., 1., 2., 0., 2., 1., 2., 1., 1., 1., 0., 1., 1., 0., 1.,
+       2., 2., 0., 1., 2., 2., 0., 2., 0., 1., 2., 2., 1., 2., 1., 1., 2.,
+       2., 0., 1., 1., 0., 1., 2.])</code></pre>
+</div>
+</div>
+<p>Vamos fazer a previsão usando o conjunto de teste</p>
+<div id="7ae306e6" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">tes_prediction <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> log_reg.predict(X_test)</span>
+<span id="cb13-2"></span>
+<span id="cb13-3">tes_prediction</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>array([1., 0., 2., 1., 1., 0., 1., 2., 1., 1., 2., 0., 0., 0., 0., 1., 2.,
+       1., 1., 2., 0., 2., 0., 2., 2., 2., 2., 2., 0., 0., 0., 0., 1., 0.,
+       0., 2., 1., 0., 0., 0., 2., 1., 1., 0., 0., 1., 2., 2., 1., 2., 1.,
+       2., 1., 0., 2., 1., 0., 0., 0., 1., 2., 0., 0., 0., 1., 0., 1., 2.,
+       0., 1., 2., 0., 2., 2., 1.])</code></pre>
+</div>
+</div>
+<p>Vamos avaliar a performance do modelo usando o conjunto de treino</p>
+<div id="037067d4" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> metrics</span>
+<span id="cb15-2"></span>
+<span id="cb15-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Precision, Recall, Confusion Matrix, in training</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb15-4"></span>
+<span id="cb15-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(metrics.classification_report(y_train, mdl_pred_logreg_iris, digits <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>))</span>
+<span id="cb15-6"></span>
+<span id="cb15-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(metrics.confusion_matrix(y_train, mdl_pred_logreg_iris))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Precision, Recall, Confusion Matrix, in training
+
+              precision    recall  f1-score   support
+
+         0.0      1.000     1.000     1.000        21
+         1.0      0.923     0.889     0.906        27
+         2.0      0.893     0.926     0.909        27
+
+    accuracy                          0.933        75
+   macro avg      0.939     0.938     0.938        75
+weighted avg      0.934     0.933     0.933        75
+
+[[21  0  0]
+ [ 0 24  3]
+ [ 0  2 25]]</code></pre>
+</div>
+</div>
+<p>Vamos avaliar a performance do modelo usando o conjunto de teste</p>
+<div id="0c39f30a" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Precision, Recall, Confusion Matrix, in testing</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb17-2"></span>
+<span id="cb17-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(metrics.classification_report(y_test, tes_prediction, digits <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>))</span>
+<span id="cb17-4"></span>
+<span id="cb17-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#confusion matrix</span></span>
+<span id="cb17-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(metrics.confusion_matrix(y_test, tes_prediction))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Precision, Recall, Confusion Matrix, in testing
+
+              precision    recall  f1-score   support
+
+         0.0      1.000     1.000     1.000        29
+         1.0      1.000     1.000     1.000        23
+         2.0      1.000     1.000     1.000        23
+
+    accuracy                          1.000        75
+   macro avg      1.000     1.000     1.000        75
+weighted avg      1.000     1.000     1.000        75
+
+[[29  0  0]
+ [ 0 23  0]
+ [ 0  0 23]]</code></pre>
+</div>
+</div>
+</section>
+<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<ul>
+<li><p>Se for nas fases iniciais de exploração o próximo passo é a construção de hipoteses e cenários.</p></li>
+<li><p>Se for nas fases de validações e análise de resultados, a próxima etapa seria a construção de conclusões.</p></li>
+</ul>
+</section>
+<section id="qual-o-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<ul>
+<li><p>Facilita a análise, compreensão, explicação e comunicação dos dados.</p></li>
+<li><p>Possibilia que a análise dos dados sejam vistos com outra perspectiva.</p></li>
+<li><p>Melhora a consistência na apresentação de dados.</p></li>
+</ul>
+<p>Vídeo tema para este post</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Exploração de dados</category>
+  <guid>https://carvalhoribeiro.netlify.app/posts/python-plots/py-plots.html</guid>
+  <pubDate>Tue, 22 Oct 2024 03:00:00 GMT</pubDate>
+  <media:content url="https://carvalhoribeiro.netlify.app/posts/python-plots/img_plot.png" medium="image" type="image/png" height="96" width="144"/>
+</item>
 <item>
   <title>Interpretando Análise de componentes principais PCA</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
@@ -5453,7 +6473,7 @@ Iannone, Richard, Joe Cheng, Barret Schloerke, Ellis Hughes, Alexandra Lauer, an
 
 
 <section id="o-que-é-o-diagrama-de-causa-e-efeito" class="level3">
-<h3 class="anchored" data-anchor-id="o-que-é-o-diagrama-de-causa-e-efeito"> <span style="color: #5AC8BE ;"><strong>O que é o diagrama de causa e efeito</strong></span></h3>
+<h3 class="anchored" data-anchor-id="o-que-é-o-diagrama-de-causa-e-efeito"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é o diagrama de causa e efeito</strong></span></h3>
 <ul>
 <li>O diagrama de causa e efeito é uma ferramenta que ajuda a representar com certa facilidade a estrutura do pensamento humano diante de situações e problemas complicados de se resolver.</li>
 <li>Por se tratar de uma ferramenta gráfica, facilita identificar uma relação significativa sob diversos pontos de vista entre o efeito e suas possíveis causas <span class="citation" data-cites="werkema2021">Werkema (2021)</span> .</li>
@@ -5467,7 +6487,7 @@ Iannone, Richard, Joe Cheng, Barret Schloerke, Ellis Hughes, Alexandra Lauer, an
 </div>
 </section>
 <section id="qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="qual-o-objetivo"> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
 <li><p>Estimular a interação entre as pessoas, processo, instrumentos, ambiente e sistemas na busca de possíveis causas que podem unfluenciar ou gerar um determinado efeito.</p></li>
 <li><p>Permitir que todos os envolvidos contribuam com ideias e pontos de vista.</p></li>
@@ -5475,7 +6495,7 @@ Iannone, Richard, Joe Cheng, Barret Schloerke, Ellis Hughes, Alexandra Lauer, an
 </ul>
 </section>
 <section id="de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
 <li><p>Um professor na universidade de Tokyo Kaoru Ishikawa, usou um diagrama para sintetizar opiniões de engenheiros nas fábricas durante discussões sobre qualidade em 1953. Conforme <span class="citation" data-cites="kume1987">Kume (1987)</span>, alunos de Ishikawa também empregaram o método para organizar fatores em suas atividades de pesquisa.</p></li>
 <li><p>Pela simplicidade e eficiência da ferramenta, ela foi adotada e incorporada aos JIS (Japanese Industrial Standards).</p></li>
@@ -5491,7 +6511,7 @@ Iannone, Richard, Joe Cheng, Barret Schloerke, Ellis Hughes, Alexandra Lauer, an
 </ul>
 </section>
 <section id="como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="como-fazer"> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<h3 class="anchored" data-anchor-id="como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <ul>
 <li><p>Em uma ponta você colocar o efeito, e as ideias sobre as possíveis causas aparentes são coletadas de times multidisciplinares.</p></li>
 <li><p>Você pode usar uma folha de papel e se preferir usar o R você pode usar o pacote <code>qcc</code> criado por <span class="citation" data-cites="scrucca2004">(<strong>scrucca2004?</strong>)</span></p></li>
@@ -5598,7 +6618,7 @@ font-style: inherit;">"Diagrama de causa e efeito"</span>)</span></code></pre></
 </div>
 </section>
 <section id="pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
 <li>Os resultados coletados na análise do diagrama de causa e efeito são conhecidas como <strong>causas aparentes</strong> e são utilizados na identificação da <strong>causa raiz</strong> onde é possível usar a técnica de cinco porques. Enquanto a técnica dos cinco porques tem o foco na profundidade das relações de causa e efeito, o diagrama de causa e efeito tem o foco nas diferentes perspectivas nessas relações. Em resumo, mesmo os pontos de vista sendo diferentes por serem coletados por diferentes membros da equipe, eles tendem a convergir em relação ao problema. Por exemplo se considerarmos que a causa aparente do atrazo na entrega seja problemas frequentes na maquina de montar caixa. Quando usamos a técnica de cinco porques, poderia ficar assim:
 <ul>
@@ -5622,7 +6642,7 @@ font-style: inherit;">"Diagrama de causa e efeito"</span>)</span></code></pre></
 </ul>
 </section>
 <section id="qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="qual-o-resultado"> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<h3 class="anchored" data-anchor-id="qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
 <li>Possibilita coletar, analisar e compreender os efeitos e possíveis causas de um problema sob diversos pontos de vista.</li>
 <li>Possibilia maior cooperação e participação de todos na busca da melhoria contínua dos processos.</li>
@@ -5647,7 +6667,7 @@ Shatz, Itamar. 2024. <span>“The Curse of Knowledge: A Difficulty in Understand
 Werkema, Cristina. 2021. <em>Métodos PDCA e Demaic e Suas Ferramentas Analíticas</em>. 1ª edição. GEN Atlas.
 </div>
 </div></section></div> ]]></description>
-  <category>Demanda</category>
+  <category>Demanda ou problema</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/causeeffect.html</guid>
   <pubDate>Sun, 28 Jan 2024 03:00:00 GMT</pubDate>
   <media:content url="https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/diagrama_causa_efeito.png" medium="image" type="image/png" height="62" width="144"/>
