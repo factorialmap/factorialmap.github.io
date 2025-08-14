@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Marcelo Carvalho dos Anjos">
+
+<title>classificacao_ai – Carvalho Ribeiro Blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4379b0ccadffce622b03caf4c46266b3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f3c2ea88cadbcfb37ba28ffa2c97cfc1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ae2d0dcda2edce4ab590422bb373b64f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Carvalho Ribeiro Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Info</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://youtube.com/carvalhoribeiro"> <i class="bi bi-youtube" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/factorialmap"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#classes-de-ai-para-clareza-conceitual" id="toc-classes-de-ai-para-clareza-conceitual" class="nav-link active" data-scroll-target="#classes-de-ai-para-clareza-conceitual">Classes de AI para clareza conceitual</a>
+  <ul class="collapse">
+  <li><a href="#o-que-é-a-classificação-de-ia" id="toc-o-que-é-a-classificação-de-ia" class="nav-link" data-scroll-target="#o-que-é-a-classificação-de-ia">O que é a classificação de IA</a>
+  <ul class="collapse">
+  <li><a href="#paralelo-entre-vehicle-e-artificial-intelligence" id="toc-paralelo-entre-vehicle-e-artificial-intelligence" class="nav-link" data-scroll-target="#paralelo-entre-vehicle-e-artificial-intelligence"><strong>Paralelo entre “vehicle” e “artificial intelligence”</strong></a></li>
+  </ul></li>
+  <li><a href="#qual-o-objetivo-da-classificação-de-ia" id="toc-qual-o-objetivo-da-classificação-de-ia" class="nav-link" data-scroll-target="#qual-o-objetivo-da-classificação-de-ia">Qual o objetivo da classificação de IA</a></li>
+  <li><a href="#de-onde-vem-a-necessidade-da-classificação-de-ia" id="toc-de-onde-vem-a-necessidade-da-classificação-de-ia" class="nav-link" data-scroll-target="#de-onde-vem-a-necessidade-da-classificação-de-ia">De onde vem a necessidade da classificação de IA</a></li>
+  <li><a href="#como-fazer-a-classificação-da-ia" id="toc-como-fazer-a-classificação-da-ia" class="nav-link" data-scroll-target="#como-fazer-a-classificação-da-ia">Como fazer a classificação da IA</a>
+  <ul class="collapse">
+  <li><a href="#contexto-geral" id="toc-contexto-geral" class="nav-link" data-scroll-target="#contexto-geral">Contexto geral</a></li>
+  <li><a href="#contexto-educacional" id="toc-contexto-educacional" class="nav-link" data-scroll-target="#contexto-educacional">Contexto educacional</a></li>
+  <li><a href="#contexto-regulatório" id="toc-contexto-regulatório" class="nav-link" data-scroll-target="#contexto-regulatório">Contexto regulatório</a></li>
+  <li><a href="#contexto-empresarial" id="toc-contexto-empresarial" class="nav-link" data-scroll-target="#contexto-empresarial">Contexto empresarial</a></li>
+  <li><a href="#contexto-de-comunicação-e-mídia" id="toc-contexto-de-comunicação-e-mídia" class="nav-link" data-scroll-target="#contexto-de-comunicação-e-mídia">Contexto de Comunicação e Mídia</a></li>
+  </ul></li>
+  <li><a href="#pra-onde-vai-próximos-passos-após-a-classificação-da-ia" id="toc-pra-onde-vai-próximos-passos-após-a-classificação-da-ia" class="nav-link" data-scroll-target="#pra-onde-vai-próximos-passos-após-a-classificação-da-ia">Pra onde vai próximos passos após a classificação da IA</a></li>
+  <li><a href="#quais-os-resultados-para-cada-grupo" id="toc-quais-os-resultados-para-cada-grupo" class="nav-link" data-scroll-target="#quais-os-resultados-para-cada-grupo">Quais os resultados para cada grupo</a>
+  <ul class="collapse">
+  <li><a href="#público-geral" id="toc-público-geral" class="nav-link" data-scroll-target="#público-geral">Público Geral</a></li>
+  <li><a href="#reguladores-e-legisladores" id="toc-reguladores-e-legisladores" class="nav-link" data-scroll-target="#reguladores-e-legisladores">Reguladores e Legisladores</a></li>
+  <li><a href="#empresas-e-desenvolvedores" id="toc-empresas-e-desenvolvedores" class="nav-link" data-scroll-target="#empresas-e-desenvolvedores">Empresas e Desenvolvedores</a></li>
+  <li><a href="#educadores-e-pesquisadores" id="toc-educadores-e-pesquisadores" class="nav-link" data-scroll-target="#educadores-e-pesquisadores">Educadores e Pesquisadores</a></li>
+  <li><a href="#mídia-e-comunicadores" id="toc-mídia-e-comunicadores" class="nav-link" data-scroll-target="#mídia-e-comunicadores">Mídia e Comunicadores</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">classificacao_ai</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Marcelo Carvalho dos Anjos </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="classes-de-ai-para-clareza-conceitual" class="level1">
+<h1>Classes de AI para clareza conceitual</h1>
+<section id="o-que-é-a-classificação-de-ia" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-é-a-classificação-de-ia">O que é a classificação de IA</h2>
+<p>A classificação da Inteligência Artificial é o processo de organizar os diferentes tipos de sistemas de IA com base em critérios como função, complexidade, autonomia, impacto social e contexto de uso.</p>
+<p>Assim como classificamos tecnologias em categorias distintas (como softwares, veículos ou medicamentos) de acordo com função, complexidade e contexto de uso, podemos aplicar critérios semelhantes à IA, que com uma taxonomia clara, possa ser melhor compreendida e aplicada de forma responsável.</p>
+<section id="paralelo-entre-vehicle-e-artificial-intelligence" class="level3">
+<h3 class="anchored" data-anchor-id="paralelo-entre-vehicle-e-artificial-intelligence"><strong>Paralelo entre “vehicle” e “artificial intelligence”</strong></h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Veículo</strong> (analogia)</th>
+<th><strong>Inteligência Artificial</strong> (realidade)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Palavra genérica que engloba carros, bicicletas, ônibus, foguetes, etc.</td>
+<td>Termo guarda-chuva que inclui desde chatbots simples até sistemas autônomos complexos.</td>
+</tr>
+<tr class="even">
+<td>Discussões confusas sobre “veículos” sem distinguir entre tipos.</td>
+<td>Debates sobre IA (ética, impacto, regulação) sem diferenciar entre modelos e aplicações.</td>
+</tr>
+<tr class="odd">
+<td>Avanços em foguetes confundidos com melhorias em carros.</td>
+<td>Avanços em IA generativa confundidos com IA de recomendação ou automação industrial.</td>
+</tr>
+<tr class="even">
+<td>Golpes e desinformação prosperam na ambiguidade.</td>
+<td>Charlatanismo e hype em torno da IA se aproveitam da falta de compreensão técnica.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="qual-o-objetivo-da-classificação-de-ia" class="level2">
+<h2 class="anchored" data-anchor-id="qual-o-objetivo-da-classificação-de-ia">Qual o objetivo da classificação de IA</h2>
+<p>O principal objetivo é trazer clareza conceitual para que diferentes atores da sociedade possam:</p>
+<ul>
+<li>Entender o que estão usando ou regulando.</li>
+<li>Avaliar riscos e benefícios com mais precisão.</li>
+<li>Promover inovação sem comprometer a segurança ou a ética.</li>
+<li>Evitar generalizações que geram medo, hype ou desinformação.</li>
+</ul>
+<p>A crescente presença da Inteligência Artificial em nossas vidas exige mais do que entusiasmo ou cautela, ela exige clareza conceitual. Ao nomearmos e distinguirmos os diferentes tipos de IA, abrimos caminho para um ecossistema mais transparente, seguro e produtivo. Essa distinção terá efeitos nas áreas técnicas, estratégicas e sociais.</p>
+</section>
+<section id="de-onde-vem-a-necessidade-da-classificação-de-ia" class="level2">
+<h2 class="anchored" data-anchor-id="de-onde-vem-a-necessidade-da-classificação-de-ia">De onde vem a necessidade da classificação de IA</h2>
+<p>A necessidade surge da ambiguidade atual no uso do termo “IA”, que é aplicado tanto a sistemas simples como filtros de spam ou recomendação de músicas quanto a tecnologias avançadas como modelos generativos ou uso militar.</p>
+<p>Essa generalização além de confundir o público, pode dificultar a regulação, alimentar o sensacionalismo midiático além de permitir abusos comerciais e éticos. A classificação seria esclarecimento para proteção e potencialização.</p>
+</section>
+<section id="como-fazer-a-classificação-da-ia" class="level2">
+<h2 class="anchored" data-anchor-id="como-fazer-a-classificação-da-ia">Como fazer a classificação da IA</h2>
+<section id="contexto-geral" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-geral">Contexto geral</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A["IA nível geral"] --&gt; B1["IA simples e direta"] &amp; B2["IA intermediária e especializada"] &amp; B3["IA avançada e crítica"] &amp; B4["IA fronteira e disruptiva"]
+    B1 --&gt; C1["Filtros de spam, recomendações, assistentes de voz básicos"]
+    B2 --&gt; C2["Diagnóstico médico, crédito automatizado, logística"]
+    B3 --&gt; C3["Modelos generativos, veículos autônomos, uso militar"]
+    B4 --&gt; C4["AGI, IA autoevolutiva, protótipos experimentais"]
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="contexto-educacional" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-educacional">Contexto educacional</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["Classificação da IA"] --&gt; B1["Organização Curricular"] &amp; B2["Formação por Competências"] &amp; B3["Ensino Ético e Crítico"]
+    B1 --&gt; C1["IA Simples: Introdução à IA"] &amp; C2["IA Especializada: Aplicações Profissionais"] &amp; C3["IA Avançada: Pesquisa e Desenvolvimento"]
+    B2 --&gt; D1["Habilidades Técnicas"] &amp; D2["Análise de Impacto Social"] &amp; D3["Comunicação Interdisciplinar"]
+    B3 --&gt; E1["Discussões Éticas"] &amp; E2["Estudos de Caso"]
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="contexto-regulatório" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-regulatório">Contexto regulatório</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">
+flowchart LR
+    A["Classificação da IA"] --&gt; B1["Análise de Risco"] &amp; B2["Criação de Normas"] &amp; B3["Monitoramento e Fiscalização"]
+    B1 --&gt; C1["IA de Baixo Risco: Isenção Regulativa"] &amp; C2["IA de Médio Risco: Supervisão Moderada"] &amp; C3["IA de Alto Risco: Regulação Estrita"]
+    B2 --&gt; D1["Normas Técnicas por Categoria"] &amp; D2["Diretrizes Éticas"] &amp; D3["Requisitos de Transparência"]
+    B3 --&gt; E1["Auditorias Automatizadas"] &amp; E2["Relatórios de Conformidade"]
+
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="contexto-empresarial" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-empresarial">Contexto empresarial</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["Classificação da IA"] --&gt; B1["Posicionamento de Produto"] &amp; B2["Gestão de Riscos"] &amp; B3["Relacionamento com Stakeholders"]
+    B1 --&gt; C1["Comunicação Clara com Clientes"] &amp; C2["Segmentação de Mercado"] &amp; C3["Evitar Overpromising"]
+    B2 --&gt; D1["Mapeamento de Impacto"] &amp; D2["Compliance Tecnológico"] &amp; D3["Planejamento Estratégico"]
+    B3 --&gt; E1["Transparência com Investidores"] &amp; E2["Educação do Consumidor"]
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="contexto-de-comunicação-e-mídia" class="level3">
+<h3 class="anchored" data-anchor-id="contexto-de-comunicação-e-mídia">Contexto de Comunicação e Mídia</h3>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A["Classificação da IA"] --&gt; B1["Reportagens Mais Precisas"] &amp; B2["Educação do Público"] &amp; B3["Combate à Desinformação"]
+    B1 --&gt; C1["Especificar Tipo de IA"] &amp; C2["Evitar Sensacionalismo"] &amp; C3["Contextualizar Avanços"]
+    B2 --&gt; D1["Glossários e Guias"] &amp; D2["Conteúdo Didático"] &amp; D3["Parcerias com Especialistas"]
+    B3 --&gt; E1["Checagem de Fatos"] &amp; E2["Desmistificação de Tecnologias"]
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="pra-onde-vai-próximos-passos-após-a-classificação-da-ia" class="level2">
+<h2 class="anchored" data-anchor-id="pra-onde-vai-próximos-passos-após-a-classificação-da-ia">Pra onde vai próximos passos após a classificação da IA</h2>
+<p>Após a classificação da Inteligência Artificial, os próximos passos envolvem a criação de padrões e normas técnicas específicas para cada tipo de IA, permitindo uma aplicação mais segura e coerente da tecnologia.</p>
+<p>Também se torna essencial o desenvolvimento de políticas públicas direcionadas, que considerem os diferentes níveis de risco e impacto social de cada categoria.</p>
+<p>Paralelamente, é necessário investir na educação e capacitação tanto de profissionais quanto do público em geral, promovendo uma compreensão mais crítica e informada sobre o uso da IA.</p>
+<p>As empresas, por sua vez, devem adotar uma postura de transparência ao comunicar o tipo de IA que utilizam, contribuindo para a confiança do mercado e dos consumidores.</p>
+<p>Por fim, o fomento à pesquisa ética e responsável em cada domínio da IA garante que o avanço tecnológico ocorra de forma alinhada aos valores sociais.</p>
+<p>A classificação, portanto, representa o ponto de partida para uma governança mais inteligente, justa e sustentável da tecnologia.</p>
+</section>
+<section id="quais-os-resultados-para-cada-grupo" class="level2">
+<h2 class="anchored" data-anchor-id="quais-os-resultados-para-cada-grupo">Quais os resultados para cada grupo</h2>
+<section id="público-geral" class="level3">
+<h3 class="anchored" data-anchor-id="público-geral">Público Geral</h3>
+<ul>
+<li><strong>Benefício</strong>: Compreensão acessível e realista sobre o que a IA pode (ou não) fazer.</li>
+<li><strong>Impacto</strong>: Reduz o medo irracional e o fascínio exagerado. Permite decisões mais informadas no consumo de produtos e serviços baseados em IA.</li>
+<li><strong>Exemplo</strong>: Saber diferenciar um chatbot de um sistema de vigilância automatizado ajuda a entender riscos e utilidades reais.</li>
+</ul>
+</section>
+<section id="reguladores-e-legisladores" class="level3">
+<h3 class="anchored" data-anchor-id="reguladores-e-legisladores">Reguladores e Legisladores</h3>
+<ul>
+<li><strong>Benefício</strong>: Criação de políticas públicas mais precisas e eficazes.Leis e políticas mais eficazes, específicas e adaptadas ao risco</li>
+<li><strong>Impacto</strong>: Evita legislações genéricas que travam a inovação ou deixam brechas perigosas.</li>
+<li><strong>Exemplo</strong>: Regulamentar IA em diagnósticos médicos exige critérios diferentes dos aplicáveis a IA em redes sociais.</li>
+</ul>
+</section>
+<section id="empresas-e-desenvolvedores" class="level3">
+<h3 class="anchored" data-anchor-id="empresas-e-desenvolvedores">Empresas e Desenvolvedores</h3>
+<ul>
+<li><strong>Benefício</strong>: Comunicação mais honesta com clientes, investidores e parceiros.inovação com responsabilidade e confiança do mercado.</li>
+<li><strong>Impacto</strong>: Reduz o hype e o risco de promessas enganosas. Estimula a inovação responsável.</li>
+<li><strong>Exemplo</strong>: Uma empresa que desenvolve IA para logística pode se posicionar com mais clareza e confiança no mercado.</li>
+</ul>
+</section>
+<section id="educadores-e-pesquisadores" class="level3">
+<h3 class="anchored" data-anchor-id="educadores-e-pesquisadores">Educadores e Pesquisadores</h3>
+<ul>
+<li><strong>Benefício</strong>: Currículos mais claros, formação crítica e alinhada com o mercado. Estruturação mais eficaz de currículos e materiais didáticos.</li>
+<li><strong>Impacto</strong>: Facilita a formação de profissionais críticos e preparados para lidar com diferentes tipos de IA.</li>
+<li><strong>Exemplo</strong>: Ensinar IA generativa e IA simbólica como áreas distintas ajuda alunos a entenderem suas aplicações e limitações.</li>
+</ul>
+</section>
+<section id="mídia-e-comunicadores" class="level3">
+<h3 class="anchored" data-anchor-id="mídia-e-comunicadores">Mídia e Comunicadores</h3>
+<ul>
+<li><strong>Benefício</strong>: Reportagens mais precisas e educativas.</li>
+<li><strong>Impacto</strong>: Combate a desinformação e o sensacionalismo. Promove o debate público qualificado.</li>
+<li><strong>Exemplo</strong>: Ao cobrir um avanço em IA, a mídia pode explicar se se trata de um sistema de linguagem, de visão computacional ou de automação industrial.</li>
+</ul>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/carvalhoribeiro\.netlify\.app\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="factorialmap/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

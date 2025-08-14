@@ -211,6 +211,81 @@ Após duas semanas de instrução, todos os grupos realizaram um teste formativo
 2.  **Redução da variabilidade**: Ao nivelar os conhecimentos iniciais, os alunos começaram o curso com uma base mais homogênea, o que facilita o ensino em grupo.
 3.  **Potencial para escalabilidade**: Diferente da tutoria individual, essa abordagem pode ser aplicada em turmas maiores com custo relativamente baixo.
 
+
+```{r}
+#| label: table_learning
+#| echo: false
+#| warning: false
+#| message: false
+
+library(gt)
+
+
+data_learning_types <- 
+  tibble(
+    learning_type = c("Convencional","Aprendizagem por Domínio","Pré-requisitos Reforçados","Tutoria Individual"),
+    learning_desc = c("Todos os alunos aprendem o mesmo conteúdo, ao mesmo tempo, com o mesmo ritmo. A aula segue um cronograma fixo, e as provas acontecem em datas marcadas, independentemente de o aluno ter dominado o conteúdo ou não",
+                      "Ninguém avança para a próxima etapa até dominar bem a anterior. Se o aluno ainda não entendeu bem a matéria, ele recebe mais apoio, mais tempo e atividades extras até que esteja pronto para seguir em frente.",
+                      "Antes de ensinar um novo conteúdo, o professor reforça os conhecimentos básicos que são essenciais para entender o que vem a seguir. É como revisar os alicerces antes de construir o próximo andar.",
+                      "O aluno recebe atenção personalizada de um tutor (professor ou colega mais experiente), que adapta o ensino às suas necessidades específicas."
+                      ))
+
+data_learning_types %>% 
+  gt::gt() %>% 
+  gt::tab_header(title = md("**Condições de aprendizado utilizados na pesquisa**")) %>% 
+  gt::cols_label(
+    learning_type = md("**Tipo aprendizado**"),
+    learning_desc = md("**Detalhes**")
+  )
+  
+```
+
+
+O gráfico abaixo demonstra os resultados.
+
+```{r}
+#| label: layton_plot
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-align: center
+
+library(tidyverse)
+
+data_edu_layton <- 
+  tibble(
+    pesquisador = c("Layton",
+                    "Layton",
+                    "Layton",
+                    "Layton",
+                    "Anania & Burke"),
+    tipo = c("Convencional",
+             "Convencional + Pré requisitos reforçados",
+             "Aprendizagem por Domínio",
+             "Aprendizagem por Domínio + Pré requisitos reforçados",
+             "Tutoria Individual"),
+    sigma = c(0,.7,1.0,1.6,2),
+    percentil = c(50,76,84,95,98)
+  )
+
+data_edu_layton %>% 
+  ggplot(aes(x = fct_reorder(tipo,sigma),
+             y = sigma))+
+  geom_col()+
+  geom_text(aes(label = paste0(sigma,"σ; ", percentil,"%"), hjust = -.3))+
+  expand_limits(y = 2.5)+
+  labs(title = "Pontuação em avaliações em \n diferentes condições de aprendizado",
+       subtitle = "Medida em desvios padrão\n e percentil acumulado",
+       caption = c("Source: Benjamin S. Bloom - The 2 Sigma Problem(1984)"),
+       x = "",
+       y = "")+
+  theme_minimal()+
+  coord_flip()
+
+```
+
+
+
 ::: {.callout-tip collapse="true"}
 ## Expanda para saber o que são pré-requisitos cognitivos
 
@@ -371,4 +446,3 @@ John Hattie conduziu uma meta-análise que é um estudo científico que conbina 
 3.  **Avaliação formativa** (Effect size ≈ 0.65) que são avaliações durante o processo de aprendizagem para ajustar o ensino. Isso permite identificar dificuldades em tempo real e adaptar a instrução(e.g. durante uma aula de leitura, o professor faz perguntas para verificar compreensão e ajusta o ritmo conforme necessário.)
 
 4.  **Envolvimento ativo do aluno** (Effect size ≈ 0.61) que é a participação ativa na construção do conhecimento, com autonomia e reflexão. Isso Aumenta o engajamento, a retenção e o senso de responsabilidade(e.g. em vez de apenas ouvir, os alunos discutem, resolvem problemas, criam projetos e explicam conceitos uns aos outros).
-    
