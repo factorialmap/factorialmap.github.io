@@ -13,7 +13,6 @@ execute:
 
 -   É uma etapa importante no processo de ciência dos dados onde o cientista busca por determinados padrões, distribuição, tendências ou formatos específicos os quais fornecem informações relevantes para as próximas etapas durante uma análise ou avaliação de seus resultados.
 
-
 ### {{< fa 2 >}} [**Qual o objetivo**]{style="color: #5AC8BE ;"}
 
 -   Dar ao cientísta uma perspectiva diferente de interação com os dados que está analisando. Aumentando as possibilidades na identificação de características as quais não seriam possíveis usando outros formatos de apresentação. Isso permite traçar cenários, hipóteses e possíveis relações de causa-e-efeito.
@@ -22,13 +21,11 @@ execute:
 
 -   Vem da necessidade de obter um formato de apresentação de dados que seja compreendido pelo cerebro humano de maneira mais eficiência e rápida.
 
-
 ### {{< fa 4 >}} [**Como fazer**]{style="color: #5AC8BE ;"}
 
 Primeiro precisamos importar as bibliotecas do Python. Neste caso importaremos inicialmente as bibliotecas pandas e numpy que são usadas para manipulação de dados assim como `tidyverse`, `dplyr` e `tidyr` no R.
 
 Também faremos a importação dos dados iris que já esta armazenado na biblioteca `sklearn`
-
 
 ```{python}
 
@@ -58,7 +55,7 @@ df_iris.head(5)
 
 ```
 
-Vamos criar uma variável categórica armazenando as classes do dataseet que são **setosa, versicolor e virginica* e **
+Vamos criar uma variável categórica armazenando as classes do dataseet que são **setosa, versicolor e virginica\* e**
 
 ```{python}
 
@@ -132,7 +129,8 @@ from plotnine import ggplot, aes, geom_point
 
 Agora vamos construir um modelo machine learning usando a biblioteca `sklearn` usando o conjunto iris dataset para facilitar o entendimento.
 
-Chamaremos a biblioteca, construiremos a matriz, e faremos o split de dados em treino e teste.  
+Chamaremos a biblioteca, construiremos a matriz, e faremos o split de dados em treino e teste.
+
 ```{python}
 from sklearn.model_selection import train_test_split
 
@@ -155,6 +153,7 @@ Vamos especificar o modelo a ser usado, neste caso vamos usar regressão logíst
 from sklearn.linear_model import LogisticRegression
 
 log_reg = LogisticRegression()
+
 log_reg.fit(X_train, y_train)
 
 ```
@@ -206,12 +205,21 @@ print(metrics.confusion_matrix(y_test, tes_prediction))
 
 ```
 
+```{python}
+
+from sklearn.metrics import ConfusionMatrixDisplay
+
+cm = metrics.confusion_matrix(y_test, tes_prediction)
+
+ConfusionMatrixDisplay(cm).plot()
+
+```
+
 ### {{< fa 5 >}} [**Pra onde vai quem é o cliente**]{style="color: #5AC8BE ;"}
 
 -   Se for nas fases iniciais de exploração o próximo passo é a construção de hipoteses e cenários.
 
 -   Se for nas fases de validações e análise de resultados, a próxima etapa seria a construção de conclusões.
-
 
 ### {{< fa 6 >}} [**Qual o resultado**]{style="color: #5AC8BE ;"}
 
@@ -222,4 +230,3 @@ print(metrics.confusion_matrix(y_test, tes_prediction))
 -   Melhora a consistência na apresentação de dados.
 
 Vídeo tema para este post
-

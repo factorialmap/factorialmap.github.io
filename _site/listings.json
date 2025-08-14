@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/two_sigma_problem/two_sigma_problem.html",
       "/posts/python-plots/py-plots.html",
       "/posts/pca-explore/pca-explore.html",
       "/posts/gts-print/gts-print.html",

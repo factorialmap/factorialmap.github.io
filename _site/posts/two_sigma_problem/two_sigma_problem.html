@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Marcelo Carvalho dos Anjos">
+
+<title>Problema de 2 sigma de Bloom – Carvalho Ribeiro Blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4379b0ccadffce622b03caf4c46266b3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f3c2ea88cadbcfb37ba28ffa2c97cfc1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ae2d0dcda2edce4ab590422bb373b64f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Carvalho Ribeiro Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Info</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://youtube.com/carvalhoribeiro"> <i class="bi bi-youtube" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/factorialmap"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#o-que-é-o-problema-de-2-sigma-de-bloom" id="toc-o-que-é-o-problema-de-2-sigma-de-bloom" class="nav-link active" data-scroll-target="#o-que-é-o-problema-de-2-sigma-de-bloom">O que é o problema de 2 sigma de Bloom?</a></li>
+  <li><a href="#o-que-mais-bloom-descobriu" id="toc-o-que-mais-bloom-descobriu" class="nav-link" data-scroll-target="#o-que-mais-bloom-descobriu">O que mais Bloom descobriu?</a></li>
+  <li><a href="#abordagem-de-layton---pré-requisitos-cognitivos" id="toc-abordagem-de-layton---pré-requisitos-cognitivos" class="nav-link" data-scroll-target="#abordagem-de-layton---pré-requisitos-cognitivos">Abordagem de Layton - Pré-Requisitos Cognitivos</a></li>
+  <li><a href="#três-elementos-do-aprendizado-contínuo" id="toc-três-elementos-do-aprendizado-contínuo" class="nav-link" data-scroll-target="#três-elementos-do-aprendizado-contínuo">Três elementos do aprendizado contínuo</a></li>
+  <li><a href="#melhoria-da-leitura" id="toc-melhoria-da-leitura" class="nav-link" data-scroll-target="#melhoria-da-leitura">Melhoria da leitura</a></li>
+  <li><a href="#abordagem-de-carlos-avalos---testar-combinações" id="toc-abordagem-de-carlos-avalos---testar-combinações" class="nav-link" data-scroll-target="#abordagem-de-carlos-avalos---testar-combinações">Abordagem de Carlos Avalos - Testar combinações</a></li>
+  <li><a href="#abordagem-de-john-hattie-visible-learning" id="toc-abordagem-de-john-hattie-visible-learning" class="nav-link" data-scroll-target="#abordagem-de-john-hattie-visible-learning">Abordagem de John Hattie Visible learning</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Problema de 2 sigma de Bloom</h1>
+<p class="subtitle lead">Crianças aprendem mais e outras menos</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Marcelo Carvalho dos Anjos </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="o-que-é-o-problema-de-2-sigma-de-bloom" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-é-o-problema-de-2-sigma-de-bloom">O que é o problema de 2 sigma de Bloom?</h2>
+<p>Imagine que seu filho está numa sala de aula com 30 alunos. Todos aprendem com o mesmo professor, no mesmo ritmo, com o mesmo material. Isso é o ensino tradicional.</p>
+<p>Agora imagine que seu filho tivesse um tutor particular, alguém que ensinasse só para ele, no ritmo dele, tirando dúvidas, reforçando o que ele não entendeu, e adaptando o conteúdo às necessidades dele. O que você acha que aconteceria com o desempenho dele?</p>
+<p>Foi exatamente isso que o pesquisador Benjamin Bloom descobriu nos anos 1980: alunos que recebem ensino individualizado com tutoria têm um desempenho muito melhor, cerca de 2 desvios padrão acima dos alunos do ensino tradicional. Isso é o que ele chamou de efeito 2 sigma.</p>
+<p><strong>O que significa “2 sigma”?</strong></p>
+<p>Sem entrar muito na matemática, “2 sigma” quer dizer que esses alunos com tutoria aprendem melhor do que 98% dos alunos que estão no ensino tradicional. É uma diferença enorme!</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="two_sigma_problem_files/figure-html/tow_sigma_plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:tow_sigma_plot">
+<colgroup><col><col><col></colgroup><tbody><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">tipo_aprendizado</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">media</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">desvio_padrao</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Pequenos Grupos</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">69.6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7.74</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Tradicional</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">60.9</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9.13</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Tutoria</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">75.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4.75</td></tr>
+</tbody></table>
+
+</div>
+<div class="cell-output-display">
+<table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:tow_sigma_plot">
+<colgroup><col><col><col><col><col><col><col></colgroup><tbody><tr>
+<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">.y.</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">group1</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">group2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">effsize</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">n1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">n2</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">magnitude</th></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">pontuacao</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Tradicional</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Pequenos Grupos</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-1.03</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">100</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">100</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">large</td></tr>
+<tr>
+<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">pontuacao</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Tradicional</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Tutoria</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-2.01</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">100</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">100</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">large</td></tr>
+</tbody></table>
+
+</div>
+</div>
+<p><strong>Por que isso é um problema?</strong></p>
+<p>Porque, apesar de sabermos que a tutoria personalizada funciona muito bem, ela é cara e difícil de aplicar em larga escala. Não dá para colocar um tutor para cada aluno em todas as escolas.</p>
+<p>Então o “problema de 2 sigma” é:</p>
+<p><strong>Como podemos fazer com que todos os alunos aprendam tão bem quanto os que têm tutores, mas sem precisar de um tutor para cada um?</strong></p>
+<p><strong>Por que isso é importante?</strong></p>
+<p>Esse problema é super relevante porque mostra que todos os alunos podem aprender muito mais, se forem ensinados da forma certa. Incentiva a busca por novas formas de ensino, como o uso de tecnologia, ensino adaptativo, inteligência artificial, etc. Ajuda pais e educadores a entenderem que o potencial dos alunos é muito maior do que parece no ensino tradicional.</p>
+</section>
+<section id="o-que-mais-bloom-descobriu" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-mais-bloom-descobriu">O que mais Bloom descobriu?</h2>
+<blockquote class="blockquote">
+<p>Você mencionou que além do resultado, a tutorial individualizada mostrada no trabalho de Benjamin Bloom, houve também melhorias significativas em tempo de engajamento, atitudes dos alunos e redução da correlação entre aptidão inicial e desempenho final, especialmente no grupo de tutoria. Me explique melhor cada um desses componentes.</p>
+</blockquote>
+<p>Esses indicadores que Bloom menciona são fundamentais para entender não apenas o desempenho acadêmico, mas também a qualidade da experiência de aprendizagem. Vamos detalhar cada um deles com exemplos práticos:</p>
+<p><strong>1. Tempo de Engajamento</strong> É o tempo efetivo que o aluno passa envolvido ativamente com a aprendizagem — seja ouvindo, lendo, resolvendo problemas, discutindo ou praticando. <strong>Por que é importante?</strong> Quanto maior o tempo de engajamento, maior a probabilidade de o aluno compreender e reter o conteúdo<strong>Exemplo prático:</strong> em uma aula tradicional, alguns alunos podem se distrair ou ficar passivos. Já em tutoria, o aluno está constantemente envolvido: o tutor faz perguntas, propõe desafios, ajusta o ritmo. Resultado: o aluno passa mais tempo aprendendo de fato, o que contribui para melhores resultados.</p>
+<p><strong>2. Atitudes dos Alunos</strong> Refere-se à motivação, interesse, confiança e satisfação dos alunos em relação à aprendizagem. <strong>Por que é importante?</strong> Alunos com atitudes positivas tendem a persistir diante de dificuldades, buscar ajuda, e se envolver mais profundamente com o conteúdo. <strong>Exemplo prático:</strong> Um aluno que recebe atenção individualizada sente que está progredindo. Isso gera confiança (“eu consigo aprender!”) e motivação (“quero continuar aprendendo!”). Em contraste, alunos em ambientes convencionais podem se sentir perdidos ou desmotivados se não acompanham o ritmo da turma.</p>
+<p><strong>3. Redução da Correlação entre Aptidão Inicial e Desempenho Final</strong> Normalmente, há uma correlação entre a aptidão inicial (conhecimentos prévios, habilidades cognitivas) e o desempenho final (nota ou domínio do conteúdo). <strong>Por que é importante?</strong> Em ambientes convencionais, alunos com maior aptidão inicial tendem a ter melhor desempenho. Isso amplia desigualdades. <strong>Exemplo prático:</strong>Na tutoria, o ensino é adaptado ao ritmo e às necessidades de cada aluno. Isso permite que alunos com menor aptidão inicial também atinjam altos níveis de desempenho. <strong>Resultado</strong>: a correlação entre “o que o aluno sabia antes” e “o que ele aprendeu” diminui, mostrando que todos podem aprender bem com apoio adequado.</p>
+</section>
+<section id="abordagem-de-layton---pré-requisitos-cognitivos" class="level2">
+<h2 class="anchored" data-anchor-id="abordagem-de-layton---pré-requisitos-cognitivos">Abordagem de Layton - Pré-Requisitos Cognitivos</h2>
+<blockquote class="blockquote">
+<p>Considere você um especialista no problema de 2 sigma de Bloom. Em especial no artigo publicado por ele em 1984 em Chicago. Layton sugeriu que uma abordagem para o problema de 2 sigma seria usar o aprendizado de domínio durante o curso avançado em uma sequência, mas, além disso, tentar melhorar os pré-requisitos de entrada cognitiva inicial dos alunos no começo do curso. Me explique melhor essa abordagem e se possível me mostre com exemplos práticos.</p>
+</blockquote>
+<p>A abordagem sugerida por Layton para enfrentar o problema de 2 sigma de Bloom envolve duas estratégias principais:</p>
+<ol type="1">
+<li><strong>Melhorar os pré-requisitos cognitivos dos alunos antes do início do curso</strong>.</li>
+<li><strong>Utilizar o aprendizado de domínio (mastery learning) em sequência ao longo do curso avançado</strong>.</li>
+</ol>
+<p>Vamos entender cada uma delas com mais profundidade e exemplos práticos.</p>
+<p><strong>1. Melhoria dos Pré-Requisitos Cognitivos</strong></p>
+<p>Bloom identificou que os características de entrada dos alunos — como conhecimentos prévios, habilidades cognitivas e atitudes — têm grande impacto no desempenho acadêmico <a href="https://gwern.net/doc/psychology/1984-bloom.pdf">1</a>. Layton propôs que, antes de iniciar um curso avançado, os alunos deveriam passar por uma fase preparatória que fortaleça essas características.<strong>Exemplos práticos:</strong> - <strong>Curso de Física Avançada</strong>: Antes de iniciar o curso, os alunos fazem um módulo introdutório sobre álgebra vetorial e cinemática básica, com foco em resolução de problemas. - <strong>Curso de Programação em Python</strong>: Os alunos passam por um minicurso sobre lógica de programação e estruturas de dados básicas, com exercícios práticos e feedback imediato.</p>
+<p>Essa preparação reduz a variabilidade entre os alunos e aumenta a chance de todos acompanharem o conteúdo avançado com sucesso.</p>
+<p><strong>2. Aprendizado de Domínio (Mastery Learning) em Sequência</strong></p>
+<p>O aprendizado de domínio é uma abordagem em que os alunos só avançam para o próximo conteúdo após <strong>dominar completamente o anterior</strong>. Bloom mostrou que isso pode levar a um ganho de até 1 sigma em desempenho<a href="https://gwern.net/doc/psychology/1984-bloom.pdf">1</a>. Layton sugeriu aplicar essa técnica em sequência, ou seja, ao longo de todo o curso, com ciclos de:</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div id="fluxo_aprendizado">
+<div>
+<pre class="mermaid mermaid-js" data-label="fluxo_aprendizado">flowchart LR
+    A[Ensino] --&gt; B[Avaliação formativa]
+    B --&gt; C[Feedback e correção]
+    C --&gt; D[Nova avaliação] 
+
+</pre>
+</div>
+<p>Fluxo simples de aprendizado</p>
+</div>
+</div>
+</div>
+<p>Esse diagrama representa um ciclo contínuo de aprendizagem, onde o ensino leva à avaliação formativa, que por sua vez gera feedback e correções, culminando em uma nova avaliação para verificar o progresso</p>
+<p><strong>Exemplo prático no curso de Matemática</strong>: - Módulo 1: Álgebra — os alunos fazem exercícios e testes formativos. - Se não dominarem, recebem atividades corretivas e refazem o teste. - Só então avançam para o Módulo 2: Funções.</p>
+<p>Esse ciclo contínuo garante que todos os alunos estejam prontos para os próximos desafios, reduzindo lacunas de aprendizagem.</p>
+<p><strong>Combinação das Estratégias</strong></p>
+<p>A proposta de Layton é que a combinação dessas duas abordagens — entrada cognitiva fortalecida + aprendizado de domínio — pode aproximar o desempenho dos alunos ao nível da tutoria individual, que é o cerne do problema de 2 sigma. Bloom e seus colegas chegaram a testar combinações de variáveis alteráveis (como feedback, tempo de estudo, ambiente familiar) e observaram que algumas combinações se aproximam do efeito de 2 sigma <a href="https://gwern.net/doc/psychology/1984-bloom.pdf">1</a>.</p>
+<p><strong>Impacto Esperado</strong></p>
+<ul>
+<li>Redução da variabilidade entre alunos.</li>
+<li>Maior engajamento e tempo em tarefa.</li>
+<li>Desempenho médio significativamente superior ao ensino convencional.</li>
+</ul>
+<p><strong>E qual o impacto observado?</strong></p>
+<blockquote class="blockquote">
+<p>No artigo, diz também que mais importante foi a melhora no desempenho das turmas “aprimoradas” em relação às outras duas turmas no primeiro teste formativo do curso avançado. As duas turmas aprimoradas, que haviam sido auxiliadas nos pré-requisitos iniciais, apresentaram aproximadamente 0.7 sigma a mais do que as outras duas turmas no primeiro teste formativo aplicado ao final de um período de aprendizado de duas semanas no curso avançado. Me fale mais sobre esses resultados.</p>
+</blockquote>
+<p>O trecho que você mencionou sobre o desempenho das turmas aprimoradas no primeiro teste formativo é um dos pontos mais reveladores do artigo de Bloom (1984) sobre o problema de 2 sigma.</p>
+<p><strong>O Experimento e os Resultados</strong></p>
+<p>No estudo, Bloom e seus colegas compararam quatro grupos de alunos em um curso avançado. Dois desses grupos receberam <strong>intervenções para melhorar os pré-requisitos cognitivos</strong> antes do início do curso, enquanto os outros dois não.</p>
+<p>Após duas semanas de instrução, todos os grupos realizaram um teste formativo. Os resultados mostraram que: - As duas turmas aprimoradas(com reforço nos pré-requisitos) tiveram um desempenho <strong>0.7 sigma acima</strong> das turmas que não receberam essa preparação <a href="https://gwern.net/doc/psychology/1984-bloom.pdf">1</a>. - Esse ganho foi observado logo no primeiro teste, indicando que a intervenção nos pré-requisitos teve um impacto imediato e significativo.</p>
+<p><strong>Interpretação dos Resultados</strong> Esse resultado é importante por vários motivos:</p>
+<ol type="1">
+<li><strong>Validação da hipótese de Layton</strong>: A ideia de que melhorar os pré-requisitos cognitivos pode elevar o desempenho inicial dos alunos foi confirmada empiricamente.</li>
+<li><strong>Redução da variabilidade</strong>: Ao nivelar os conhecimentos iniciais, os alunos começaram o curso com uma base mais homogênea, o que facilita o ensino em grupo.</li>
+<li><strong>Potencial para escalabilidade</strong>: Diferente da tutoria individual, essa abordagem pode ser aplicada em turmas maiores com custo relativamente baixo.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expanda para saber o que são pré-requisitos cognitivos
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>O que são os “pré-requisitos cognitivos”?</strong></p>
+<p>São conhecimentos e habilidades que os alunos precisam ter antes de iniciar um curso avançado. Podem incluir:</p>
+<ul>
+<li>Conceitos fundamentais da disciplina.</li>
+<li>Estratégias de resolução de problemas.</li>
+<li>Habilidades metacognitivas (como autorregulação e monitoramento do próprio aprendizado).</li>
+</ul>
+<p><strong>Exemplo prático aplicado</strong></p>
+<p>Imagine um curso de <strong>Cálculo Diferencial e Integral</strong>. Antes de começar, os alunos passam por:</p>
+<ul>
+<li>Um módulo de revisão de <strong>funções, álgebra e trigonometria</strong>.</li>
+<li>Atividades diagnósticas com feedback imediato.</li>
+<li>Exercícios de raciocínio lógico e visualização gráfica.</li>
+</ul>
+<p>Após duas semanas, os alunos fazem um teste sobre limites e derivadas. Os que passaram pela preparação têm desempenho significativamente superior — como no estudo de Bloom.</p>
+<p><strong>Intervenções para melhorar os pré-requisitos cognitivos</strong></p>
+<p>São estratégias pedagógicas e terapêuticas que visam desenvolver habilidades mentais fundamentais para a aprendizagem, como atenção, memória, linguagem, percepção e raciocínio. Esses pré-requisitos são essenciais para que os alunos possam compreender, processar e aplicar o conteúdo escolar de forma eficaz. Essas intervenções podem ser aplicadas por professores, psicopedagogos, neuropsicólogos ou terapeutas ocupacionais, dependendo da necessidade e do contexto.</p>
+<p><strong>Quais tipos de pré-requisitos cognitivos?</strong></p>
+<p>Algumas das habilidades mentais básicas que sustentam o aprendizado, são: - <strong>Atenção</strong> (focal, sustentada, seletiva) Jogos de atenção seletiva (ex: encontrar diferenças entre figuras), Atividades com tempo limitado para manter foco, Técnicas de mindfulness adaptadas para crianças</p>
+<ul>
+<li><p><strong>Memória</strong> (curto e longo prazo, de trabalho), Jogos de memória (cartas, sequências), Repetição espaçada de conteúdos,Uso de mnemônicos e mapas mentais</p></li>
+<li><p><strong>Percepção visual e auditiva</strong>, Atividades de discriminação de sons e letras, Exercícios de coordenação visomotora (ligar pontos, copiar figuras), Treinamento auditivo com rimas e padrões sonoros</p></li>
+<li><p><strong>Linguagem oral e escrita</strong> Contação de histórias com reconto, Jogos de vocabulário e categorização, Atividades de consciência fonológica (rimas, sílabas),</p></li>
+<li><p><strong>Raciocínio lógico e resolução de problemas</strong> Problemas matemáticos contextualizados, Jogos de tabuleiro e quebra-cabeças, Sequências lógicas e padrões</p></li>
+<li><p><strong>Funções executivas</strong> (planejamento, organização, autocontrole), Planejamento de tarefas com checklists, Jogos que exigem controle inibitório (ex: “Simon diz”), Atividades que envolvem tomada de decisão.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="três-elementos-do-aprendizado-contínuo" class="level2">
+<h2 class="anchored" data-anchor-id="três-elementos-do-aprendizado-contínuo">Três elementos do aprendizado contínuo</h2>
+<blockquote class="blockquote">
+<p>No artigo, ele também cita que eles esperam que esta abordagem de Leyton para o problema 2 sigma seja considerada uma solução amplamente aplicável e econômica, disponível à maioria dos professores que desejam melhorar a aprendizagem dos alunos, o autoconceito acadêmico dos alunos, bem como as atitudes e o interesse dos alunos no aprendizado. Nesse contexto o que seria aprendizagem dos alunos, o autoconceito acadêmico dos alunos, bem como as atitudes e o interesse dos alunos no aprendizado, quais suas características e diferenças entre eles.</p>
+</blockquote>
+<p><strong>1. Aprendizagem dos Alunos</strong></p>
+<p>É o ganho real de conhecimento, habilidades e competências que os alunos desenvolvem ao longo do processo educacional, exemplos:</p>
+<ul>
+<li><strong>Domínio de conteúdos</strong> (fatos, conceitos, procedimentos).</li>
+<li><strong>Capacidade de aplicar o conhecimento</strong> em novos contextos.</li>
+<li><strong>Desenvolvimento de habilidades cognitivas</strong> como análise, síntese e avaliação.</li>
+</ul>
+<p><strong>Características:</strong> - Mensurável por meio de avaliações (formativas e somativas). Avaliações formativas são realizadas durante o processo de aprendizagem para monitorar o progresso e ajustar o ensino; já as somativas ocorrem ao final de um ciclo para medir o desempenho total do aluno. A formativa tem função diagnóstica, enquanto a somativa é classificatória. - Pode ser influenciada por métodos de ensino, tempo de estudo, feedback, entre outros. - É o foco central de qualquer intervenção educacional.</p>
+<p><strong>2. Autoconceito Acadêmico</strong></p>
+<p>É a percepção que o aluno tem de si mesmo como aprendiz. Envolve crenças sobre sua capacidade de aprender, seu valor como estudante e seu desempenho esperado.</p>
+<p><strong>Características:</strong> - Subjetivo, mas com forte impacto no comportamento e na motivação. - Influenciado por experiências anteriores, feedback de professores, comparação com colegas. - Pode ser positivo (“sou bom em matemática”) ou negativo (“nunca consigo entender química”). - Difere da aprendizagem onde o autoconceito não mede o que o aluno sabe, mas como ele se vê em relação ao aprendizado. - Um aluno pode ter alto desempenho, mas baixo autoconceito (e vice-versa).</p>
+<p><strong>3. Atitudes e Interesse no Aprendizado</strong></p>
+<p>É a disposição emocional e motivacional do aluno em relação ao processo de aprender. É a curiosidade e desejo de aprender, persistência diante de dificuldades, valorização do conhecimento como algo útil ou prazeroso.</p>
+<p><strong>Características:</strong> - Pode ser influenciado por métodos de ensino, relevância do conteúdo, ambiente de sala de aula. - Está ligado à motivação intrínseca (gosto de aprender) e extrínseca (quero boas notas). - Afeta diretamente o engajamento e o tempo dedicado ao estudo.</p>
+<p><strong>Relação entre os três elementos os quais estão interligados</strong></p>
+<ul>
+<li>Um aluno com bom autoconceito acadêmico tende a ter atitudes positivas e maior interesse pelo aprendizado.</li>
+<li>Isso, por sua vez, aumenta o engajamento, o que favorece a aprendizagem efetiva.</li>
+<li>Intervenções como a de Layton, que fortalecem os pré-requisitos e usam aprendizado de domínio, melhoram todos esses aspectos simultaneamente.</li>
+</ul>
+</section>
+<section id="melhoria-da-leitura" class="level2">
+<h2 class="anchored" data-anchor-id="melhoria-da-leitura">Melhoria da leitura</h2>
+<blockquote class="blockquote">
+<p>No artigo também diz que, há evidências de que alunos que participam de programas especiais para aprimorar sua leitura e/ou seus métodos de estudo e aprendizagem tendem a aprender com mais eficácia. Idealmente, esses programas especiais deveriam estar disponíveis no início de cada novo nível escolar, ou seja, ensino fundamental, ensino médio e assim por diante. Juntando os dados do artigo com estudos atuais da neurociência, existem algumas relações ou evidências nessas descobertas que nos ajude a compreender como melhorar a capacidade de leitura de uma criança?</p>
+</blockquote>
+<p>Há uma forte convergência entre os achados do artigo de Bloom e Layton e os estudos contemporâneos da neurociência sobre leitura infantil</p>
+<p><strong>Neurociência e Leitura Infantil</strong></p>
+<p>A leitura não é uma habilidade natural do cérebro humano — ela exige reorganização neural e ativação de múltiplas áreas cerebrais, como: reconhecimento de letras e palavras (visual), associação entre sons e grafemas que são cada unidade gráfica ou letra(fonológica), compreensão do significado(semântica), movimentos oculares e escrita(motora).</p>
+<p>Segundo estudos recentes <a href="https://pepsic.bvsalud.org/scielo.php?pid=S0103-84862021000100008&amp;script=sci_arttext">1</a>, o processo de alfabetização envolve o modelo de dupla rota sendo uma rota fonológica (decodificação letra-som) e uma rota lexical (reconhecimento direto de palavras). O desenvolvimento da consciência fonológica é considerado essencial para o sucesso na leitura.</p>
+<p><strong>Programas Especiais e Intervenções</strong></p>
+<p>O artigo de Bloom sugere que programas de aprimoramento em leitura e métodos de estudo devem ser oferecidos no início de cada novo nível escolar. A neurociência confirma essa ideia: intervenções precoces e sistemáticas podem estimular áreas cerebrais específicas e melhorar significativamente o desempenho em leitura <a href="https://bing.com/search?q=neuroci%c3%aancia+leitura+infantil+programas+de+interven%c3%a7%c3%a3o+escolar+efic%c3%a1cia+aprendizagem">2</a>.</p>
+<p>Esses programas geralmente incluem exercícios de consciência fonológica como treinamento de memória de trabalho e atenção, leitura guiada com feedback imediato, atividades multissensoriais(visuais, auditivas e táteis).</p>
+<p><strong>Conexão com o Problema de 2 Sigma</strong></p>
+<p>A proposta de Layton de melhorar os pré-requisitos cognitivos se alinha com a neurociência ao reconhecer que habilidades básicas como leitura e estudo eficaz são fundamentais para o sucesso acadêmico. Quando essas habilidades são fortalecidas, os alunos aprendem com mais eficácia, desenvolvem maior autoconceito acadêmico, demonstram atitudes mais positivas em relação ao aprendizado.</p>
+<p><strong>Importante</strong></p>
+<p>Esses fatores, combinados, podem gerar ganhos de desempenho próximos ao efeito de 2 sigma, mesmo em ambientes de ensino em grupo.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Expanda para ver técnicas para melhoria de leitura
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p><strong>Consciência Fonológica</strong> É a capacidade de perceber e manipular os sons da fala (fonemas, sílabas, rimas). É um dos melhores preditores do sucesso na leitura. Sua característica é trabalhar com sons, não com letras, Desenvolve habilidades como segmentação, aliteração, rima, substituição de fonemas (e.g identificar palavras que rimam: “Qual palavra rima com ‘cão’?”, bater palmas para cada sílaba de uma palavra, dizer o som inicial de palavras: “Qual o som inicial de ‘mesa’?”)</p></li>
+<li><p><strong>Treinamento de Memória de Trabalho e Atenção</strong> Essas funções cognitivas são essenciais para manter informações temporariamente e focar na tarefa. Suas características são melhorar a capacidade de seguir instruções, ajuda na decodificação de palavras e compreensão de texto, trabalha com retenção e manipulação de informações (e.g Repetir sequências de números ou palavras (memória auditiva), jogos como “Simon diz” ou “Repita a sequência”, atividades com distrações controladas para treinar atenção seletiva.)</p></li>
+<li><p><strong>Leitura Guiada com Feedback Imediato</strong> É uma prática em que o educador acompanha a leitura da criança e oferece correções e incentivos imediatamente. Suas características são foco na fluência e compreensão, corrige erros de pronúncia ou entonação na hora, reforça estratégias de decodificação e inferência (e.g Ler em voz alta com o professor ou tutor, parar para discutir o significado de palavras ou frases, repetir trechos com entonação correta após orientação).</p></li>
+<li><p><strong>Atividades Multissensoriais (Visuais, Auditivas e Táteis)</strong> Essas atividades envolvem múltimos sentidos para reforçar o aprendizado, especialmente eficazes para crianças com dificuldades de leitura (como dislexia). Suas características são d integrar visão, audição e tato, facilita a memorização e compreensão, estimula diferentes áreas do cérebro simultaneamente (e.g Escrever letras na areia ou com os dedos no ar (tátil), associar sons a imagens (auditivo + visual), usar blocos coloridos para formar palavras (visual + motor).</p></li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="abordagem-de-carlos-avalos---testar-combinações" class="level2">
+<h2 class="anchored" data-anchor-id="abordagem-de-carlos-avalos---testar-combinações">Abordagem de Carlos Avalos - Testar combinações</h2>
+<blockquote class="blockquote">
+<p>No artigo de Bloom, também cita na página 7 que Carlos Avalos está trabalhando em um estudo sobre o efeito de recursos organizacionais no material instrucional combinados com o aprimoramento inicial do pré-requisito cognitivo e o feedback de aprendizagem de domínio-procedimentos corretivos. Avalos está planejando um projeto de pesquisa que lhe permitirá determinar os efeitos separados de cada um dos três processos, o efeito de qualquer um dos dois processos e o efeito combinado de todos os três processos. Me explique melhor essa parte de forma simples, por que acredito não entendi muito bem.</p>
+</blockquote>
+<p><strong>O que Avalos está tentando fazer?</strong></p>
+<p>Ele quer entender quais elementos realmente ajudam os alunos a aprender melhor. Para isso, ele está estudando três processos diferentes:</p>
+<ol type="1">
+<li><p><strong>Recursos organizacionais no material instrucional</strong> Como o conteúdo é apresentado com estrutura clara, sequencial e acessível dos conteúdos(organização, clareza, estrutura).</p></li>
+<li><p><strong>Aprimoramento inicial dos pré-requisitos cognitivos</strong> Treinamento de atenção, memória de trabalho, linguagem e raciocínio antes do início do curso.</p></li>
+<li><p><strong>Feedback com procedimentos corretivos (aprendizado de domínio)</strong> Avaliações formativas com retorno imediato e ações para corrigir erros antes de seguir adiante.</p></li>
+</ol>
+<p><strong>O objetivo do estudo</strong></p>
+<p>Avalos quer descobrir o efeito de cada processo isoladamente, o efeito de qualquer combinação de dois processos. e o efeito da combinação dos três processos juntos. Essa combinação visa replicar os efeitos da tutoria individual (que gerava ganhos de até 2 sigmas) em ambientes de ensino coletivo, com ganhos significativos de até 0.7 sigma</p>
+<p><strong>Exemplo simples para entender</strong> Imagine quatro grupos de alunos:</p>
+<ul>
+<li>Grupo A: recebe só o material bem organizado.</li>
+<li>Grupo B: recebe só o reforço nos pré-requisitos.</li>
+<li>Grupo C: recebe só o feedback corretivo.</li>
+<li>Grupo D: recebe os três juntos.</li>
+</ul>
+<p>Avalos vai comparar os resultados desses grupos para ver:</p>
+<ul>
+<li>Qual processo tem mais impacto sozinho?</li>
+<li>Dois juntos funcionam melhor que um?</li>
+<li>Os três juntos funcionam melhor que todos os outros?</li>
+</ul>
+<p><strong>Por que isso é importante?</strong></p>
+<p>Porque se ele descobrir que dois processos já são quase tão eficazes quanto os três, pode-se aplicar uma solução mais econômica e viável para escolas com menos recursos. E se os três juntos forem muito mais eficazes, isso reforça a ideia de que uma abordagem integrada é o caminho ideal para melhorar a aprendizagem.</p>
+</section>
+<section id="abordagem-de-john-hattie-visible-learning" class="level2">
+<h2 class="anchored" data-anchor-id="abordagem-de-john-hattie-visible-learning">Abordagem de John Hattie Visible learning</h2>
+<p>John Hattie conduziu uma meta-análise que é um estudo científico que conbina os resultados de várias pesquisas anteriores sobre um mesmo tema para chegar a uma conclusão mais robusta e confiável chamada <em>Visible Learning</em>. Esta foi publicada inicialmente em 2009 onde ele analisou mais de 250 influências sobre o desempenho dos alunos, com base em mais de 800 meta-análises envolvendo milhões de estudantes.</p>
+<p><strong>O que ele mediu?</strong> Hattie usou o conceito de effect size (tamanho do efeito), que indica o impacto de uma intervenção no aprendizado. Em geral 0.4 é o ponto de corte e acima disso, o efeito é considerado significativo, ou seja, quanto maior o número, maior o impacto.</p>
+<p><strong>Principais fatores com alto effect size</strong></p>
+<ol type="1">
+<li><p><strong>Feedback eficaz</strong> (Effect size ≈ 0.70) que é o retorno claro, específico e imediato sobre o desempenho do aluno. Isso ajuda o aluno a entender o que está certo, o que precisa melhorar e como melhorar(e.g.&nbsp;após uma redação, o professor destaca pontos fortes e sugere melhorias específicas, como “use conectivos para ligar ideias”)</p></li>
+<li><p><strong>Clareza instrucional</strong> (Effect size ≈ 0.75) que é a apresentação clara dos objetivos, passos e critérios de sucesso. Isso reduz confusão, aumenta o foco e permite que os alunos saibam o que é esperado(e.g.&nbsp;o professor começa a aula dizendo: “Hoje vamos aprender a multiplicar frações. Ao final, você deverá conseguir resolver 5 problemas sozinho.”)</p></li>
+<li><p><strong>Avaliação formativa</strong> (Effect size ≈ 0.65) que são avaliações durante o processo de aprendizagem para ajustar o ensino. Isso permite identificar dificuldades em tempo real e adaptar a instrução(e.g.&nbsp;durante uma aula de leitura, o professor faz perguntas para verificar compreensão e ajusta o ritmo conforme necessário.)</p></li>
+<li><p><strong>Envolvimento ativo do aluno</strong> (Effect size ≈ 0.61) que é a participação ativa na construção do conhecimento, com autonomia e reflexão. Isso Aumenta o engajamento, a retenção e o senso de responsabilidade(e.g.&nbsp;em vez de apenas ouvir, os alunos discutem, resolvem problemas, criam projetos e explicam conceitos uns aos outros).</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/carvalhoribeiro\.netlify\.app\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="factorialmap/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
