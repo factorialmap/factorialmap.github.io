@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marcelo Carvalho dos Anjos">
+<meta name="dcterms.date" content="2025-08-21">
 
-<title>classificacao_ai – Carvalho Ribeiro Blog</title>
+<title>Classificação AI – Carvalho Ribeiro Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -42,6 +43,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-f3c2ea88cadbcfb37ba28ffa2c97cfc1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../site_libs/bootstrap/bootstrap-dark-ae2d0dcda2edce4ab590422bb373b64f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -124,32 +127,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Conteúdo</h2>
    
   <ul>
-  <li><a href="#classes-de-ai-para-clareza-conceitual" id="toc-classes-de-ai-para-clareza-conceitual" class="nav-link active" data-scroll-target="#classes-de-ai-para-clareza-conceitual">Classes de AI para clareza conceitual</a>
-  <ul class="collapse">
-  <li><a href="#o-que-é-a-classificação-de-ia" id="toc-o-que-é-a-classificação-de-ia" class="nav-link" data-scroll-target="#o-que-é-a-classificação-de-ia">O que é a classificação de IA</a>
-  <ul class="collapse">
-  <li><a href="#paralelo-entre-vehicle-e-artificial-intelligence" id="toc-paralelo-entre-vehicle-e-artificial-intelligence" class="nav-link" data-scroll-target="#paralelo-entre-vehicle-e-artificial-intelligence"><strong>Paralelo entre “vehicle” e “artificial intelligence”</strong></a></li>
-  </ul></li>
-  <li><a href="#qual-o-objetivo-da-classificação-de-ia" id="toc-qual-o-objetivo-da-classificação-de-ia" class="nav-link" data-scroll-target="#qual-o-objetivo-da-classificação-de-ia">Qual o objetivo da classificação de IA</a></li>
-  <li><a href="#de-onde-vem-a-necessidade-da-classificação-de-ia" id="toc-de-onde-vem-a-necessidade-da-classificação-de-ia" class="nav-link" data-scroll-target="#de-onde-vem-a-necessidade-da-classificação-de-ia">De onde vem a necessidade da classificação de IA</a></li>
-  <li><a href="#como-fazer-a-classificação-da-ia" id="toc-como-fazer-a-classificação-da-ia" class="nav-link" data-scroll-target="#como-fazer-a-classificação-da-ia">Como fazer a classificação da IA</a>
-  <ul class="collapse">
-  <li><a href="#contexto-geral" id="toc-contexto-geral" class="nav-link" data-scroll-target="#contexto-geral">Contexto geral</a></li>
-  <li><a href="#contexto-educacional" id="toc-contexto-educacional" class="nav-link" data-scroll-target="#contexto-educacional">Contexto educacional</a></li>
-  <li><a href="#contexto-regulatório" id="toc-contexto-regulatório" class="nav-link" data-scroll-target="#contexto-regulatório">Contexto regulatório</a></li>
-  <li><a href="#contexto-empresarial" id="toc-contexto-empresarial" class="nav-link" data-scroll-target="#contexto-empresarial">Contexto empresarial</a></li>
-  <li><a href="#contexto-de-comunicação-e-mídia" id="toc-contexto-de-comunicação-e-mídia" class="nav-link" data-scroll-target="#contexto-de-comunicação-e-mídia">Contexto de Comunicação e Mídia</a></li>
-  </ul></li>
-  <li><a href="#pra-onde-vai-próximos-passos-após-a-classificação-da-ia" id="toc-pra-onde-vai-próximos-passos-após-a-classificação-da-ia" class="nav-link" data-scroll-target="#pra-onde-vai-próximos-passos-após-a-classificação-da-ia">Pra onde vai próximos passos após a classificação da IA</a></li>
-  <li><a href="#quais-os-resultados-para-cada-grupo" id="toc-quais-os-resultados-para-cada-grupo" class="nav-link" data-scroll-target="#quais-os-resultados-para-cada-grupo">Quais os resultados para cada grupo</a>
-  <ul class="collapse">
-  <li><a href="#público-geral" id="toc-público-geral" class="nav-link" data-scroll-target="#público-geral">Público Geral</a></li>
-  <li><a href="#reguladores-e-legisladores" id="toc-reguladores-e-legisladores" class="nav-link" data-scroll-target="#reguladores-e-legisladores">Reguladores e Legisladores</a></li>
-  <li><a href="#empresas-e-desenvolvedores" id="toc-empresas-e-desenvolvedores" class="nav-link" data-scroll-target="#empresas-e-desenvolvedores">Empresas e Desenvolvedores</a></li>
-  <li><a href="#educadores-e-pesquisadores" id="toc-educadores-e-pesquisadores" class="nav-link" data-scroll-target="#educadores-e-pesquisadores">Educadores e Pesquisadores</a></li>
-  <li><a href="#mídia-e-comunicadores" id="toc-mídia-e-comunicadores" class="nav-link" data-scroll-target="#mídia-e-comunicadores">Mídia e Comunicadores</a></li>
-  </ul></li>
-  </ul></li>
+  <li><a href="#o-que-é-a-classificação-de-ia" id="toc-o-que-é-a-classificação-de-ia" class="nav-link active" data-scroll-target="#o-que-é-a-classificação-de-ia"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a classificação de IA</strong></span></a></li>
+  <li><a href="#qual-o-objetivo-da-classificação-de-ia" id="toc-qual-o-objetivo-da-classificação-de-ia" class="nav-link" data-scroll-target="#qual-o-objetivo-da-classificação-de-ia"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo da classificação de IA</strong></span></a></li>
+  <li><a href="#de-onde-vem-a-necessidade-da-classificação-de-ia" id="toc-de-onde-vem-a-necessidade-da-classificação-de-ia" class="nav-link" data-scroll-target="#de-onde-vem-a-necessidade-da-classificação-de-ia"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a necessidade da classificação de IA</strong></span></a></li>
+  <li><a href="#como-fazer-a-classificação-da-ia" id="toc-como-fazer-a-classificação-da-ia" class="nav-link" data-scroll-target="#como-fazer-a-classificação-da-ia"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer a classificação da IA</strong></span></a></li>
+  <li><a href="#pra-onde-vai-próximos-passos-após-a-classificação-da-ia" id="toc-pra-onde-vai-próximos-passos-após-a-classificação-da-ia" class="nav-link" data-scroll-target="#pra-onde-vai-próximos-passos-após-a-classificação-da-ia"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai próximos passos após a classificação da IA</strong></span></a></li>
+  <li><a href="#quais-os-resultados-para-cada-grupo" id="toc-quais-os-resultados-para-cada-grupo" class="nav-link" data-scroll-target="#quais-os-resultados-para-cada-grupo"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Quais os resultados para cada grupo</strong></span></a></li>
   </ul>
 </nav>
 </nav>
@@ -162,8 +145,12 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">classificacao_ai</h1>
-</div>
+<h1 class="title">Classificação AI</h1>
+<p class="subtitle lead">Classificação de modelos AI para clareza conceitual</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Demanda ou problema</div>
+  </div>
+  </div>
 
 
 
@@ -176,6 +163,12 @@ ul.task-list li input[type="checkbox"] {
           </div>
   </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 21, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -185,48 +178,13 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="classes-de-ai-para-clareza-conceitual" class="level1">
-<h1>Classes de AI para clareza conceitual</h1>
-<section id="o-que-é-a-classificação-de-ia" class="level2">
-<h2 class="anchored" data-anchor-id="o-que-é-a-classificação-de-ia">O que é a classificação de IA</h2>
+<section id="o-que-é-a-classificação-de-ia" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-a-classificação-de-ia"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a classificação de IA</strong></span></h3>
 <p>A classificação da Inteligência Artificial é o processo de organizar os diferentes tipos de sistemas de IA com base em critérios como função, complexidade, autonomia, impacto social e contexto de uso.</p>
 <p>Assim como classificamos tecnologias em categorias distintas (como softwares, veículos ou medicamentos) de acordo com função, complexidade e contexto de uso, podemos aplicar critérios semelhantes à IA, que com uma taxonomia clara, possa ser melhor compreendida e aplicada de forma responsável.</p>
-<section id="paralelo-entre-vehicle-e-artificial-intelligence" class="level3">
-<h3 class="anchored" data-anchor-id="paralelo-entre-vehicle-e-artificial-intelligence"><strong>Paralelo entre “vehicle” e “artificial intelligence”</strong></h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 36%">
-<col style="width: 63%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Veículo</strong> (analogia)</th>
-<th><strong>Inteligência Artificial</strong> (realidade)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Palavra genérica que engloba carros, bicicletas, ônibus, foguetes, etc.</td>
-<td>Termo guarda-chuva que inclui desde chatbots simples até sistemas autônomos complexos.</td>
-</tr>
-<tr class="even">
-<td>Discussões confusas sobre “veículos” sem distinguir entre tipos.</td>
-<td>Debates sobre IA (ética, impacto, regulação) sem diferenciar entre modelos e aplicações.</td>
-</tr>
-<tr class="odd">
-<td>Avanços em foguetes confundidos com melhorias em carros.</td>
-<td>Avanços em IA generativa confundidos com IA de recomendação ou automação industrial.</td>
-</tr>
-<tr class="even">
-<td>Golpes e desinformação prosperam na ambiguidade.</td>
-<td>Charlatanismo e hype em torno da IA se aproveitam da falta de compreensão técnica.</td>
-</tr>
-</tbody>
-</table>
 </section>
-</section>
-<section id="qual-o-objetivo-da-classificação-de-ia" class="level2">
-<h2 class="anchored" data-anchor-id="qual-o-objetivo-da-classificação-de-ia">Qual o objetivo da classificação de IA</h2>
+<section id="qual-o-objetivo-da-classificação-de-ia" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo-da-classificação-de-ia"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo da classificação de IA</strong></span></h3>
 <p>O principal objetivo é trazer clareza conceitual para que diferentes atores da sociedade possam:</p>
 <ul>
 <li>Entender o que estão usando ou regulando.</li>
@@ -236,36 +194,36 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>A crescente presença da Inteligência Artificial em nossas vidas exige mais do que entusiasmo ou cautela, ela exige clareza conceitual. Ao nomearmos e distinguirmos os diferentes tipos de IA, abrimos caminho para um ecossistema mais transparente, seguro e produtivo. Essa distinção terá efeitos nas áreas técnicas, estratégicas e sociais.</p>
 </section>
-<section id="de-onde-vem-a-necessidade-da-classificação-de-ia" class="level2">
-<h2 class="anchored" data-anchor-id="de-onde-vem-a-necessidade-da-classificação-de-ia">De onde vem a necessidade da classificação de IA</h2>
+<section id="de-onde-vem-a-necessidade-da-classificação-de-ia" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-necessidade-da-classificação-de-ia"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a necessidade da classificação de IA</strong></span></h3>
 <p>A necessidade surge da ambiguidade atual no uso do termo “IA”, que é aplicado tanto a sistemas simples como filtros de spam ou recomendação de músicas quanto a tecnologias avançadas como modelos generativos ou uso militar.</p>
 <p>Essa generalização além de confundir o público, pode dificultar a regulação, alimentar o sensacionalismo midiático além de permitir abusos comerciais e éticos. A classificação seria esclarecimento para proteção e potencialização.</p>
 </section>
-<section id="como-fazer-a-classificação-da-ia" class="level2">
-<h2 class="anchored" data-anchor-id="como-fazer-a-classificação-da-ia">Como fazer a classificação da IA</h2>
-<section id="contexto-geral" class="level3">
-<h3 class="anchored" data-anchor-id="contexto-geral">Contexto geral</h3>
-<div class="cell" data-layout-align="default">
+<section id="como-fazer-a-classificação-da-ia" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer-a-classificação-da-ia"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer a classificação da IA</strong></span></h3>
+<section id="contexto-geral" class="level4">
+<h4 class="anchored" data-anchor-id="contexto-geral">Contexto geral</h4>
+<div class="cell" data-fig-width="6.5" data-layout-align="default">
 <div class="cell-output-display">
+<div id="flow_geral">
 <div>
-<p></p><figure class="figure"><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-    A["IA nível geral"] --&gt; B1["IA simples e direta"] &amp; B2["IA intermediária e especializada"] &amp; B3["IA avançada e crítica"] &amp; B4["IA fronteira e disruptiva"]
+<pre class="mermaid mermaid-js" data-label="flow_geral">flowchart TD
+    A["IA nível geral"] --&gt; B1["IA simples e direta"] 
     B1 --&gt; C1["Filtros de spam, recomendações, assistentes de voz básicos"]
+    A["IA nível geral"] --&gt; B2["IA intermediária e especializada"] 
     B2 --&gt; C2["Diagnóstico médico, crédito automatizado, logística"]
+    A["IA nível geral"] --&gt; B3["IA avançada e crítica"] 
     B3 --&gt; C3["Modelos generativos, veículos autônomos, uso militar"]
+    A["IA nível geral"] --&gt; B4["IA fronteira e disruptiva"]
     B4 --&gt; C4["AGI, IA autoevolutiva, protótipos experimentais"]
-
 </pre>
 </div>
-<p></p></figure><p></p>
 </div>
 </div>
 </div>
 </section>
-<section id="contexto-educacional" class="level3">
-<h3 class="anchored" data-anchor-id="contexto-educacional">Contexto educacional</h3>
+<section id="contexto-educacional" class="level4">
+<h4 class="anchored" data-anchor-id="contexto-educacional">Contexto educacional</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -284,8 +242,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="contexto-regulatório" class="level3">
-<h3 class="anchored" data-anchor-id="contexto-regulatório">Contexto regulatório</h3>
+<section id="contexto-regulatório" class="level4">
+<h4 class="anchored" data-anchor-id="contexto-regulatório">Contexto regulatório</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -306,8 +264,8 @@ flowchart LR
 </div>
 </div>
 </section>
-<section id="contexto-empresarial" class="level3">
-<h3 class="anchored" data-anchor-id="contexto-empresarial">Contexto empresarial</h3>
+<section id="contexto-empresarial" class="level4">
+<h4 class="anchored" data-anchor-id="contexto-empresarial">Contexto empresarial</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -326,8 +284,8 @@ flowchart LR
 </div>
 </div>
 </section>
-<section id="contexto-de-comunicação-e-mídia" class="level3">
-<h3 class="anchored" data-anchor-id="contexto-de-comunicação-e-mídia">Contexto de Comunicação e Mídia</h3>
+<section id="contexto-de-comunicação-e-mídia" class="level4">
+<h4 class="anchored" data-anchor-id="contexto-de-comunicação-e-mídia">Contexto de Comunicação e Mídia</h4>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -347,8 +305,8 @@ flowchart LR
 </div>
 </section>
 </section>
-<section id="pra-onde-vai-próximos-passos-após-a-classificação-da-ia" class="level2">
-<h2 class="anchored" data-anchor-id="pra-onde-vai-próximos-passos-após-a-classificação-da-ia">Pra onde vai próximos passos após a classificação da IA</h2>
+<section id="pra-onde-vai-próximos-passos-após-a-classificação-da-ia" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai-próximos-passos-após-a-classificação-da-ia"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai próximos passos após a classificação da IA</strong></span></h3>
 <p>Após a classificação da Inteligência Artificial, os próximos passos envolvem a criação de padrões e normas técnicas específicas para cada tipo de IA, permitindo uma aplicação mais segura e coerente da tecnologia.</p>
 <p>Também se torna essencial o desenvolvimento de políticas públicas direcionadas, que considerem os diferentes níveis de risco e impacto social de cada categoria.</p>
 <p>Paralelamente, é necessário investir na educação e capacitação tanto de profissionais quanto do público em geral, promovendo uma compreensão mais crítica e informada sobre o uso da IA.</p>
@@ -356,42 +314,42 @@ flowchart LR
 <p>Por fim, o fomento à pesquisa ética e responsável em cada domínio da IA garante que o avanço tecnológico ocorra de forma alinhada aos valores sociais.</p>
 <p>A classificação, portanto, representa o ponto de partida para uma governança mais inteligente, justa e sustentável da tecnologia.</p>
 </section>
-<section id="quais-os-resultados-para-cada-grupo" class="level2">
-<h2 class="anchored" data-anchor-id="quais-os-resultados-para-cada-grupo">Quais os resultados para cada grupo</h2>
-<section id="público-geral" class="level3">
-<h3 class="anchored" data-anchor-id="público-geral">Público Geral</h3>
+<section id="quais-os-resultados-para-cada-grupo" class="level3">
+<h3 class="anchored" data-anchor-id="quais-os-resultados-para-cada-grupo"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Quais os resultados para cada grupo</strong></span></h3>
+<section id="público-geral" class="level4">
+<h4 class="anchored" data-anchor-id="público-geral">Público Geral</h4>
 <ul>
 <li><strong>Benefício</strong>: Compreensão acessível e realista sobre o que a IA pode (ou não) fazer.</li>
 <li><strong>Impacto</strong>: Reduz o medo irracional e o fascínio exagerado. Permite decisões mais informadas no consumo de produtos e serviços baseados em IA.</li>
 <li><strong>Exemplo</strong>: Saber diferenciar um chatbot de um sistema de vigilância automatizado ajuda a entender riscos e utilidades reais.</li>
 </ul>
 </section>
-<section id="reguladores-e-legisladores" class="level3">
-<h3 class="anchored" data-anchor-id="reguladores-e-legisladores">Reguladores e Legisladores</h3>
+<section id="reguladores-e-legisladores" class="level4">
+<h4 class="anchored" data-anchor-id="reguladores-e-legisladores">Reguladores e Legisladores</h4>
 <ul>
 <li><strong>Benefício</strong>: Criação de políticas públicas mais precisas e eficazes.Leis e políticas mais eficazes, específicas e adaptadas ao risco</li>
 <li><strong>Impacto</strong>: Evita legislações genéricas que travam a inovação ou deixam brechas perigosas.</li>
 <li><strong>Exemplo</strong>: Regulamentar IA em diagnósticos médicos exige critérios diferentes dos aplicáveis a IA em redes sociais.</li>
 </ul>
 </section>
-<section id="empresas-e-desenvolvedores" class="level3">
-<h3 class="anchored" data-anchor-id="empresas-e-desenvolvedores">Empresas e Desenvolvedores</h3>
+<section id="empresas-e-desenvolvedores" class="level4">
+<h4 class="anchored" data-anchor-id="empresas-e-desenvolvedores">Empresas e Desenvolvedores</h4>
 <ul>
 <li><strong>Benefício</strong>: Comunicação mais honesta com clientes, investidores e parceiros.inovação com responsabilidade e confiança do mercado.</li>
 <li><strong>Impacto</strong>: Reduz o hype e o risco de promessas enganosas. Estimula a inovação responsável.</li>
 <li><strong>Exemplo</strong>: Uma empresa que desenvolve IA para logística pode se posicionar com mais clareza e confiança no mercado.</li>
 </ul>
 </section>
-<section id="educadores-e-pesquisadores" class="level3">
-<h3 class="anchored" data-anchor-id="educadores-e-pesquisadores">Educadores e Pesquisadores</h3>
+<section id="educadores-e-pesquisadores" class="level4">
+<h4 class="anchored" data-anchor-id="educadores-e-pesquisadores">Educadores e Pesquisadores</h4>
 <ul>
 <li><strong>Benefício</strong>: Currículos mais claros, formação crítica e alinhada com o mercado. Estruturação mais eficaz de currículos e materiais didáticos.</li>
 <li><strong>Impacto</strong>: Facilita a formação de profissionais críticos e preparados para lidar com diferentes tipos de IA.</li>
 <li><strong>Exemplo</strong>: Ensinar IA generativa e IA simbólica como áreas distintas ajuda alunos a entenderem suas aplicações e limitações.</li>
 </ul>
 </section>
-<section id="mídia-e-comunicadores" class="level3">
-<h3 class="anchored" data-anchor-id="mídia-e-comunicadores">Mídia e Comunicadores</h3>
+<section id="mídia-e-comunicadores" class="level4">
+<h4 class="anchored" data-anchor-id="mídia-e-comunicadores">Mídia e Comunicadores</h4>
 <ul>
 <li><strong>Benefício</strong>: Reportagens mais precisas e educativas.</li>
 <li><strong>Impacto</strong>: Combate a desinformação e o sensacionalismo. Promove o debate público qualificado.</li>
@@ -399,7 +357,6 @@ flowchart LR
 </ul>
 
 
-</section>
 </section>
 </section>
 

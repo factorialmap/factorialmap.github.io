@@ -1,12 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://carvalhoribeiro.netlify.app/about.html</loc>
-    <lastmod>2024-08-16T01:54:16.123Z</lastmod>
+    <loc>https://carvalhoribeiro.netlify.app/posts/classificacao_ai/classificacao_ai.html</loc>
+    <lastmod>2025-08-14T23:51:08.944Z</lastmod>
   </url>
   <url>
-    <loc>https://carvalhoribeiro.netlify.app/index.html</loc>
-    <lastmod>2022-08-05T03:10:37.260Z</lastmod>
+    <loc>https://carvalhoribeiro.netlify.app/posts/welcome/index.html</loc>
+    <lastmod>2024-06-09T02:45:05.489Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/table_stats/table_stats.html</loc>
+    <lastmod>2024-06-09T02:35:39.504Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/resamples/resamples.html</loc>
+    <lastmod>2024-06-09T02:48:32.689Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/presentation_reveljs/presentation.html</loc>
+    <lastmod>2024-08-12T18:55:01.896Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition.html</loc>
+    <lastmod>2024-06-09T02:54:48.135Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar.html</loc>
+    <lastmod>2024-06-09T02:55:27.817Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/gts-themes/gts-themes.html</loc>
+    <lastmod>2024-06-18T04:19:35.895Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/dtrpart.html</loc>
+    <lastmod>2024-06-09T02:51:53.078Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/comm-stats/comm_stat.html</loc>
+    <lastmod>2024-06-09T02:53:15.276Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/causeeffect.html</loc>
+    <lastmod>2024-08-16T01:59:08.179Z</lastmod>
+  </url>
+  <url>
+    <loc>https://carvalhoribeiro.netlify.app/about.html</loc>
+    <lastmod>2024-08-16T01:54:16.123Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/chart_stats/plot_stats.html</loc>
@@ -17,60 +57,16 @@
     <lastmod>2024-06-09T02:52:35.524Z</lastmod>
   </url>
   <url>
+    <loc>https://carvalhoribeiro.netlify.app/posts/gts-print/gts-print.html</loc>
+    <lastmod>2024-08-12T18:52:20.112Z</lastmod>
+  </url>
+  <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/histogram/histogram.html</loc>
     <lastmod>2024-06-09T02:55:01.777Z</lastmod>
   </url>
   <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar.html</loc>
-    <lastmod>2024-06-09T02:55:27.817Z</lastmod>
-  </url>
-  <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet.html</loc>
     <lastmod>2024-06-09T02:50:25.951Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/pattern-recognition/pattern_recognition.html</loc>
-    <lastmod>2024-06-09T02:54:48.135Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/table_stats/table_stats.html</loc>
-    <lastmod>2024-06-09T02:35:39.504Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/welcome/index.html</loc>
-    <lastmod>2024-06-09T02:45:05.489Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/comm-stats/comm_stat.html</loc>
-    <lastmod>2024-06-09T02:53:15.276Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/decision-tree-rpart/dtrpart.html</loc>
-    <lastmod>2024-06-09T02:51:53.078Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/presentation_reveljs/presentation.html</loc>
-    <lastmod>2024-08-12T18:55:01.896Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/resamples/resamples.html</loc>
-    <lastmod>2024-06-09T02:48:32.689Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/cause-effect-diagram/causeeffect.html</loc>
-    <lastmod>2024-08-16T01:59:08.179Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/table-gt/table_gt.html</loc>
-    <lastmod>2024-06-05T20:38:36.498Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/gts-themes/gts-themes.html</loc>
-    <lastmod>2024-06-18T04:19:35.895Z</lastmod>
-  </url>
-  <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/gts-print/gts-print.html</loc>
-    <lastmod>2024-08-12T18:52:20.112Z</lastmod>
   </url>
   <url>
     <loc>https://carvalhoribeiro.netlify.app/posts/pca-explore/pca-explore.html</loc>
@@ -81,11 +77,11 @@
     <lastmod>2024-10-24T13:55:25.590Z</lastmod>
   </url>
   <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/two_sigma_problem/two_sigma_problem.html</loc>
-    <lastmod>2025-08-14T23:28:59.325Z</lastmod>
+    <loc>https://carvalhoribeiro.netlify.app/posts/table-gt/table_gt.html</loc>
+    <lastmod>2024-06-05T20:38:36.498Z</lastmod>
   </url>
   <url>
-    <loc>https://carvalhoribeiro.netlify.app/posts/classificacao_ai/classificacao_ai.html</loc>
-    <lastmod>2025-08-14T14:25:31.721Z</lastmod>
+    <loc>https://carvalhoribeiro.netlify.app/posts/two_sigma_problem/two_sigma_problem.html</loc>
+    <lastmod>2025-08-14T23:28:59.325Z</lastmod>
   </url>
 </urlset>
