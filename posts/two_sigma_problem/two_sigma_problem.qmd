@@ -1,6 +1,9 @@
 ---
 title: "Problema de 2 sigma de Bloom"
 subtitle: "Crianças aprendem mais e outras menos"
+author: "Marcelo Carvalho dos Anjos"
+date: "2025-08-14"
+categories: [Demanda ou problema]
 format: html
 ---
 
