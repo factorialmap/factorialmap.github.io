@@ -255,7 +255,7 @@
 <h2 class="anchored" data-anchor-id="o-que-é-o-problema-de-2-sigma-de-bloom">O que é o problema de 2 sigma de Bloom?</h2>
 <p>Imagine que seu filho está numa sala de aula com 30 alunos. Todos aprendem com o mesmo professor, no mesmo ritmo, com o mesmo material. Isso é o ensino tradicional.</p>
 <p>Agora imagine que seu filho tivesse um tutor particular, alguém que ensinasse só para ele, no ritmo dele, tirando dúvidas, reforçando o que ele não entendeu, e adaptando o conteúdo às necessidades dele. O que você acha que aconteceria com o desempenho dele?</p>
-<p>Foi exatamente isso que o pesquisador Benjamin Bloom descobriu nos anos 1980: alunos que recebem ensino individualizado com tutoria têm um desempenho muito melhor, cerca de 2 desvios padrão acima dos alunos do ensino tradicional. Isso é o que ele chamou de efeito 2 sigma.</p>
+<p>Foi exatamente isso que o pesquisador Benjamin Bloom <span class="citation" data-cites="bloom1984">Bloom (1984)</span> descobriu. Alunos que recebem ensino individualizado com tutoria têm um desempenho muito melhor, cerca de 2 desvios padrão acima dos alunos do ensino tradicional. Isso é o que ele chamou de efeito 2 sigma.</p>
 <p><strong>O que significa “2 sigma”?</strong></p>
 <p>Sem entrar muito na matemática, “2 sigma” quer dizer que esses alunos com tutoria aprendem melhor do que 98% dos alunos que estão no ensino tradicional. É uma diferença enorme!</p>
 <div class="cell" data-layout-align="center">
@@ -313,7 +313,7 @@
 <blockquote class="blockquote">
 <p>Considere você um especialista no problema de 2 sigma de Bloom. Em especial no artigo publicado por ele em 1984 em Chicago. Layton sugeriu que uma abordagem para o problema de 2 sigma seria usar o aprendizado de domínio durante o curso avançado em uma sequência, mas, além disso, tentar melhorar os pré-requisitos de entrada cognitiva inicial dos alunos no começo do curso. Me explique melhor essa abordagem e se possível me mostre com exemplos práticos.</p>
 </blockquote>
-<p>A abordagem sugerida por Layton para enfrentar o problema de 2 sigma de Bloom envolve duas estratégias principais:</p>
+<p>A abordagem sugerida por Layton <span class="citation" data-cites="soto1983">Soto (1983)</span> para enfrentar o problema de 2 sigma de Bloom envolve duas estratégias principais:</p>
 <ol type="1">
 <li><strong>Melhorar os pré-requisitos cognitivos dos alunos antes do início do curso</strong>.</li>
 <li><strong>Utilizar o aprendizado de domínio (mastery learning) em sequência ao longo do curso avançado</strong>.</li>
@@ -324,7 +324,7 @@
 <p>Essa preparação reduz a variabilidade entre os alunos e aumenta a chance de todos acompanharem o conteúdo avançado com sucesso.</p>
 <p><strong>2. Aprendizado de Domínio (Mastery Learning) em Sequência</strong></p>
 <p>O aprendizado de domínio é uma abordagem em que os alunos só avançam para o próximo conteúdo após <strong>dominar completamente o anterior</strong>. Bloom mostrou que isso pode levar a um ganho de até 1 sigma em desempenho<a href="https://gwern.net/doc/psychology/1984-bloom.pdf">1</a>. Layton sugeriu aplicar essa técnica em sequência, ou seja, ao longo de todo o curso, com ciclos de:</p>
-<div class="cell" data-layout-align="default">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fluxo_aprendizado">
 <div>
@@ -849,7 +849,7 @@
 </div>
 </div>
 </div>
-<p>O gráfico abaixo demonstra os resultados.</p>
+<p>O gráfico abaixo demonstra os resultados dos estudos de <span class="citation" data-cites="anania1981">Anania (1981)</span> e <span class="citation" data-cites="burke1983">Burke (1983)</span> citados por Bloom em sua puplicação.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -997,7 +997,7 @@ Expanda para ver técnicas para melhoria de leitura
 </section>
 <section id="abordagem-de-john-hattie-visible-learning" class="level2">
 <h2 class="anchored" data-anchor-id="abordagem-de-john-hattie-visible-learning">Abordagem de John Hattie Visible learning</h2>
-<p>John Hattie conduziu uma meta-análise que é um estudo científico que conbina os resultados de várias pesquisas anteriores sobre um mesmo tema para chegar a uma conclusão mais robusta e confiável chamada <em>Visible Learning</em>. Esta foi publicada inicialmente em 2009 onde ele analisou mais de 250 influências sobre o desempenho dos alunos, com base em mais de 800 meta-análises envolvendo milhões de estudantes.</p>
+<p>John Hattie <span class="citation" data-cites="hattie2023">Hattie (2023)</span> conduziu uma meta-análise que é um estudo científico que conbina os resultados de várias pesquisas anteriores sobre um mesmo tema para chegar a uma conclusão mais robusta e confiável chamada <em>Visible Learning</em>. Esta foi publicada inicialmente em 2009 onde ele analisou mais de 250 influências sobre o desempenho dos alunos, com base em mais de 800 meta-análises envolvendo milhões de estudantes.</p>
 <p><strong>O que ele mediu?</strong> Hattie usou o conceito de effect size (tamanho do efeito), que indica o impacto de uma intervenção no aprendizado. Em geral 0.4 é o ponto de corte e acima disso, o efeito é considerado significativo, ou seja, quanto maior o número, maior o impacto.</p>
 <p><strong>Principais fatores com alto effect size</strong></p>
 <ol type="1">
@@ -1008,9 +1008,26 @@ Expanda para ver técnicas para melhoria de leitura
 </ol>
 
 
+
 </section>
 
- ]]></description>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-anania1981" class="csl-entry">
+Anania, Joanne. 1981. <em>The effects of quality of instruction on the cognitive and affective learning of students</em>.
+</div>
+<div id="ref-bloom1984" class="csl-entry">
+Bloom, Benjamin S. 1984. <span>“The 2 Sigma Problem: The Search for Methods of Group Instruction as Effective as One-to-One Tutoring.”</span> <em>Educational Researcher</em> 13 (6): 4–16. <a href="https://doi.org/10.2307/1175554">https://doi.org/10.2307/1175554</a>.
+</div>
+<div id="ref-burke1983" class="csl-entry">
+Burke, Arthur Joseph. 1983. <em>Students’ potential for learning contrasted under tutorial and group approaches to instruction</em>.
+</div>
+<div id="ref-hattie2023" class="csl-entry">
+Hattie, John. 2023. <em>Visible Learning: The Sequel: A Synthesis of over 2,100 Meta-Analyses Relating to Achievement</em>. London ; New York, NY: Routledge.
+</div>
+<div id="ref-soto1983" class="csl-entry">
+Soto, Fernando Leyton. 1983. <em>The extent to which group instruction supplemented by mastery of the initial cognitive prerequisites approximates the learning effectiveness of one-to-one tutorial methods</em>.
+</div>
+</div></section></div> ]]></description>
   <category>Demanda ou problema</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/two_sigma_problem/two_sigma_problem.html</guid>
   <pubDate>Thu, 14 Aug 2025 03:00:00 GMT</pubDate>

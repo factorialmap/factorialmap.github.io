@@ -5,6 +5,7 @@ author: "Marcelo Carvalho dos Anjos"
 date: "2025-08-14"
 categories: [Demanda ou problema]
 format: html
+bibliography: references.bib
 ---
 
 ## O que é o problema de 2 sigma de Bloom?
@@ -13,7 +14,7 @@ Imagine que seu filho está numa sala de aula com 30 alunos. Todos aprendem com 
 
 Agora imagine que seu filho tivesse um tutor particular, alguém que ensinasse só para ele, no ritmo dele, tirando dúvidas, reforçando o que ele não entendeu, e adaptando o conteúdo às necessidades dele. O que você acha que aconteceria com o desempenho dele?
 
-Foi exatamente isso que o pesquisador Benjamin Bloom descobriu nos anos 1980: alunos que recebem ensino individualizado com tutoria têm um desempenho muito melhor, cerca de 2 desvios padrão acima dos alunos do ensino tradicional. Isso é o que ele chamou de efeito 2 sigma.
+Foi exatamente isso que o pesquisador Benjamin Bloom @bloom1984 descobriu. Alunos que recebem ensino individualizado com tutoria têm um desempenho muito melhor, cerca de 2 desvios padrão acima dos alunos do ensino tradicional. Isso é o que ele chamou de efeito 2 sigma.
 
 **O que significa "2 sigma"?**
 
@@ -148,7 +149,7 @@ motivacao %>%
 
 > Considere você um especialista no problema de 2 sigma de Bloom. Em especial no artigo publicado por ele em 1984 em Chicago. Layton sugeriu que uma abordagem para o problema de 2 sigma seria usar o aprendizado de domínio durante o curso avançado em uma sequência, mas, além disso, tentar melhorar os pré-requisitos de entrada cognitiva inicial dos alunos no começo do curso. Me explique melhor essa abordagem e se possível me mostre com exemplos práticos.
 
-A abordagem sugerida por Layton para enfrentar o problema de 2 sigma de Bloom envolve duas estratégias principais:
+A abordagem sugerida por Layton @soto1983 para enfrentar o problema de 2 sigma de Bloom envolve duas estratégias principais:
 
 1.  **Melhorar os pré-requisitos cognitivos dos alunos antes do início do curso**.
 2.  **Utilizar o aprendizado de domínio (mastery learning) em sequência ao longo do curso avançado**.
@@ -168,6 +169,7 @@ O aprendizado de domínio é uma abordagem em que os alunos só avançam para o 
 ```{mermaid}
 %%| label: fluxo_aprendizado
 %%| fig-cap: "Fluxo simples de aprendizado"
+%%| fig-align: center
 
 flowchart LR
     A[Ensino] --> B[Avaliação formativa]
@@ -211,7 +213,6 @@ Após duas semanas de instrução, todos os grupos realizaram um teste formativo
 2.  **Redução da variabilidade**: Ao nivelar os conhecimentos iniciais, os alunos começaram o curso com uma base mais homogênea, o que facilita o ensino em grupo.
 3.  **Potencial para escalabilidade**: Diferente da tutoria individual, essa abordagem pode ser aplicada em turmas maiores com custo relativamente baixo.
 
-
 ```{r}
 #| label: table_learning
 #| echo: false
@@ -240,8 +241,7 @@ data_learning_types %>%
   
 ```
 
-
-O gráfico abaixo demonstra os resultados.
+O gráfico abaixo demonstra os resultados dos estudos de @anania1981 e @burke1983 citados por Bloom em sua puplicação.
 
 ```{r}
 #| label: layton_plot
@@ -283,8 +283,6 @@ data_edu_layton %>%
   coord_flip()
 
 ```
-
-
 
 ::: {.callout-tip collapse="true"}
 ## Expanda para saber o que são pré-requisitos cognitivos
@@ -433,7 +431,7 @@ Porque se ele descobrir que dois processos já são quase tão eficazes quanto o
 
 ## Abordagem de John Hattie Visible learning
 
-John Hattie conduziu uma meta-análise que é um estudo científico que conbina os resultados de várias pesquisas anteriores sobre um mesmo tema para chegar a uma conclusão mais robusta e confiável chamada *Visible Learning*. Esta foi publicada inicialmente em 2009 onde ele analisou mais de 250 influências sobre o desempenho dos alunos, com base em mais de 800 meta-análises envolvendo milhões de estudantes.
+John Hattie @hattie2023 conduziu uma meta-análise que é um estudo científico que conbina os resultados de várias pesquisas anteriores sobre um mesmo tema para chegar a uma conclusão mais robusta e confiável chamada *Visible Learning*. Esta foi publicada inicialmente em 2009 onde ele analisou mais de 250 influências sobre o desempenho dos alunos, com base em mais de 800 meta-análises envolvendo milhões de estudantes.
 
 **O que ele mediu?** Hattie usou o conceito de effect size (tamanho do efeito), que indica o impacto de uma intervenção no aprendizado. Em geral 0.4 é o ponto de corte e acima disso, o efeito é considerado significativo, ou seja, quanto maior o número, maior o impacto.
 
