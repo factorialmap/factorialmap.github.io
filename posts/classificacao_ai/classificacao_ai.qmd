@@ -5,6 +5,8 @@ author: "Marcelo Carvalho dos Anjos"
 date: "2025-08-21"
 categories: [Demanda ou problema]
 format: html
+execute: 
+  freeze: false
 ---
 
 ### {{< fa 1 >}} [**O que é a classificação de IA**]{style="color: #5AC8BE ;"}
@@ -53,7 +55,7 @@ flowchart TD
 
 ```{mermaid}
 %%| label: flow_educ
-%%| fig-width: 6.5
+%%| fig-width: 5
 
 
 flowchart LR
@@ -68,7 +70,7 @@ flowchart LR
 
 ```{mermaid}
 %%| label: flow_regulation
-%%| fig-width: 6.5
+%%| fig-width: 5
 
 
 flowchart LR
@@ -84,7 +86,7 @@ flowchart LR
 
 ```{mermaid}
 %%| label: flow_business
-%%| fig-width: 6.5
+%%| fig-width: 5
 
 
 flowchart LR
@@ -99,7 +101,7 @@ flowchart LR
 
 ```{mermaid}
 %%| label: flow_communication
-%%| fig-width: 6.5
+%%| fig-width: 5
 
 
 flowchart LR
@@ -126,32 +128,13 @@ A classificação, portanto, representa o ponto de partida para uma governança 
 
 ### {{< fa 6 >}} [**Quais os resultados para cada grupo**]{style="color: #5AC8BE ;"}
 
-#### Público Geral
+- **Público Geral**Compreensão acessível e realista sobre o que a IA pode (ou não) fazer, reduz o medo irracional e o fascínio exagerado. Permite decisões mais informadas no consumo de produtos e serviços baseados em IA(e.g saber diferenciar um chatbot de um sistema de vigilância automatizado ajuda a entender riscos e utilidades reais).
 
--   **Benefício**: Compreensão acessível e realista sobre o que a IA pode (ou não) fazer.
--   **Impacto**: Reduz o medo irracional e o fascínio exagerado. Permite decisões mais informadas no consumo de produtos e serviços baseados em IA.
--   **Exemplo**: Saber diferenciar um chatbot de um sistema de vigilância automatizado ajuda a entender riscos e utilidades reais.
+- **Reguladores e Legisladores** Criação de políticas públicas mais precisas e eficazes.Leis e políticas mais eficazes, específicas e adaptadas ao risco. Isso pode evitar legislações genéricas que travam a inovação ou deixam brechas perigosas(e.g regulamentar IA em diagnósticos médicos exige critérios diferentes dos aplicáveis a IA em redes sociais).
 
-#### Reguladores e Legisladores
+- **Empresas e Desenvolvedores** Comunicação mais honesta com clientes, investidores e parceiros. Inovação com responsabilidade e confiança do mercado. Isso pode hype inicialmente mas também pode reduzir o risco de promessas enganosas, estimulando a inovação responsável(e.g
+Uma empresa que desenvolve IA para logística pode se posicionar com mais clareza e confiança no mercado).
 
--   **Benefício**: Criação de políticas públicas mais precisas e eficazes.Leis e políticas mais eficazes, específicas e adaptadas ao risco
--   **Impacto**: Evita legislações genéricas que travam a inovação ou deixam brechas perigosas.
--   **Exemplo**: Regulamentar IA em diagnósticos médicos exige critérios diferentes dos aplicáveis a IA em redes sociais.
+- **Educadores e Pesquisadores** Currículos mais claros, formação crítica e alinhada com o mercado. Estruturação mais eficaz de currículos e materiais didáticos. Isso pode facilitar a formação de profissionais críticos e preparados para lidar com diferentes tipos de IA(e.g. ensinar IA generativa e IA simbólica como áreas distintas ajuda alunos a entenderem suas aplicações e limitações).
 
-#### Empresas e Desenvolvedores
-
--   **Benefício**: Comunicação mais honesta com clientes, investidores e parceiros.inovação com responsabilidade e confiança do mercado.
--   **Impacto**: Reduz o hype e o risco de promessas enganosas. Estimula a inovação responsável.
--   **Exemplo**: Uma empresa que desenvolve IA para logística pode se posicionar com mais clareza e confiança no mercado.
-
-#### Educadores e Pesquisadores
-
--   **Benefício**: Currículos mais claros, formação crítica e alinhada com o mercado. Estruturação mais eficaz de currículos e materiais didáticos.
--   **Impacto**: Facilita a formação de profissionais críticos e preparados para lidar com diferentes tipos de IA.
--   **Exemplo**: Ensinar IA generativa e IA simbólica como áreas distintas ajuda alunos a entenderem suas aplicações e limitações.
-
-#### Mídia e Comunicadores
-
--   **Benefício**: Reportagens mais precisas e educativas.
--   **Impacto**: Combate a desinformação e o sensacionalismo. Promove o debate público qualificado.
--   **Exemplo**: Ao cobrir um avanço em IA, a mídia pode explicar se se trata de um sistema de linguagem, de visão computacional ou de automação industrial.
+- **Mídia e Comunicadores** Reportagens mais precisas e educativas. Isso pode combater a confusão e o sensacionalismo, pode promover o debate público qualificado(e.g. ao cobrir um avanço em IA, a mídia pode explicar se se trata de um sistema de linguagem, de visão computacional ou de automação industrial).

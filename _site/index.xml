@@ -66,7 +66,7 @@
 </section>
 <section id="contexto-educacional" class="level4">
 <h4 class="anchored" data-anchor-id="contexto-educacional">Contexto educacional</h4>
-<div class="cell" data-fig-width="6.5" data-layout-align="default">
+<div class="cell" data-fig-width="5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="flow_educ">
 <div>
@@ -84,7 +84,7 @@
 </section>
 <section id="contexto-regulatório" class="level4">
 <h4 class="anchored" data-anchor-id="contexto-regulatório">Contexto regulatório</h4>
-<div class="cell" data-fig-width="6.5" data-layout-align="default">
+<div class="cell" data-fig-width="5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="flow_regulation">
 <div>
@@ -103,7 +103,7 @@
 </section>
 <section id="contexto-empresarial" class="level4">
 <h4 class="anchored" data-anchor-id="contexto-empresarial">Contexto empresarial</h4>
-<div class="cell" data-fig-width="6.5" data-layout-align="default">
+<div class="cell" data-fig-width="5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="flow_business">
 <div>
@@ -121,7 +121,7 @@
 </section>
 <section id="contexto-de-comunicação-e-mídia" class="level4">
 <h4 class="anchored" data-anchor-id="contexto-de-comunicação-e-mídia">Contexto de Comunicação e Mídia</h4>
-<div class="cell" data-fig-width="6.5" data-layout-align="default">
+<div class="cell" data-fig-width="5" data-layout-align="default">
 <div class="cell-output-display">
 <div id="flow_communication">
 <div>
@@ -149,48 +149,15 @@
 </section>
 <section id="quais-os-resultados-para-cada-grupo" class="level3">
 <h3 class="anchored" data-anchor-id="quais-os-resultados-para-cada-grupo"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Quais os resultados para cada grupo</strong></span></h3>
-<section id="público-geral" class="level4">
-<h4 class="anchored" data-anchor-id="público-geral">Público Geral</h4>
 <ul>
-<li><strong>Benefício</strong>: Compreensão acessível e realista sobre o que a IA pode (ou não) fazer.</li>
-<li><strong>Impacto</strong>: Reduz o medo irracional e o fascínio exagerado. Permite decisões mais informadas no consumo de produtos e serviços baseados em IA.</li>
-<li><strong>Exemplo</strong>: Saber diferenciar um chatbot de um sistema de vigilância automatizado ajuda a entender riscos e utilidades reais.</li>
-</ul>
-</section>
-<section id="reguladores-e-legisladores" class="level4">
-<h4 class="anchored" data-anchor-id="reguladores-e-legisladores">Reguladores e Legisladores</h4>
-<ul>
-<li><strong>Benefício</strong>: Criação de políticas públicas mais precisas e eficazes.Leis e políticas mais eficazes, específicas e adaptadas ao risco</li>
-<li><strong>Impacto</strong>: Evita legislações genéricas que travam a inovação ou deixam brechas perigosas.</li>
-<li><strong>Exemplo</strong>: Regulamentar IA em diagnósticos médicos exige critérios diferentes dos aplicáveis a IA em redes sociais.</li>
-</ul>
-</section>
-<section id="empresas-e-desenvolvedores" class="level4">
-<h4 class="anchored" data-anchor-id="empresas-e-desenvolvedores">Empresas e Desenvolvedores</h4>
-<ul>
-<li><strong>Benefício</strong>: Comunicação mais honesta com clientes, investidores e parceiros.inovação com responsabilidade e confiança do mercado.</li>
-<li><strong>Impacto</strong>: Reduz o hype e o risco de promessas enganosas. Estimula a inovação responsável.</li>
-<li><strong>Exemplo</strong>: Uma empresa que desenvolve IA para logística pode se posicionar com mais clareza e confiança no mercado.</li>
-</ul>
-</section>
-<section id="educadores-e-pesquisadores" class="level4">
-<h4 class="anchored" data-anchor-id="educadores-e-pesquisadores">Educadores e Pesquisadores</h4>
-<ul>
-<li><strong>Benefício</strong>: Currículos mais claros, formação crítica e alinhada com o mercado. Estruturação mais eficaz de currículos e materiais didáticos.</li>
-<li><strong>Impacto</strong>: Facilita a formação de profissionais críticos e preparados para lidar com diferentes tipos de IA.</li>
-<li><strong>Exemplo</strong>: Ensinar IA generativa e IA simbólica como áreas distintas ajuda alunos a entenderem suas aplicações e limitações.</li>
-</ul>
-</section>
-<section id="mídia-e-comunicadores" class="level4">
-<h4 class="anchored" data-anchor-id="mídia-e-comunicadores">Mídia e Comunicadores</h4>
-<ul>
-<li><strong>Benefício</strong>: Reportagens mais precisas e educativas.</li>
-<li><strong>Impacto</strong>: Combate a desinformação e o sensacionalismo. Promove o debate público qualificado.</li>
-<li><strong>Exemplo</strong>: Ao cobrir um avanço em IA, a mídia pode explicar se se trata de um sistema de linguagem, de visão computacional ou de automação industrial.</li>
+<li><p><strong>Público Geral</strong>Compreensão acessível e realista sobre o que a IA pode (ou não) fazer, reduz o medo irracional e o fascínio exagerado. Permite decisões mais informadas no consumo de produtos e serviços baseados em IA(e.g saber diferenciar um chatbot de um sistema de vigilância automatizado ajuda a entender riscos e utilidades reais).</p></li>
+<li><p><strong>Reguladores e Legisladores</strong> Criação de políticas públicas mais precisas e eficazes.Leis e políticas mais eficazes, específicas e adaptadas ao risco. Isso pode evitar legislações genéricas que travam a inovação ou deixam brechas perigosas(e.g regulamentar IA em diagnósticos médicos exige critérios diferentes dos aplicáveis a IA em redes sociais).</p></li>
+<li><p><strong>Empresas e Desenvolvedores</strong> Comunicação mais honesta com clientes, investidores e parceiros. Inovação com responsabilidade e confiança do mercado. Isso pode hype inicialmente mas também pode reduzir o risco de promessas enganosas, estimulando a inovação responsável(e.g Uma empresa que desenvolve IA para logística pode se posicionar com mais clareza e confiança no mercado).</p></li>
+<li><p><strong>Educadores e Pesquisadores</strong> Currículos mais claros, formação crítica e alinhada com o mercado. Estruturação mais eficaz de currículos e materiais didáticos. Isso pode facilitar a formação de profissionais críticos e preparados para lidar com diferentes tipos de IA(e.g.&nbsp;ensinar IA generativa e IA simbólica como áreas distintas ajuda alunos a entenderem suas aplicações e limitações).</p></li>
+<li><p><strong>Mídia e Comunicadores</strong> Reportagens mais precisas e educativas. Isso pode combater a confusão e o sensacionalismo, pode promover o debate público qualificado(e.g.&nbsp;ao cobrir um avanço em IA, a mídia pode explicar se se trata de um sistema de linguagem, de visão computacional ou de automação industrial).</p></li>
 </ul>
 
 
-</section>
 </section>
 
  ]]></description>
