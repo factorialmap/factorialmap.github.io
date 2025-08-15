@@ -12,6 +12,8 @@ bibliography: references.bib
 
 Imagine que seu filho está numa sala de aula com 30 alunos. Todos aprendem com o mesmo professor, no mesmo ritmo, com o mesmo material. Isso é o ensino convencional.
 
+![Aula convencional por volta de 1400 AD](aula_convencional.png)
+
 Agora imagine que seu filho tivesse um tutor particular, alguém que ensinasse só para ele, no ritmo dele, tirando dúvidas, reforçando o que ele não entendeu, e adaptando o conteúdo às necessidades dele. O que você acha que aconteceria com o desempenho dele?
 
 Foi exatamente isso que o pesquisador Benjamin @bloom1984 descobriu. Alunos que recebem ensino individualizado com tutoria têm um desempenho muito melhor, cerca de 2 desvios padrão acima dos alunos do ensino convencional. Isso é o que ele chamou de efeito 2 sigma.
