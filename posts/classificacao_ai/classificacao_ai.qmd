@@ -17,12 +17,7 @@ Assim como classificamos tecnologias em categorias distintas (como softwares, ve
 
 ### {{< fa 2 >}} [**Qual o objetivo da classificação de IA**]{style="color: #5AC8BE ;"}
 
-O principal objetivo é trazer clareza conceitual para que diferentes atores da sociedade possam:
-
--   Entender o que estão usando ou regulando.
--   Avaliar riscos e benefícios com mais precisão.
--   Promover inovação sem comprometer a segurança ou a ética.
--   Evitar generalizações que geram medo, hype ou desinformação.
+O principal objetivo é trazer clareza conceitual para que diferentes atores da sociedade possam, entender o que estão usando ou regulando, avaliar riscos e benefícios com mais precisão, promover inovação sem comprometer a segurança ou a ética, evitar generalizações que geram medo, hype ou confunda o publico.
 
 A crescente presença da Inteligência Artificial em nossas vidas exige mais do que entusiasmo ou cautela, ela exige clareza conceitual. Ao nomearmos e distinguirmos os diferentes tipos de IA, abrimos caminho para um ecossistema mais transparente, seguro e produtivo. Essa distinção terá efeitos nas áreas técnicas, estratégicas e sociais.
 

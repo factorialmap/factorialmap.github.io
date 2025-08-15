@@ -27,13 +27,7 @@
 </section>
 <section id="qual-o-objetivo-da-classificação-de-ia" class="level3">
 <h3 class="anchored" data-anchor-id="qual-o-objetivo-da-classificação-de-ia"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo da classificação de IA</strong></span></h3>
-<p>O principal objetivo é trazer clareza conceitual para que diferentes atores da sociedade possam:</p>
-<ul>
-<li>Entender o que estão usando ou regulando.</li>
-<li>Avaliar riscos e benefícios com mais precisão.</li>
-<li>Promover inovação sem comprometer a segurança ou a ética.</li>
-<li>Evitar generalizações que geram medo, hype ou desinformação.</li>
-</ul>
+<p>O principal objetivo é trazer clareza conceitual para que diferentes atores da sociedade possam, entender o que estão usando ou regulando, avaliar riscos e benefícios com mais precisão, promover inovação sem comprometer a segurança ou a ética, evitar generalizações que geram medo, hype ou confunda o publico.</p>
 <p>A crescente presença da Inteligência Artificial em nossas vidas exige mais do que entusiasmo ou cautela, ela exige clareza conceitual. Ao nomearmos e distinguirmos os diferentes tipos de IA, abrimos caminho para um ecossistema mais transparente, seguro e produtivo. Essa distinção terá efeitos nas áreas técnicas, estratégicas e sociais.</p>
 </section>
 <section id="de-onde-vem-a-necessidade-da-classificação-de-ia" class="level3">
@@ -127,11 +121,11 @@
 
 <section id="o-que-é-o-problema-de-2-sigma-de-bloom" class="level2">
 <h2 class="anchored" data-anchor-id="o-que-é-o-problema-de-2-sigma-de-bloom">O que é o problema de 2 sigma de Bloom?</h2>
-<p>Imagine que seu filho está numa sala de aula com 30 alunos. Todos aprendem com o mesmo professor, no mesmo ritmo, com o mesmo material. Isso é o ensino tradicional.</p>
+<p>Imagine que seu filho está numa sala de aula com 30 alunos. Todos aprendem com o mesmo professor, no mesmo ritmo, com o mesmo material. Isso é o ensino convencional.</p>
 <p>Agora imagine que seu filho tivesse um tutor particular, alguém que ensinasse só para ele, no ritmo dele, tirando dúvidas, reforçando o que ele não entendeu, e adaptando o conteúdo às necessidades dele. O que você acha que aconteceria com o desempenho dele?</p>
-<p>Foi exatamente isso que o pesquisador Benjamin Bloom <span class="citation" data-cites="bloom1984">Bloom (1984)</span> descobriu. Alunos que recebem ensino individualizado com tutoria têm um desempenho muito melhor, cerca de 2 desvios padrão acima dos alunos do ensino tradicional. Isso é o que ele chamou de efeito 2 sigma.</p>
+<p>Foi exatamente isso que o pesquisador Benjamin <span class="citation" data-cites="bloom1984">Bloom (1984)</span> descobriu. Alunos que recebem ensino individualizado com tutoria têm um desempenho muito melhor, cerca de 2 desvios padrão acima dos alunos do ensino convencional. Isso é o que ele chamou de efeito 2 sigma.</p>
 <p><strong>O que significa “2 sigma”?</strong></p>
-<p>Sem entrar muito na matemática, “2 sigma” quer dizer que esses alunos com tutoria aprendem melhor do que 98% dos alunos que estão no ensino tradicional. É uma diferença enorme!</p>
+<p>Sem entrar muito na matemática, “2 sigma” quer dizer que esses alunos com tutoria aprendem melhor do que 98% dos alunos que estão no ensino convencional. É uma diferença enorme!</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -140,105 +134,8 @@
 </figure>
 </div>
 </div>
-<div class="cell-output-display">
-<table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:tow_sigma_plot">
-<colgroup><col><col><col></colgroup><tbody><tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">tipo_aprendizado</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">media</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">desvio_padrao</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Pequenos Grupos</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">69.6</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">7.74</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Tradicional</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">60.9</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">9.13</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Tutoria</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">75.5</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">4.75</td></tr>
-</tbody></table>
-
 </div>
-<div class="cell-output-display">
-<table class="huxtable" data-quarto-disable-processing="true" style="border-collapse: collapse; border: 0px; margin-bottom: 2em; margin-top: 2em; ; margin-left: auto; margin-right: auto;  " id="tab:tow_sigma_plot">
-<colgroup><col><col><col><col><col><col><col></colgroup><tbody><tr>
-<th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">.y.</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">group1</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">group2</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">effsize</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">n1</th><th style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">n2</th><th style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">magnitude</th></tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">pontuacao</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Tradicional</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Pequenos Grupos</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-1.03</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">100</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">100</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">large</td></tr>
-<tr>
-<td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">pontuacao</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Tradicional</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">Tutoria</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">-2.01</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">100</td><td style="vertical-align: top; text-align: right; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">100</td><td style="vertical-align: top; text-align: left; white-space: normal; border-style: solid solid solid solid; border-width: 0pt 0pt 0pt 0pt;    padding: 6pt 6pt 6pt 6pt; font-weight: normal;">large</td></tr>
-</tbody></table>
-
-</div>
-</div>
-<p><strong>Por que isso é um problema?</strong></p>
-<p>Porque, apesar de sabermos que a tutoria personalizada funciona muito bem, ela é cara e difícil de aplicar em larga escala. Não dá para colocar um tutor para cada aluno em todas as escolas.</p>
-<p>Então o “problema de 2 sigma” é:</p>
-<p><strong>Como podemos fazer com que todos os alunos aprendam tão bem quanto os que têm tutores, mas sem precisar de um tutor para cada um?</strong></p>
-<p><strong>Por que isso é importante?</strong></p>
-<p>Esse problema é super relevante porque mostra que todos os alunos podem aprender muito mais, se forem ensinados da forma certa. Incentiva a busca por novas formas de ensino, como o uso de tecnologia, ensino adaptativo, inteligência artificial, etc. Ajuda pais e educadores a entenderem que o potencial dos alunos é muito maior do que parece no ensino tradicional.</p>
-</section>
-<section id="o-que-mais-bloom-descobriu" class="level2">
-<h2 class="anchored" data-anchor-id="o-que-mais-bloom-descobriu">O que mais Bloom descobriu?</h2>
-<blockquote class="blockquote">
-<p>Você mencionou que além do resultado, a tutorial individualizada mostrada no trabalho de Benjamin Bloom, houve também melhorias significativas em tempo de engajamento, atitudes dos alunos e redução da correlação entre aptidão inicial e desempenho final, especialmente no grupo de tutoria. Me explique melhor cada um desses componentes.</p>
-</blockquote>
-<p>Esses indicadores que Bloom menciona são fundamentais para entender não apenas o desempenho acadêmico, mas também a qualidade da experiência de aprendizagem. Vamos detalhar cada um deles com exemplos práticos:</p>
-<p><strong>1. Tempo de Engajamento</strong> É o tempo efetivo que o aluno passa envolvido ativamente com a aprendizagem — seja ouvindo, lendo, resolvendo problemas, discutindo ou praticando. <strong>Por que é importante?</strong> Quanto maior o tempo de engajamento, maior a probabilidade de o aluno compreender e reter o conteúdo<strong>Exemplo prático:</strong> em uma aula tradicional, alguns alunos podem se distrair ou ficar passivos. Já em tutoria, o aluno está constantemente envolvido: o tutor faz perguntas, propõe desafios, ajusta o ritmo. Resultado: o aluno passa mais tempo aprendendo de fato, o que contribui para melhores resultados.</p>
-<p><strong>2. Atitudes dos Alunos</strong> Refere-se à motivação, interesse, confiança e satisfação dos alunos em relação à aprendizagem. <strong>Por que é importante?</strong> Alunos com atitudes positivas tendem a persistir diante de dificuldades, buscar ajuda, e se envolver mais profundamente com o conteúdo. <strong>Exemplo prático:</strong> Um aluno que recebe atenção individualizada sente que está progredindo. Isso gera confiança (“eu consigo aprender!”) e motivação (“quero continuar aprendendo!”). Em contraste, alunos em ambientes convencionais podem se sentir perdidos ou desmotivados se não acompanham o ritmo da turma.</p>
-<p><strong>3. Redução da Correlação entre Aptidão Inicial e Desempenho Final</strong> Normalmente, há uma correlação entre a aptidão inicial (conhecimentos prévios, habilidades cognitivas) e o desempenho final (nota ou domínio do conteúdo). <strong>Por que é importante?</strong> Em ambientes convencionais, alunos com maior aptidão inicial tendem a ter melhor desempenho. Isso amplia desigualdades. <strong>Exemplo prático:</strong>Na tutoria, o ensino é adaptado ao ritmo e às necessidades de cada aluno. Isso permite que alunos com menor aptidão inicial também atinjam altos níveis de desempenho. <strong>Resultado</strong>: a correlação entre “o que o aluno sabia antes” e “o que ele aprendeu” diminui, mostrando que todos podem aprender bem com apoio adequado.</p>
-</section>
-<section id="abordagem-de-layton---pré-requisitos-cognitivos" class="level2">
-<h2 class="anchored" data-anchor-id="abordagem-de-layton---pré-requisitos-cognitivos">Abordagem de Layton - Pré-Requisitos Cognitivos</h2>
-<blockquote class="blockquote">
-<p>Considere você um especialista no problema de 2 sigma de Bloom. Em especial no artigo publicado por ele em 1984 em Chicago. Layton sugeriu que uma abordagem para o problema de 2 sigma seria usar o aprendizado de domínio durante o curso avançado em uma sequência, mas, além disso, tentar melhorar os pré-requisitos de entrada cognitiva inicial dos alunos no começo do curso. Me explique melhor essa abordagem e se possível me mostre com exemplos práticos.</p>
-</blockquote>
-<p>A abordagem sugerida por Layton <span class="citation" data-cites="soto1983">Soto (1983)</span> para enfrentar o problema de 2 sigma de Bloom envolve duas estratégias principais:</p>
-<ol type="1">
-<li><strong>Melhorar os pré-requisitos cognitivos dos alunos antes do início do curso</strong>.</li>
-<li><strong>Utilizar o aprendizado de domínio (mastery learning) em sequência ao longo do curso avançado</strong>.</li>
-</ol>
-<p>Vamos entender cada uma delas com mais profundidade e exemplos práticos.</p>
-<p><strong>1. Melhoria dos Pré-Requisitos Cognitivos</strong></p>
-<p>Bloom identificou que os características de entrada dos alunos — como conhecimentos prévios, habilidades cognitivas e atitudes — têm grande impacto no desempenho acadêmico <a href="https://gwern.net/doc/psychology/1984-bloom.pdf">1</a>. Layton propôs que, antes de iniciar um curso avançado, os alunos deveriam passar por uma fase preparatória que fortaleça essas características.<strong>Exemplos práticos:</strong> - <strong>Curso de Física Avançada</strong>: Antes de iniciar o curso, os alunos fazem um módulo introdutório sobre álgebra vetorial e cinemática básica, com foco em resolução de problemas. - <strong>Curso de Programação em Python</strong>: Os alunos passam por um minicurso sobre lógica de programação e estruturas de dados básicas, com exercícios práticos e feedback imediato.</p>
-<p>Essa preparação reduz a variabilidade entre os alunos e aumenta a chance de todos acompanharem o conteúdo avançado com sucesso.</p>
-<p><strong>2. Aprendizado de Domínio (Mastery Learning) em Sequência</strong></p>
-<p>O aprendizado de domínio é uma abordagem em que os alunos só avançam para o próximo conteúdo após <strong>dominar completamente o anterior</strong>. Bloom mostrou que isso pode levar a um ganho de até 1 sigma em desempenho<a href="https://gwern.net/doc/psychology/1984-bloom.pdf">1</a>. Layton sugeriu aplicar essa técnica em sequência, ou seja, ao longo de todo o curso, com ciclos de:</p>
 <div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fluxo_aprendizado">
-<div>
-<pre class="mermaid mermaid-js" data-label="fluxo_aprendizado">flowchart LR
-    A[Ensino] --&gt; B[Avaliação formativa]
-    B --&gt; C[Feedback e correção]
-    C --&gt; D[Nova avaliação] 
-
-</pre>
-</div>
-<p>Fluxo simples de aprendizado</p>
-</div>
-</div>
-</div>
-<p>Esse diagrama representa um ciclo contínuo de aprendizagem, onde o ensino leva à avaliação formativa, que por sua vez gera feedback e correções, culminando em uma nova avaliação para verificar o progresso</p>
-<p><strong>Exemplo prático no curso de Matemática</strong>: - Módulo 1: Álgebra — os alunos fazem exercícios e testes formativos. - Se não dominarem, recebem atividades corretivas e refazem o teste. - Só então avançam para o Módulo 2: Funções.</p>
-<p>Esse ciclo contínuo garante que todos os alunos estejam prontos para os próximos desafios, reduzindo lacunas de aprendizagem.</p>
-<p><strong>Combinação das Estratégias</strong></p>
-<p>A proposta de Layton é que a combinação dessas duas abordagens — entrada cognitiva fortalecida + aprendizado de domínio — pode aproximar o desempenho dos alunos ao nível da tutoria individual, que é o cerne do problema de 2 sigma. Bloom e seus colegas chegaram a testar combinações de variáveis alteráveis (como feedback, tempo de estudo, ambiente familiar) e observaram que algumas combinações se aproximam do efeito de 2 sigma <a href="https://gwern.net/doc/psychology/1984-bloom.pdf">1</a>.</p>
-<p><strong>Impacto Esperado</strong></p>
-<ul>
-<li>Redução da variabilidade entre alunos.</li>
-<li>Maior engajamento e tempo em tarefa.</li>
-<li>Desempenho médio significativamente superior ao ensino convencional.</li>
-</ul>
-<p><strong>E qual o impacto observado?</strong></p>
-<blockquote class="blockquote">
-<p>No artigo, diz também que mais importante foi a melhora no desempenho das turmas “aprimoradas” em relação às outras duas turmas no primeiro teste formativo do curso avançado. As duas turmas aprimoradas, que haviam sido auxiliadas nos pré-requisitos iniciais, apresentaram aproximadamente 0.7 sigma a mais do que as outras duas turmas no primeiro teste formativo aplicado ao final de um período de aprendizado de duas semanas no curso avançado. Me fale mais sobre esses resultados.</p>
-</blockquote>
-<p>O trecho que você mencionou sobre o desempenho das turmas aprimoradas no primeiro teste formativo é um dos pontos mais reveladores do artigo de Bloom (1984) sobre o problema de 2 sigma.</p>
-<p><strong>O Experimento e os Resultados</strong></p>
-<p>No estudo, Bloom e seus colegas compararam quatro grupos de alunos em um curso avançado. Dois desses grupos receberam <strong>intervenções para melhorar os pré-requisitos cognitivos</strong> antes do início do curso, enquanto os outros dois não.</p>
-<p>Após duas semanas de instrução, todos os grupos realizaram um teste formativo. Os resultados mostraram que: - As duas turmas aprimoradas(com reforço nos pré-requisitos) tiveram um desempenho <strong>0.7 sigma acima</strong> das turmas que não receberam essa preparação <a href="https://gwern.net/doc/psychology/1984-bloom.pdf">1</a>. - Esse ganho foi observado logo no primeiro teste, indicando que a intervenção nos pré-requisitos teve um impacto imediato e significativo.</p>
-<p><strong>Interpretação dos Resultados</strong> Esse resultado é importante por vários motivos:</p>
-<ol type="1">
-<li><strong>Validação da hipótese de Layton</strong>: A ideia de que melhorar os pré-requisitos cognitivos pode elevar o desempenho inicial dos alunos foi confirmada empiricamente.</li>
-<li><strong>Redução da variabilidade</strong>: Ao nivelar os conhecimentos iniciais, os alunos começaram o curso com uma base mais homogênea, o que facilita o ensino em grupo.</li>
-<li><strong>Potencial para escalabilidade</strong>: Diferente da tutoria individual, essa abordagem pode ser aplicada em turmas maiores com custo relativamente baixo.</li>
-</ol>
-<div class="cell">
 <div class="cell-output-display">
 <div id="pikksjwbyf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#pikksjwbyf table {
@@ -693,6 +590,1045 @@
 <table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
+<th colspan="3" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Média e desvio padrão das notas</strong></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="tipo_aprendizado" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col"><strong>Tipo aprendizado</strong></th>
+<th id="media" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><strong>Média</strong></th>
+<th id="desvio_padrao" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><strong>Desvio padrão</strong></th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="tipo_aprendizado">Convencional</td>
+<td class="gt_row gt_right" headers="media">60.9</td>
+<td class="gt_row gt_right" headers="desvio_padrao">9.1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="tipo_aprendizado">Aprendizagem por Domínio</td>
+<td class="gt_row gt_right" headers="media">69.6</td>
+<td class="gt_row gt_right" headers="desvio_padrao">7.7</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="tipo_aprendizado">Tutoria Individual</td>
+<td class="gt_row gt_right" headers="media">75.5</td>
+<td class="gt_row gt_right" headers="desvio_padrao">4.7</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="pwsjsqgfld" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pwsjsqgfld table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#pwsjsqgfld thead, #pwsjsqgfld tbody, #pwsjsqgfld tfoot, #pwsjsqgfld tr, #pwsjsqgfld td, #pwsjsqgfld th {
+  border-style: none;
+}
+
+#pwsjsqgfld p {
+  margin: 0;
+  padding: 0;
+}
+
+#pwsjsqgfld .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pwsjsqgfld .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#pwsjsqgfld .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pwsjsqgfld .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pwsjsqgfld .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pwsjsqgfld .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pwsjsqgfld .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pwsjsqgfld .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pwsjsqgfld .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pwsjsqgfld .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pwsjsqgfld .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pwsjsqgfld .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pwsjsqgfld .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#pwsjsqgfld .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#pwsjsqgfld .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pwsjsqgfld .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pwsjsqgfld .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pwsjsqgfld .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pwsjsqgfld .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pwsjsqgfld .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#pwsjsqgfld .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#pwsjsqgfld .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#pwsjsqgfld .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pwsjsqgfld .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#pwsjsqgfld .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#pwsjsqgfld .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pwsjsqgfld .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pwsjsqgfld .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pwsjsqgfld .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pwsjsqgfld .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pwsjsqgfld .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pwsjsqgfld .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pwsjsqgfld .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pwsjsqgfld .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pwsjsqgfld .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pwsjsqgfld .gt_left {
+  text-align: left;
+}
+
+#pwsjsqgfld .gt_center {
+  text-align: center;
+}
+
+#pwsjsqgfld .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pwsjsqgfld .gt_font_normal {
+  font-weight: normal;
+}
+
+#pwsjsqgfld .gt_font_bold {
+  font-weight: bold;
+}
+
+#pwsjsqgfld .gt_font_italic {
+  font-style: italic;
+}
+
+#pwsjsqgfld .gt_super {
+  font-size: 65%;
+}
+
+#pwsjsqgfld .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#pwsjsqgfld .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#pwsjsqgfld .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#pwsjsqgfld .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#pwsjsqgfld .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#pwsjsqgfld .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#pwsjsqgfld .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#pwsjsqgfld .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#pwsjsqgfld div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="7" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Tamanho do efeito entre os grupos</strong></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="a.y." class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Item avaliado</th>
+<th id="group1" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Grupo Controle</th>
+<th id="group2" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Grupo Tratamento</th>
+<th id="effsize" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Tamanho do efeito</th>
+<th id="n1" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n grupo1</th>
+<th id="n2" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n grupo2</th>
+<th id="magnitude" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Magnitude</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers=".y.">pontuacao</td>
+<td class="gt_row gt_left" headers="group1">Convencional</td>
+<td class="gt_row gt_left" headers="group2">Aprendizagem por Domínio</td>
+<td class="gt_row gt_right" headers="effsize">−1.0</td>
+<td class="gt_row gt_right" headers="n1">100.0</td>
+<td class="gt_row gt_right" headers="n2">100.0</td>
+<td class="gt_row gt_center" headers="magnitude">large</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers=".y.">pontuacao</td>
+<td class="gt_row gt_left" headers="group1">Convencional</td>
+<td class="gt_row gt_left" headers="group2">Tutoria Individual</td>
+<td class="gt_row gt_right" headers="effsize">−2.0</td>
+<td class="gt_row gt_right" headers="n1">100.0</td>
+<td class="gt_row gt_right" headers="n2">100.0</td>
+<td class="gt_row gt_center" headers="magnitude">large</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p><strong>Por que isso é um problema?</strong></p>
+<p>Porque, apesar de sabermos que a tutoria personalizada funciona muito bem, ela é cara e difícil de aplicar em larga escala. Não dá para colocar um tutor para cada aluno em todas as escolas.</p>
+<p>Eu poderia dizer que o “problema de 2 sigma de Bloom” seria como perguntar <strong>como podemos fazer com que todos os alunos aprendam tão bem quanto os que têm tutores, mas sem precisar de um tutor para cada um?</strong></p>
+<p><strong>Por que isso é importante?</strong></p>
+<p>Esse problema é muito relevante porque mostra que todos os alunos podem aprender muito mais, se forem ensinados da forma certa. Isso também incentiva a busca por novas formas de ensino, como o uso de tecnologia, ensino adaptativo, inteligência artificial, ajudando pais e educadores a entenderem que o potencial dos alunos é muito maior do que parece no ensino convencional.</p>
+</section>
+<section id="o-que-mais-bloom-descobriu" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-mais-bloom-descobriu">O que mais Bloom descobriu?</h2>
+<blockquote class="blockquote">
+<p>Além do resultado de avalição(pontuação), a tutoria individualizada citada no trabalho de Benjamin Bloom mostra que houve também, melhorias significativas em tempo de engajamento, atitudes dos alunos e redução da correlação entre aptidão inicial e desempenho final, especialmente no grupo de tutoria. Me explique melhor cada um desses componentes.</p>
+</blockquote>
+<p>Esses indicadores que Bloom menciona, são fundamentais para entender algo mais além do desempenho acadêmico, como por exemplo a qualidade da experiência de aprendizagem. Os detalhes e exemplos práticos são mostrados abaixo.</p>
+<p><strong>1. Tempo de Engajamento</strong> é o tempo efetivo que o aluno passa envolvido ativamente com a aprendizagem seja ouvindo, lendo, resolvendo problemas, discutindo ou praticando. <strong>Por que é importante?</strong> Quanto maior o tempo de engajamento, maior a probabilidade de o aluno compreender e reter o conteúdo(e.g.&nbsp;em uma aula convencional, alguns alunos podem se distrair ou ficar passivos. Já em tutoria, o aluno está constantemente envolvido, onde o tutor faz perguntas, propõe desafios, ajusta o ritmo. Como resultado, o aluno passa mais tempo aprendendo de fato, o que contribui para melhores resultados.</p>
+<p><strong>2. Atitudes dos Alunos</strong> é a motivação, interesse, confiança e satisfação dos alunos em relação à aprendizagem. <strong>Por que é importante?</strong> Alunos com atitudes positivas tendem a persistir diante de dificuldades, buscar ajuda, e se envolver mais profundamente com o conteúdo(e.g.&nbsp;um aluno que recebe atenção individualizada sente que está progredindo, isso gera confiança “eu consigo aprender!” e motivação “quero continuar aprendendo!”. Em contraste, alunos em ambientes convencionais podem se sentir perdidos ou desmotivados se não acompanham o ritmo da turma).</p>
+<p><strong>3. Redução da Correlação entre Aptidão Inicial e Desempenho Final</strong> Normalmente, há uma correlação entre a aptidão inicial que são conhecimentos prévios, habilidades cognitivas, e o desempenho final que é pontuação ou domínio do conteúdo. <strong>Por que é importante?</strong> Em ambientes convencionais, alunos com maior aptidão inicial tendem a ter melhor desempenho. Isso amplia as desigualdades(e.g na tutoria, o ensino é adaptado ao ritmo e às necessidades de cada aluno, permitindo que alunos com menor aptidão inicial também atinjam altos níveis de desempenho. Como resultado, a correlação entre “o que o aluno sabia antes” e “o que ele aprendeu” diminui, mostrando que todos podem aprender bem com apoio adequado).</p>
+</section>
+<section id="abordagem-de-layton---pré-requisitos-cognitivos" class="level2">
+<h2 class="anchored" data-anchor-id="abordagem-de-layton---pré-requisitos-cognitivos">Abordagem de Layton - Pré-Requisitos Cognitivos</h2>
+<blockquote class="blockquote">
+<p>No Artigo de Bloom, ele cita que Layton sugeriu que uma abordagem para o problema de 2 sigma, seria usar o aprendizado de domínio durante o curso avançado em uma sequência e além disso, tentar melhorar os pré-requisitos de entrada cognitiva inicial dos alunos no começo do curso. Me explique melhor essa abordagem e se possível me mostre com exemplos práticos.</p>
+</blockquote>
+<p>A abordagem sugerida por Layton <span class="citation" data-cites="soto1983">Soto (1983)</span> para enfrentar o problema de 2 sigma de Bloom envolve duas estratégias principais:</p>
+<ol type="1">
+<li><strong>Melhorar os pré-requisitos cognitivos dos alunos antes do início do curso</strong>. Os detalhes sobre os pré-requisitos estão mais abaixo.</li>
+<li><strong>Utilizar o aprendizado de domínio (mastery learning) em sequência ao longo do curso avançado</strong>.</li>
+</ol>
+<p>Vamos entender cada uma delas com mais profundidade e exemplos práticos.</p>
+<p><strong>1. Melhoria dos Pré-Requisitos Cognitivos</strong></p>
+<p>Bloom identificou que as características de entrada dos alunos como conhecimentos prévios, habilidades cognitivas e atitudes, têm grande impacto no desempenho acadêmico. Layton propôs que, antes de iniciar um curso avançado, os alunos deveriam passar por uma fase preparatória que fortaleça essas características. Vamos imaginar uma situação hipotética de curso de física avançada. Antes de iniciar o curso, os alunos fazem um módulo introdutório sobre álgebra vetorial e cinemática básica, com foco em resolução de problemas. Outra situação seria, um curso de programação usando liguagem Python ou R. Neste caso, os alunos passam antes por um minicurso sobre lógica de programação e estruturas de dados básicas, com exercícios práticos e feedback imediato.</p>
+<p>Essa preparação reduz a variabilidade entre os alunos e aumenta a chance de todos acompanharem o conteúdo avançado com sucesso.</p>
+<p><strong>2. Aprendizado de Domínio (Mastery Learning) em Sequência</strong></p>
+<p>O aprendizado de domínio é uma abordagem em que os alunos só avançam para o próximo conteúdo após dominar completamente o anterior. Bloom mostrou que isso pode levar a um ganho de até 1 sigma em desempenho. Layton sugeriu aplicar essa técnica em sequência, ou seja, ao longo de todo o curso, com ciclos.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/two_sigma_problem/abordagem_layton.png" class="img-fluid figure-img"></p>
+<figcaption>Fluxo da abordagem de Layton</figcaption>
+</figure>
+</div>
+<p>Esse diagrama representa um ciclo contínuo de aprendizagem, onde o ensino leva à avaliação formativa, que por sua vez gera feedback e correções, culminando em uma nova avaliação para verificar o progresso</p>
+<p><strong>Exemplo prático no curso de Matemática</strong> Módulo 1 é algebra onde os alunos fazem exercícios e testes formativos que são aqueles sem objetivo de avaliação com nota, são apenas para identificar se eles aprenderam. Se não dominarem, recebem atividades corretivas e refazem o teste, só então avançam para o Módulo 2 que sobre funções.</p>
+<p>Esse ciclo contínuo garante que todos os alunos estejam prontos para os próximos desafios, reduzindo lacunas de aprendizagem.</p>
+<p><strong>Combinação das Estratégias</strong></p>
+<p>A proposta de Layton é que a combinação dessas duas abordagens. Entrada cognitiva fortalecida + aprendizado de domínio as quais podem aproximar o desempenho dos alunos ao nível da tutoria individual, que é o cerne do problema de 2 sigma. Bloom e seus colegas chegaram a testar combinações de variáveis alteráveis (como feedback, tempo de estudo, ambiente familiar) e observaram que algumas combinações se aproximam do efeito de 2 sigma.</p>
+<p><strong>Impacto Esperado</strong></p>
+<ul>
+<li>Redução da variabilidade entre alunos.</li>
+<li>Maior engajamento e tempo em tarefa.</li>
+<li>Desempenho médio significativamente superior ao ensino convencional.</li>
+</ul>
+<p><strong>E qual o impacto observado?</strong></p>
+<blockquote class="blockquote">
+<p>No artigo cita também que mais importante, foi a melhora no desempenho das turmas “aprimoradas” em relação às outras duas turmas no primeiro teste formativo do curso avançado. As duas turmas aprimoradas, que haviam sido auxiliadas nos pré-requisitos iniciais, apresentaram aproximadamente 0.7 sigma a mais do que as outras duas turmas no primeiro teste formativo aplicado ao final de um período de aprendizado de duas semanas no curso avançado. Me fale mais sobre esses resultados.</p>
+</blockquote>
+<p>O trecho mencionado sobre o desempenho das turmas “aprimoradas” no primeiro teste formativo é um dos pontos mais reveladores do artigo de Bloom (1984) sobre o problema de 2 sigma.</p>
+<p><strong>O Experimento e os Resultados</strong></p>
+<p>No estudo, Bloom e seus colegas compararam quatro grupos de alunos em um curso avançado. Dois desses grupos receberam intervenções para melhorar os pré-requisitos cognitivos antes do início do curso, enquanto os outros dois não.</p>
+<p>Após duas semanas de instrução, todos os grupos realizaram um teste formativo. Os resultados mostraram que: - As duas turmas aprimoradas(com reforço nos pré-requisitos) tiveram um desempenho <strong>0.7 sigma acima</strong> das turmas que não receberam essa preparação. Esse ganho foi observado logo no primeiro teste, indicando que a intervenção nos pré-requisitos teve um impacto imediato e significativo. O resultado é importante por vários motivos:</p>
+<ol type="1">
+<li><strong>Validação da hipótese de Layton</strong>: A ideia de que melhorar os pré-requisitos cognitivos pode elevar o desempenho inicial dos alunos foi confirmada empiricamente.</li>
+<li><strong>Redução da variabilidade</strong>: Ao nivelar os conhecimentos iniciais, os alunos começaram o curso com uma base mais homogênea, o que facilita o ensino em grupo.</li>
+<li><strong>Potencial para escalabilidade</strong>: Diferente da tutoria individual, essa abordagem pode ser aplicada em turmas maiores com custo relativamente baixo.</li>
+</ol>
+<div class="cell">
+<div class="cell-output-display">
+<div id="mcgafmzzqw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mcgafmzzqw table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mcgafmzzqw thead, #mcgafmzzqw tbody, #mcgafmzzqw tfoot, #mcgafmzzqw tr, #mcgafmzzqw td, #mcgafmzzqw th {
+  border-style: none;
+}
+
+#mcgafmzzqw p {
+  margin: 0;
+  padding: 0;
+}
+
+#mcgafmzzqw .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mcgafmzzqw .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mcgafmzzqw .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mcgafmzzqw .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mcgafmzzqw .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mcgafmzzqw .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mcgafmzzqw .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mcgafmzzqw .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mcgafmzzqw .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mcgafmzzqw .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mcgafmzzqw .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mcgafmzzqw .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mcgafmzzqw .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mcgafmzzqw .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mcgafmzzqw .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mcgafmzzqw .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mcgafmzzqw .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mcgafmzzqw .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mcgafmzzqw .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcgafmzzqw .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mcgafmzzqw .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mcgafmzzqw .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mcgafmzzqw .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcgafmzzqw .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mcgafmzzqw .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mcgafmzzqw .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mcgafmzzqw .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcgafmzzqw .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mcgafmzzqw .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mcgafmzzqw .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mcgafmzzqw .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mcgafmzzqw .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mcgafmzzqw .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcgafmzzqw .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mcgafmzzqw .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mcgafmzzqw .gt_left {
+  text-align: left;
+}
+
+#mcgafmzzqw .gt_center {
+  text-align: center;
+}
+
+#mcgafmzzqw .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mcgafmzzqw .gt_font_normal {
+  font-weight: normal;
+}
+
+#mcgafmzzqw .gt_font_bold {
+  font-weight: bold;
+}
+
+#mcgafmzzqw .gt_font_italic {
+  font-style: italic;
+}
+
+#mcgafmzzqw .gt_super {
+  font-size: 65%;
+}
+
+#mcgafmzzqw .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mcgafmzzqw .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mcgafmzzqw .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mcgafmzzqw .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mcgafmzzqw .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mcgafmzzqw .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mcgafmzzqw .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mcgafmzzqw .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mcgafmzzqw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
 <th colspan="2" class="gt_heading gt_title gt_font_normal gt_bottom_border"><strong>Condições de aprendizado utilizados na pesquisa</strong></th>
 </tr>
 <tr class="gt_col_headings even">
@@ -746,30 +1682,21 @@ Expanda para saber o que são pré-requisitos cognitivos
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>O que são os “pré-requisitos cognitivos”?</strong></p>
-<p>São conhecimentos e habilidades que os alunos precisam ter antes de iniciar um curso avançado. Podem incluir:</p>
-<ul>
-<li>Conceitos fundamentais da disciplina.</li>
-<li>Estratégias de resolução de problemas.</li>
-<li>Habilidades metacognitivas (como autorregulação e monitoramento do próprio aprendizado).</li>
-</ul>
+<p>São conhecimentos e habilidades que os alunos precisam ter antes de iniciar um curso avançado(e.g.&nbsp;conceitos fundamentais da disciplina, estratégias de resolução de problemas, habilidades metacognitivas como autorregulação e monitoramento do próprio aprendizado).</p>
 <p><strong>Exemplo prático aplicado</strong></p>
-<p>Imagine um curso de <strong>Cálculo Diferencial e Integral</strong>. Antes de começar, os alunos passam por:</p>
-<ul>
-<li>Um módulo de revisão de <strong>funções, álgebra e trigonometria</strong>.</li>
-<li>Atividades diagnósticas com feedback imediato.</li>
-<li>Exercícios de raciocínio lógico e visualização gráfica.</li>
-</ul>
-<p>Após duas semanas, os alunos fazem um teste sobre limites e derivadas. Os que passaram pela preparação têm desempenho significativamente superior — como no estudo de Bloom.</p>
-<p><strong>Intervenções para melhorar os pré-requisitos cognitivos</strong></p>
+<p>Imagine um curso de cálculo diferencial e integral. Antes de começar, os alunos passam por um módulo de revisão de funções, álgebra e trigonometria, atividades diagnósticas com feedback imediato, e xercícios de raciocínio lógico e visualização gráfica.</p>
+<p>Após duas semanas, os alunos fazem um teste sobre limites e derivadas. Os que passaram pela preparação têm desempenho significativamente superior como no estudo de Bloom.</p>
+<p><strong>E o que seriam as intervenções para melhorar os pré-requisitos cognitivos?</strong></p>
 <p>São estratégias pedagógicas e terapêuticas que visam desenvolver habilidades mentais fundamentais para a aprendizagem, como atenção, memória, linguagem, percepção e raciocínio. Esses pré-requisitos são essenciais para que os alunos possam compreender, processar e aplicar o conteúdo escolar de forma eficaz. Essas intervenções podem ser aplicadas por professores, psicopedagogos, neuropsicólogos ou terapeutas ocupacionais, dependendo da necessidade e do contexto.</p>
 <p><strong>Quais tipos de pré-requisitos cognitivos?</strong></p>
-<p>Algumas das habilidades mentais básicas que sustentam o aprendizado, são: - <strong>Atenção</strong> (focal, sustentada, seletiva) Jogos de atenção seletiva (ex: encontrar diferenças entre figuras), Atividades com tempo limitado para manter foco, Técnicas de mindfulness adaptadas para crianças</p>
+<p>Algumas das habilidades mentais básicas que sustentam o aprendizado, são listadas abaixo:</p>
 <ul>
-<li><p><strong>Memória</strong> (curto e longo prazo, de trabalho), Jogos de memória (cartas, sequências), Repetição espaçada de conteúdos,Uso de mnemônicos e mapas mentais</p></li>
-<li><p><strong>Percepção visual e auditiva</strong>, Atividades de discriminação de sons e letras, Exercícios de coordenação visomotora (ligar pontos, copiar figuras), Treinamento auditivo com rimas e padrões sonoros</p></li>
-<li><p><strong>Linguagem oral e escrita</strong> Contação de histórias com reconto, Jogos de vocabulário e categorização, Atividades de consciência fonológica (rimas, sílabas),</p></li>
-<li><p><strong>Raciocínio lógico e resolução de problemas</strong> Problemas matemáticos contextualizados, Jogos de tabuleiro e quebra-cabeças, Sequências lógicas e padrões</p></li>
-<li><p><strong>Funções executivas</strong> (planejamento, organização, autocontrole), Planejamento de tarefas com checklists, Jogos que exigem controle inibitório (ex: “Simon diz”), Atividades que envolvem tomada de decisão.</p></li>
+<li><p><strong>Atenção</strong> focal, sustentada, seletiva(e.g.&nbsp;jogos de atenção seletiva como encontrar diferenças entre figuras, atividades com tempo limitado para manter foco).</p></li>
+<li><p><strong>Memória</strong> de curto prazo, longo prazo e de trabalho(e.g jogos de memória como cartas, ludo e sequências, repetição espaçada de conteúdos <em>“aqui cabe um comentário sobre o trabalho de Sarma do MIT”</em> e uso de mapas mentais).</p></li>
+<li><p><strong>Percepção visual e auditiva</strong> que são atividades de discriminação de sons e letras, exercícios de coordenação visomotora como ligar pontos, copiar figuras, tTreinamento auditivo com rimas e padrões sonoros.</p></li>
+<li><p><strong>Linguagem oral e escrita</strong> contação de histórias e descrever coisas, jogos de vocabulário e categorização, atividades de consciência fonológica como rimas.</p></li>
+<li><p><strong>Raciocínio lógico e resolução de problemas</strong> problemas matemáticos contextualizados, jogos de tabuleiro e quebra-cabeças, sequências lógicas e padrões.</p></li>
+<li><p><strong>Funções executivas</strong> como planejamento, organização e autocontrole. Planejamento de tarefas com checklists, jogos que exigem controle inibitório como “jogo Simon diz”, “jogo do stop”, atividades que envolvem tomada de decisão.</p></li>
 </ul>
 </div>
 </div>
@@ -781,25 +1708,16 @@ Expanda para saber o que são pré-requisitos cognitivos
 <p>No artigo, ele também cita que eles esperam que esta abordagem de Leyton para o problema 2 sigma seja considerada uma solução amplamente aplicável e econômica, disponível à maioria dos professores que desejam melhorar a aprendizagem dos alunos, o autoconceito acadêmico dos alunos, bem como as atitudes e o interesse dos alunos no aprendizado. Nesse contexto o que seria aprendizagem dos alunos, o autoconceito acadêmico dos alunos, bem como as atitudes e o interesse dos alunos no aprendizado, quais suas características e diferenças entre eles.</p>
 </blockquote>
 <p><strong>1. Aprendizagem dos Alunos</strong></p>
-<p>É o ganho real de conhecimento, habilidades e competências que os alunos desenvolvem ao longo do processo educacional, exemplos:</p>
-<ul>
-<li><strong>Domínio de conteúdos</strong> (fatos, conceitos, procedimentos).</li>
-<li><strong>Capacidade de aplicar o conhecimento</strong> em novos contextos.</li>
-<li><strong>Desenvolvimento de habilidades cognitivas</strong> como análise, síntese e avaliação.</li>
-</ul>
-<p><strong>Características:</strong> - Mensurável por meio de avaliações (formativas e somativas). Avaliações formativas são realizadas durante o processo de aprendizagem para monitorar o progresso e ajustar o ensino; já as somativas ocorrem ao final de um ciclo para medir o desempenho total do aluno. A formativa tem função diagnóstica, enquanto a somativa é classificatória. - Pode ser influenciada por métodos de ensino, tempo de estudo, feedback, entre outros. - É o foco central de qualquer intervenção educacional.</p>
+<p>É o ganho real de conhecimento, habilidades e competências que os alunos desenvolvem ao longo do processo educacional como domínio de conteúdos(e.g.&nbsp;fatos, conceitos, procedimentos), capacidade de aplicar o conhecimento em novos contextos, desenvolvimento de habilidades cognitivas(e.g.&nbsp;análise, síntese e avaliação).</p>
+<p>É mensurável por meio de avaliações formativas e somativas e é o foco central de qualquer intervenção educacional. <strong>Dica</strong> Avaliações formativas, são aquelas realizadas durante o processo de aprendizagem para monitorar o progresso e ajustar o ensino, já as somativas ocorrem ao final de um ciclo para medir o desempenho total do aluno. A avaliação formativa tem função diagnóstica, enquanto a somativa é classificatória.</p>
 <p><strong>2. Autoconceito Acadêmico</strong></p>
 <p>É a percepção que o aluno tem de si mesmo como aprendiz. Envolve crenças sobre sua capacidade de aprender, seu valor como estudante e seu desempenho esperado.</p>
-<p><strong>Características:</strong> - Subjetivo, mas com forte impacto no comportamento e na motivação. - Influenciado por experiências anteriores, feedback de professores, comparação com colegas. - Pode ser positivo (“sou bom em matemática”) ou negativo (“nunca consigo entender química”). - Difere da aprendizagem onde o autoconceito não mede o que o aluno sabe, mas como ele se vê em relação ao aprendizado. - Um aluno pode ter alto desempenho, mas baixo autoconceito (e vice-versa).</p>
+<p>É subjetivo, mas com forte impacto no comportamento e na motivação. É influenciado por experiências anteriores, feedback de professores, comparação com colegas e pode ser positivo (“sou bom em matemática”) ou negativo (“nunca consigo entender química”). Difere da aprendizagem onde o autoconceito não mede o que o aluno sabe, mas como ele se vê em relação ao aprendizado.</p>
 <p><strong>3. Atitudes e Interesse no Aprendizado</strong></p>
-<p>É a disposição emocional e motivacional do aluno em relação ao processo de aprender. É a curiosidade e desejo de aprender, persistência diante de dificuldades, valorização do conhecimento como algo útil ou prazeroso.</p>
-<p><strong>Características:</strong> - Pode ser influenciado por métodos de ensino, relevância do conteúdo, ambiente de sala de aula. - Está ligado à motivação intrínseca (gosto de aprender) e extrínseca (quero boas notas). - Afeta diretamente o engajamento e o tempo dedicado ao estudo.</p>
+<p>É a curiosidade e desejo de aprender, persistência diante de dificuldades, valorização do conhecimento como algo útil ou prazeroso. É a disposição emocional e motivacional do aluno em relação ao processo de aprender.</p>
+<p>Ela pode ser influenciada por métodos de ensino, relevância do conteúdo, ambiente de sala de aula. Está ligada à motivação intrínseca (gosto de aprender) e extrínseca (quero boas notas) e afeta diretamente o engajamento e o tempo dedicado ao estudo.</p>
 <p><strong>Relação entre os três elementos os quais estão interligados</strong></p>
-<ul>
-<li>Um aluno com bom autoconceito acadêmico tende a ter atitudes positivas e maior interesse pelo aprendizado.</li>
-<li>Isso, por sua vez, aumenta o engajamento, o que favorece a aprendizagem efetiva.</li>
-<li>Intervenções como a de Layton, que fortalecem os pré-requisitos e usam aprendizado de domínio, melhoram todos esses aspectos simultaneamente.</li>
-</ul>
+<p>Um aluno com bom autoconceito acadêmico tende a ter atitudes positivas e maior interesse pelo aprendizado, isso aumenta o engajamento, favorecendo a aprendizagem efetiva. Intervenções como a de Layton, que fortalecem os pré-requisitos e usam aprendizado de domínio, melhoram todos esses aspectos simultaneamente.</p>
 </section>
 <section id="melhoria-da-leitura" class="level2">
 <h2 class="anchored" data-anchor-id="melhoria-da-leitura">Melhoria da leitura</h2>
@@ -808,10 +1726,10 @@ Expanda para saber o que são pré-requisitos cognitivos
 </blockquote>
 <p>Há uma forte convergência entre os achados do artigo de Bloom e Layton e os estudos contemporâneos da neurociência sobre leitura infantil</p>
 <p><strong>Neurociência e Leitura Infantil</strong></p>
-<p>A leitura não é uma habilidade natural do cérebro humano — ela exige reorganização neural e ativação de múltiplas áreas cerebrais, como: reconhecimento de letras e palavras (visual), associação entre sons e grafemas que são cada unidade gráfica ou letra(fonológica), compreensão do significado(semântica), movimentos oculares e escrita(motora).</p>
+<p>A leitura não é uma habilidade natural do cérebro humano, ela exige reorganização neural e ativação de múltiplas áreas cerebrais, como reconhecimento de letras e palavras (visual), associação entre sons e grafemas que são cada unidade gráfica ou letra(fonológica), compreensão do significado(semântica), movimentos oculares e escrita(motora).</p>
 <p>Segundo estudos recentes <a href="https://pepsic.bvsalud.org/scielo.php?pid=S0103-84862021000100008&amp;script=sci_arttext">1</a>, o processo de alfabetização envolve o modelo de dupla rota sendo uma rota fonológica (decodificação letra-som) e uma rota lexical (reconhecimento direto de palavras). O desenvolvimento da consciência fonológica é considerado essencial para o sucesso na leitura.</p>
 <p><strong>Programas Especiais e Intervenções</strong></p>
-<p>O artigo de Bloom sugere que programas de aprimoramento em leitura e métodos de estudo devem ser oferecidos no início de cada novo nível escolar. A neurociência confirma essa ideia: intervenções precoces e sistemáticas podem estimular áreas cerebrais específicas e melhorar significativamente o desempenho em leitura <a href="https://bing.com/search?q=neuroci%c3%aancia+leitura+infantil+programas+de+interven%c3%a7%c3%a3o+escolar+efic%c3%a1cia+aprendizagem">2</a>.</p>
+<p>O artigo de Bloom sugere que programas de aprimoramento em leitura e métodos de estudo devem ser oferecidos no início de cada novo nível escolar. A neurociência confirma essa ideia onde intervenções precoces e sistemáticas podem estimular áreas cerebrais específicas e melhorar significativamente o desempenho em leitura <a href="https://bing.com/search?q=neuroci%c3%aancia+leitura+infantil+programas+de+interven%c3%a7%c3%a3o+escolar+efic%c3%a1cia+aprendizagem">2</a>.</p>
 <p>Esses programas geralmente incluem exercícios de consciência fonológica como treinamento de memória de trabalho e atenção, leitura guiada com feedback imediato, atividades multissensoriais(visuais, auditivas e táteis).</p>
 <p><strong>Conexão com o Problema de 2 Sigma</strong></p>
 <p>A proposta de Layton de melhorar os pré-requisitos cognitivos se alinha com a neurociência ao reconhecer que habilidades básicas como leitura e estudo eficaz são fundamentais para o sucesso acadêmico. Quando essas habilidades são fortalecidas, os alunos aprendem com mais eficácia, desenvolvem maior autoconceito acadêmico, demonstram atitudes mais positivas em relação ao aprendizado.</p>
@@ -845,7 +1763,7 @@ Expanda para ver técnicas para melhoria de leitura
 <p>No artigo de Bloom, também cita na página 7 que Carlos Avalos está trabalhando em um estudo sobre o efeito de recursos organizacionais no material instrucional combinados com o aprimoramento inicial do pré-requisito cognitivo e o feedback de aprendizagem de domínio-procedimentos corretivos. Avalos está planejando um projeto de pesquisa que lhe permitirá determinar os efeitos separados de cada um dos três processos, o efeito de qualquer um dos dois processos e o efeito combinado de todos os três processos. Me explique melhor essa parte de forma simples, por que acredito não entendi muito bem.</p>
 </blockquote>
 <p><strong>O que Avalos está tentando fazer?</strong></p>
-<p>Ele quer entender quais elementos realmente ajudam os alunos a aprender melhor. Para isso, ele está estudando três processos diferentes:</p>
+<p>Ele quer entender quais elementos realmente ajudam os alunos a aprender melhor. Para isso, ele está estudando três processos diferentes, sendo:</p>
 <ol type="1">
 <li><p><strong>Recursos organizacionais no material instrucional</strong> Como o conteúdo é apresentado com estrutura clara, sequencial e acessível dos conteúdos(organização, clareza, estrutura).</p></li>
 <li><p><strong>Aprimoramento inicial dos pré-requisitos cognitivos</strong> Treinamento de atenção, memória de trabalho, linguagem e raciocínio antes do início do curso.</p></li>
