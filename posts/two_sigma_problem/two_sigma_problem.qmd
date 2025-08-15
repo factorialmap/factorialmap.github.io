@@ -12,7 +12,7 @@ bibliography: references.bib
 
 Imagine que seu filho está numa sala de aula com 30 alunos. Todos aprendem com o mesmo professor, no mesmo ritmo, com o mesmo material. Isso é o ensino convencional.
 
-![Aula convencional por volta de 1400 AD](aula_convencional.png)
+![Aula convencional por volta de 1400 AD](aula_convencional.png){width="600" height="350"}
 
 Agora imagine que seu filho tivesse um tutor particular, alguém que ensinasse só para ele, no ritmo dele, tirando dúvidas, reforçando o que ele não entendeu, e adaptando o conteúdo às necessidades dele. O que você acha que aconteceria com o desempenho dele?
 
@@ -74,11 +74,10 @@ dados_aprendizado %>%
 
 ```
 
-
 ```{r}
 #| label: table_medias
 #| echo: false
-#| fig-align: center
+#| fig-align: left
 
 resumo_aprendizado <- 
   dados_aprendizado %>%
@@ -103,7 +102,7 @@ resumo_aprendizado %>%
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-align: center
+#| fig-align: left
 
 dados_aprendizado %>% 
   rstatix::cohens_d(pontuacao~tipo_aprendizado,
@@ -123,7 +122,6 @@ dados_aprendizado %>%
 
 
 ```
-
 
 **Por que isso é um problema?**
 
@@ -210,7 +208,7 @@ O aprendizado de domínio é uma abordagem em que os alunos só avançam para o 
 
 Esse diagrama representa um ciclo contínuo de aprendizagem, onde o ensino leva à avaliação formativa, que por sua vez gera feedback e correções, culminando em uma nova avaliação para verificar o progresso
 
-**Exemplo prático no curso de Matemática** Módulo 1  é algebra onde os alunos fazem exercícios e testes formativos que são aqueles sem objetivo de avaliação com nota, são apenas para identificar se eles aprenderam. Se não dominarem, recebem atividades corretivas e refazem o teste, só então avançam para o Módulo 2 que sobre funções.
+**Exemplo prático no curso de Matemática** Módulo 1 é algebra onde os alunos fazem exercícios e testes formativos que são aqueles sem objetivo de avaliação com nota, são apenas para identificar se eles aprenderam. Se não dominarem, recebem atividades corretivas e refazem o teste, só então avançam para o Módulo 2 que sobre funções.
 
 Esse ciclo contínuo garante que todos os alunos estejam prontos para os próximos desafios, reduzindo lacunas de aprendizagem.
 
@@ -356,7 +354,7 @@ Algumas das habilidades mentais básicas que sustentam o aprendizado, são lista
 
 É o ganho real de conhecimento, habilidades e competências que os alunos desenvolvem ao longo do processo educacional como domínio de conteúdos(e.g. fatos, conceitos, procedimentos), capacidade de aplicar o conhecimento em novos contextos, desenvolvimento de habilidades cognitivas(e.g. análise, síntese e avaliação).
 
-É mensurável por meio de avaliações formativas e somativas e é o foco central de qualquer intervenção educacional. **Dica** Avaliações formativas, são aquelas realizadas durante o processo de aprendizagem para monitorar o progresso e ajustar o ensino, já as somativas ocorrem ao final de um ciclo para medir o desempenho total do aluno. A avaliação formativa tem função diagnóstica, enquanto a somativa é classificatória. 
+É mensurável por meio de avaliações formativas e somativas e é o foco central de qualquer intervenção educacional. **Dica** Avaliações formativas, são aquelas realizadas durante o processo de aprendizagem para monitorar o progresso e ajustar o ensino, já as somativas ocorrem ao final de um ciclo para medir o desempenho total do aluno. A avaliação formativa tem função diagnóstica, enquanto a somativa é classificatória.
 
 **2. Autoconceito Acadêmico**
 
@@ -366,7 +364,7 @@ Algumas das habilidades mentais básicas que sustentam o aprendizado, são lista
 
 **3. Atitudes e Interesse no Aprendizado**
 
-É a curiosidade e desejo de aprender, persistência diante de dificuldades, valorização do conhecimento como algo útil ou prazeroso. É a disposição emocional e motivacional do aluno em relação ao processo de aprender. 
+É a curiosidade e desejo de aprender, persistência diante de dificuldades, valorização do conhecimento como algo útil ou prazeroso. É a disposição emocional e motivacional do aluno em relação ao processo de aprender.
 
 Ela pode ser influenciada por métodos de ensino, relevância do conteúdo, ambiente de sala de aula. Está ligada à motivação intrínseca (gosto de aprender) e extrínseca (quero boas notas) e afeta diretamente o engajamento e o tempo dedicado ao estudo.
 

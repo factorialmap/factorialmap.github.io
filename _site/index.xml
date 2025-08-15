@@ -124,7 +124,7 @@
 <p>Imagine que seu filho está numa sala de aula com 30 alunos. Todos aprendem com o mesmo professor, no mesmo ritmo, com o mesmo material. Isso é o ensino convencional.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/two_sigma_problem/aula_convencional.png" class="img-fluid figure-img"></p>
+<p><img src="https://carvalhoribeiro.netlify.app/posts/two_sigma_problem/aula_convencional.png" width="600" height="350" class="figure-img"></p>
 <figcaption>Aula convencional por volta de 1400 AD</figcaption>
 </figure>
 </div>
@@ -141,7 +141,7 @@
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div id="pikksjwbyf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#pikksjwbyf table {
@@ -626,7 +626,7 @@
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div id="pwsjsqgfld" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#pwsjsqgfld table {
