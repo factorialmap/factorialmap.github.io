@@ -36,81 +36,23 @@ Essa generalização além de confundir o público, pode dificultar a regulaçã
 
 #### Contexto geral
 
-```{mermaid}
-%%| label: flow_geral
-%%| fig-width: 6.5
-
-flowchart TD
-    A["IA nível geral"] --> B1["IA simples e direta"] 
-    B1 --> C1["Filtros de spam, recomendações, assistentes de voz básicos"]
-    A["IA nível geral"] --> B2["IA intermediária e especializada"] 
-    B2 --> C2["Diagnóstico médico, crédito automatizado, logística"]
-    A["IA nível geral"] --> B3["IA avançada e crítica"] 
-    B3 --> C3["Modelos generativos, veículos autônomos, uso militar"]
-    A["IA nível geral"] --> B4["IA fronteira e disruptiva"]
-    B4 --> C4["AGI, IA autoevolutiva, protótipos experimentais"]
-```
+![IA Geral](ia_geral.png)
 
 #### Contexto educacional
 
-```{mermaid}
-%%| label: flow_educ
-%%| fig-width: 5
-
-
-flowchart LR
-    A["Classificação da IA"] --> B1["Organização Curricular"] & B2["Formação por Competências"] & B3["Ensino Ético e Crítico"]
-    B1 --> C1["IA Simples: Introdução à IA"] & C2["IA Especializada: Aplicações Profissionais"] & C3["IA Avançada: Pesquisa e Desenvolvimento"]
-    B2 --> D1["Habilidades Técnicas"] & D2["Análise de Impacto Social"] & D3["Comunicação Interdisciplinar"]
-    B3 --> E1["Discussões Éticas"] & E2["Estudos de Caso"]
-
-```
+![IA Educação](ia_educacao.png)
 
 #### Contexto regulatório
 
-```{mermaid}
-%%| label: flow_regulation
-%%| fig-width: 5
-
-
-flowchart LR
-    A["Classificação da IA"] --> B1["Análise de Risco"] & B2["Criação de Normas"] & B3["Monitoramento e Fiscalização"]
-    B1 --> C1["IA de Baixo Risco: Isenção Regulativa"] & C2["IA de Médio Risco: Supervisão Moderada"] & C3["IA de Alto Risco: Regulação Estrita"]
-    B2 --> D1["Normas Técnicas por Categoria"] & D2["Diretrizes Éticas"] & D3["Requisitos de Transparência"]
-    B3 --> E1["Auditorias Automatizadas"] & E2["Relatórios de Conformidade"]
-
-
-```
+![IA Regulatório](ia_regulatorio.png)
 
 #### Contexto empresarial
 
-```{mermaid}
-%%| label: flow_business
-%%| fig-width: 5
-
-
-flowchart LR
-    A["Classificação da IA"] --> B1["Posicionamento de Produto"] & B2["Gestão de Riscos"] & B3["Relacionamento com Stakeholders"]
-    B1 --> C1["Comunicação Clara com Clientes"] & C2["Segmentação de Mercado"] & C3["Evitar Overpromising"]
-    B2 --> D1["Mapeamento de Impacto"] & D2["Compliance Tecnológico"] & D3["Planejamento Estratégico"]
-    B3 --> E1["Transparência com Investidores"] & E2["Educação do Consumidor"]
-
-```
+![IA Empresarial](ia_business.png)
 
 #### Contexto de Comunicação e Mídia
 
-```{mermaid}
-%%| label: flow_communication
-%%| fig-width: 5
-
-
-flowchart LR
-    A["Classificação da IA"] --> B1["Reportagens Mais Precisas"] & B2["Educação do Público"] & B3["Combate à Desinformação"]
-    B1 --> C1["Especificar Tipo de IA"] & C2["Evitar Sensacionalismo"] & C3["Contextualizar Avanços"]
-    B2 --> D1["Glossários e Guias"] & D2["Conteúdo Didático"] & D3["Parcerias com Especialistas"]
-    B3 --> E1["Checagem de Fatos"] & E2["Desmistificação de Tecnologias"]
-
-```
+![IA Comunicação](ia_comunicacao.png)
 
 ### {{< fa 5 >}} [**Pra onde vai próximos passos após a classificação da IA**]{style="color: #5AC8BE ;"}
 
@@ -128,13 +70,12 @@ A classificação, portanto, representa o ponto de partida para uma governança 
 
 ### {{< fa 6 >}} [**Quais os resultados para cada grupo**]{style="color: #5AC8BE ;"}
 
-- **Público Geral**Compreensão acessível e realista sobre o que a IA pode (ou não) fazer, reduz o medo irracional e o fascínio exagerado. Permite decisões mais informadas no consumo de produtos e serviços baseados em IA(e.g saber diferenciar um chatbot de um sistema de vigilância automatizado ajuda a entender riscos e utilidades reais).
+-   **Público Geral**Compreensão acessível e realista sobre o que a IA pode (ou não) fazer, reduz o medo irracional e o fascínio exagerado. Permite decisões mais informadas no consumo de produtos e serviços baseados em IA(e.g saber diferenciar um chatbot de um sistema de vigilância automatizado ajuda a entender riscos e utilidades reais).
 
-- **Reguladores e Legisladores** Criação de políticas públicas mais precisas e eficazes.Leis e políticas mais eficazes, específicas e adaptadas ao risco. Isso pode evitar legislações genéricas que travam a inovação ou deixam brechas perigosas(e.g regulamentar IA em diagnósticos médicos exige critérios diferentes dos aplicáveis a IA em redes sociais).
+-   **Reguladores e Legisladores** Criação de políticas públicas mais precisas e eficazes.Leis e políticas mais eficazes, específicas e adaptadas ao risco. Isso pode evitar legislações genéricas que travam a inovação ou deixam brechas perigosas(e.g regulamentar IA em diagnósticos médicos exige critérios diferentes dos aplicáveis a IA em redes sociais).
 
-- **Empresas e Desenvolvedores** Comunicação mais honesta com clientes, investidores e parceiros. Inovação com responsabilidade e confiança do mercado. Isso pode hype inicialmente mas também pode reduzir o risco de promessas enganosas, estimulando a inovação responsável(e.g
-Uma empresa que desenvolve IA para logística pode se posicionar com mais clareza e confiança no mercado).
+-   **Empresas e Desenvolvedores** Comunicação mais honesta com clientes, investidores e parceiros. Inovação com responsabilidade e confiança do mercado. Isso pode hype inicialmente mas também pode reduzir o risco de promessas enganosas, estimulando a inovação responsável(e.g Uma empresa que desenvolve IA para logística pode se posicionar com mais clareza e confiança no mercado).
 
-- **Educadores e Pesquisadores** Currículos mais claros, formação crítica e alinhada com o mercado. Estruturação mais eficaz de currículos e materiais didáticos. Isso pode facilitar a formação de profissionais críticos e preparados para lidar com diferentes tipos de IA(e.g. ensinar IA generativa e IA simbólica como áreas distintas ajuda alunos a entenderem suas aplicações e limitações).
+-   **Educadores e Pesquisadores** Currículos mais claros, formação crítica e alinhada com o mercado. Estruturação mais eficaz de currículos e materiais didáticos. Isso pode facilitar a formação de profissionais críticos e preparados para lidar com diferentes tipos de IA(e.g. ensinar IA generativa e IA simbólica como áreas distintas ajuda alunos a entenderem suas aplicações e limitações).
 
-- **Mídia e Comunicadores** Reportagens mais precisas e educativas. Isso pode combater a confusão e o sensacionalismo, pode promover o debate público qualificado(e.g. ao cobrir um avanço em IA, a mídia pode explicar se se trata de um sistema de linguagem, de visão computacional ou de automação industrial).
+-   **Mídia e Comunicadores** Reportagens mais precisas e educativas. Isso pode combater a confusão e o sensacionalismo, pode promover o debate público qualificado(e.g. ao cobrir um avanço em IA, a mídia pode explicar se se trata de um sistema de linguagem, de visão computacional ou de automação industrial).
