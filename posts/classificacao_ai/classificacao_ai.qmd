@@ -52,6 +52,10 @@ flowchart TD
 #### Contexto educacional
 
 ```{mermaid}
+%%| label: flow_educ
+%%| fig-width: 6.5
+
+
 flowchart LR
     A["Classificação da IA"] --> B1["Organização Curricular"] & B2["Formação por Competências"] & B3["Ensino Ético e Crítico"]
     B1 --> C1["IA Simples: Introdução à IA"] & C2["IA Especializada: Aplicações Profissionais"] & C3["IA Avançada: Pesquisa e Desenvolvimento"]
@@ -63,6 +67,8 @@ flowchart LR
 #### Contexto regulatório
 
 ```{mermaid}
+%%| label: flow_regulation
+%%| fig-width: 6.5
 
 
 flowchart LR
@@ -77,6 +83,10 @@ flowchart LR
 #### Contexto empresarial
 
 ```{mermaid}
+%%| label: flow_business
+%%| fig-width: 6.5
+
+
 flowchart LR
     A["Classificação da IA"] --> B1["Posicionamento de Produto"] & B2["Gestão de Riscos"] & B3["Relacionamento com Stakeholders"]
     B1 --> C1["Comunicação Clara com Clientes"] & C2["Segmentação de Mercado"] & C3["Evitar Overpromising"]
@@ -88,6 +98,10 @@ flowchart LR
 #### Contexto de Comunicação e Mídia
 
 ```{mermaid}
+%%| label: flow_communication
+%%| fig-width: 6.5
+
+
 flowchart LR
     A["Classificação da IA"] --> B1["Reportagens Mais Precisas"] & B2["Educação do Público"] & B3["Combate à Desinformação"]
     B1 --> C1["Especificar Tipo de IA"] & C2["Evitar Sensacionalismo"] & C3["Contextualizar Avanços"]
