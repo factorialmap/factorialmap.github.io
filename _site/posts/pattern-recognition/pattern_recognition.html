@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marcelo Carvalho dos Anjos">
 <meta name="dcterms.date" content="2022-08-28">
 
-<title>Carvalho Ribeiro Blog - Como Identificar padrões em dados - gráfico de dispersão</title>
+<title>Como Identificar padrões em dados - gráfico de dispersão – Carvalho Ribeiro Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -71,12 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4379b0ccadffce622b03caf4c46266b3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f3c2ea88cadbcfb37ba28ffa2c97cfc1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ae2d0dcda2edce4ab590422bb373b64f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -144,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
@@ -158,13 +158,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Conteúdo</h2>
    
   <ul>
-  <li><a href="#o-que-são-padrões-em-dados" id="toc-o-que-são-padrões-em-dados" class="nav-link active" data-scroll-target="#o-que-são-padrões-em-dados"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>O que são padrões em dados</strong></span></a></li>
-  <li><a href="#qual-o-objetivo" id="toc-qual-o-objetivo" class="nav-link" data-scroll-target="#qual-o-objetivo"><i class="fa-solid fa-2" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></a></li>
-  <li><a href="#de-onde-vem-a-demanda" id="toc-de-onde-vem-a-demanda" class="nav-link" data-scroll-target="#de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></a></li>
-  <li><a href="#como-fazer" id="toc-como-fazer" class="nav-link" data-scroll-target="#como-fazer"><i class="fa-solid fa-4" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></a></li>
-  <li><a href="#pra-onde-vai-quem-é-o-cliente" id="toc-pra-onde-vai-quem-é-o-cliente" class="nav-link" data-scroll-target="#pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-5" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></a></li>
-  <li><a href="#qual-o-resultado" id="toc-qual-o-resultado" class="nav-link" data-scroll-target="#qual-o-resultado"><i class="fa-solid fa-6" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></a></li>
-  <li><a href="#referência" id="toc-referência" class="nav-link" data-scroll-target="#referência"><i class="fa-solid fa-7" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Referência</strong></span></a></li>
+  <li><a href="#o-que-são-padrões-em-dados" id="toc-o-que-são-padrões-em-dados" class="nav-link active" data-scroll-target="#o-que-são-padrões-em-dados"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que são padrões em dados</strong></span></a></li>
+  <li><a href="#qual-o-objetivo" id="toc-qual-o-objetivo" class="nav-link" data-scroll-target="#qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></a></li>
+  <li><a href="#de-onde-vem-a-demanda" id="toc-de-onde-vem-a-demanda" class="nav-link" data-scroll-target="#de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></a></li>
+  <li><a href="#como-fazer" id="toc-como-fazer" class="nav-link" data-scroll-target="#como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></a></li>
+  <li><a href="#pra-onde-vai-quem-é-o-cliente" id="toc-pra-onde-vai-quem-é-o-cliente" class="nav-link" data-scroll-target="#pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></a></li>
+  <li><a href="#qual-o-resultado" id="toc-qual-o-resultado" class="nav-link" data-scroll-target="#qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></a></li>
+  <li><a href="#referência" id="toc-referência" class="nav-link" data-scroll-target="#referência"><i class="fa-solid fa-7" aria-label="7"></i> <span style="color: #5AC8BE ;"><strong>Referência</strong></span></a></li>
   </ul>
 </nav>
 </nav>
@@ -179,7 +179,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title">
 <h1 class="title">Como Identificar padrões em dados - gráfico de dispersão</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Exploração</div>
+    <div class="quarto-category">Exploração de dados</div>
   </div>
   </div>
 
@@ -220,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <section id="o-que-são-padrões-em-dados" class="level3">
-<h3 class="anchored" data-anchor-id="o-que-são-padrões-em-dados"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>O que são padrões em dados</strong></span></h3>
+<h3 class="anchored" data-anchor-id="o-que-são-padrões-em-dados"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que são padrões em dados</strong></span></h3>
 <ul>
 <li><p>Padrões são fenômenos que se repetem de forma regular com base em alguma regra ou em condições definidas.</p></li>
 <li><p>Padrões nos permite fazer comparações e com isso deu origem a descobertas e invenções as quais são resultados da habilidade humanda de reconhecer padrões.</p></li>
@@ -235,14 +235,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="qual-o-objetivo"><i class="fa-solid fa-2" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
 <ul>
 <li><p>Permitir que possamos fazer previsões e ou explicar melhor o fenômeno.</p></li>
 <li><p>Encontrar dados relevantes para que consigamos replicar esses fenomenos para construir coisas que melhorem e simplifiquem nossa vida</p></li>
 </ul>
 </section>
 <section id="de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
 <ul>
 <li><p>Da necessidade de investigar as características com visão ampla sobre diversos pontos de vista PDCA.</p></li>
 <li><p>No exemplo utilizado <strong>a)Quem eram as vítimas ?</strong> <strong>b)Em que período ele as intoxicava ?</strong> <strong>c)Em qual período de tempo ?</strong></p></li>
@@ -255,7 +255,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="como-fazer"><i class="fa-solid fa-4" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
+<h3 class="anchored" data-anchor-id="como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
 <p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://exts.ggplot2.tidyverse.org/ggExtra.html/" target="_blank">ggExtra</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a><br>
 </p>
 <p>O dados podem ser baixados no github de <a href="https://github.com/dspiegel29/ArtofStatistics" target="_blank">David Spiegelhalter</a></p>
@@ -311,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-5" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
+<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
 <ul>
 <li>A próxima etapa pra quem usa o PDCA é a busca pelas causas fundamentais do problema.</li>
 </ul>
@@ -323,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="qual-o-resultado"><i class="fa-solid fa-6" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
+<h3 class="anchored" data-anchor-id="qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoar as técnicas de análise de fenômeno encurtando o tempo para explicação ou solução de algum problema</p></li>
 <li><p>Facilitar a replicação do fenômeno e consequentemente a comunicação.</p></li>
@@ -331,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 <section id="referência" class="level3">
-<h3 class="anchored" data-anchor-id="referência"><i class="fa-solid fa-7" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Referência</strong></span></h3>
+<h3 class="anchored" data-anchor-id="referência"><i class="fa-solid fa-7" aria-label="7"></i> <span style="color: #5AC8BE ;"><strong>Referência</strong></span></h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="art_of_statistic.jpg" class="img-fluid figure-img" width="650"></p>
@@ -522,18 +522,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -565,7 +554,45 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/carvalhoribeiro\.netlify\.app\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -600,7 +627,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -648,7 +679,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

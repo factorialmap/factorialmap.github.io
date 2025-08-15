@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.6.43">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Marcelo Carvalho dos Anjos">
 <meta name="dcterms.date" content="2022-11-29">
 
-<title>Carvalho Ribeiro Blog - Modelo preditivo | tidymodels decision tree rpart diabetes</title>
+<title>Modelo preditivo | tidymodels decision tree rpart diabetes – Carvalho Ribeiro Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -35,7 +35,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -71,12 +71,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4379b0ccadffce622b03caf4c46266b3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-f3c2ea88cadbcfb37ba28ffa2c97cfc1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ae2d0dcda2edce4ab590422bb373b64f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -123,7 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -144,7 +144,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
@@ -158,12 +158,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Conteúdo</h2>
    
   <ul>
-  <li><a href="#o-que-é-isto" id="toc-o-que-é-isto" class="nav-link active" data-scroll-target="#o-que-é-isto"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></a></li>
-  <li><a href="#qual-é-o-objetivo" id="toc-qual-é-o-objetivo" class="nav-link" data-scroll-target="#qual-é-o-objetivo"><i class="fa-solid fa-2" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></a></li>
-  <li><a href="#de-onde-vem-a-demanda" id="toc-de-onde-vem-a-demanda" class="nav-link" data-scroll-target="#de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></a></li>
-  <li><a href="#como-fazer-isto" id="toc-como-fazer-isto" class="nav-link" data-scroll-target="#como-fazer-isto"><i class="fa-solid fa-4" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></a></li>
-  <li><a href="#quem-é-o-consumidor" id="toc-quem-é-o-consumidor" class="nav-link" data-scroll-target="#quem-é-o-consumidor"><i class="fa-solid fa-5" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></a></li>
-  <li><a href="#qual-o-resultado" id="toc-qual-o-resultado" class="nav-link" data-scroll-target="#qual-o-resultado"><i class="fa-solid fa-6" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></a></li>
+  <li><a href="#o-que-é-isto" id="toc-o-que-é-isto" class="nav-link active" data-scroll-target="#o-que-é-isto"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></a></li>
+  <li><a href="#qual-é-o-objetivo" id="toc-qual-é-o-objetivo" class="nav-link" data-scroll-target="#qual-é-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></a></li>
+  <li><a href="#de-onde-vem-a-demanda" id="toc-de-onde-vem-a-demanda" class="nav-link" data-scroll-target="#de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></a></li>
+  <li><a href="#como-fazer-isto" id="toc-como-fazer-isto" class="nav-link" data-scroll-target="#como-fazer-isto"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></a></li>
+  <li><a href="#quem-é-o-consumidor" id="toc-quem-é-o-consumidor" class="nav-link" data-scroll-target="#quem-é-o-consumidor"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></a></li>
+  <li><a href="#qual-o-resultado" id="toc-qual-o-resultado" class="nav-link" data-scroll-target="#qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></a></li>
   </ul>
 </nav>
 </nav>
@@ -220,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <section id="o-que-é-isto" class="level3">
-<h3 class="anchored" data-anchor-id="o-que-é-isto"><i class="fa-solid fa-1" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></h3>
+<h3 class="anchored" data-anchor-id="o-que-é-isto"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é isto?</strong></span></h3>
 <ul>
 <li>Decision tree models são modelos árvore de decisão baseadas em instruções <strong>if-then</strong>/<strong>e se</strong> utilizando os dados preditores. <span class="citation" data-cites="kuhn2013">@kuhn2013</span>, chap 8</li>
 <li>Exemplo: if temperatura_corporal &gt;= 38 and dor_no_corpo = SIM then doente = SIM else doente = NAO</li>
@@ -228,7 +228,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 <section id="qual-é-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="qual-é-o-objetivo"><i class="fa-solid fa-2" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></h3>
+<h3 class="anchored" data-anchor-id="qual-é-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual é o objetivo?</strong></span></h3>
 <ul>
 <li>Prever a probabilidade de um paciente ter diabetes com base em medidas de diagnóstico incluídas no conjunto de dados.</li>
 <li>Todos os pacientes são mulheres de no mínimo 21 anos de idade e descendencia de Indios Pima</li>
@@ -237,13 +237,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 <section id="de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></h3>
+<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda?</strong></span></h3>
 <ul>
 <li>Necessidade de praticar a construção de modelos machine learning usando o framework tidymodels.</li>
 </ul>
 </section>
 <section id="como-fazer-isto" class="level3">
-<h3 class="anchored" data-anchor-id="como-fazer-isto"><i class="fa-solid fa-4" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></h3>
+<h3 class="anchored" data-anchor-id="como-fazer-isto"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer isto?</strong></span></h3>
 <p><strong>Pacotes</strong></p>
 <p>Para reproduzir os códigos abaixo serão necessários os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a> , <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a> e <a href="https://github.com/sfirke/janitor" target="_blank">janitor</a></p>
 <p><strong>Dados</strong></p>
@@ -438,13 +438,13 @@ Clique aqui para mostrar dados complementares sobre Pima Indian Diabetes
 </div>
 </section>
 <section id="quem-é-o-consumidor" class="level3">
-<h3 class="anchored" data-anchor-id="quem-é-o-consumidor"><i class="fa-solid fa-5" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></h3>
+<h3 class="anchored" data-anchor-id="quem-é-o-consumidor"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Quem é o consumidor?</strong></span></h3>
 <ul>
 <li>Repositório de documento criados para praticar o desenvolvimento de modelos de previsão usando tidymodels.</li>
 </ul>
 </section>
 <section id="qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="qual-o-resultado"><i class="fa-solid fa-6" aria-hidden="true"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></h3>
+<h3 class="anchored" data-anchor-id="qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado?</strong></span></h3>
 <ul>
 <li><p>Aperfeiçoamento das técnicas de construção de modelos usando tidymodels.</p></li>
 <li><p>Criação de modelo de previsão que pode ser melhorado e aproveitado projetos futuros.</p></li>
@@ -634,18 +634,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -677,7 +666,45 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/carvalhoribeiro\.netlify\.app\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -712,7 +739,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -760,7 +791,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
