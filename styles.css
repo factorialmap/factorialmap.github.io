@@ -1,1 +1,52 @@
 /* css styles */
+
+
+.navbar-title {
+  font-size: 1em; /* Reduzido de 2em */
+  color: #B0C4DE;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Adicionado para diminuir o tamanho da fonte dos links */
+.navbar-nav .nav-link {
+  font-size: 1em;
+}
+
+/* Adicionado para diminuir a altura da barra de navegação */
+.navbar {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+.custom-title {
+  color: #2c3e50;
+  font-family: "Garamond", serif;
+  font-size: 2.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.custom-subtitle {
+  color: #7f8c8d;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 1.2em;
+  text-align: center;
+  margin-top: -10px;
+}
+
+.custom-author {
+  color: #34495e;
+  font-family: "Courier New", monospace;
+  font-size: 1em;
+  text-align: center;
+}
+
+.custom-date {
+  color: #95a5a6;
+  font-family: "Georgia", serif;
+  font-size: 0.9em;
+  text-align: center;
+}

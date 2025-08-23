@@ -5,7 +5,7 @@
       xmlns:dc="http://purl.org/dc/elements/1.1/" 
       version="2.0">
 <channel>
-<title>Carvalho Ribeiro Blog</title>
+<title>Kaizen &amp; Data Science Blog</title>
 <link>https://carvalhoribeiro.netlify.app/</link>
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>

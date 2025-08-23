@@ -1,6 +1,7 @@
 ---
 title: "Info"
 image: images/marcelo_youtube.png
+include-after-body: custom.js
 about:
   template: trestles
   image-width: 7em
@@ -16,14 +17,16 @@ about:
       href: https://linkedin.com/carvalhoribeiro
 ---
 
+### {{< fa address-card >}} **Bio**
+
+Sou Marcelo Carvalho dos Anjos e trabalho com melhoria de processos a mais de 20 anos. Me interesso por Lean Principles, Projetos Kaizen, Modelos matemáticos como machine learning, deep learning, e pesquisa operacional. Atualmente uso as ferramentas R e Python em minhas pesquisas.
+
 ### {{< fa bullseye >}} **Goals**
 
 O objetivo do blog é complementar o conteúdo postado no YouTube e tentar facilitar a vida do pesquisador, melhorista de processo e demais profissionais da industria e setor de serviços.
 
 ### {{< fa graduation-cap >}} **Education**
 
-**Nova Acrópole** \| Florianópolis, SC, Brasil\
-Filosofia na tradição Clássica \| 2014-2015
+**Nova Acrópole** \| Florianópolis, SC, Brasil Filosofia na tradição Clássica \| 2014-2015
 
-**Universidade Uniderp** \| Campo Grande, MS, Brasil\
-Mestrado Produção e Gestão Agroindustrial \| 2008-2010
+**Universidade Uniderp** \| Campo Grande, MS, Brasil Mestrado Produção e Gestão Agroindustrial \| 2008-2010
