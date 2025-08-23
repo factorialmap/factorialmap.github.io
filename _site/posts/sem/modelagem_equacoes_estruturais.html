@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.43">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Marcelo Carvalho dos Anjos">
+<meta name="dcterms.date" content="2025-08-22">
+
+<title>Modelagem de Equações Estruturais – Carvalho Ribeiro Blog</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4379b0ccadffce622b03caf4c46266b3.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f3c2ea88cadbcfb37ba28ffa2c97cfc1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ae2d0dcda2edce4ab590422bb373b64f.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Carvalho Ribeiro Blog</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">Info</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://youtube.com/carvalhoribeiro"> <i class="bi bi-youtube" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/factorialmap"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Conteúdo</h2>
+   
+  <ul>
+  <li><a href="#o-que-é-a-sem" id="toc-o-que-é-a-sem" class="nav-link active" data-scroll-target="#o-que-é-a-sem"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a SEM</strong></span></a></li>
+  <li><a href="#qual-o-objetivo" id="toc-qual-o-objetivo" class="nav-link" data-scroll-target="#qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo?</strong></span></a></li>
+  <li><a href="#de-onde-vem" id="toc-de-onde-vem" class="nav-link" data-scroll-target="#de-onde-vem"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem?</strong></span></a></li>
+  <li><a href="#como-fazer" id="toc-como-fazer" class="nav-link" data-scroll-target="#como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer?</strong></span></a></li>
+  <li><a href="#pra-onde-vai" id="toc-pra-onde-vai" class="nav-link" data-scroll-target="#pra-onde-vai"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai?</strong></span></a></li>
+  <li><a href="#qual-resultado" id="toc-qual-resultado" class="nav-link" data-scroll-target="#qual-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual resultado?</strong></span></a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Modelagem de Equações Estruturais</h1>
+<p class="subtitle lead">Conceitos e práticas de structural equation modeling SEM usando R</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Modelos</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Marcelo Carvalho dos Anjos </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 22, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="o-que-é-a-sem" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-é-a-sem"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a SEM</strong></span></h3>
+<ul>
+<li><p><strong>Em linguagem simples por exemplo no contexto da manufatura e melhoria de processos</strong>: o SEM é uma ferramenta estatística que ajuda a entender como diferents fatores dentro de um processo estão conectados permitindo analisar várias causas e efeitos ao mesmo tempo, mesmo quando alguns desses fatores não são diretamente medidos(e.g.&nbsp;clima organizacional, engajamento dos operadores, motivação etc).</p></li>
+<li><p><strong>Ponto de vista técnico</strong>: É uma técnica estatística multivariada que permite testar e estimar relações complexas entre variáveis observadas (dados coletados) e variáveis latentes (conceitos não diretamente mensuráveis, como inteligência ou satisfação). Ela combina elementos de análise fatorial e regressão múltipla em um único modelo.</p></li>
+</ul>
+<p><strong>Importante</strong> Ela trabalha com dois tipos de variáveis.</p>
+<ul>
+<li><p><strong>Variáveis observadas</strong>: Ajudam a controlar e monitorar o processo. São coisas que conseguimos medir diretamente no chão da fábrica(e.g.&nbsp;temperatura de uma maquina, tempo de produção de uma peça, número de peças com defeito, peso de um produto, horas de treinamento recebidos). Estas variáveis vêm de sensores, relatórios ou medições feitas por pessoas. Elas são vistas e registradas.</p></li>
+<li><p><strong>Variáveis latentes</strong>: Ajudam a entender o que está por trás dos resultados e melhorar o sistema de forma mais profunda. São coisas que não conseguimos medir diretamente, mas que influenciam o processo. É necessário usar outras variáveis para estimar ou representá-las(e.g.&nbsp;motivação dos operadores, qualidade do ambiente de trabalho, engajamento com segurança, cultura de melhoria contínua, satisfação com treinamento). Não há um sensor que mede a motivação por exemplo, mas pode-se utilizar de perguntas de uma pesquisa ou observar o comportamentos para representar esse conceito.</p></li>
+</ul>
+</section>
+<section id="qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo?</strong></span></h3>
+<ul>
+<li>Identificar relações ocultas entre variáveis de processo, qualidade, produtividade e comportamento humano.</li>
+<li>Melhorar decisões com base em dados, não só em intuição.</li>
+<li>Validar hipóteses sobre o que realmente afeta o desempenho(e.g.&nbsp;em uma linha de produção, satisfação dos consumidores).</li>
+<li>Modelar relações causais entre variáveis.</li>
+<li>Testar teorias que envolvem múltiplas dependências simultâneas.</li>
+<li>Validar construtos teóricos por meio de dados empíricos.</li>
+<li>Avaliar a qualidade de modelos estatísticos complexos.</li>
+</ul>
+</section>
+<section id="de-onde-vem" class="level3">
+<h3 class="anchored" data-anchor-id="de-onde-vem"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem?</strong></span></h3>
+<p>Na academia, o SEM surgiu para estudar fenômenos complexos como comportamento humano, educação e psicologia onde foi desenvolvido a partir da evolução da análise fatorial e da path analysis (análise de caminhos), ganhando força nas ciências sociais, psicologia, marketing e educação.</p>
+<p>A necessidade surgiu da limitação de métodos estatísticos tradicionais (como regressão simples ou múltipla) que não conseguiam: - Capturar relações simultâneas entre múltiplas variáveis. - Trabalhar com variáveis latentes (não diretamente mensuráveis). - Testar modelos teóricos complexos com múltiplas etapas e dependências.</p>
+<p>Na industria onde há sistemas igualmente complexos como uma fábrica com centenas de variáveis interagindo. Ela surge como ferramenta complementar a métodos tradicionais(e.g.&nbsp;gráficos de controle, regressão simples etc) os quais podem não conseguir capturar todas as complexidades existentes no processo. O SEM entra como uma solução para modelar sistemas industriais de forma mais completa.</p>
+</section>
+<section id="como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer?</strong></span></h3>
+<p><strong>Caso1 - Apenas para trazer sentido para nosso exemplo usando mtcars dataset</strong></p>
+<p>Iremos fazer um modelo sem variáveis latentes, chamado também de <code>path analysis</code> apenas para ilustrar de forma simples o problema e a solução.</p>
+<ol type="1">
+<li><p>A especificação do modelo SEM é feito com uma string(em formato de texto), note que foi usado aspas indicado que o formato é texto.</p></li>
+<li><p>Há duas equações estruturais sendo:</p></li>
+</ol>
+<ul>
+<li><strong>mpg ~ cyl + disp + hp</strong>: o consumo de combustível (mpg) é explicado por número de cilindros (cyl), deslocamento (disp) e potência (hp).</li>
+<li><strong>qsec ~ disp + hp + wt</strong>: o tempo de aceleração (qsec) é explicado por deslocamento (disp), potência (hp) e peso (wt).</li>
+</ul>
+<ol start="3" type="1">
+<li>Implementar via software usando R (lavaan package)</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaanPlot)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># step1: especificação do modelo SEM</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>mdl_spec_sem_mtcas <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">mpg ~ cyl + disp + hp</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="st">qsec ~ disp + hp + wt</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># step2: rodar o modelo</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>mdl_fit_sem_mtcars <span class="ot">&lt;-</span> <span class="fu">sem</span>(mdl_spec_sem_mtcas, <span class="at">data =</span> mtcars)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># step3: checar resultados</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl_fit_sem_mtcars, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6-19 ended normally after 32 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                         9
+
+  Number of observations                            32
+
+Model Test User Model:
+                                                      
+  Test statistic                                18.266
+  Degrees of freedom                                 2
+  P-value (Chi-square)                           0.000
+
+Model Test Baseline Model:
+
+  Test statistic                               101.965
+  Degrees of freedom                                 9
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.825
+  Tucker-Lewis Index (TLI)                       0.213
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)               -124.003
+  Loglikelihood unrestricted model (H1)       -114.870
+                                                      
+  Akaike (AIC)                                 266.005
+  Bayesian (BIC)                               279.197
+  Sample-size adjusted Bayesian (SABIC)        251.140
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.504
+  90 Percent confidence interval - lower         0.309
+  90 Percent confidence interval - upper         0.727
+  P-value H_0: RMSEA &lt;= 0.050                    0.000
+  P-value H_0: RMSEA &gt;= 0.080                    1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.041
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Regressions:
+                   Estimate   Std.Err  z-value  P(&gt;|z|)   Std.lv   Std.all
+  mpg ~                                                                   
+    cyl               -0.987    0.738   -1.337    0.181    -0.987   -0.293
+    disp              -0.021    0.010   -2.178    0.029    -0.021   -0.435
+    hp                -0.017    0.014   -1.218    0.223    -0.017   -0.190
+  qsec ~                                                                  
+    disp              -0.008    0.004   -2.122    0.034    -0.008   -0.559
+    hp                -0.023    0.004   -5.229    0.000    -0.023   -0.849
+    wt                 1.695    0.398    4.256    0.000     1.695    0.908
+
+Covariances:
+                   Estimate   Std.Err  z-value  P(&gt;|z|)   Std.lv   Std.all
+ .mpg ~~                                                                  
+   .qsec               0.447    0.511    0.874    0.382     0.447    0.156
+
+Variances:
+                   Estimate   Std.Err  z-value  P(&gt;|z|)   Std.lv   Std.all
+   .mpg                8.194    2.049    4.000    0.000     8.194    0.234
+   .qsec               0.996    0.249    4.000    0.000     0.996    0.308</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Clique aqui para mais detalhes sobre a interpretação dos resultados do modelo
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Interpretação da Saída:</strong></p>
+<p><strong>1. Informações Básicas do Modelo:</strong></p>
+<ul>
+<li><strong><code>lavaan 0.6-19 ended normally after 32 iterations</code></strong>: O processo de estimação do modelo convergiu com sucesso após 32 iterações. Isso é bom, indica que o algoritmo encontrou uma solução estável.</li>
+<li><strong><code>Estimator ML</code></strong>: O estimador usado foi o de Máxima Verossimilhança (Maximum Likelihood). Este é o estimador padrão e mais comum para SEM quando os dados são aproximadamente normais.</li>
+<li><strong><code>Optimization method NLMINB</code></strong>: O método de otimização usado.</li>
+<li><strong><code>Number of model parameters 9</code></strong>: Seu modelo possui 9 parâmetros que foram estimados (por exemplo, os coeficientes de caminho, variâncias residuais, covariâncias).</li>
+<li><strong><code>Number of observations 32</code></strong>: Você está usando um conjunto de dados com 32 observações (linhas), que é o tamanho do conjunto de dados <code>mtcars</code>.</li>
+</ul>
+<p><strong>2. Teste do Modelo do Usuário (<code>Model Test User Model</code>):</strong></p>
+<p>Este é o teste de qui-quadrado (Chi-square test) do seu modelo. A hipótese nula (<span class="math inline">\(H_0\)</span>) deste teste é que o seu modelo se ajusta <em>perfeitamente</em> aos dados da população. Uma hipótese alternativa (<span class="math inline">\(H_1\)</span>) é que o modelo não se ajusta perfeitamente.</p>
+<ul>
+<li><p><strong><code>Test statistic 18.266</code></strong>: O valor do teste de qui-quadrado.</p></li>
+<li><p><strong><code>Degrees of freedom 2</code></strong>: Os graus de liberdade do seu modelo.</p></li>
+<li><p><strong><code>P-value (Chi-square) 0.000</code></strong>: O p-valor associado.</p>
+<p><strong>Interpretação:</strong> Como o p-valor (0.000) é menor que 0.05 (ou qualquer nível de significância usual), nós <strong>rejeitamos a hipótese nula</strong>. Isso significa que o seu modelo (o “modelo do usuário”) <em>não</em> se ajusta perfeitamente aos dados observados.</p>
+<p><strong>Cuidado:</strong> Embora isso possa parecer uma má notícia, o teste de qui-quadrado é muito sensível, especialmente com tamanhos de amostra maiores. Com 32 observações, a rejeição aqui é um sinal de que o modelo não é <em>perfeito</em>. No entanto, em SEM, raramente esperamos um ajuste perfeito. O foco geralmente é em ter um “bom ajuste” ou um “ajuste razoável”, avaliado por outros índices de ajuste.</p></li>
+</ul>
+<p><strong>3. Teste do Modelo de Linha de Base (<code>Model Test Baseline Model</code>):</strong></p>
+<p>O modelo de linha de base (baseline model) é um modelo nulo onde todas as variáveis são consideradas não correlacionadas. Serve como um ponto de comparação para o seu modelo.</p>
+<ul>
+<li><p><strong><code>Test statistic 101.965</code></strong></p></li>
+<li><p><strong><code>Degrees of freedom 9</code></strong></p></li>
+<li><p><strong><code>P-value 0.000</code></strong></p>
+<p><strong>Interpretação:</strong> O modelo de linha de base também não se ajusta bem aos dados (p-valor &lt; 0.05), o que é esperado, pois é um modelo muito restritivo. Este teste é usado principalmente para calcular os índices de ajuste comparativos (CFI, TLI).</p></li>
+</ul>
+<p><strong>4. Modelo do Usuário versus Modelo de Linha de Base (<code>User Model versus Baseline Model</code>):</strong></p>
+<p>Esses são índices de ajuste incrementais, que comparam o seu modelo com o modelo de linha de base.</p>
+<ul>
+<li><strong><code>Comparative Fit Index (CFI) 0.825</code></strong>:
+<ul>
+<li><strong>Interpretação:</strong> O CFI varia de 0 a 1. Valores acima de 0.90 ou 0.95 são geralmente considerados indicativos de um bom ajuste. Seu CFI de 0.825 está abaixo dos critérios comuns para um bom ajuste (geralmente &gt; 0.90 ou &gt; 0.95). Isso sugere que o seu modelo não melhora substancialmente o ajuste em comparação com o modelo nulo o suficiente para ser considerado um “bom” ajuste.</li>
+</ul></li>
+<li><strong><code>Tucker-Lewis Index (TLI) 0.213</code></strong>:
+<ul>
+<li><strong>Interpretação:</strong> O TLI (também conhecido como NNFI) é outro índice incremental, também variando geralmente de 0 a 1, com valores &gt; 0.90 ou &gt; 0.95 indicando bom ajuste. Seu TLI de 0.213 é <strong>muito baixo</strong>, indicando um ajuste pobre do modelo.</li>
+</ul>
+<strong>Em resumo para CFI e TLI:</strong> Ambos os índices sugerem que o seu modelo não está bem ajustado aos dados.</li>
+</ul>
+<p><strong>5. Critérios de Log-Verossimilhança e Informação (<code>Loglikelihood and Information Criteria</code>):</strong></p>
+<p>Esses critérios são usados para comparar modelos, favorecendo modelos com melhor ajuste e menor complexidade. Valores menores são geralmente preferíveis.</p>
+<ul>
+<li><p><strong><code>Loglikelihood user model (H0) -124.003</code></strong>: A log-verossimilhança do seu modelo.</p></li>
+<li><p><strong><code>Loglikelihood unrestricted model (H1) -114.870</code></strong>: A log-verossimilhança do modelo não restrito (também conhecido como modelo saturado), que é o modelo com o melhor ajuste possível aos dados.</p></li>
+<li><p><strong><code>Akaike (AIC) 266.005</code></strong>: Critério de Informação de Akaike.</p></li>
+<li><p><strong><code>Bayesian (BIC) 279.197</code></strong>: Critério de Informação Bayesiano.</p></li>
+<li><p><strong><code>Sample-size adjusted Bayesian (SABIC) 251.140</code></strong>: BIC ajustado para o tamanho da amostra.</p>
+<p><strong>Interpretação:</strong> Esses valores são mais úteis para comparar seu modelo com modelos alternativos (modelos aninhados ou não aninhados). Modelos com valores menores de AIC, BIC e SABIC são considerados melhores. Isoladamente, eles não indicam “bom” ou “mau” ajuste.</p></li>
+</ul>
+<p><strong>6. Erro Quadrático Médio da Aproximação (<code>Root Mean Square Error of Approximation</code> - RMSEA):</strong></p>
+<p>O RMSEA é um índice de ajuste absoluto que mede o quão mal o modelo se ajusta aos dados. Valores menores indicam melhor ajuste.</p>
+<ul>
+<li><strong><code>RMSEA 0.504</code></strong>:
+<ul>
+<li><strong>Interpretação:</strong> Um RMSEA &lt; 0.05 é considerado um bom ajuste, entre 0.05 e 0.08 é um ajuste razoável, e &gt; 0.10 é um ajuste pobre. Seu valor de 0.504 é <strong>extremamente alto</strong>, indicando um ajuste muito ruim do modelo aos dados.</li>
+</ul></li>
+<li><strong><code>90 Percent confidence interval - lower 0.309</code></strong></li>
+<li><strong><code>90 Percent confidence interval - upper 0.727</code></strong>: O intervalo de confiança para o RMSEA é muito amplo e totalmente acima de 0.08, reforçando o mau ajuste.</li>
+<li><strong><code>P-value H_0: RMSEA &lt;= 0.050 0.000</code></strong>: Este é o p-valor para o teste da hipótese nula de que o RMSEA é menor ou igual a 0.05. Como é 0.000, rejeitamos essa hipótese.</li>
+<li><strong><code>P-value H_0: RMSEA &gt;= 0.080 1.000</code></strong>: Este é o p-valor para o teste da hipótese nula de que o RMSEA é maior ou igual a 0.08. Como é 1.000, não podemos rejeitar essa hipótese, o que significa que é muito provável que seu RMSEA seja realmente &gt;= 0.08.</li>
+</ul>
+<p><strong>Em resumo para RMSEA:</strong> O RMSEA confirma que o modelo tem um ajuste muito pobre aos dados.</p>
+<hr>
+<p><strong>Tabela de Regressão</strong></p>
+<p>É a parte mais importante da saída para entender as relações específicas do modelo SEM. Ela detalha os coeficientes estimados para cada caminho (regressão), covariância e variância**</p>
+<hr>
+<p><strong>1. Informações sobre Erros Padrão (<code>Standard errors</code>):</strong></p>
+<ul>
+<li><p><strong><code>Standard errors Standard</code></strong>: Indica que os erros padrão foram calculados usando o método padrão (não robusto).</p></li>
+<li><p><strong><code>Information Expected</code></strong>: O tipo de matriz de informação utilizada na estimação (esperada).</p></li>
+<li><p><strong><code>Information saturated (h1) model Structured</code></strong>: Refere-se a como a matriz de informação é tratada para o modelo saturado (h1).</p>
+<p><strong>Interpretação:</strong> Essas são informações técnicas sobre como os erros padrão e os testes de significância foram calculados. Geralmente, você não precisa se aprofundar muito nisso, a menos que haja problemas de convergência ou preocupações com a normalidade dos dados.</p></li>
+</ul>
+<p><strong>2. Regressões (<code>Regressions</code>):</strong></p>
+<p>Esta seção mostra os efeitos diretos (caminhos) de uma variável sobre outra, semelhantes aos coeficientes de regressão.</p>
+<ul>
+<li><strong><code>Estimate</code></strong>: O coeficiente de regressão não padronizado. Representa a mudança na variável dependente para cada unidade de mudança na variável preditora, mantendo as outras preditoras constantes.</li>
+<li><strong><code>Std.Err</code></strong>: O erro padrão do coeficiente estimado.</li>
+<li><strong><code>z-value</code></strong>: O valor Z do teste de Wald, que é o <code>Estimate</code> dividido pelo <code>Std.Err</code>. É usado para testar a significância estatística do coeficiente.</li>
+<li><strong><code>P(&gt;|z|)</code></strong>: O p-valor associado ao valor Z. Se for menor que seu nível de significância (geralmente 0.05), o coeficiente é considerado estatisticamente significativo.</li>
+<li><strong><code>Std.lv</code></strong>: Coeficientes padronizados com base apenas nas variáveis latentes (se houver). Neste modelo, como você só tem variáveis observadas, será o mesmo que <code>Estimate</code>.</li>
+<li><strong><code>Std.all</code></strong>: Coeficientes padronizados com base em todas as variáveis (observadas e latentes). Estes são os que você vê no diagrama e são os mais úteis para comparar a força relativa dos efeitos. Eles variam de -1 a 1.</li>
+</ul>
+<p><strong>Detalhes da Interpretação:</strong></p>
+<p><strong>a) <code>mpg ~ cyl</code> (mpg é predito por cyl):</strong> * <code>Estimate = -0.987</code>: Para cada aumento de 1 cilindro, o <code>mpg</code> diminui em 0.987 unidades. * <code>P(&gt;|z|) = 0.181</code>: Não é significativo (p &gt; 0.05). Isso significa que o número de cilindros não tem um efeito direto estatisticamente significativo sobre <code>mpg</code> APÓS contabilizar as outras variáveis no modelo para <code>mpg</code>. * <code>Std.all = -0.293</code>: Um efeito padronizado fraco a moderado, mas não significativo. (Corresponde a <code>-0.29</code> no diagrama).</p>
+<p><strong>b) <code>mpg ~ disp</code> (mpg é predito por disp):</strong> * <code>Estimate = -0.021</code>: Para cada aumento de 1 unidade em <code>disp</code>, o <code>mpg</code> diminui em 0.021 unidades. * <code>P(&gt;|z|) = 0.029</code>: <strong>Significativo</strong> (p &lt; 0.05). <code>disp</code> tem um efeito direto negativo estatisticamente significativo sobre <code>mpg</code>. * <code>Std.all = -0.435</code>: Um efeito padronizado moderado e significativo. (Corresponde a <code>-0.44</code> no diagrama).</p>
+<p><strong>c) <code>mpg ~ hp</code> (mpg é predito por hp):</strong> * <code>Estimate = -0.017</code>: Para cada aumento de 1 unidade em <code>hp</code>, o <code>mpg</code> diminui em 0.017 unidades. * <code>P(&gt;|z|) = 0.223</code>: Não é significativo (p &gt; 0.05). <code>hp</code> não tem um efeito direto estatisticamente significativo sobre <code>mpg</code> APÓS contabilizar as outras variáveis. * <code>Std.all = -0.190</code>: Um efeito padronizado fraco e não significativo. (Corresponde a <code>-0.19</code> no diagrama).</p>
+<p><strong>d) <code>qsec ~ disp</code> (qsec é predito por disp):</strong> * <code>Estimate = -0.008</code>: Para cada aumento de 1 unidade em <code>disp</code>, o <code>qsec</code> diminui em 0.008 unidades. * <code>P(&gt;|z|) = 0.034</code>: <strong>Significativo</strong> (p &lt; 0.05). <code>disp</code> tem um efeito direto negativo estatisticamente significativo sobre <code>qsec</code>. * <code>Std.all = -0.559</code>: Um efeito padronizado forte e significativo. (Corresponde a <code>-0.56</code> no diagrama).</p>
+<p><strong>e) <code>qsec ~ hp</code> (qsec é predito por hp):</strong> * <code>Estimate = -0.023</code>: Para cada aumento de 1 unidade em <code>hp</code>, o <code>qsec</code> diminui em 0.023 unidades. * <code>P(&gt;|z|) = 0.000</code>: <strong>Altamente significativo</strong> (p &lt; 0.001). <code>hp</code> tem um efeito direto negativo muito forte e estatisticamente significativo sobre <code>qsec</code>. * <code>Std.all = -0.849</code>: Um efeito padronizado muito forte e significativo. (Corresponde a <code>-0.85</code> no diagrama).</p>
+<p><strong>f) <code>qsec ~ wt</code> (qsec é predito por wt):</strong> * <code>Estimate = 1.695</code>: Para cada aumento de 1 unidade em <code>wt</code>, o <code>qsec</code> aumenta em 1.695 unidades. * <code>P(&gt;|z|) = 0.000</code>: <strong>Altamente significativo</strong> (p &lt; 0.001). <code>wt</code> tem um efeito direto positivo muito forte e estatisticamente significativo sobre <code>qsec</code>. * <code>Std.all = 0.908</code>: Um efeito padronizado muito forte e significativo. (Corresponde a <code>0.91</code> no diagrama).</p>
+<p><strong>Resumo das Regressões:</strong> * Para <code>mpg</code>, apenas <code>disp</code> tem um efeito direto significativo (e negativo). * Para <code>qsec</code>, <code>disp</code>, <code>hp</code> e <code>wt</code> têm efeitos diretos significativos. <code>hp</code> (negativo) e <code>wt</code> (positivo) são os preditores mais fortes de <code>qsec</code>.</p>
+<p><strong>3. Covariâncias (<code>Covariances</code>):</strong></p>
+<p>Esta seção mostra as covariâncias estimadas entre variáveis que não têm uma relação causal direta modelada (ou entre os resíduos das variáveis endógenas).</p>
+<ul>
+<li><strong><code>.mpg ~~ .qsec</code> (Covariância entre os resíduos de mpg e qsec):</strong>
+<ul>
+<li><code>Estimate = 0.447</code>: A covariância não padronizada dos resíduos.</li>
+<li><code>P(&gt;|z|) = 0.382</code>: Não é significativo (p &gt; 0.05).</li>
+<li><code>Std.all = 0.156</code>: Uma correlação residual padronizada fraca e não significativa. (Corresponde a <code>0.16</code> no diagrama, que é a correlação entre os resíduos, não as variáveis brutas).</li>
+</ul>
+<strong>Interpretação:</strong> A covariância (ou correlação) entre os resíduos de <code>mpg</code> e <code>qsec</code> não é estatisticamente significativa. Isso significa que, após contabilizar os efeitos das variáveis preditoras (<code>cyl</code>, <code>disp</code>, <code>hp</code> para <code>mpg</code>; <code>disp</code>, <code>hp</code>, <code>wt</code> para <code>qsec</code>), qualquer variância restante em <code>mpg</code> e <code>qsec</code> não está significativamente relacionada entre si.</li>
+</ul>
+<p><strong>4. Variâncias (<code>Variances</code>):</strong></p>
+<p>Esta seção mostra as variâncias estimadas para as variáveis exógenas e as variâncias residuais para as variáveis endógenas.</p>
+<ul>
+<li><strong><code>.mpg</code> (Variância residual de mpg):</strong>
+<ul>
+<li><code>Estimate = 8.194</code>: A variância não padronizada do resíduo de <code>mpg</code>.</li>
+<li><code>P(&gt;|z|) = 0.000</code>: Altamente significativo, o que é esperado para variâncias.</li>
+<li><code>Std.all = 0.234</code>: A variância residual padronizada (1 - R-quadrado). Isso significa que 23.4% da variância de <code>mpg</code> não é explicada pelas preditoras no modelo. Consequentemente, as preditoras (<code>cyl</code>, <code>disp</code>, <code>hp</code>) explicam <code>1 - 0.234 = 0.766</code> ou 76.6% da variância em <code>mpg</code> (R-quadrado para <code>mpg</code>). (Corresponde a <code>0.23</code> no diagrama).</li>
+</ul></li>
+<li><strong><code>.qsec</code> (Variância residual de qsec):</strong>
+<ul>
+<li><code>Estimate = 0.996</code>: A variância não padronizada do resíduo de <code>qsec</code>.</li>
+<li><code>P(&gt;|z|) = 0.000</code>: Altamente significativo.</li>
+<li><code>Std.all = 0.308</code>: A variância residual padronizada (1 - R-quadrado). Isso significa que 30.8% da variância de <code>qsec</code> não é explicada pelas preditoras no modelo. Consequentemente, as preditoras (<code>disp</code>, <code>hp</code>, <code>wt</code>) explicam <code>1 - 0.308 = 0.692</code> ou 69.2% da variância em <code>qsec</code> (R-quadrado para <code>qsec</code>). (Corresponde a <code>0.31</code> no diagrama).</li>
+</ul>
+<strong>Interpretação:</strong> As variâncias residuais indicam a proporção da variância das variáveis dependentes que <em>não</em> é explicada pelo modelo. Os valores padronizados (<code>Std.all</code>) fornecem o complementar do R-quadrado. Seu modelo explica uma proporção razoável da variância em ambas as variáveis dependentes.</li>
+</ul>
+<p><strong>Considerações Finais:</strong></p>
+<p>Lembre-se da interpretação anterior sobre o ajuste geral do modelo. Embora alguns caminhos individuais sejam estatisticamente significativos e os Rs-quadrados sejam razoáveis, os índices de ajuste globais (CFI, TLI, RMSEA) indicaram que o modelo como um todo não se ajusta bem aos dados. Isso significa que, embora as relações específicas que você encontrou sejam interessantes, a estrutura geral do seu modelo pode não ser a melhor representação dos dados, possivelmente devido ao pequeno tamanho da amostra ou a um modelo teórico incompleto/incorreto.</p>
+<p>Em resumo, seu modelo atual não se ajusta bem aos dados. A primeira etapa é sempre revisar a teoria por trás do seu modelo e a especificação no <code>lavaan</code>. Dada a pequena amostra do <code>mtcars</code>, é desafiador construir um modelo SEM robusto com este conjunto de dados.</p>
+<p><strong>Conclusão Geral e Recomendações:</strong></p>
+<p>Com base em todos os índices de ajuste (Chi-quadrado, CFI, TLI, RMSEA), seu modelo atual apresenta um <strong>ajuste muito pobre</strong> aos dados do <code>mtcars</code>. Isso significa que as relações e a estrutura que você hipotetizou no seu diagrama (e que o <code>lavaan</code> tentou ajustar) não representam bem as covariâncias observadas no seu conjunto de dados.</p>
+<p><strong>O que fazer a seguir?</strong></p>
+<ol type="1">
+<li><strong>Revisar o Modelo Teórico:</strong>
+<ul>
+<li>Seu modelo SEM deve ser baseado em teoria. As relações que você desenhou fazem sentido conceitualmente?</li>
+<li>Há alguma variável importante faltando no modelo que poderia explicar melhor <code>mpg</code> ou <code>qsec</code>?</li>
+<li>Você incluiu todas as covariâncias entre as variáveis exógenas (<code>cyl</code>, <code>disp</code>, <code>hp</code>, <code>wt</code>) que são esperadas? (Pelo diagrama, parece que sim, mas verifique se o modelo <code>lavaan</code> as especificou corretamente).</li>
+</ul></li>
+<li><strong>Verificar Especificação do Modelo:</strong>
+<ul>
+<li>Certifique-se de que a sintaxe do <code>lavaan</code> reflete <em>exatamente</em> o diagrama que você pretendia testar. Às vezes, pequenos erros de digitação ou omissões podem levar a um ajuste ruim.</li>
+<li>Se você usou um atalho como <code>x ~~ y</code> para covariância ou <code>y ~ x</code> para regressão, confira se não há setas ou covariâncias que deveriam estar lá, mas não foram especificadas.</li>
+</ul></li>
+<li><strong>Explorar Modificações (Com Cuidado):</strong>
+<ul>
+<li>O <code>lavaan</code> pode fornecer índices de modificação (<code>modindices()</code>) que sugerem quais parâmetros (caminhos ou covariâncias) poderiam ser adicionados ao modelo para melhorar o ajuste.</li>
+<li><strong>Importante:</strong> Use índices de modificação com <strong>muita cautela</strong> e apenas se as modificações fizerem sentido teórico. Fazer mudanças apenas para melhorar o ajuste sem base teórica pode levar a um modelo superajustado aos dados da amostra e que não generaliza bem.</li>
+</ul></li>
+<li><strong>Tamanho da Amostra:</strong>
+<ul>
+<li>Com 32 observações, você tem um tamanho de amostra muito pequeno para SEM. Modelos SEM geralmente exigem amostras maiores (centenas de observações) para ter poder estatístico adequado e para que os índices de ajuste funcionem de forma confiável. Um tamanho de amostra pequeno pode inflar o qui-quadrado e dificultar a obtenção de um bom ajuste, mesmo que o modelo seja teoricamente correto. No caso do <code>mtcars</code>, que tem apenas 32 carros, as limitações do conjunto de dados são um fator importante.</li>
+</ul></li>
+<li><strong>Multicolinearidade:</strong>
+<ul>
+<li>No diagrama, vimos correlações muito altas entre <code>cyl</code>, <code>disp</code>, <code>hp</code>, <code>wt</code>. Embora SEM possa lidar com isso melhor do que regressão múltipla tradicional, correlações extremamente altas ainda podem dificultar a estimação ou interpretação dos efeitos diretos.</li>
+</ul></li>
+</ol>
+<p><strong>Conexão com o Diagrama abaixo</strong></p>
+<p>Os valores na coluna <code>Std.all</code> correspondem diretamente aos números exibidos nas setas do seu diagrama (<code>semPlot</code>). A espessura das setas no diagrama visualmente representa a magnitude desses <code>Std.all</code>. A cor (verde/vermelho) reflete o sinal do <code>Estimate</code> (positivo/negativo).</p>
+</div>
+</div>
+</div>
+<p>Agora, vamos plotar os resultados no diagrama usando o pacote <code>semPlot</code></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(semPlot)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerar o diagrama de caminhos</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">semPaths</span>(mdl_fit_sem_mtcars, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">what =</span> <span class="st">"std"</span>,         <span class="co"># mostra coeficientes padronizados</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">layout =</span> <span class="st">"tree"</span>,      <span class="co"># organiza em formato de árvore</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>         <span class="at">edge.label.cex =</span> <span class="fl">1.2</span>, <span class="co"># tamanho dos rótulos</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeMan =</span> <span class="dv">8</span>,          <span class="co"># tamanho dos nós</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">sizeLat =</span> <span class="dv">10</span>,         <span class="co"># tamanho das variáveis latentes(não tem nesse modelo)</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">nCharNodes =</span> <span class="dv">0</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="modelagem_equacoes_estruturais_files/figure-html/semplot_mtcars-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Clique aqui pra expandir se precisar da interpretação do gráfico
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>O diagrama de caminho (path diagram) acima, representa as relações hipotéticas entre variáveis usando o conjunto de dados <code>mtcars</code>.</p>
+<p><strong>Visão Geral do Diagrama:</strong></p>
+<ul>
+<li><p><strong>Variáveis Observadas (Retângulos):</strong> representa uma variável observada do conjunto de dados <code>mtcars</code>(e.g cyl(número de cilindros), disp(cilindrada),hp(potência),wt(peso do veículo), mpg(milhas por galão), qsec(tempo de 1/4 de milha).</p></li>
+<li><p><strong>Setas e Linhas:</strong> representam relações causais ou diretivas (regressões), enquanto as linhas bidirecionais curvas representam covariâncias ou correlações.</p></li>
+<li><p><strong>Cores:</strong> Verde indica uma relação positiva, enquanto a vermelha, relação negativa.</p></li>
+<li><p><strong>Espessura da Linha/Seta:</strong> É proporcional à magnitude do coeficiente de caminho (seja ele um coeficiente de regressão ou uma correlação). Linhas mais grossas indicam relações mais fortes.</p></li>
+<li><p><strong>Números nas Setas/Linhas:</strong> são os coeficientes de caminho padronizados (standardized path coefficients), que são análogos a coeficientes de regressão padronizados ou correlações. Eles variam de -1 a 1. Onde valores próximos a 0 indicam relações fracas e valores próximos a 1 (ou -1) indicam relações fortes.</p></li>
+</ul>
+<p><strong>Interpretação Detalhada por Seções:</strong></p>
+<p><strong>1. Relações entre as Variáveis de “Características do Carro” (Topo):</strong></p>
+<ul>
+<li><strong>Setas Bidirecionais Curvas na Parte Superior (entre cyl, disp, hp, wt):</strong> Estas representam as correlações entre essas variáveis de características do carro. Todas são verdes e têm valores altos, indicando fortes correlações positivas.
+<ul>
+<li><code>cyl &lt;-&gt; cyl</code> (1.00): Isso é o “erro” ou variância não explicada da própria variável. Em modelos SEM, geralmente é a variância residual ou a variância de um erro, mas para variáveis exógenas (sem setas apontando para elas), pode representar a variância total. No entanto, o <code>semPlot</code> pode desenhar isso como a variância total de uma variável quando não há preditores, ou a variância residual de uma variável endógena. Neste caso, para <code>cyl</code>, <code>disp</code>, <code>hp</code>, <code>wt</code> que parecem ser variáveis exógenas (ou seja, suas causas não são modeladas aqui, elas são as preditoras), esse <code>1.00</code> geralmente representa que 100% da variância delas é explicada por si mesmas no contexto de não serem preditas por outras variáveis no modelo, ou simplesmente sua variância total (que é 1 em uma escala padronizada).</li>
+<li><code>cyl &lt;-&gt; disp</code>: Correlação de 0.90 (forte, positiva). Carros com mais cilindros tendem a ter maior cilindrada.</li>
+<li><code>disp &lt;-&gt; hp</code>: Correlação de 0.83 (forte, positiva). Carros com maior cilindrada tendem a ter maior potência.</li>
+<li><code>disp &lt;-&gt; disp</code> (1.00): O mesmo que para <code>cyl</code>.</li>
+<li><code>hp &lt;-&gt; hp</code> (1.00): O mesmo.</li>
+<li><code>hp &lt;-&gt; wt</code>: Correlação de 0.79 (forte, positiva). Carros com maior potência tendem a ser mais pesados.</li>
+<li><code>disp &lt;-&gt; wt</code>: Correlação de 0.78 (forte, positiva). Carros com maior cilindrada tendem a ser mais pesados.</li>
+<li><code>wt &lt;-&gt; wt</code> (1.00): O mesmo.</li>
+<li><code>cyl &lt;-&gt; hp</code> (não mostrado diretamente, mas inferido através de disp).</li>
+<li><code>cyl &lt;-&gt; wt</code> (não mostrado diretamente, mas inferido).</li>
+<li><code>hp &lt;-&gt; cyl</code> (0.89): Forte correlação positiva.</li>
+<li><code>wt &lt;-&gt; hp</code> (0.66): Correlação positiva.</li>
+<li><strong>Em resumo:</strong> Essas quatro variáveis (<code>cyl</code>, <code>disp</code>, <code>hp</code>, <code>wt</code>) são altamente correlacionadas entre si. Isso é esperado, pois elas são características intrínsecas do motor e do carro que geralmente andam juntas.</li>
+</ul></li>
+</ul>
+<p><strong>2. Relações entre Variáveis de Características do Carro e <code>mpg</code> (Consumo):</strong></p>
+<ul>
+<li><code>cyl -&gt; mpg</code>: Coeficiente de -0.29 (vermelho, fraco a moderado, negativo). Carros com mais cilindros tendem a ter menor <code>mpg</code> (pior consumo de combustível).</li>
+<li><code>disp -&gt; mpg</code>: Coeficiente de -0.44 (vermelho, moderado, negativo). Carros com maior cilindrada tendem a ter menor <code>mpg</code>.</li>
+<li><code>hp -&gt; mpg</code>: Coeficiente de -0.19 (vermelho, fraco, negativo). Carros com maior potência tendem a ter menor <code>mpg</code>.</li>
+<li><code>wt -&gt; mpg</code>: <strong>Não há seta direta de <code>wt</code> para <code>mpg</code> neste modelo.</strong> Isso sugere que o modelo não assume uma relação direta de <code>wt</code> para <code>mpg</code> APÓS contabilizar as outras variáveis, ou a relação não foi estatisticamente significativa para ser incluída ou é indireta.
+<ul>
+<li><strong>Em resumo:</strong> Cilindros, cilindrada e potência estão negativamente associadas ao consumo de combustível. Carros com características de motor mais “potentes” ou “maiores” tendem a consumir mais combustível (menor <code>mpg</code>). <code>disp</code> tem o efeito direto negativo mais forte em <code>mpg</code>.</li>
+</ul></li>
+</ul>
+<p><strong>3. Relações entre Variáveis de Características do Carro e <code>qsec</code> (Tempo de 1/4 de Milha):</strong></p>
+<ul>
+<li><code>disp -&gt; qsec</code>: Coeficiente de -0.56 (vermelho, moderado a forte, negativo). Carros com maior cilindrada tendem a ter um tempo de 1/4 de milha menor (ou seja, são mais rápidos).</li>
+<li><code>hp -&gt; qsec</code>: Coeficiente de -0.85 (vermelho, muito forte, negativo). Carros com maior potência tendem a ter um tempo de 1/4 de milha significativamente menor (são muito mais rápidos).</li>
+<li><code>wt -&gt; qsec</code>: Coeficiente de 0.91 (verde, muito forte, positivo). Carros mais pesados tendem a ter um tempo de 1/4 de milha maior (ou seja, são mais lentos).
+<ul>
+<li><strong>Em resumo:</strong> Cilindrada e potência contribuem para um carro mais rápido (menor <code>qsec</code>), com a potência (<code>hp</code>) sendo o fator mais influente. O peso (<code>wt</code>), por outro lado, torna o carro mais lento (maior <code>qsec</code>), com uma influência igualmente forte.</li>
+</ul></li>
+</ul>
+<p><strong>4. Relação entre <code>mpg</code> e <code>qsec</code>:</strong></p>
+<ul>
+<li><code>mpg &lt;-&gt; qsec</code>: Coeficiente de 0.16 (verde, fraco, positivo). Há uma correlação positiva fraca entre <code>mpg</code> e <code>qsec</code>. Carros com melhor consumo de combustível tendem a ter um tempo de 1/4 de milha ligeiramente maior (são um pouco mais lentos). É importante notar que esta é uma <em>correlação</em> bidirecional, não uma relação causal direta no sentido de <code>mpg</code> causando <code>qsec</code> ou vice-versa neste modelo específico. Pode ser que variáveis não modeladas ou efeitos indiretos expliquem essa correlação.</li>
+</ul>
+<p><strong>5. Variância Residual (Loops nas Variáveis Dependentes):</strong></p>
+<ul>
+<li><code>mpg &lt;-&gt; mpg</code> (0.23): Este é o coeficiente de variância residual para <code>mpg</code>. Significa que 23% da variância de <code>mpg</code> NÃO é explicada pelas variáveis preditoras (<code>cyl</code>, <code>disp</code>, <code>hp</code>) incluídas no modelo para <code>mpg</code>. Ou, em outras palavras, as variáveis <code>cyl</code>, <code>disp</code>, <code>hp</code> explicam <code>1 - 0.23 = 0.77</code> ou 77% da variância em <code>mpg</code> (o R-quadrado).</li>
+<li><code>qsec &lt;-&gt; qsec</code> (0.31): Este é o coeficiente de variância residual para <code>qsec</code>. Significa que 31% da variância de <code>qsec</code> NÃO é explicada pelas variáveis preditoras (<code>disp</code>, <code>hp</code>, <code>wt</code>) incluídas no modelo para <code>qsec</code>. Portanto, <code>disp</code>, <code>hp</code>, <code>wt</code> explicam <code>1 - 0.31 = 0.69</code> ou 69% da variância em <code>qsec</code>.</li>
+</ul>
+<p><strong>Conclusões Gerais e Interpretação do Modelo:</strong></p>
+<p>Este modelo tenta explicar o consumo de combustível (<code>mpg</code>) e o desempenho de 1/4 de milha (<code>qsec</code>) usando características do motor e peso do carro.</p>
+<ul>
+<li><strong>Consumo de Combustível (<code>mpg</code>):</strong> É predominantemente influenciado negativamente por <code>disp</code> e <code>cyl</code>, e um pouco por <code>hp</code>. Carros com motores maiores/mais potentes tendem a ser menos eficientes em termos de combustível.</li>
+<li><strong>Desempenho de 1/4 de Milha (<code>qsec</code>):</strong> É fortemente influenciado pela potência (<code>hp</code>) e peso (<code>wt</code>), e também pela cilindrada (<code>disp</code>). Mais potência e menor cilindrada (para motores mais eficientes) levam a carros mais rápidos, enquanto maior peso torna os carros mais lentos. <code>hp</code> e <code>wt</code> têm os efeitos mais proeminentes.</li>
+<li><strong>Correlações Elevadas entre Preditoras:</strong> As altas correlações entre <code>cyl</code>, <code>disp</code>, <code>hp</code>, e <code>wt</code> são um ponto importante. Em modelos de regressão múltipla, isso poderia indicar multicolinearidade. Em SEM, isso é explicitamente modelado pelas covariâncias. Isso significa que essas variáveis não são independentes em seus efeitos, e os efeitos diretos que vemos (<code>cyl -&gt; mpg</code>, <code>disp -&gt; mpg</code>, etc.) são os efeitos <em>após</em> contabilizar a inter-relação entre as preditoras.</li>
+<li><strong>Poder Explicativo:</strong> O modelo explica uma grande parte da variância em <code>mpg</code> (77%) e <code>qsec</code> (69%), o que é bastante razoável.</li>
+</ul>
+<p>Este diagrama oferece uma representação visual clara das relações entre as variáveis, permitindo entender rapidamente quais fatores são mais influentes e em que direção. As setas mais espessas e os coeficientes de maior magnitude (<code>-0.85</code> de <code>hp</code> para <code>qsec</code>, <code>0.91</code> de <code>wt</code> para <code>qsec</code>, <code>0.90</code> de <code>cyl</code> para <code>disp</code>) são os pontos-chave de atenção para as relações mais fortes.</p>
+</div>
+</div>
+</div>
+<hr>
+<p><strong>Caso2 - Estudo de impacto da satisfação no trabalho sobre a produtividade, mediado pela motivação</strong></p>
+<ol type="1">
+<li><p>A especificação do modelo SEM é feito com uma string(em formato de texto nota que foi usado aspas ou apóstrofos)</p></li>
+<li><p>Definimos as variáveis latentes</p>
+<ul>
+<li><code>Satisfação no trabalho</code> (medida por perguntas sobre ambiente, salário, reconhecimento)</li>
+<li><code>Motivação</code> (medida por perguntas sobre engajamento, metas, esforço)</li>
+<li><code>Produtividade</code> (medida por desempenho, entregas, qualidade)</li>
+</ul></li>
+<li><p>As equações estruturais são:</p>
+<ul>
+<li><code>Satisfação → Motivação → Produtividade</code></li>
+</ul></li>
+<li><p>Implementar via software usando R (lavaan package)</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chamar a package</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># step1: simular os dados</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>Satisfacao1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean=</span><span class="dv">5</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>Satisfacao2 <span class="ot">&lt;-</span> Satisfacao1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>Satisfacao3 <span class="ot">&lt;-</span> Satisfacao1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>Motivacao1 <span class="ot">&lt;-</span> <span class="fl">0.6</span><span class="sc">*</span>Satisfacao1 <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>Motivacao2 <span class="ot">&lt;-</span> Motivacao1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>Motivacao3 <span class="ot">&lt;-</span> Motivacao1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>Produtividade1 <span class="ot">&lt;-</span> <span class="fl">0.7</span><span class="sc">*</span>Motivacao1 <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>Produtividade2 <span class="ot">&lt;-</span> Produtividade1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>Produtividade3 <span class="ot">&lt;-</span> Produtividade1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(Satisfacao1, Satisfacao2, Satisfacao3,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                    Motivacao1, Motivacao2, Motivacao3,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                    Produtividade1, Produtividade2, Produtividade3)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co"># step2: especificar o modelo com string(texto)</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="st">  # Variáveis latentes</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="st">  Satisfacao =~ Satisfacao1 + Satisfacao2 + Satisfacao3</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="st">  Motivacao =~ Motivacao1 + Motivacao2 + Motivacao3</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="st">  Produtividade =~ Produtividade1 + Produtividade2 + Produtividade3</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="st">  # Relações estruturais</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="st">  Motivacao ~ Satisfacao</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="st">  Produtividade ~ Motivacao</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co"># step3: Rodar o modelo</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>mdl_fit_sem_impact_motiv_prod <span class="ot">&lt;-</span> <span class="fu">sem</span>(modelo, <span class="at">data =</span> dados)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: lavaan-&gt;lav_object_post_check():  
+   some estimated ov variances are negative</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step4: Mostrar resultados via summary</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mdl_fit_sem_impact_motiv_prod, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>, <span class="at">standardized =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lavaan 0.6-19 ended normally after 43 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        20
+
+  Number of observations                           300
+
+Model Test User Model:
+                                                      
+  Test statistic                                24.186
+  Degrees of freedom                                25
+  P-value (Chi-square)                           0.509
+
+Model Test Baseline Model:
+
+  Test statistic                              3557.984
+  Degrees of freedom                                36
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    1.000
+  Tucker-Lewis Index (TLI)                       1.000
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)              -2549.336
+  Loglikelihood unrestricted model (H1)      -2537.243
+                                                      
+  Akaike (AIC)                                5138.672
+  Bayesian (BIC)                              5212.748
+  Sample-size adjusted Bayesian (SABIC)       5149.320
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.000
+  90 Percent confidence interval - lower         0.000
+  90 Percent confidence interval - upper         0.044
+  P-value H_0: RMSEA &lt;= 0.050                    0.977
+  P-value H_0: RMSEA &gt;= 0.080                    0.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.018
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Satisfacao =~                                                         
+    Satisfacao1       1.000                               0.943    0.999
+    Satisfacao2       0.970    0.034   28.678    0.000    0.915    0.881
+    Satisfacao3       0.977    0.035   27.822    0.000    0.922    0.873
+  Motivacao =~                                                          
+    Motivacao1        1.000                               1.183    1.009
+    Motivacao2        0.986    0.025   38.792    0.000    1.166    0.915
+    Motivacao3        0.994    0.026   38.198    0.000    1.176    0.913
+  Produtividade =~                                                      
+    Produtividade1    1.000                               1.296    0.998
+    Produtividade2    1.005    0.022   45.593    0.000    1.303    0.943
+    Produtividade3    1.018    0.023   43.379    0.000    1.319    0.936
+
+Regressions:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+  Motivacao ~                                                           
+    Satisfacao        0.629    0.063   10.038    0.000    0.501    0.501
+  Produtividade ~                                                       
+    Motivacao         0.684    0.049   13.890    0.000    0.624    0.624
+
+Variances:
+                   Estimate  Std.Err  z-value  P(&gt;|z|)   Std.lv  Std.all
+   .Satisfacao1       0.002    0.014    0.118    0.906    0.002    0.002
+   .Satisfacao2       0.241    0.024   10.155    0.000    0.241    0.224
+   .Satisfacao3       0.264    0.025   10.386    0.000    0.264    0.237
+   .Motivacao1       -0.025    0.012   -2.076    0.038   -0.025   -0.018
+   .Motivacao2        0.263    0.024   10.946    0.000    0.263    0.162
+   .Motivacao3        0.276    0.025   11.023    0.000    0.276    0.166
+   .Produtividade1    0.006    0.012    0.463    0.643    0.006    0.003
+   .Produtividade2    0.213    0.021    9.973    0.000    0.213    0.111
+   .Produtividade3    0.245    0.024   10.332    0.000    0.245    0.123
+    Satisfacao        0.890    0.074   12.002    0.000    1.000    1.000
+   .Motivacao         1.048    0.085   12.375    0.000    0.749    0.749
+   .Produtividade     1.025    0.084   12.171    0.000    0.610    0.610</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step5: Mostrar resultados arrumados usando broom::tidy() e broom::glance()</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># coeficientes de regressão (loadings)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(mdl_fit_sem_impact_motiv_prod) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(op<span class="sc">==</span><span class="st">"~"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 8
+  term                 op    estimate std.error statistic p.value std.lv std.all
+  &lt;chr&gt;                &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1 Motivacao ~ Satisfa… ~        0.629    0.0626      10.0       0  0.501   0.501
+2 Produtividade ~ Mot… ~        0.684    0.0493      13.9       0  0.624   0.624</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># principais medidas de ajuste</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glance</span>(mdl_fit_sem_impact_motiv_prod) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 17
+   agfi   AIC   BIC   cfi chisq  npar rmsea rmsea.conf.high   srmr   tli
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;           &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 0.969 5139. 5213.     1  24.2    20     0          0.0444 0.0183  1.00
+# ℹ 7 more variables: converged &lt;lgl&gt;, estimator &lt;chr&gt;, ngroups &lt;int&gt;,
+#   missing_method &lt;chr&gt;, nobs &lt;int&gt;, norig &lt;int&gt;, nexcluded &lt;int&gt;</code></pre>
+</div>
+</div>
+<p><strong>Resultados</strong></p>
+<ul>
+<li>Cargas fatoriais mostrando como cada indicador representa sua variável latente.</li>
+<li>Coeficientes padronizados das relações entre Satisfacao, Motivacao e Produtividade.</li>
+<li>Índices de ajuste como RMSEA, CFI, TLI para avaliar a qualidade do modelo.</li>
+</ul>
+<hr>
+<p><strong>Caso3 - Exemplo em manufatura onde queremos entender por que uma linha de montagem está com baixa produtividade. Suspeitamos que isso tem a ver com treinamento de operadores, qualidade das matérias primas e clima organizacional</strong></p>
+<p>Esses fatores não afetam diretamente a produtividade, mas influenciam a motivação e eficiência operacional, que por sua vez afetam a produtividade.</p>
+<ol type="1">
+<li><p>Vamos simular uma fábrica com as variáveis <code>treinamento</code>, <code>qualidade materia prima</code>, <code>clima organizacional</code>, <code>motivação</code>, <code>eficiência operacional</code> e <code>produtividade</code>.</p></li>
+<li><p>Vamos definir o modelo <code>SEM</code> com relações causais entre essa variáveis.</p></li>
+<li><p>Ajustar o modelo e gerar um resumo com cargas fatoriais, coeficientes padronizados, índices de ajustes(e.g.&nbsp;CFI, RMSEA, etc)</p></li>
+<li><p>Implementar via software usando R (lavaan package)</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># carregar package</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaan)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lavaanPlot)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># simular dados de manufatura</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># indicadores de variáveis latentes</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>treinamento_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean=</span><span class="dv">5</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>treinamento_2 <span class="ot">&lt;-</span> treinamento_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>treinamento_3 <span class="ot">&lt;-</span> treinamento_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>qualy_material_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean=</span><span class="dv">5</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>qualy_material_2 <span class="ot">&lt;-</span> qualy_material_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>qualy_material_3 <span class="ot">&lt;-</span> qualy_material_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>clima_org_1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean=</span><span class="dv">5</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>clima_org_2 <span class="ot">&lt;-</span> clima_org_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>clima_org_3 <span class="ot">&lt;-</span> clima_org_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>motivacao_1 <span class="ot">&lt;-</span> <span class="fl">0.6</span><span class="sc">*</span>treinamento_1 <span class="sc">+</span> <span class="fl">0.4</span><span class="sc">*</span>clima_org_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>motivacao_2 <span class="ot">&lt;-</span> motivacao_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>motivacao_3 <span class="ot">&lt;-</span> motivacao_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>eficiencia_oper_1 <span class="ot">&lt;-</span> <span class="fl">0.5</span><span class="sc">*</span>qualy_material_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>eficiencia_oper_2 <span class="ot">&lt;-</span> eficiencia_oper_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>eficiencia_oper_3 <span class="ot">&lt;-</span> eficiencia_oper_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>produtividade_1 <span class="ot">&lt;-</span> <span class="fl">0.6</span><span class="sc">*</span>motivacao_1 <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>eficiencia_oper_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>produtividade_2 <span class="ot">&lt;-</span> produtividade_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>produtividade_3 <span class="ot">&lt;-</span> produtividade_1 <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="co"># jogar dentro do dataframe</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">tibble</span>(treinamento_1, treinamento_2, treinamento_3,</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>                qualy_material_1, qualy_material_2, qualy_material_3,</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>                clima_org_1, clima_org_2, clima_org_3,</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>                motivacao_1, motivacao_2, motivacao_3,</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>                eficiencia_oper_1, eficiencia_oper_2, eficiencia_oper_3,</span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>                produtividade_1, produtividade_2, produtividade_3)</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 18
+  treinamento_1 treinamento_2 treinamento_3 qualy_material_1 qualy_material_2
+          &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+1          4.44          4.08          4.98             3.99             4.30
+2          4.77          4.39          4.76             4.21             3.83
+3          6.56          6.09          6.54             5.30             5.73
+4          5.07          4.54          4.31             6.64             6.27
+5          5.13          4.91          5.52             6.08             6.40
+6          6.72          6.88          6.61             4.38             4.92
+# ℹ 13 more variables: qualy_material_3 &lt;dbl&gt;, clima_org_1 &lt;dbl&gt;,
+#   clima_org_2 &lt;dbl&gt;, clima_org_3 &lt;dbl&gt;, motivacao_1 &lt;dbl&gt;, motivacao_2 &lt;dbl&gt;,
+#   motivacao_3 &lt;dbl&gt;, eficiencia_oper_1 &lt;dbl&gt;, eficiencia_oper_2 &lt;dbl&gt;,
+#   eficiencia_oper_3 &lt;dbl&gt;, produtividade_1 &lt;dbl&gt;, produtividade_2 &lt;dbl&gt;,
+#   produtividade_3 &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># definir o modelo SEM</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="st">"</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">  # variaveis latentes</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">  treinamento =~ treinamento_1 + treinamento_2 + treinamento_3</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">  qualidade_material =~ qualy_material_1 + qualy_material_2 + qualy_material_3</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="st">  clima_org =~ clima_org_1 + clima_org_2 + clima_org_3</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="st">  motivacao =~ motivacao_1 + motivacao_2 + motivacao_3</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="st">  eficiencia_oper =~ eficiencia_oper_1 + eficiencia_oper_2 + eficiencia_oper_3</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="st">  produtividade =~ produtividade_1 + produtividade_2 + produtividade_3</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="st">  # Structural relationships</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="st">  motivacao ~ treinamento + clima_org</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="st">  eficiencia_oper ~ qualidade_material</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="st">  produtividade ~ motivacao + eficiencia_oper</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Rodar o modelo</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>mdl_fit_sem <span class="ot">&lt;-</span> <span class="fu">sem</span>(modelo, <span class="at">data =</span> dados)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar o resumo arrumado com broom::tidy()</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(mdl_fit_sem) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(op <span class="sc">==</span> <span class="st">"=~"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 18 × 8
+   term                op    estimate std.error statistic p.value std.lv std.all
+   &lt;chr&gt;               &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+ 1 treinamento =~ tre… =~       1        0           NA        NA  0.954   1.01 
+ 2 treinamento =~ tre… =~       0.949    0.0337      28.2       0  0.905   0.871
+ 3 treinamento =~ tre… =~       0.956    0.0349      27.4       0  0.912   0.864
+ 4 qualidade_material… =~       1        0           NA        NA  1.03    1.01 
+ 5 qualidade_material… =~       1.02     0.0302      33.8       0  1.05    0.901
+ 6 qualidade_material… =~       1.02     0.0310      33.0       0  1.05    0.896
+ 7 clima_org =~ clima… =~       1        0           NA        NA  1.01    1.000
+ 8 clima_org =~ clima… =~       0.982    0.0295      33.3       0  0.990   0.905
+ 9 clima_org =~ clima… =~       1.04     0.0314      33.0       0  1.04    0.902
+10 motivacao =~ motiv… =~       1        0           NA        NA  1.26    1.00 
+11 motivacao =~ motiv… =~       0.990    0.0243      40.7       0  1.25    0.927
+12 motivacao =~ motiv… =~       1.04     0.0239      43.3       0  1.31    0.935
+13 eficiencia_oper =~… =~       1        0           NA        NA  1.01    0.988
+14 eficiencia_oper =~… =~       1.05     0.0316      33.4       0  1.06    0.913
+15 eficiencia_oper =~… =~       0.983    0.0318      30.9       0  0.991   0.896
+16 produtividade =~ p… =~       1        0           NA        NA  1.27    0.993
+17 produtividade =~ p… =~       1.05     0.0233      44.8       0  1.33    0.945
+18 produtividade =~ p… =~       1.01     0.0225      45.1       0  1.29    0.945</code></pre>
+</div>
+</div>
+<p>Plotar os resultados no diagrama usando <code>semPlot</code></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>semPlot<span class="sc">::</span><span class="fu">semPaths</span>(mdl_fit_sem,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">what =</span> <span class="st">"std"</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">layout =</span> <span class="st">"tree"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sizeMan =</span> <span class="dv">8</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sizeLat =</span> <span class="dv">10</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">nCharNodes =</span> <span class="dv">11</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="modelagem_equacoes_estruturais_files/figure-html/sem_produtividade-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pra-onde-vai" class="level3">
+<h3 class="anchored" data-anchor-id="pra-onde-vai"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai?</strong></span></h3>
+<p>Depois de construir e validar o modelo SEM, ele pode ser usado para:</p>
+<ul>
+<li>Tomada de decisão baseada em evidências(e.g priorizar ações de melhoria com base em dados, investir mais em treinamento se ele tiver alto impacto na produtividade, melhorar políticas de RH).</li>
+<li>Apoiar decisões estratégias com evidências estatísticas.</li>
+<li>Comunucar resultados de forma clara para diretoria e equipes operacionais.</li>
+<li>Integrar SEM com sistemas de qualidade e melhoria contínua(e.g Six Sigma, Lean, TPM)</li>
+<li>Publicações científicas que testam teorias complexas.</li>
+<li>Desenvolvimento de produtos ou serviços com base em fatores que influenciam comportamento do consumidor.</li>
+<li>Avaliação de programas sociais ou educacionais.</li>
+</ul>
+</section>
+<section id="qual-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="qual-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual resultado?</strong></span></h3>
+<ul>
+<li>Mapeamento claro das causas reais de problemas ou oportunidades.</li>
+<li>Modelos visuais e estatísticos que mostram como tudo está conectados</li>
+<li>Redução de desperdícios ao foca em ações que realmente façam a diferença.</li>
+<li>Maior confiança nas decisões pois são baseadas em dados e não apenas em experiência ou opinião.</li>
+<li>Modelos estatísticos robustos que explicam bem os dados.</li>
+<li>Coeficientes padronizados que mostram a força das relações entre variáveis.</li>
+<li>Índices de ajuste (como RMSEA, CFI, TLI) que indicam se o modelo representa bem a realidade.</li>
+<li>Insights teóricos e práticos sobre os fatores que influenciam fenômenos complexos.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/carvalhoribeiro\.netlify\.app\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<script src="https://utteranc.es/client.js" repo="factorialmap/blog_comments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
