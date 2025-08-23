@@ -5,6 +5,7 @@ author: "Marcelo Carvalho dos Anjos"
 date: "2025-08-22"
 categories: [Modelos]
 format: html
+bibliography: references.bib
 ---
 
 ### {{< fa 1 >}} [**O que é a SEM**]{style="color: #5AC8BE ;"}
@@ -18,6 +19,8 @@ format: html
 -   **Variáveis observadas**: Ajudam a controlar e monitorar o processo. São coisas que conseguimos medir diretamente no chão da fábrica(e.g. temperatura de uma maquina, tempo de produção de uma peça, número de peças com defeito, peso de um produto, horas de treinamento recebidos). Estas variáveis vêm de sensores, relatórios ou medições feitas por pessoas. Elas são vistas e registradas.
 
 -   **Variáveis latentes**: Ajudam a entender o que está por trás dos resultados e melhorar o sistema de forma mais profunda. São coisas que não conseguimos medir diretamente, mas que influenciam o processo. É necessário usar outras variáveis para estimar ou representá-las(e.g. motivação dos operadores, qualidade do ambiente de trabalho, engajamento com segurança, cultura de melhoria contínua, satisfação com treinamento). Não há um sensor que mede a motivação por exemplo, mas pode-se utilizar de perguntas de uma pesquisa ou observar o comportamentos para representar esse conceito.
+
+PS. Há conteúdos no Youtube de excelente qualidade que ajudam a compreender melhor esses modelos e suas aplicações como por exemplo, o do professor @prof.diogeness.bido2021
 
 ### {{< fa 2 >}} [**Qual o objetivo?**]{style="color: #5AC8BE ;"}
 
@@ -37,7 +40,6 @@ A necessidade surgiu da limitação de métodos estatísticos tradicionais (como
 
 Na industria onde há sistemas igualmente complexos como uma fábrica com centenas de variáveis interagindo. Ela surge como ferramenta complementar a métodos tradicionais(e.g. gráficos de controle, regressão simples etc) os quais podem não conseguir capturar todas as complexidades existentes no processo. O SEM entra como uma solução para modelar sistemas industriais de forma mais completa.
 
-
 ### {{< fa 4 >}} [**Como fazer?**]{style="color: #5AC8BE ;"}
 
 **Caso1 - Apenas para trazer sentido para nosso exemplo usando mtcars dataset**
@@ -48,10 +50,10 @@ Iremos fazer um modelo sem variáveis latentes, chamado também de `path analysi
 
 2.  Há duas equações estruturais sendo:
 
-  - **mpg \~ cyl + disp + hp**: o consumo de combustível (mpg) é explicado por número de cilindros (cyl), deslocamento (disp) e potência (hp).
-  - **qsec \~ disp + hp + wt**: o tempo de aceleração (qsec) é explicado por deslocamento (disp), potência (hp) e peso (wt).
+-   **mpg \~ cyl + disp + hp**: o consumo de combustível (mpg) é explicado por número de cilindros (cyl), deslocamento (disp) e potência (hp).
+-   **qsec \~ disp + hp + wt**: o tempo de aceleração (qsec) é explicado por deslocamento (disp), potência (hp) e peso (wt).
 
-3.  Implementar via software usando R (lavaan package)
+3.  Implementar via software usando R/RStudio @rstudio/2025, Lavaan package @rosseel2024, Quarto Publishing @quarto2025
 
 ```{r}
 #| label: sem_mtcars
@@ -80,24 +82,25 @@ summary(mdl_fit_sem_mtcars, fit.measures = TRUE, standardized = TRUE)
 ::: {.callout-tip collapse="true"}
 ## Clique aqui para mais detalhes sobre a interpretação dos resultados do modelo
 
-
 **Interpretação da Saída:**
 
 **1. Informações Básicas do Modelo:**
 
-*   **`lavaan 0.6-19 ended normally after 32 iterations`**: O processo de estimação do modelo convergiu com sucesso após 32 iterações. Isso é bom, indica que o algoritmo encontrou uma solução estável.
-*   **`Estimator ML`**: O estimador usado foi o de Máxima Verossimilhança (Maximum Likelihood). Este é o estimador padrão e mais comum para SEM quando os dados são aproximadamente normais.
-*   **`Optimization method NLMINB`**: O método de otimização usado.
-*   **`Number of model parameters 9`**: Seu modelo possui 9 parâmetros que foram estimados (por exemplo, os coeficientes de caminho, variâncias residuais, covariâncias).
-*   **`Number of observations 32`**: Você está usando um conjunto de dados com 32 observações (linhas), que é o tamanho do conjunto de dados `mtcars`.
+-   **`lavaan 0.6-19 ended normally after 32 iterations`**: O processo de estimação do modelo convergiu com sucesso após 32 iterações. Isso é bom, indica que o algoritmo encontrou uma solução estável.
+-   **`Estimator ML`**: O estimador usado foi o de Máxima Verossimilhança (Maximum Likelihood). Este é o estimador padrão e mais comum para SEM quando os dados são aproximadamente normais.
+-   **`Optimization method NLMINB`**: O método de otimização usado.
+-   **`Number of model parameters 9`**: Seu modelo possui 9 parâmetros que foram estimados (por exemplo, os coeficientes de caminho, variâncias residuais, covariâncias).
+-   **`Number of observations 32`**: Você está usando um conjunto de dados com 32 observações (linhas), que é o tamanho do conjunto de dados `mtcars`.
 
 **2. Teste do Modelo do Usuário (`Model Test User Model`):**
 
 Este é o teste de qui-quadrado (Chi-square test) do seu modelo. A hipótese nula ($H_0$) deste teste é que o seu modelo se ajusta *perfeitamente* aos dados da população. Uma hipótese alternativa ($H_1$) é que o modelo não se ajusta perfeitamente.
 
-*   **`Test statistic 18.266`**: O valor do teste de qui-quadrado.
-*   **`Degrees of freedom 2`**: Os graus de liberdade do seu modelo.
-*   **`P-value (Chi-square) 0.000`**: O p-valor associado.
+-   **`Test statistic 18.266`**: O valor do teste de qui-quadrado.
+
+-   **`Degrees of freedom 2`**: Os graus de liberdade do seu modelo.
+
+-   **`P-value (Chi-square) 0.000`**: O p-valor associado.
 
     **Interpretação:** Como o p-valor (0.000) é menor que 0.05 (ou qualquer nível de significância usual), nós **rejeitamos a hipótese nula**. Isso significa que o seu modelo (o "modelo do usuário") *não* se ajusta perfeitamente aos dados observados.
 
@@ -107,20 +110,25 @@ Este é o teste de qui-quadrado (Chi-square test) do seu modelo. A hipótese nul
 
 O modelo de linha de base (baseline model) é um modelo nulo onde todas as variáveis são consideradas não correlacionadas. Serve como um ponto de comparação para o seu modelo.
 
-*   **`Test statistic 101.965`**
-*   **`Degrees of freedom 9`**
-*   **`P-value 0.000`**
+-   **`Test statistic 101.965`**
 
-    **Interpretação:** O modelo de linha de base também não se ajusta bem aos dados (p-valor < 0.05), o que é esperado, pois é um modelo muito restritivo. Este teste é usado principalmente para calcular os índices de ajuste comparativos (CFI, TLI).
+-   **`Degrees of freedom 9`**
+
+-   **`P-value 0.000`**
+
+    **Interpretação:** O modelo de linha de base também não se ajusta bem aos dados (p-valor \< 0.05), o que é esperado, pois é um modelo muito restritivo. Este teste é usado principalmente para calcular os índices de ajuste comparativos (CFI, TLI).
 
 **4. Modelo do Usuário versus Modelo de Linha de Base (`User Model versus Baseline Model`):**
 
 Esses são índices de ajuste incrementais, que comparam o seu modelo com o modelo de linha de base.
 
-*   **`Comparative Fit Index (CFI) 0.825`**:
-    *   **Interpretação:** O CFI varia de 0 a 1. Valores acima de 0.90 ou 0.95 são geralmente considerados indicativos de um bom ajuste. Seu CFI de 0.825 está abaixo dos critérios comuns para um bom ajuste (geralmente > 0.90 ou > 0.95). Isso sugere que o seu modelo não melhora substancialmente o ajuste em comparação com o modelo nulo o suficiente para ser considerado um "bom" ajuste.
-*   **`Tucker-Lewis Index (TLI) 0.213`**:
-    *   **Interpretação:** O TLI (também conhecido como NNFI) é outro índice incremental, também variando geralmente de 0 a 1, com valores > 0.90 ou > 0.95 indicando bom ajuste. Seu TLI de 0.213 é **muito baixo**, indicando um ajuste pobre do modelo.
+-   **`Comparative Fit Index (CFI) 0.825`**:
+
+    -   **Interpretação:** O CFI varia de 0 a 1. Valores acima de 0.90 ou 0.95 são geralmente considerados indicativos de um bom ajuste. Seu CFI de 0.825 está abaixo dos critérios comuns para um bom ajuste (geralmente \> 0.90 ou \> 0.95). Isso sugere que o seu modelo não melhora substancialmente o ajuste em comparação com o modelo nulo o suficiente para ser considerado um "bom" ajuste.
+
+-   **`Tucker-Lewis Index (TLI) 0.213`**:
+
+    -   **Interpretação:** O TLI (também conhecido como NNFI) é outro índice incremental, também variando geralmente de 0 a 1, com valores \> 0.90 ou \> 0.95 indicando bom ajuste. Seu TLI de 0.213 é **muito baixo**, indicando um ajuste pobre do modelo.
 
     **Em resumo para CFI e TLI:** Ambos os índices sugerem que o seu modelo não está bem ajustado aos dados.
 
@@ -128,11 +136,15 @@ Esses são índices de ajuste incrementais, que comparam o seu modelo com o mode
 
 Esses critérios são usados para comparar modelos, favorecendo modelos com melhor ajuste e menor complexidade. Valores menores são geralmente preferíveis.
 
-*   **`Loglikelihood user model (H0) -124.003`**: A log-verossimilhança do seu modelo.
-*   **`Loglikelihood unrestricted model (H1) -114.870`**: A log-verossimilhança do modelo não restrito (também conhecido como modelo saturado), que é o modelo com o melhor ajuste possível aos dados.
-*   **`Akaike (AIC) 266.005`**: Critério de Informação de Akaike.
-*   **`Bayesian (BIC) 279.197`**: Critério de Informação Bayesiano.
-*   **`Sample-size adjusted Bayesian (SABIC) 251.140`**: BIC ajustado para o tamanho da amostra.
+-   **`Loglikelihood user model (H0) -124.003`**: A log-verossimilhança do seu modelo.
+
+-   **`Loglikelihood unrestricted model (H1) -114.870`**: A log-verossimilhança do modelo não restrito (também conhecido como modelo saturado), que é o modelo com o melhor ajuste possível aos dados.
+
+-   **`Akaike (AIC) 266.005`**: Critério de Informação de Akaike.
+
+-   **`Bayesian (BIC) 279.197`**: Critério de Informação Bayesiano.
+
+-   **`Sample-size adjusted Bayesian (SABIC) 251.140`**: BIC ajustado para o tamanho da amostra.
 
     **Interpretação:** Esses valores são mais úteis para comparar seu modelo com modelos alternativos (modelos aninhados ou não aninhados). Modelos com valores menores de AIC, BIC e SABIC são considerados melhores. Isoladamente, eles não indicam "bom" ou "mau" ajuste.
 
@@ -140,107 +152,87 @@ Esses critérios são usados para comparar modelos, favorecendo modelos com melh
 
 O RMSEA é um índice de ajuste absoluto que mede o quão mal o modelo se ajusta aos dados. Valores menores indicam melhor ajuste.
 
-*   **`RMSEA 0.504`**:
-    *   **Interpretação:** Um RMSEA < 0.05 é considerado um bom ajuste, entre 0.05 e 0.08 é um ajuste razoável, e > 0.10 é um ajuste pobre. Seu valor de 0.504 é **extremamente alto**, indicando um ajuste muito ruim do modelo aos dados.
-*   **`90 Percent confidence interval - lower 0.309`**
-*   **`90 Percent confidence interval - upper 0.727`**: O intervalo de confiança para o RMSEA é muito amplo e totalmente acima de 0.08, reforçando o mau ajuste.
-*   **`P-value H_0: RMSEA <= 0.050 0.000`**: Este é o p-valor para o teste da hipótese nula de que o RMSEA é menor ou igual a 0.05. Como é 0.000, rejeitamos essa hipótese.
-*   **`P-value H_0: RMSEA >= 0.080 1.000`**: Este é o p-valor para o teste da hipótese nula de que o RMSEA é maior ou igual a 0.08. Como é 1.000, não podemos rejeitar essa hipótese, o que significa que é muito provável que seu RMSEA seja realmente >= 0.08.
+-   **`RMSEA 0.504`**:
+    -   **Interpretação:** Um RMSEA \< 0.05 é considerado um bom ajuste, entre 0.05 e 0.08 é um ajuste razoável, e \> 0.10 é um ajuste pobre. Seu valor de 0.504 é **extremamente alto**, indicando um ajuste muito ruim do modelo aos dados.
+-   **`90 Percent confidence interval - lower 0.309`**
+-   **`90 Percent confidence interval - upper 0.727`**: O intervalo de confiança para o RMSEA é muito amplo e totalmente acima de 0.08, reforçando o mau ajuste.
+-   **`P-value H_0: RMSEA <= 0.050 0.000`**: Este é o p-valor para o teste da hipótese nula de que o RMSEA é menor ou igual a 0.05. Como é 0.000, rejeitamos essa hipótese.
+-   **`P-value H_0: RMSEA >= 0.080 1.000`**: Este é o p-valor para o teste da hipótese nula de que o RMSEA é maior ou igual a 0.08. Como é 1.000, não podemos rejeitar essa hipótese, o que significa que é muito provável que seu RMSEA seja realmente \>= 0.08.
 
 **Em resumo para RMSEA:** O RMSEA confirma que o modelo tem um ajuste muito pobre aos dados.
 
----
+------------------------------------------------------------------------
 
 **Tabela de Regressão**
 
-É a parte mais importante da saída para entender as relações específicas do modelo SEM. Ela detalha os coeficientes estimados para cada caminho (regressão), covariância e variância**
+É a parte mais importante da saída para entender as relações específicas do modelo SEM. Ela detalha os coeficientes estimados para cada caminho (regressão), covariância e variância\*\*
 
----
+------------------------------------------------------------------------
 
 **1. Informações sobre Erros Padrão (`Standard errors`):**
 
-*   **`Standard errors Standard`**: Indica que os erros padrão foram calculados usando o método padrão (não robusto).
-*   **`Information Expected`**: O tipo de matriz de informação utilizada na estimação (esperada).
-*   **`Information saturated (h1) model Structured`**: Refere-se a como a matriz de informação é tratada para o modelo saturado (h1).
+-   **`Standard errors Standard`**: Indica que os erros padrão foram calculados usando o método padrão (não robusto).
+
+-   **`Information Expected`**: O tipo de matriz de informação utilizada na estimação (esperada).
+
+-   **`Information saturated (h1) model Structured`**: Refere-se a como a matriz de informação é tratada para o modelo saturado (h1).
 
     **Interpretação:** Essas são informações técnicas sobre como os erros padrão e os testes de significância foram calculados. Geralmente, você não precisa se aprofundar muito nisso, a menos que haja problemas de convergência ou preocupações com a normalidade dos dados.
-
-
 
 **2. Regressões (`Regressions`):**
 
 Esta seção mostra os efeitos diretos (caminhos) de uma variável sobre outra, semelhantes aos coeficientes de regressão.
 
-*   **`Estimate`**: O coeficiente de regressão não padronizado. Representa a mudança na variável dependente para cada unidade de mudança na variável preditora, mantendo as outras preditoras constantes.
-*   **`Std.Err`**: O erro padrão do coeficiente estimado.
-*   **`z-value`**: O valor Z do teste de Wald, que é o `Estimate` dividido pelo `Std.Err`. É usado para testar a significância estatística do coeficiente.
-*   **`P(>|z|)`**: O p-valor associado ao valor Z. Se for menor que seu nível de significância (geralmente 0.05), o coeficiente é considerado estatisticamente significativo.
-*   **`Std.lv`**: Coeficientes padronizados com base apenas nas variáveis latentes (se houver). Neste modelo, como você só tem variáveis observadas, será o mesmo que `Estimate`.
-*   **`Std.all`**: Coeficientes padronizados com base em todas as variáveis (observadas e latentes). Estes são os que você vê no diagrama e são os mais úteis para comparar a força relativa dos efeitos. Eles variam de -1 a 1.
+-   **`Estimate`**: O coeficiente de regressão não padronizado. Representa a mudança na variável dependente para cada unidade de mudança na variável preditora, mantendo as outras preditoras constantes.
+-   **`Std.Err`**: O erro padrão do coeficiente estimado.
+-   **`z-value`**: O valor Z do teste de Wald, que é o `Estimate` dividido pelo `Std.Err`. É usado para testar a significância estatística do coeficiente.
+-   **`P(>|z|)`**: O p-valor associado ao valor Z. Se for menor que seu nível de significância (geralmente 0.05), o coeficiente é considerado estatisticamente significativo.
+-   **`Std.lv`**: Coeficientes padronizados com base apenas nas variáveis latentes (se houver). Neste modelo, como você só tem variáveis observadas, será o mesmo que `Estimate`.
+-   **`Std.all`**: Coeficientes padronizados com base em todas as variáveis (observadas e latentes). Estes são os que você vê no diagrama e são os mais úteis para comparar a força relativa dos efeitos. Eles variam de -1 a 1.
 
 **Detalhes da Interpretação:**
 
-**a) `mpg ~ cyl` (mpg é predito por cyl):**
-    *   `Estimate = -0.987`: Para cada aumento de 1 cilindro, o `mpg` diminui em 0.987 unidades.
-    *   `P(>|z|) = 0.181`: Não é significativo (p > 0.05). Isso significa que o número de cilindros não tem um efeito direto estatisticamente significativo sobre `mpg` APÓS contabilizar as outras variáveis no modelo para `mpg`.
-    *   `Std.all = -0.293`: Um efeito padronizado fraco a moderado, mas não significativo. (Corresponde a `-0.29` no diagrama).
+**a) `mpg ~ cyl` (mpg é predito por cyl):** \* `Estimate = -0.987`: Para cada aumento de 1 cilindro, o `mpg` diminui em 0.987 unidades. \* `P(>|z|) = 0.181`: Não é significativo (p \> 0.05). Isso significa que o número de cilindros não tem um efeito direto estatisticamente significativo sobre `mpg` APÓS contabilizar as outras variáveis no modelo para `mpg`. \* `Std.all = -0.293`: Um efeito padronizado fraco a moderado, mas não significativo. (Corresponde a `-0.29` no diagrama).
 
-**b) `mpg ~ disp` (mpg é predito por disp):**
-    *   `Estimate = -0.021`: Para cada aumento de 1 unidade em `disp`, o `mpg` diminui em 0.021 unidades.
-    *   `P(>|z|) = 0.029`: **Significativo** (p < 0.05). `disp` tem um efeito direto negativo estatisticamente significativo sobre `mpg`.
-    *   `Std.all = -0.435`: Um efeito padronizado moderado e significativo. (Corresponde a `-0.44` no diagrama).
+**b) `mpg ~ disp` (mpg é predito por disp):** \* `Estimate = -0.021`: Para cada aumento de 1 unidade em `disp`, o `mpg` diminui em 0.021 unidades. \* `P(>|z|) = 0.029`: **Significativo** (p \< 0.05). `disp` tem um efeito direto negativo estatisticamente significativo sobre `mpg`. \* `Std.all = -0.435`: Um efeito padronizado moderado e significativo. (Corresponde a `-0.44` no diagrama).
 
-**c) `mpg ~ hp` (mpg é predito por hp):**
-    *   `Estimate = -0.017`: Para cada aumento de 1 unidade em `hp`, o `mpg` diminui em 0.017 unidades.
-    *   `P(>|z|) = 0.223`: Não é significativo (p > 0.05). `hp` não tem um efeito direto estatisticamente significativo sobre `mpg` APÓS contabilizar as outras variáveis.
-    *   `Std.all = -0.190`: Um efeito padronizado fraco e não significativo. (Corresponde a `-0.19` no diagrama).
+**c) `mpg ~ hp` (mpg é predito por hp):** \* `Estimate = -0.017`: Para cada aumento de 1 unidade em `hp`, o `mpg` diminui em 0.017 unidades. \* `P(>|z|) = 0.223`: Não é significativo (p \> 0.05). `hp` não tem um efeito direto estatisticamente significativo sobre `mpg` APÓS contabilizar as outras variáveis. \* `Std.all = -0.190`: Um efeito padronizado fraco e não significativo. (Corresponde a `-0.19` no diagrama).
 
-**d) `qsec ~ disp` (qsec é predito por disp):**
-    *   `Estimate = -0.008`: Para cada aumento de 1 unidade em `disp`, o `qsec` diminui em 0.008 unidades.
-    *   `P(>|z|) = 0.034`: **Significativo** (p < 0.05). `disp` tem um efeito direto negativo estatisticamente significativo sobre `qsec`.
-    *   `Std.all = -0.559`: Um efeito padronizado forte e significativo. (Corresponde a `-0.56` no diagrama).
+**d) `qsec ~ disp` (qsec é predito por disp):** \* `Estimate = -0.008`: Para cada aumento de 1 unidade em `disp`, o `qsec` diminui em 0.008 unidades. \* `P(>|z|) = 0.034`: **Significativo** (p \< 0.05). `disp` tem um efeito direto negativo estatisticamente significativo sobre `qsec`. \* `Std.all = -0.559`: Um efeito padronizado forte e significativo. (Corresponde a `-0.56` no diagrama).
 
-**e) `qsec ~ hp` (qsec é predito por hp):**
-    *   `Estimate = -0.023`: Para cada aumento de 1 unidade em `hp`, o `qsec` diminui em 0.023 unidades.
-    *   `P(>|z|) = 0.000`: **Altamente significativo** (p < 0.001). `hp` tem um efeito direto negativo muito forte e estatisticamente significativo sobre `qsec`.
-    *   `Std.all = -0.849`: Um efeito padronizado muito forte e significativo. (Corresponde a `-0.85` no diagrama).
+**e) `qsec ~ hp` (qsec é predito por hp):** \* `Estimate = -0.023`: Para cada aumento de 1 unidade em `hp`, o `qsec` diminui em 0.023 unidades. \* `P(>|z|) = 0.000`: **Altamente significativo** (p \< 0.001). `hp` tem um efeito direto negativo muito forte e estatisticamente significativo sobre `qsec`. \* `Std.all = -0.849`: Um efeito padronizado muito forte e significativo. (Corresponde a `-0.85` no diagrama).
 
-**f) `qsec ~ wt` (qsec é predito por wt):**
-    *   `Estimate = 1.695`: Para cada aumento de 1 unidade em `wt`, o `qsec` aumenta em 1.695 unidades.
-    *   `P(>|z|) = 0.000`: **Altamente significativo** (p < 0.001). `wt` tem um efeito direto positivo muito forte e estatisticamente significativo sobre `qsec`.
-    *   `Std.all = 0.908`: Um efeito padronizado muito forte e significativo. (Corresponde a `0.91` no diagrama).
+**f) `qsec ~ wt` (qsec é predito por wt):** \* `Estimate = 1.695`: Para cada aumento de 1 unidade em `wt`, o `qsec` aumenta em 1.695 unidades. \* `P(>|z|) = 0.000`: **Altamente significativo** (p \< 0.001). `wt` tem um efeito direto positivo muito forte e estatisticamente significativo sobre `qsec`. \* `Std.all = 0.908`: Um efeito padronizado muito forte e significativo. (Corresponde a `0.91` no diagrama).
 
-**Resumo das Regressões:**
-*   Para `mpg`, apenas `disp` tem um efeito direto significativo (e negativo).
-*   Para `qsec`, `disp`, `hp` e `wt` têm efeitos diretos significativos. `hp` (negativo) e `wt` (positivo) são os preditores mais fortes de `qsec`.
-
-
+**Resumo das Regressões:** \* Para `mpg`, apenas `disp` tem um efeito direto significativo (e negativo). \* Para `qsec`, `disp`, `hp` e `wt` têm efeitos diretos significativos. `hp` (negativo) e `wt` (positivo) são os preditores mais fortes de `qsec`.
 
 **3. Covariâncias (`Covariances`):**
 
 Esta seção mostra as covariâncias estimadas entre variáveis que não têm uma relação causal direta modelada (ou entre os resíduos das variáveis endógenas).
 
-*   **`.mpg ~~ .qsec` (Covariância entre os resíduos de mpg e qsec):**
-    *   `Estimate = 0.447`: A covariância não padronizada dos resíduos.
-    *   `P(>|z|) = 0.382`: Não é significativo (p > 0.05).
-    *   `Std.all = 0.156`: Uma correlação residual padronizada fraca e não significativa. (Corresponde a `0.16` no diagrama, que é a correlação entre os resíduos, não as variáveis brutas).
+-   **`.mpg ~~ .qsec` (Covariância entre os resíduos de mpg e qsec):**
+
+    -   `Estimate = 0.447`: A covariância não padronizada dos resíduos.
+    -   `P(>|z|) = 0.382`: Não é significativo (p \> 0.05).
+    -   `Std.all = 0.156`: Uma correlação residual padronizada fraca e não significativa. (Corresponde a `0.16` no diagrama, que é a correlação entre os resíduos, não as variáveis brutas).
 
     **Interpretação:** A covariância (ou correlação) entre os resíduos de `mpg` e `qsec` não é estatisticamente significativa. Isso significa que, após contabilizar os efeitos das variáveis preditoras (`cyl`, `disp`, `hp` para `mpg`; `disp`, `hp`, `wt` para `qsec`), qualquer variância restante em `mpg` e `qsec` não está significativamente relacionada entre si.
-
 
 **4. Variâncias (`Variances`):**
 
 Esta seção mostra as variâncias estimadas para as variáveis exógenas e as variâncias residuais para as variáveis endógenas.
 
-*   **`.mpg` (Variância residual de mpg):**
-    *   `Estimate = 8.194`: A variância não padronizada do resíduo de `mpg`.
-    *   `P(>|z|) = 0.000`: Altamente significativo, o que é esperado para variâncias.
-    *   `Std.all = 0.234`: A variância residual padronizada (1 - R-quadrado). Isso significa que 23.4% da variância de `mpg` não é explicada pelas preditoras no modelo. Consequentemente, as preditoras (`cyl`, `disp`, `hp`) explicam `1 - 0.234 = 0.766` ou 76.6% da variância em `mpg` (R-quadrado para `mpg`). (Corresponde a `0.23` no diagrama).
+-   **`.mpg` (Variância residual de mpg):**
 
-*   **`.qsec` (Variância residual de qsec):**
-    *   `Estimate = 0.996`: A variância não padronizada do resíduo de `qsec`.
-    *   `P(>|z|) = 0.000`: Altamente significativo.
-    *   `Std.all = 0.308`: A variância residual padronizada (1 - R-quadrado). Isso significa que 30.8% da variância de `qsec` não é explicada pelas preditoras no modelo. Consequentemente, as preditoras (`disp`, `hp`, `wt`) explicam `1 - 0.308 = 0.692` ou 69.2% da variância em `qsec` (R-quadrado para `qsec`). (Corresponde a `0.31` no diagrama).
+    -   `Estimate = 8.194`: A variância não padronizada do resíduo de `mpg`.
+    -   `P(>|z|) = 0.000`: Altamente significativo, o que é esperado para variâncias.
+    -   `Std.all = 0.234`: A variância residual padronizada (1 - R-quadrado). Isso significa que 23.4% da variância de `mpg` não é explicada pelas preditoras no modelo. Consequentemente, as preditoras (`cyl`, `disp`, `hp`) explicam `1 - 0.234 = 0.766` ou 76.6% da variância em `mpg` (R-quadrado para `mpg`). (Corresponde a `0.23` no diagrama).
+
+-   **`.qsec` (Variância residual de qsec):**
+
+    -   `Estimate = 0.996`: A variância não padronizada do resíduo de `qsec`.
+    -   `P(>|z|) = 0.000`: Altamente significativo.
+    -   `Std.all = 0.308`: A variância residual padronizada (1 - R-quadrado). Isso significa que 30.8% da variância de `qsec` não é explicada pelas preditoras no modelo. Consequentemente, as preditoras (`disp`, `hp`, `wt`) explicam `1 - 0.308 = 0.692` ou 69.2% da variância em `qsec` (R-quadrado para `qsec`). (Corresponde a `0.31` no diagrama).
 
     **Interpretação:** As variâncias residuais indicam a proporção da variância das variáveis dependentes que *não* é explicada pelo modelo. Os valores padronizados (`Std.all`) fornecem o complementar do R-quadrado. Seu modelo explica uma proporção razoável da variância em ambas as variáveis dependentes.
 
@@ -248,10 +240,7 @@ Esta seção mostra as variâncias estimadas para as variáveis exógenas e as v
 
 Lembre-se da interpretação anterior sobre o ajuste geral do modelo. Embora alguns caminhos individuais sejam estatisticamente significativos e os Rs-quadrados sejam razoáveis, os índices de ajuste globais (CFI, TLI, RMSEA) indicaram que o modelo como um todo não se ajusta bem aos dados. Isso significa que, embora as relações específicas que você encontrou sejam interessantes, a estrutura geral do seu modelo pode não ser a melhor representação dos dados, possivelmente devido ao pequeno tamanho da amostra ou a um modelo teórico incompleto/incorreto.
 
-
 Em resumo, seu modelo atual não se ajusta bem aos dados. A primeira etapa é sempre revisar a teoria por trás do seu modelo e a especificação no `lavaan`. Dada a pequena amostra do `mtcars`, é desafiador construir um modelo SEM robusto com este conjunto de dados.
-
-
 
 **Conclusão Geral e Recomendações:**
 
@@ -260,28 +249,23 @@ Com base em todos os índices de ajuste (Chi-quadrado, CFI, TLI, RMSEA), seu mod
 **O que fazer a seguir?**
 
 1.  **Revisar o Modelo Teórico:**
-    *   Seu modelo SEM deve ser baseado em teoria. As relações que você desenhou fazem sentido conceitualmente?
-    *   Há alguma variável importante faltando no modelo que poderia explicar melhor `mpg` ou `qsec`?
-    *   Você incluiu todas as covariâncias entre as variáveis exógenas (`cyl`, `disp`, `hp`, `wt`) que são esperadas? (Pelo diagrama, parece que sim, mas verifique se o modelo `lavaan` as especificou corretamente).
-
+    -   Seu modelo SEM deve ser baseado em teoria. As relações que você desenhou fazem sentido conceitualmente?
+    -   Há alguma variável importante faltando no modelo que poderia explicar melhor `mpg` ou `qsec`?
+    -   Você incluiu todas as covariâncias entre as variáveis exógenas (`cyl`, `disp`, `hp`, `wt`) que são esperadas? (Pelo diagrama, parece que sim, mas verifique se o modelo `lavaan` as especificou corretamente).
 2.  **Verificar Especificação do Modelo:**
-    *   Certifique-se de que a sintaxe do `lavaan` reflete *exatamente* o diagrama que você pretendia testar. Às vezes, pequenos erros de digitação ou omissões podem levar a um ajuste ruim.
-    *   Se você usou um atalho como `x ~~ y` para covariância ou `y ~ x` para regressão, confira se não há setas ou covariâncias que deveriam estar lá, mas não foram especificadas.
-
+    -   Certifique-se de que a sintaxe do `lavaan` reflete *exatamente* o diagrama que você pretendia testar. Às vezes, pequenos erros de digitação ou omissões podem levar a um ajuste ruim.
+    -   Se você usou um atalho como `x ~~ y` para covariância ou `y ~ x` para regressão, confira se não há setas ou covariâncias que deveriam estar lá, mas não foram especificadas.
 3.  **Explorar Modificações (Com Cuidado):**
-    *   O `lavaan` pode fornecer índices de modificação (`modindices()`) que sugerem quais parâmetros (caminhos ou covariâncias) poderiam ser adicionados ao modelo para melhorar o ajuste.
-    *   **Importante:** Use índices de modificação com **muita cautela** e apenas se as modificações fizerem sentido teórico. Fazer mudanças apenas para melhorar o ajuste sem base teórica pode levar a um modelo superajustado aos dados da amostra e que não generaliza bem.
-
+    -   O `lavaan` pode fornecer índices de modificação (`modindices()`) que sugerem quais parâmetros (caminhos ou covariâncias) poderiam ser adicionados ao modelo para melhorar o ajuste.
+    -   **Importante:** Use índices de modificação com **muita cautela** e apenas se as modificações fizerem sentido teórico. Fazer mudanças apenas para melhorar o ajuste sem base teórica pode levar a um modelo superajustado aos dados da amostra e que não generaliza bem.
 4.  **Tamanho da Amostra:**
-    *   Com 32 observações, você tem um tamanho de amostra muito pequeno para SEM. Modelos SEM geralmente exigem amostras maiores (centenas de observações) para ter poder estatístico adequado e para que os índices de ajuste funcionem de forma confiável. Um tamanho de amostra pequeno pode inflar o qui-quadrado e dificultar a obtenção de um bom ajuste, mesmo que o modelo seja teoricamente correto. No caso do `mtcars`, que tem apenas 32 carros, as limitações do conjunto de dados são um fator importante.
-
+    -   Com 32 observações, você tem um tamanho de amostra muito pequeno para SEM. Modelos SEM geralmente exigem amostras maiores (centenas de observações) para ter poder estatístico adequado e para que os índices de ajuste funcionem de forma confiável. Um tamanho de amostra pequeno pode inflar o qui-quadrado e dificultar a obtenção de um bom ajuste, mesmo que o modelo seja teoricamente correto. No caso do `mtcars`, que tem apenas 32 carros, as limitações do conjunto de dados são um fator importante.
 5.  **Multicolinearidade:**
-    *   No diagrama, vimos correlações muito altas entre `cyl`, `disp`, `hp`, `wt`. Embora SEM possa lidar com isso melhor do que regressão múltipla tradicional, correlações extremamente altas ainda podem dificultar a estimação ou interpretação dos efeitos diretos.
+    -   No diagrama, vimos correlações muito altas entre `cyl`, `disp`, `hp`, `wt`. Embora SEM possa lidar com isso melhor do que regressão múltipla tradicional, correlações extremamente altas ainda podem dificultar a estimação ou interpretação dos efeitos diretos.
 
 **Conexão com o Diagrama abaixo**
 
 Os valores na coluna `Std.all` correspondem diretamente aos números exibidos nas setas do seu diagrama (`semPlot`). A espessura das setas no diagrama visualmente representa a magnitude desses `Std.all`. A cor (verde/vermelho) reflete o sinal do `Estimate` (positivo/negativo).
-
 :::
 
 ```{r}
@@ -312,8 +296,7 @@ plot_sem_mtcars
 
 ```
 
-
-Agora, vamos plotar os resultados no diagrama usando o pacote `semPlot`
+Agora, vamos plotar os resultados no diagrama usando o pacote `semPlot` @epskamp2025
 
 ```{r}
 #| label: semplot_mtcars
@@ -334,77 +317,79 @@ semPaths(mdl_fit_sem_mtcars,
 
 ```
 
-
 ::: {.callout-tip collapse="true"}
 ## Clique aqui pra expandir se precisar da interpretação do gráfico
 
-O diagrama de caminho (path diagram) acima, representa as relações hipotéticas entre variáveis usando o conjunto de dados `mtcars`. 
+O diagrama de caminho (path diagram) acima, representa as relações hipotéticas entre variáveis usando o conjunto de dados `mtcars`.
 
 **Visão Geral do Diagrama:**
 
-- **Variáveis Observadas (Retângulos):** representa uma variável observada do conjunto de dados `mtcars`(e.g cyl(número de cilindros), disp(cilindrada),hp(potência),wt(peso do veículo), mpg(milhas por galão), qsec(tempo de 1/4 de milha).
+-   **Variáveis Observadas (Retângulos):** representa uma variável observada do conjunto de dados `mtcars`(e.g cyl(número de cilindros), disp(cilindrada),hp(potência),wt(peso do veículo), mpg(milhas por galão), qsec(tempo de 1/4 de milha).
 
-- **Setas e Linhas:** representam relações causais ou diretivas (regressões), enquanto as linhas bidirecionais curvas representam covariâncias ou correlações. 
-- **Cores:** Verde indica uma relação positiva, enquanto a vermelha, relação negativa.
-- **Espessura da Linha/Seta:** É proporcional à magnitude do coeficiente de caminho (seja ele um coeficiente de regressão ou uma correlação). Linhas mais grossas indicam relações mais fortes.
-- **Números nas Setas/Linhas:** são os coeficientes de caminho padronizados (standardized path coefficients), que são análogos a coeficientes de regressão padronizados ou correlações. Eles variam de -1 a 1. Onde valores próximos a 0 indicam relações fracas e valores próximos a 1 (ou -1) indicam relações fortes.
+-   **Setas e Linhas:** representam relações causais ou diretivas (regressões), enquanto as linhas bidirecionais curvas representam covariâncias ou correlações.
+
+-   **Cores:** Verde indica uma relação positiva, enquanto a vermelha, relação negativa.
+
+-   **Espessura da Linha/Seta:** É proporcional à magnitude do coeficiente de caminho (seja ele um coeficiente de regressão ou uma correlação). Linhas mais grossas indicam relações mais fortes.
+
+-   **Números nas Setas/Linhas:** são os coeficientes de caminho padronizados (standardized path coefficients), que são análogos a coeficientes de regressão padronizados ou correlações. Eles variam de -1 a 1. Onde valores próximos a 0 indicam relações fracas e valores próximos a 1 (ou -1) indicam relações fortes.
 
 **Interpretação Detalhada por Seções:**
 
 **1. Relações entre as Variáveis de "Características do Carro" (Topo):**
 
-*   **Setas Bidirecionais Curvas na Parte Superior (entre cyl, disp, hp, wt):** Estas representam as correlações entre essas variáveis de características do carro. Todas são verdes e têm valores altos, indicando fortes correlações positivas.
-    *   `cyl <-> cyl` (1.00): Isso é o "erro" ou variância não explicada da própria variável. Em modelos SEM, geralmente é a variância residual ou a variância de um erro, mas para variáveis exógenas (sem setas apontando para elas), pode representar a variância total. No entanto, o `semPlot` pode desenhar isso como a variância total de uma variável quando não há preditores, ou a variância residual de uma variável endógena. Neste caso, para `cyl`, `disp`, `hp`, `wt` que parecem ser variáveis exógenas (ou seja, suas causas não são modeladas aqui, elas são as preditoras), esse `1.00` geralmente representa que 100% da variância delas é explicada por si mesmas no contexto de não serem preditas por outras variáveis no modelo, ou simplesmente sua variância total (que é 1 em uma escala padronizada).
-    *   `cyl <-> disp`: Correlação de 0.90 (forte, positiva). Carros com mais cilindros tendem a ter maior cilindrada.
-    *   `disp <-> hp`: Correlação de 0.83 (forte, positiva). Carros com maior cilindrada tendem a ter maior potência.
-    *   `disp <-> disp` (1.00): O mesmo que para `cyl`.
-    *   `hp <-> hp` (1.00): O mesmo.
-    *   `hp <-> wt`: Correlação de 0.79 (forte, positiva). Carros com maior potência tendem a ser mais pesados.
-    *   `disp <-> wt`: Correlação de 0.78 (forte, positiva). Carros com maior cilindrada tendem a ser mais pesados.
-    *   `wt <-> wt` (1.00): O mesmo.
-    *   `cyl <-> hp` (não mostrado diretamente, mas inferido através de disp).
-    *   `cyl <-> wt` (não mostrado diretamente, mas inferido).
-    *   `hp <-> cyl` (0.89): Forte correlação positiva.
-    *   `wt <-> hp` (0.66): Correlação positiva.
-    *   **Em resumo:** Essas quatro variáveis (`cyl`, `disp`, `hp`, `wt`) são altamente correlacionadas entre si. Isso é esperado, pois elas são características intrínsecas do motor e do carro que geralmente andam juntas.
+-   **Setas Bidirecionais Curvas na Parte Superior (entre cyl, disp, hp, wt):** Estas representam as correlações entre essas variáveis de características do carro. Todas são verdes e têm valores altos, indicando fortes correlações positivas.
+    -   `cyl <-> cyl` (1.00): Isso é o "erro" ou variância não explicada da própria variável. Em modelos SEM, geralmente é a variância residual ou a variância de um erro, mas para variáveis exógenas (sem setas apontando para elas), pode representar a variância total. No entanto, o `semPlot` pode desenhar isso como a variância total de uma variável quando não há preditores, ou a variância residual de uma variável endógena. Neste caso, para `cyl`, `disp`, `hp`, `wt` que parecem ser variáveis exógenas (ou seja, suas causas não são modeladas aqui, elas são as preditoras), esse `1.00` geralmente representa que 100% da variância delas é explicada por si mesmas no contexto de não serem preditas por outras variáveis no modelo, ou simplesmente sua variância total (que é 1 em uma escala padronizada).
+    -   `cyl <-> disp`: Correlação de 0.90 (forte, positiva). Carros com mais cilindros tendem a ter maior cilindrada.
+    -   `disp <-> hp`: Correlação de 0.83 (forte, positiva). Carros com maior cilindrada tendem a ter maior potência.
+    -   `disp <-> disp` (1.00): O mesmo que para `cyl`.
+    -   `hp <-> hp` (1.00): O mesmo.
+    -   `hp <-> wt`: Correlação de 0.79 (forte, positiva). Carros com maior potência tendem a ser mais pesados.
+    -   `disp <-> wt`: Correlação de 0.78 (forte, positiva). Carros com maior cilindrada tendem a ser mais pesados.
+    -   `wt <-> wt` (1.00): O mesmo.
+    -   `cyl <-> hp` (não mostrado diretamente, mas inferido através de disp).
+    -   `cyl <-> wt` (não mostrado diretamente, mas inferido).
+    -   `hp <-> cyl` (0.89): Forte correlação positiva.
+    -   `wt <-> hp` (0.66): Correlação positiva.
+    -   **Em resumo:** Essas quatro variáveis (`cyl`, `disp`, `hp`, `wt`) são altamente correlacionadas entre si. Isso é esperado, pois elas são características intrínsecas do motor e do carro que geralmente andam juntas.
 
 **2. Relações entre Variáveis de Características do Carro e `mpg` (Consumo):**
 
-*   `cyl -> mpg`: Coeficiente de -0.29 (vermelho, fraco a moderado, negativo). Carros com mais cilindros tendem a ter menor `mpg` (pior consumo de combustível).
-*   `disp -> mpg`: Coeficiente de -0.44 (vermelho, moderado, negativo). Carros com maior cilindrada tendem a ter menor `mpg`.
-*   `hp -> mpg`: Coeficiente de -0.19 (vermelho, fraco, negativo). Carros com maior potência tendem a ter menor `mpg`.
-*   `wt -> mpg`: **Não há seta direta de `wt` para `mpg` neste modelo.** Isso sugere que o modelo não assume uma relação direta de `wt` para `mpg` APÓS contabilizar as outras variáveis, ou a relação não foi estatisticamente significativa para ser incluída ou é indireta.
-    *   **Em resumo:** Cilindros, cilindrada e potência estão negativamente associadas ao consumo de combustível. Carros com características de motor mais "potentes" ou "maiores" tendem a consumir mais combustível (menor `mpg`). `disp` tem o efeito direto negativo mais forte em `mpg`.
+-   `cyl -> mpg`: Coeficiente de -0.29 (vermelho, fraco a moderado, negativo). Carros com mais cilindros tendem a ter menor `mpg` (pior consumo de combustível).
+-   `disp -> mpg`: Coeficiente de -0.44 (vermelho, moderado, negativo). Carros com maior cilindrada tendem a ter menor `mpg`.
+-   `hp -> mpg`: Coeficiente de -0.19 (vermelho, fraco, negativo). Carros com maior potência tendem a ter menor `mpg`.
+-   `wt -> mpg`: **Não há seta direta de `wt` para `mpg` neste modelo.** Isso sugere que o modelo não assume uma relação direta de `wt` para `mpg` APÓS contabilizar as outras variáveis, ou a relação não foi estatisticamente significativa para ser incluída ou é indireta.
+    -   **Em resumo:** Cilindros, cilindrada e potência estão negativamente associadas ao consumo de combustível. Carros com características de motor mais "potentes" ou "maiores" tendem a consumir mais combustível (menor `mpg`). `disp` tem o efeito direto negativo mais forte em `mpg`.
 
 **3. Relações entre Variáveis de Características do Carro e `qsec` (Tempo de 1/4 de Milha):**
 
-*   `disp -> qsec`: Coeficiente de -0.56 (vermelho, moderado a forte, negativo). Carros com maior cilindrada tendem a ter um tempo de 1/4 de milha menor (ou seja, são mais rápidos).
-*   `hp -> qsec`: Coeficiente de -0.85 (vermelho, muito forte, negativo). Carros com maior potência tendem a ter um tempo de 1/4 de milha significativamente menor (são muito mais rápidos).
-*   `wt -> qsec`: Coeficiente de 0.91 (verde, muito forte, positivo). Carros mais pesados tendem a ter um tempo de 1/4 de milha maior (ou seja, são mais lentos).
-    *   **Em resumo:** Cilindrada e potência contribuem para um carro mais rápido (menor `qsec`), com a potência (`hp`) sendo o fator mais influente. O peso (`wt`), por outro lado, torna o carro mais lento (maior `qsec`), com uma influência igualmente forte.
+-   `disp -> qsec`: Coeficiente de -0.56 (vermelho, moderado a forte, negativo). Carros com maior cilindrada tendem a ter um tempo de 1/4 de milha menor (ou seja, são mais rápidos).
+-   `hp -> qsec`: Coeficiente de -0.85 (vermelho, muito forte, negativo). Carros com maior potência tendem a ter um tempo de 1/4 de milha significativamente menor (são muito mais rápidos).
+-   `wt -> qsec`: Coeficiente de 0.91 (verde, muito forte, positivo). Carros mais pesados tendem a ter um tempo de 1/4 de milha maior (ou seja, são mais lentos).
+    -   **Em resumo:** Cilindrada e potência contribuem para um carro mais rápido (menor `qsec`), com a potência (`hp`) sendo o fator mais influente. O peso (`wt`), por outro lado, torna o carro mais lento (maior `qsec`), com uma influência igualmente forte.
 
 **4. Relação entre `mpg` e `qsec`:**
 
-*   `mpg <-> qsec`: Coeficiente de 0.16 (verde, fraco, positivo). Há uma correlação positiva fraca entre `mpg` e `qsec`. Carros com melhor consumo de combustível tendem a ter um tempo de 1/4 de milha ligeiramente maior (são um pouco mais lentos). É importante notar que esta é uma *correlação* bidirecional, não uma relação causal direta no sentido de `mpg` causando `qsec` ou vice-versa neste modelo específico. Pode ser que variáveis não modeladas ou efeitos indiretos expliquem essa correlação.
+-   `mpg <-> qsec`: Coeficiente de 0.16 (verde, fraco, positivo). Há uma correlação positiva fraca entre `mpg` e `qsec`. Carros com melhor consumo de combustível tendem a ter um tempo de 1/4 de milha ligeiramente maior (são um pouco mais lentos). É importante notar que esta é uma *correlação* bidirecional, não uma relação causal direta no sentido de `mpg` causando `qsec` ou vice-versa neste modelo específico. Pode ser que variáveis não modeladas ou efeitos indiretos expliquem essa correlação.
 
 **5. Variância Residual (Loops nas Variáveis Dependentes):**
 
-*   `mpg <-> mpg` (0.23): Este é o coeficiente de variância residual para `mpg`. Significa que 23% da variância de `mpg` NÃO é explicada pelas variáveis preditoras (`cyl`, `disp`, `hp`) incluídas no modelo para `mpg`. Ou, em outras palavras, as variáveis `cyl`, `disp`, `hp` explicam `1 - 0.23 = 0.77` ou 77% da variância em `mpg` (o R-quadrado).
-*   `qsec <-> qsec` (0.31): Este é o coeficiente de variância residual para `qsec`. Significa que 31% da variância de `qsec` NÃO é explicada pelas variáveis preditoras (`disp`, `hp`, `wt`) incluídas no modelo para `qsec`. Portanto, `disp`, `hp`, `wt` explicam `1 - 0.31 = 0.69` ou 69% da variância em `qsec`.
+-   `mpg <-> mpg` (0.23): Este é o coeficiente de variância residual para `mpg`. Significa que 23% da variância de `mpg` NÃO é explicada pelas variáveis preditoras (`cyl`, `disp`, `hp`) incluídas no modelo para `mpg`. Ou, em outras palavras, as variáveis `cyl`, `disp`, `hp` explicam `1 - 0.23 = 0.77` ou 77% da variância em `mpg` (o R-quadrado).
+-   `qsec <-> qsec` (0.31): Este é o coeficiente de variância residual para `qsec`. Significa que 31% da variância de `qsec` NÃO é explicada pelas variáveis preditoras (`disp`, `hp`, `wt`) incluídas no modelo para `qsec`. Portanto, `disp`, `hp`, `wt` explicam `1 - 0.31 = 0.69` ou 69% da variância em `qsec`.
 
 **Conclusões Gerais e Interpretação do Modelo:**
 
 Este modelo tenta explicar o consumo de combustível (`mpg`) e o desempenho de 1/4 de milha (`qsec`) usando características do motor e peso do carro.
 
-*   **Consumo de Combustível (`mpg`):** É predominantemente influenciado negativamente por `disp` e `cyl`, e um pouco por `hp`. Carros com motores maiores/mais potentes tendem a ser menos eficientes em termos de combustível.
-*   **Desempenho de 1/4 de Milha (`qsec`):** É fortemente influenciado pela potência (`hp`) e peso (`wt`), e também pela cilindrada (`disp`). Mais potência e menor cilindrada (para motores mais eficientes) levam a carros mais rápidos, enquanto maior peso torna os carros mais lentos. `hp` e `wt` têm os efeitos mais proeminentes.
-*   **Correlações Elevadas entre Preditoras:** As altas correlações entre `cyl`, `disp`, `hp`, e `wt` são um ponto importante. Em modelos de regressão múltipla, isso poderia indicar multicolinearidade. Em SEM, isso é explicitamente modelado pelas covariâncias. Isso significa que essas variáveis não são independentes em seus efeitos, e os efeitos diretos que vemos (`cyl -> mpg`, `disp -> mpg`, etc.) são os efeitos *após* contabilizar a inter-relação entre as preditoras.
-*   **Poder Explicativo:** O modelo explica uma grande parte da variância em `mpg` (77%) e `qsec` (69%), o que é bastante razoável.
+-   **Consumo de Combustível (`mpg`):** É predominantemente influenciado negativamente por `disp` e `cyl`, e um pouco por `hp`. Carros com motores maiores/mais potentes tendem a ser menos eficientes em termos de combustível.
+-   **Desempenho de 1/4 de Milha (`qsec`):** É fortemente influenciado pela potência (`hp`) e peso (`wt`), e também pela cilindrada (`disp`). Mais potência e menor cilindrada (para motores mais eficientes) levam a carros mais rápidos, enquanto maior peso torna os carros mais lentos. `hp` e `wt` têm os efeitos mais proeminentes.
+-   **Correlações Elevadas entre Preditoras:** As altas correlações entre `cyl`, `disp`, `hp`, e `wt` são um ponto importante. Em modelos de regressão múltipla, isso poderia indicar multicolinearidade. Em SEM, isso é explicitamente modelado pelas covariâncias. Isso significa que essas variáveis não são independentes em seus efeitos, e os efeitos diretos que vemos (`cyl -> mpg`, `disp -> mpg`, etc.) são os efeitos *após* contabilizar a inter-relação entre as preditoras.
+-   **Poder Explicativo:** O modelo explica uma grande parte da variância em `mpg` (77%) e `qsec` (69%), o que é bastante razoável.
 
 Este diagrama oferece uma representação visual clara das relações entre as variáveis, permitindo entender rapidamente quais fatores são mais influentes e em que direção. As setas mais espessas e os coeficientes de maior magnitude (`-0.85` de `hp` para `qsec`, `0.91` de `wt` para `qsec`, `0.90` de `cyl` para `disp`) são os pontos-chave de atenção para as relações mais fortes.
 :::
 
----
+------------------------------------------------------------------------
 
 **Caso2 - Estudo de impacto da satisfação no trabalho sobre a produtividade, mediado pela motivação**
 
@@ -486,7 +471,7 @@ glance(mdl_fit_sem_impact_motiv_prod)
 -   Coeficientes padronizados das relações entre Satisfacao, Motivacao e Produtividade.
 -   Índices de ajuste como RMSEA, CFI, TLI para avaliar a qualidade do modelo.
 
----
+------------------------------------------------------------------------
 
 **Caso3 - Exemplo em manufatura onde queremos entender por que uma linha de montagem está com baixa produtividade. Suspeitamos que isso tem a ver com treinamento de operadores, qualidade das matérias primas e clima organizacional**
 
@@ -590,7 +575,6 @@ semPlot::semPaths(mdl_fit_sem,
                   )
 ```
 
-
 ### {{< fa 5 >}} [**Pra onde vai?**]{style="color: #5AC8BE ;"}
 
 Depois de construir e validar o modelo SEM, ele pode ser usado para:
@@ -602,7 +586,6 @@ Depois de construir e validar o modelo SEM, ele pode ser usado para:
 -   Publicações científicas que testam teorias complexas.
 -   Desenvolvimento de produtos ou serviços com base em fatores que influenciam comportamento do consumidor.
 -   Avaliação de programas sociais ou educacionais.
-
 
 ### {{< fa 6 >}} [**Qual resultado?**]{style="color: #5AC8BE ;"}
 

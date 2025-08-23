@@ -31,6 +31,7 @@
 <li><p><strong>Variáveis observadas</strong>: Ajudam a controlar e monitorar o processo. São coisas que conseguimos medir diretamente no chão da fábrica(e.g.&nbsp;temperatura de uma maquina, tempo de produção de uma peça, número de peças com defeito, peso de um produto, horas de treinamento recebidos). Estas variáveis vêm de sensores, relatórios ou medições feitas por pessoas. Elas são vistas e registradas.</p></li>
 <li><p><strong>Variáveis latentes</strong>: Ajudam a entender o que está por trás dos resultados e melhorar o sistema de forma mais profunda. São coisas que não conseguimos medir diretamente, mas que influenciam o processo. É necessário usar outras variáveis para estimar ou representá-las(e.g.&nbsp;motivação dos operadores, qualidade do ambiente de trabalho, engajamento com segurança, cultura de melhoria contínua, satisfação com treinamento). Não há um sensor que mede a motivação por exemplo, mas pode-se utilizar de perguntas de uma pesquisa ou observar o comportamentos para representar esse conceito.</p></li>
 </ul>
+<p>PS. Há conteúdos no Youtube de excelente qualidade que ajudam a compreender melhor esses modelos e suas aplicações como por exemplo, o do professor <span class="citation" data-cites="prof.diogeness.bido2021">Prof. Diogenes S. BIDO (2021)</span></p>
 </section>
 <section id="qual-o-objetivo" class="level3">
 <h3 class="anchored" data-anchor-id="qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo?</strong></span></h3>
@@ -63,7 +64,7 @@
 <li><strong>qsec ~ disp + hp + wt</strong>: o tempo de aceleração (qsec) é explicado por deslocamento (disp), potência (hp) e peso (wt).</li>
 </ul>
 <ol start="3" type="1">
-<li>Implementar via software usando R (lavaan package)</li>
+<li>Implementar via software usando R/RStudio <span class="citation" data-cites="rstudio/2025"><em>Rstudio/Rstudio</em> (2025)</span>, Lavaan package <span class="citation" data-cites="rosseel2024">Rosseel (2024)</span>, Quarto Publishing <span class="citation" data-cites="quarto2025"><span>“Quarto”</span> (2025)</span></li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
@@ -238,15 +239,15 @@ Clique aqui para mais detalhes sobre a interpretação dos resultados do modelo
 <p><strong>4. Modelo do Usuário versus Modelo de Linha de Base (<code>User Model versus Baseline Model</code>):</strong></p>
 <p>Esses são índices de ajuste incrementais, que comparam o seu modelo com o modelo de linha de base.</p>
 <ul>
-<li><strong><code>Comparative Fit Index (CFI) 0.825</code></strong>:
+<li><p><strong><code>Comparative Fit Index (CFI) 0.825</code></strong>:</p>
 <ul>
 <li><strong>Interpretação:</strong> O CFI varia de 0 a 1. Valores acima de 0.90 ou 0.95 são geralmente considerados indicativos de um bom ajuste. Seu CFI de 0.825 está abaixo dos critérios comuns para um bom ajuste (geralmente &gt; 0.90 ou &gt; 0.95). Isso sugere que o seu modelo não melhora substancialmente o ajuste em comparação com o modelo nulo o suficiente para ser considerado um “bom” ajuste.</li>
 </ul></li>
-<li><strong><code>Tucker-Lewis Index (TLI) 0.213</code></strong>:
+<li><p><strong><code>Tucker-Lewis Index (TLI) 0.213</code></strong>:</p>
 <ul>
 <li><strong>Interpretação:</strong> O TLI (também conhecido como NNFI) é outro índice incremental, também variando geralmente de 0 a 1, com valores &gt; 0.90 ou &gt; 0.95 indicando bom ajuste. Seu TLI de 0.213 é <strong>muito baixo</strong>, indicando um ajuste pobre do modelo.</li>
 </ul>
-<strong>Em resumo para CFI e TLI:</strong> Ambos os índices sugerem que o seu modelo não está bem ajustado aos dados.</li>
+<p><strong>Em resumo para CFI e TLI:</strong> Ambos os índices sugerem que o seu modelo não está bem ajustado aos dados.</p></li>
 </ul>
 <p><strong>5. Critérios de Log-Verossimilhança e Informação (<code>Loglikelihood and Information Criteria</code>):</strong></p>
 <p>Esses critérios são usados para comparar modelos, favorecendo modelos com melhor ajuste e menor complexidade. Valores menores são geralmente preferíveis.</p>
@@ -303,30 +304,30 @@ Clique aqui para mais detalhes sobre a interpretação dos resultados do modelo
 <p><strong>3. Covariâncias (<code>Covariances</code>):</strong></p>
 <p>Esta seção mostra as covariâncias estimadas entre variáveis que não têm uma relação causal direta modelada (ou entre os resíduos das variáveis endógenas).</p>
 <ul>
-<li><strong><code>.mpg ~~ .qsec</code> (Covariância entre os resíduos de mpg e qsec):</strong>
+<li><p><strong><code>.mpg ~~ .qsec</code> (Covariância entre os resíduos de mpg e qsec):</strong></p>
 <ul>
 <li><code>Estimate = 0.447</code>: A covariância não padronizada dos resíduos.</li>
 <li><code>P(&gt;|z|) = 0.382</code>: Não é significativo (p &gt; 0.05).</li>
 <li><code>Std.all = 0.156</code>: Uma correlação residual padronizada fraca e não significativa. (Corresponde a <code>0.16</code> no diagrama, que é a correlação entre os resíduos, não as variáveis brutas).</li>
 </ul>
-<strong>Interpretação:</strong> A covariância (ou correlação) entre os resíduos de <code>mpg</code> e <code>qsec</code> não é estatisticamente significativa. Isso significa que, após contabilizar os efeitos das variáveis preditoras (<code>cyl</code>, <code>disp</code>, <code>hp</code> para <code>mpg</code>; <code>disp</code>, <code>hp</code>, <code>wt</code> para <code>qsec</code>), qualquer variância restante em <code>mpg</code> e <code>qsec</code> não está significativamente relacionada entre si.</li>
+<p><strong>Interpretação:</strong> A covariância (ou correlação) entre os resíduos de <code>mpg</code> e <code>qsec</code> não é estatisticamente significativa. Isso significa que, após contabilizar os efeitos das variáveis preditoras (<code>cyl</code>, <code>disp</code>, <code>hp</code> para <code>mpg</code>; <code>disp</code>, <code>hp</code>, <code>wt</code> para <code>qsec</code>), qualquer variância restante em <code>mpg</code> e <code>qsec</code> não está significativamente relacionada entre si.</p></li>
 </ul>
 <p><strong>4. Variâncias (<code>Variances</code>):</strong></p>
 <p>Esta seção mostra as variâncias estimadas para as variáveis exógenas e as variâncias residuais para as variáveis endógenas.</p>
 <ul>
-<li><strong><code>.mpg</code> (Variância residual de mpg):</strong>
+<li><p><strong><code>.mpg</code> (Variância residual de mpg):</strong></p>
 <ul>
 <li><code>Estimate = 8.194</code>: A variância não padronizada do resíduo de <code>mpg</code>.</li>
 <li><code>P(&gt;|z|) = 0.000</code>: Altamente significativo, o que é esperado para variâncias.</li>
 <li><code>Std.all = 0.234</code>: A variância residual padronizada (1 - R-quadrado). Isso significa que 23.4% da variância de <code>mpg</code> não é explicada pelas preditoras no modelo. Consequentemente, as preditoras (<code>cyl</code>, <code>disp</code>, <code>hp</code>) explicam <code>1 - 0.234 = 0.766</code> ou 76.6% da variância em <code>mpg</code> (R-quadrado para <code>mpg</code>). (Corresponde a <code>0.23</code> no diagrama).</li>
 </ul></li>
-<li><strong><code>.qsec</code> (Variância residual de qsec):</strong>
+<li><p><strong><code>.qsec</code> (Variância residual de qsec):</strong></p>
 <ul>
 <li><code>Estimate = 0.996</code>: A variância não padronizada do resíduo de <code>qsec</code>.</li>
 <li><code>P(&gt;|z|) = 0.000</code>: Altamente significativo.</li>
 <li><code>Std.all = 0.308</code>: A variância residual padronizada (1 - R-quadrado). Isso significa que 30.8% da variância de <code>qsec</code> não é explicada pelas preditoras no modelo. Consequentemente, as preditoras (<code>disp</code>, <code>hp</code>, <code>wt</code>) explicam <code>1 - 0.308 = 0.692</code> ou 69.2% da variância em <code>qsec</code> (R-quadrado para <code>qsec</code>). (Corresponde a <code>0.31</code> no diagrama).</li>
 </ul>
-<strong>Interpretação:</strong> As variâncias residuais indicam a proporção da variância das variáveis dependentes que <em>não</em> é explicada pelo modelo. Os valores padronizados (<code>Std.all</code>) fornecem o complementar do R-quadrado. Seu modelo explica uma proporção razoável da variância em ambas as variáveis dependentes.</li>
+<p><strong>Interpretação:</strong> As variâncias residuais indicam a proporção da variância das variáveis dependentes que <em>não</em> é explicada pelo modelo. Os valores padronizados (<code>Std.all</code>) fornecem o complementar do R-quadrado. Seu modelo explica uma proporção razoável da variância em ambas as variáveis dependentes.</p></li>
 </ul>
 <p><strong>Considerações Finais:</strong></p>
 <p>Lembre-se da interpretação anterior sobre o ajuste geral do modelo. Embora alguns caminhos individuais sejam estatisticamente significativos e os Rs-quadrados sejam razoáveis, os índices de ajuste globais (CFI, TLI, RMSEA) indicaram que o modelo como um todo não se ajusta bem aos dados. Isso significa que, embora as relações específicas que você encontrou sejam interessantes, a estrutura geral do seu modelo pode não ser a melhor representação dos dados, possivelmente devido ao pequeno tamanho da amostra ou a um modelo teórico incompleto/incorreto.</p>
@@ -365,7 +366,7 @@ Clique aqui para mais detalhes sobre a interpretação dos resultados do modelo
 </div>
 </div>
 </div>
-<p>Agora, vamos plotar os resultados no diagrama usando o pacote <code>semPlot</code></p>
+<p>Agora, vamos plotar os resultados no diagrama usando o pacote <code>semPlot</code> <span class="citation" data-cites="epskamp2025">Epskamp (2025)</span></p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="fu" style="color: #4758AB;
 background-color: null;
@@ -1141,88 +1142,67 @@ font-style: inherit;">tibble</span>(treinamento_1, treinamento_2, treinamento_3,
 <span id="cb12-42">                produtividade_1, produtividade_2, produtividade_3)</span>
 <span id="cb12-43"></span>
 <span id="cb12-44"></span>
-<span id="cb12-45">dados <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">head</span>()</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 18
-  treinamento_1 treinamento_2 treinamento_3 qualy_material_1 qualy_material_2
-          &lt;dbl&gt;         &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-1          4.44          4.08          4.98             3.99             4.30
-2          4.77          4.39          4.76             4.21             3.83
-3          6.56          6.09          6.54             5.30             5.73
-4          5.07          4.54          4.31             6.64             6.27
-5          5.13          4.91          5.52             6.08             6.40
-6          6.72          6.88          6.61             4.38             4.92
-# ℹ 13 more variables: qualy_material_3 &lt;dbl&gt;, clima_org_1 &lt;dbl&gt;,
-#   clima_org_2 &lt;dbl&gt;, clima_org_3 &lt;dbl&gt;, motivacao_1 &lt;dbl&gt;, motivacao_2 &lt;dbl&gt;,
-#   motivacao_3 &lt;dbl&gt;, eficiencia_oper_1 &lt;dbl&gt;, eficiencia_oper_2 &lt;dbl&gt;,
-#   eficiencia_oper_3 &lt;dbl&gt;, produtividade_1 &lt;dbl&gt;, produtividade_2 &lt;dbl&gt;,
-#   produtividade_3 &lt;dbl&gt;</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><span class="co" style="color: #5E5E5E;
+<span id="cb12-45"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># definir o modelo SEM</span></span>
-<span id="cb14-2">modelo <span class="ot" style="color: #003B4F;
+<span id="cb12-46">modelo <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span></span>
-<span id="cb14-3"><span class="st" style="color: #20794D;
+<span id="cb12-47"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">  # variaveis latentes</span></span>
-<span id="cb14-4"><span class="st" style="color: #20794D;
+<span id="cb12-48"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">  treinamento =~ treinamento_1 + treinamento_2 + treinamento_3</span></span>
-<span id="cb14-5"><span class="st" style="color: #20794D;
+<span id="cb12-49"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">  qualidade_material =~ qualy_material_1 + qualy_material_2 + qualy_material_3</span></span>
-<span id="cb14-6"><span class="st" style="color: #20794D;
+<span id="cb12-50"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">  clima_org =~ clima_org_1 + clima_org_2 + clima_org_3</span></span>
-<span id="cb14-7"><span class="st" style="color: #20794D;
+<span id="cb12-51"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">  motivacao =~ motivacao_1 + motivacao_2 + motivacao_3</span></span>
-<span id="cb14-8"><span class="st" style="color: #20794D;
+<span id="cb12-52"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">  eficiencia_oper =~ eficiencia_oper_1 + eficiencia_oper_2 + eficiencia_oper_3</span></span>
-<span id="cb14-9"><span class="st" style="color: #20794D;
+<span id="cb12-53"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">  produtividade =~ produtividade_1 + produtividade_2 + produtividade_3</span></span>
-<span id="cb14-10"></span>
-<span id="cb14-11"><span class="st" style="color: #20794D;
+<span id="cb12-54"></span>
+<span id="cb12-55"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">  # Structural relationships</span></span>
-<span id="cb14-12"><span class="st" style="color: #20794D;
+<span id="cb12-56"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">  motivacao ~ treinamento + clima_org</span></span>
-<span id="cb14-13"><span class="st" style="color: #20794D;
+<span id="cb12-57"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">  eficiencia_oper ~ qualidade_material</span></span>
-<span id="cb14-14"><span class="st" style="color: #20794D;
+<span id="cb12-58"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">  produtividade ~ motivacao + eficiencia_oper</span></span>
-<span id="cb14-15"><span class="st" style="color: #20794D;
+<span id="cb12-59"><span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"</span></span>
-<span id="cb14-16"></span>
-<span id="cb14-17"><span class="co" style="color: #5E5E5E;
+<span id="cb12-60"></span>
+<span id="cb12-61"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Rodar o modelo</span></span>
-<span id="cb14-18">mdl_fit_sem <span class="ot" style="color: #003B4F;
+<span id="cb12-62">mdl_fit_sem <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">sem</span>(modelo, <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">data =</span> dados)</span>
-<span id="cb14-19"></span>
-<span id="cb14-20"><span class="co" style="color: #5E5E5E;
+<span id="cb12-63"></span>
+<span id="cb12-64"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Mostrar o resumo arrumado com broom::tidy()</span></span>
-<span id="cb14-21"><span class="fu" style="color: #4758AB;
+<span id="cb12-65"><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">tidy</span>(mdl_fit_sem) <span class="sc" style="color: #5E5E5E;
 background-color: null;
@@ -1259,37 +1239,37 @@ font-style: inherit;">"=~"</span>)</span></code></pre></div>
 </div>
 <p>Plotar os resultados no diagrama usando <code>semPlot</code></p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1">semPlot<span class="sc" style="color: #5E5E5E;
+<div class="sourceCode cell-code" id="cb14" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1">semPlot<span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">semPaths</span>(mdl_fit_sem,</span>
-<span id="cb16-2">                  <span class="at" style="color: #657422;
+<span id="cb14-2">                  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">what =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"std"</span>,</span>
-<span id="cb16-3">                  <span class="at" style="color: #657422;
+<span id="cb14-3">                  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">layout =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"tree"</span>,</span>
-<span id="cb16-4">                  <span class="at" style="color: #657422;
+<span id="cb14-4">                  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">sizeMan =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">8</span>,</span>
-<span id="cb16-5">                  <span class="at" style="color: #657422;
+<span id="cb14-5">                  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">sizeLat =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">10</span>,</span>
-<span id="cb16-6">                  <span class="at" style="color: #657422;
+<span id="cb14-6">                  <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">nCharNodes =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">11</span></span>
-<span id="cb16-7">                  )</span></code></pre></div>
+<span id="cb14-7">                  )</span></code></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1303,9 +1283,9 @@ font-style: inherit;">11</span></span>
 <h3 class="anchored" data-anchor-id="pra-onde-vai"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai?</strong></span></h3>
 <p>Depois de construir e validar o modelo SEM, ele pode ser usado para:</p>
 <ul>
-<li>Tomada de decisão baseada em evidências(e.g priorizar ações de melhoria com base em dados, investir mais em treinamento se ele tiver alto impacto na produtividade, melhorar políticas de RH).</li>
+<li>Tomada de decisão baseada em evidências como priorizar ações de melhoria com base em dados(e.g investir mais em treinamento se ele tiver alto impacto na produtividade, melhorar políticas de RH).</li>
 <li>Apoiar decisões estratégias com evidências estatísticas.</li>
-<li>Comunucar resultados de forma clara para diretoria e equipes operacionais.</li>
+<li>Comunicar resultados de forma clara para diretoria e equipes operacionais.</li>
 <li>Integrar SEM com sistemas de qualidade e melhoria contínua(e.g Six Sigma, Lean, TPM)</li>
 <li>Publicações científicas que testam teorias complexas.</li>
 <li>Desenvolvimento de produtos ou serviços com base em fatores que influenciam comportamento do consumidor.</li>
@@ -1316,8 +1296,8 @@ font-style: inherit;">11</span></span>
 <h3 class="anchored" data-anchor-id="qual-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual resultado?</strong></span></h3>
 <ul>
 <li>Mapeamento claro das causas reais de problemas ou oportunidades.</li>
-<li>Modelos visuais e estatísticos que mostram como tudo está conectados</li>
-<li>Redução de desperdícios ao foca em ações que realmente façam a diferença.</li>
+<li>Modelos visuais e estatísticos que mostram como tudo está conectado.</li>
+<li>Redução de desperdícios ao focar em ações que realmente fazem a diferença.</li>
 <li>Maior confiança nas decisões pois são baseadas em dados e não apenas em experiência ou opinião.</li>
 <li>Modelos estatísticos robustos que explicam bem os dados.</li>
 <li>Coeficientes padronizados que mostram a força das relações entre variáveis.</li>
@@ -1326,9 +1306,26 @@ font-style: inherit;">11</span></span>
 </ul>
 
 
+
 </section>
 
- ]]></description>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0">
+<div id="ref-epskamp2025" class="csl-entry">
+Epskamp, Sacha. 2025. <em>SachaEpskamp/semPlot</em>. <a href="https://github.com/SachaEpskamp/semPlot">https://github.com/SachaEpskamp/semPlot</a>.
+</div>
+<div id="ref-prof.diogeness.bido2021" class="csl-entry">
+Prof. Diogenes S. BIDO. 2021. <span>“Como Medir o Que Não Dá Para Medir? (Conceitos Abstratos Como Variáveis Latentes),”</span> May. <a href="https://www.youtube.com/watch?v=dQrNEIFYmDs">https://www.youtube.com/watch?v=dQrNEIFYmDs</a>.
+</div>
+<div id="ref-quarto2025" class="csl-entry">
+<span>“Quarto.”</span> 2025. <a href="https://quarto.org/">https://quarto.org/</a>.
+</div>
+<div id="ref-rosseel2024" class="csl-entry">
+Rosseel, Yves. 2024. <em>Cran/Lavaan</em>. cran. <a href="https://github.com/cran/lavaan">https://github.com/cran/lavaan</a>.
+</div>
+<div id="ref-rstudio/2025" class="csl-entry">
+<em>Rstudio/Rstudio</em>. 2025. RStudio. <a href="https://github.com/rstudio/rstudio">https://github.com/rstudio/rstudio</a>.
+</div>
+</div></section></div> ]]></description>
   <category>Modelos</category>
   <guid>https://carvalhoribeiro.netlify.app/posts/sem/modelagem_equacoes_estruturais.html</guid>
   <pubDate>Fri, 22 Aug 2025 03:00:00 GMT</pubDate>
