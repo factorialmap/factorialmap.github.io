@@ -10,7 +10,7 @@ bibliography: references.bib
 
 ### {{< fa 1 >}} [**O que é a SEM**]{style="color: #5AC8BE ;"}
 
--   **No contexto da manufatura e melhoria de processos**: o SEM é uma ferramenta estatística que ajuda a entender como diferents fatores dentro de um processo estão conectados permitindo analisar várias causas e efeitos ao mesmo tempo, mesmo quando alguns desses fatores não são diretamente medidos(e.g. clima organizacional, engajamento dos operadores, motivação etc).
+-   No contexto da manufatura e melhoria de processos o SEM é uma ferramenta estatística que ajuda a entender como diferents fatores dentro de um processo estão conectados permitindo analisar várias causas e efeitos ao mesmo tempo, mesmo quando alguns desses fatores não são diretamente medidos(e.g. clima organizacional, engajamento dos operadores, motivação etc).
 
 -   É uma abordagem estatística poderosa e flexível que permite investigar relações complexas entre variáveis observadas (dados coletados) e variáveis latentes (conceitos não diretamente mensuráveis, como inteligência ou satisfação), mas que são inferidas a partir de indicadores. Ela combina elementos de análise fatorial e regressão múltipla em um único modelo.
 
@@ -40,11 +40,55 @@ PS. Há conteúdos no Youtube de excelente qualidade que ajudam a compreender me
 
 ### {{< fa 3 >}} [**De onde vem?**]{style="color: #5AC8BE ;"}
 
-Na academia, o SEM surgiu para estudar fenômenos complexos como comportamento humano, educação e psicologia onde foi desenvolvido a partir da evolução da análise fatorial e da path analysis (análise de caminhos), ganhando força nas ciências sociais, psicologia, marketing e educação.
+Na área acadêmica, o SEM surgiu para estudar fenômenos complexos como comportamento humano, educação e psicologia onde foi desenvolvido a partir da evolução da análise fatorial e da path analysis (análise de caminhos), ganhando força nas ciências sociais, psicologia, marketing e educação. Foi desenvolvido sobre a estrutura do LISREL @joreskög2004
 
-A necessidade surgiu da limitação de métodos estatísticos tradicionais (como regressão simples ou múltipla) que não conseguiam: - Capturar relações simultâneas entre múltiplas variáveis. - Trabalhar com variáveis latentes (não diretamente mensuráveis). - Testar modelos teóricos complexos com múltiplas etapas e dependências.
+A necessidade surgiu da limitação de métodos estatísticos tradicionais (como regressão simples ou múltipla) que não conseguiam capturar relações simultâneas entre múltiplas variáveis, trabalhar com variáveis latentes (não diretamente mensuráveis) e testar modelos teóricos complexos com múltiplas etapas e dependências.
 
 Na industria onde há sistemas igualmente complexos como uma fábrica com centenas de variáveis interagindo. Ela surge como ferramenta complementar a métodos tradicionais(e.g. gráficos de controle, regressão simples etc) os quais podem não conseguir capturar todas as complexidades existentes no processo. O SEM entra como uma solução para modelar sistemas industriais de forma mais completa.
+
+**Por que usaríamos um SEM em vez de um modelo de regressão linear?**
+
+Para exemplificar melhor, imagine que estamos estudando a adaptabilidade da força de trabalho em um cenário de rápida mudança tecnológica e queremos saber quais fatores preveem essa adaptabilidade.
+
+![Exemplo de modelo de regressão linear](lm_de_onde_vem.png)
+
+Digamos que temos dois preditores de interesse `Habilidade de Aprendizagem Contínua(Cont Learn)`, e `Mentalidade de Crescimento(Growth mindset)` dos trabalhadores as quais afetam a `Adaptabilidade da Força de Trabalho(WorkAdap)`. Nessa situação, teremos o problema do erro de medida, pois não sabemos se nossas estimativas serão viesadas para baixo (como no caso de apenas um único preditor) ou até para cima em algumas situações. Por exemplo, se nossa medida de "Habilidade de Aprendizagem Contínua" for mal medida e tiver baixa confiabilidade, não estamos controlando adequadamente o efeito dela ao avaliar o efeito da "Mentalidade de Crescimento". Isso poderia levar a uma superestimação do efeito de "Mentalidade de Crescimento" (b2). Basicamente, quando tentamos ajustar esses tipos de modelos em um framework de regressão padrão, nossas estimativas de efeito são viesadas devido à falta de confiabilidade, e quando há erro de medida em nossas variáveis de resultado, ele vai para o termo de erro do modelo. Qualquer erro ali, sendo aleatório, não pode ser previsto pelos preditores. Isso significa que, embora nossas estimativas de parâmetro não sejam viesadas, o que é viesado é nosso R². O R² do modelo tende a ser muito pequeno, nossos erros padrão para essas estimativas são inflacionados, então perdemos poder para detectar esses efeitos.
+
+**E no modelo SEM como ficaria?**
+
+![Exemplo de flexibilidade de modelos SEM](sem_estrutural_de_onde_vem.png)
+
+A primeira vantagem do modelo de equações estruturais é que ele nos permite superar esse problema do erro de medida. A forma como abordamos isso no SEM é obtendo múltiplas medidas indicadoras para cada uma das variáveis de interesse.
+
+Se estamos interessados na Habilidade de Aprendizagem Contínua `Cont Learn`, o que realmente nos interessa é o construto latente subjacente. Não podemos medir diretamente a "Habilidade de Aprendizagem Contínua" com perfeita confiabilidade, mas podemos obter múltiplas medidas indiretas(e.g. `curiosity`,`adaptability`,\`resilience\`\`) através de um questionário de 3 itens para avaliar a autopercepção dos trabalhadores sobre sua capacidade de aprender novas habilidades.
+
+Esses 3 itens medem a "Habilidade de Aprendizagem Contínua" e a variância comum é então incorporada ao fator latente recem criado que fornece uma medida livre de erro nesa variável.
+
+Podemos ter também, uma medida de Mentalidade de Crescimento `Growth mindset`, obtida por meio de 3 indicadores(e.g. `persistence`,`openness` e `experimentation`) onde pedimos aos trabalhadores que descrevam como eles reagiriam a desafios ou feedback, avaliando sua resiliência e perspectiva de melhoria.
+
+Os dois construtos latentes recem criados, estarão correlacionados e esperamos que cada um deles preveja a Adaptabilidade da Força de Trabalho `WorkAdap`.
+
+Idealmente, também mediríamos a "Adaptabilidade da Força de Trabalho" com múltiplas variáveis indicadoras(e.g. `collaboration`,`versatility` e `recognition`) onde poderíamos ter medidas de networl, capacidade de se adaptar a novas tecnologias e sentimento sobre a valorização da empresa sobre suas contribuições.
+
+**Estimativas não viesadas:** é quando obtemos nossas estimativas de b1 e b2, as estimativas não são contaminadas por erro de medida. Elas são estimativas não viesadas dos efeitos verdadeiros de "Habilidade de Aprendizagem Contínua" e "Mentalidade de Crescimento" sobre "Adaptabilidade da Força de Trabalho" na população.
+
+**Teste da estrutura do modelo:** é a capacidade do modelo de nos fornecer testes para avaliar se nossos modelos realmente reproduzem as associações observadas entre as variáveis(os indicadores nos retângulos). O modelo, está assumindo que as relações entre essas variáveis indicadoras são explicadas pelas associações entre essas variáveis latentes(e.g as três medidas de "Adaptabilidade" estão associadas às três medidas de "Habilidade de Aprendizagem Contínua" através deste efeito aqui (b1) e como essas medidas se relacionam com seus respectivos fatores latentes. Da mesma forma, as três medidas de "Adaptabilidade" estão relacionadas às três medidas de "Mentalidade de Crescimento" através do fator latente.
+
+Podemos avaliar se os padrões de associação implícitos entre essas variáveis indicadoras observadas são consistentes com as associações reais que observamos em nossos dados empíricos, para determinar se este modelo é um modelo razoável para nossos dados ou não. Assim, obtemos testes de ajuste do modelo que podemos usar para avaliar a qualidade do nosso modelo para os dados.
+
+**Modelos Teóricos Complexos:** significa que podemos especificar estruturas de modelos mais complexas do que podemos fazer em um de regressão tradicional. Por exemplo, @bonvillian2021 sugerem que o desenvolvimento de certas `soft skills` podem mediar a relação entre a capacidade individual e a adaptabilidade no local de trabalho.
+
+Poderíamos dizer que o "soft skills" é medido por avaliações de pares no local de trabalho `comm` e autoavaliações de colaboração `teamwork`.
+
+Argumentamos que a "Habilidade de Aprendizagem Contínua" e a "Mentalidade de Crescimento" que são as variáveis latentes exógenas preveem níveis mais altos de "soft skills", e o "soft skills", por sua vez, prevê níveis mais altos de "Adaptabilidade da Força de Trabalho".
+
+Podemos especificar modelos como este, que incorporam uma teoria mais complexa que fala sobre uma cadeia causal, onde esses fatores "Habilidade de Aprendizagem Contínua" e "Mentalidade de Crescimento" afetam a "Adaptabilidade da Força de Trabalho", mas através de sua influência no "soft skills", que é, em última análise, a causa mais próxima dessa diferença na "Adaptabilidade".
+
+Podemos testar se esse modelo é consistente com as associações que vemos nos dados observados. E podemos comparar o ajuste desse modelo a modelos alternativos.
+
+Outro exemplo é que poderíamos especular que talvez todo o efeito da "Habilidade de Aprendizagem Contínua" e "Mentalidade de Crescimento" sobre a "Adaptabilidade da Força de Trabalho" passa pelo "soft skills"(**linha azul na figua**). Mas talvez também exista algum efeito direto da "Habilidade de Aprendizagem Contínua" e da "Mentalidade de Crescimento" na "Adaptabilidade da Força de Trabalho" que não passa pelo "soft skills" ou seja, é independente do "soft skills"(**linha vermelha tracejada na figura**).
+
+Podemos testar o ajuste de um modelo que inclui esses edges vermelhos versus um modelo que as exclui, e ver qual modelo se ajusta melhor aos dados, ou seja, qual modelo é mais consistente com os padrões de associação que realmente observamos em nossos dados.
 
 ### {{< fa 4 >}} [**Como fazer?**]{style="color: #5AC8BE ;"}
 

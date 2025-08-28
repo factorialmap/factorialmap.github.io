@@ -261,7 +261,7 @@ window.Quarto = {
 <section id="o-que-é-a-sem" class="level3">
 <h3 class="anchored" data-anchor-id="o-que-é-a-sem"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a SEM</strong></span></h3>
 <ul>
-<li><p><strong>No contexto da manufatura e melhoria de processos</strong>: o SEM é uma ferramenta estatística que ajuda a entender como diferents fatores dentro de um processo estão conectados permitindo analisar várias causas e efeitos ao mesmo tempo, mesmo quando alguns desses fatores não são diretamente medidos(e.g.&nbsp;clima organizacional, engajamento dos operadores, motivação etc).</p></li>
+<li><p>No contexto da manufatura e melhoria de processos o SEM é uma ferramenta estatística que ajuda a entender como diferents fatores dentro de um processo estão conectados permitindo analisar várias causas e efeitos ao mesmo tempo, mesmo quando alguns desses fatores não são diretamente medidos(e.g.&nbsp;clima organizacional, engajamento dos operadores, motivação etc).</p></li>
 <li><p>É uma abordagem estatística poderosa e flexível que permite investigar relações complexas entre variáveis observadas (dados coletados) e variáveis latentes (conceitos não diretamente mensuráveis, como inteligência ou satisfação), mas que são inferidas a partir de indicadores. Ela combina elementos de análise fatorial e regressão múltipla em um único modelo.</p></li>
 <li><p>Diferente dos modelos tradicionais de regressão que analisam uma única equação por vez, o SEM trabalhar com múltiplas equações simultaneamene. O SEM incorpora várias técnicas estatísticas como <code>modelos de regressão linear</code>, <code>modelos de análise fatorial</code>, <code>path analysis</code>, <code>modelos com variáveis latentes</code>, <code>modelos de medição e ponderação</code> e <code>modelos hierárquicos ou multigrupo</code></p></li>
 </ul>
@@ -306,9 +306,41 @@ Clique aqui para expandir detalhes sobre o que são variáveis latentes e variá
 </section>
 <section id="de-onde-vem" class="level3">
 <h3 class="anchored" data-anchor-id="de-onde-vem"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem?</strong></span></h3>
-<p>Na academia, o SEM surgiu para estudar fenômenos complexos como comportamento humano, educação e psicologia onde foi desenvolvido a partir da evolução da análise fatorial e da path analysis (análise de caminhos), ganhando força nas ciências sociais, psicologia, marketing e educação.</p>
-<p>A necessidade surgiu da limitação de métodos estatísticos tradicionais (como regressão simples ou múltipla) que não conseguiam: - Capturar relações simultâneas entre múltiplas variáveis. - Trabalhar com variáveis latentes (não diretamente mensuráveis). - Testar modelos teóricos complexos com múltiplas etapas e dependências.</p>
+<p>Na área acadêmica, o SEM surgiu para estudar fenômenos complexos como comportamento humano, educação e psicologia onde foi desenvolvido a partir da evolução da análise fatorial e da path analysis (análise de caminhos), ganhando força nas ciências sociais, psicologia, marketing e educação. Foi desenvolvido sobre a estrutura do LISREL <span class="citation" data-cites="joreskög2004">Joreskög (<a href="#ref-joreskög2004" role="doc-biblioref">2004</a>)</span></p>
+<p>A necessidade surgiu da limitação de métodos estatísticos tradicionais (como regressão simples ou múltipla) que não conseguiam capturar relações simultâneas entre múltiplas variáveis, trabalhar com variáveis latentes (não diretamente mensuráveis) e testar modelos teóricos complexos com múltiplas etapas e dependências.</p>
 <p>Na industria onde há sistemas igualmente complexos como uma fábrica com centenas de variáveis interagindo. Ela surge como ferramenta complementar a métodos tradicionais(e.g.&nbsp;gráficos de controle, regressão simples etc) os quais podem não conseguir capturar todas as complexidades existentes no processo. O SEM entra como uma solução para modelar sistemas industriais de forma mais completa.</p>
+<p><strong>Por que usaríamos um SEM em vez de um modelo de regressão linear?</strong></p>
+<p>Para exemplificar melhor, imagine que estamos estudando a adaptabilidade da força de trabalho em um cenário de rápida mudança tecnológica e queremos saber quais fatores preveem essa adaptabilidade.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lm_de_onde_vem.png" class="img-fluid figure-img"></p>
+<figcaption>Exemplo de modelo de regressão linear</figcaption>
+</figure>
+</div>
+<p>Digamos que temos dois preditores de interesse <code>Habilidade de Aprendizagem Contínua(Cont Learn)</code>, e <code>Mentalidade de Crescimento(Growth mindset)</code> dos trabalhadores as quais afetam a <code>Adaptabilidade da Força de Trabalho(WorkAdap)</code>. Nessa situação, teremos o problema do erro de medida, pois não sabemos se nossas estimativas serão viesadas para baixo (como no caso de apenas um único preditor) ou até para cima em algumas situações. Por exemplo, se nossa medida de “Habilidade de Aprendizagem Contínua” for mal medida e tiver baixa confiabilidade, não estamos controlando adequadamente o efeito dela ao avaliar o efeito da “Mentalidade de Crescimento”. Isso poderia levar a uma superestimação do efeito de “Mentalidade de Crescimento” (b2). Basicamente, quando tentamos ajustar esses tipos de modelos em um framework de regressão padrão, nossas estimativas de efeito são viesadas devido à falta de confiabilidade, e quando há erro de medida em nossas variáveis de resultado, ele vai para o termo de erro do modelo. Qualquer erro ali, sendo aleatório, não pode ser previsto pelos preditores. Isso significa que, embora nossas estimativas de parâmetro não sejam viesadas, o que é viesado é nosso R². O R² do modelo tende a ser muito pequeno, nossos erros padrão para essas estimativas são inflacionados, então perdemos poder para detectar esses efeitos.</p>
+<p><strong>E no modelo SEM como ficaria?</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="sem_estrutural_de_onde_vem.png" class="img-fluid figure-img"></p>
+<figcaption>Exemplo de flexibilidade de modelos SEM</figcaption>
+</figure>
+</div>
+<p>A primeira vantagem do modelo de equações estruturais é que ele nos permite superar esse problema do erro de medida. A forma como abordamos isso no SEM é obtendo múltiplas medidas indicadoras para cada uma das variáveis de interesse.</p>
+<p>Se estamos interessados na Habilidade de Aprendizagem Contínua <code>Cont Learn</code>, o que realmente nos interessa é o construto latente subjacente. Não podemos medir diretamente a “Habilidade de Aprendizagem Contínua” com perfeita confiabilidade, mas podemos obter múltiplas medidas indiretas(e.g.&nbsp;<code>curiosity</code>,<code>adaptability</code>,`resilience``) através de um questionário de 3 itens para avaliar a autopercepção dos trabalhadores sobre sua capacidade de aprender novas habilidades.</p>
+<p>Esses 3 itens medem a “Habilidade de Aprendizagem Contínua” e a variância comum é então incorporada ao fator latente recem criado que fornece uma medida livre de erro nesa variável.</p>
+<p>Podemos ter também, uma medida de Mentalidade de Crescimento <code>Growth mindset</code>, obtida por meio de 3 indicadores(e.g.&nbsp;<code>persistence</code>,<code>openness</code> e <code>experimentation</code>) onde pedimos aos trabalhadores que descrevam como eles reagiriam a desafios ou feedback, avaliando sua resiliência e perspectiva de melhoria.</p>
+<p>Os dois construtos latentes recem criados, estarão correlacionados e esperamos que cada um deles preveja a Adaptabilidade da Força de Trabalho <code>WorkAdap</code>.</p>
+<p>Idealmente, também mediríamos a “Adaptabilidade da Força de Trabalho” com múltiplas variáveis indicadoras(e.g.&nbsp;<code>collaboration</code>,<code>versatility</code> e <code>recognition</code>) onde poderíamos ter medidas de networl, capacidade de se adaptar a novas tecnologias e sentimento sobre a valorização da empresa sobre suas contribuições.</p>
+<p><strong>Estimativas não viesadas:</strong> é quando obtemos nossas estimativas de b1 e b2, as estimativas não são contaminadas por erro de medida. Elas são estimativas não viesadas dos efeitos verdadeiros de “Habilidade de Aprendizagem Contínua” e “Mentalidade de Crescimento” sobre “Adaptabilidade da Força de Trabalho” na população.</p>
+<p><strong>Teste da estrutura do modelo:</strong> é a capacidade do modelo de nos fornecer testes para avaliar se nossos modelos realmente reproduzem as associações observadas entre as variáveis(os indicadores nos retângulos). O modelo, está assumindo que as relações entre essas variáveis indicadoras são explicadas pelas associações entre essas variáveis latentes(e.g as três medidas de “Adaptabilidade” estão associadas às três medidas de “Habilidade de Aprendizagem Contínua” através deste efeito aqui (b1) e como essas medidas se relacionam com seus respectivos fatores latentes. Da mesma forma, as três medidas de “Adaptabilidade” estão relacionadas às três medidas de “Mentalidade de Crescimento” através do fator latente.</p>
+<p>Podemos avaliar se os padrões de associação implícitos entre essas variáveis indicadoras observadas são consistentes com as associações reais que observamos em nossos dados empíricos, para determinar se este modelo é um modelo razoável para nossos dados ou não. Assim, obtemos testes de ajuste do modelo que podemos usar para avaliar a qualidade do nosso modelo para os dados.</p>
+<p><strong>Modelos Teóricos Complexos:</strong> significa que podemos especificar estruturas de modelos mais complexas do que podemos fazer em um de regressão tradicional. Por exemplo, <span class="citation" data-cites="bonvillian2021">Bonvillian and Sarma (<a href="#ref-bonvillian2021" role="doc-biblioref">2021</a>)</span> sugerem que o desenvolvimento de certas <code>soft skills</code> podem mediar a relação entre a capacidade individual e a adaptabilidade no local de trabalho.</p>
+<p>Poderíamos dizer que o “soft skills” é medido por avaliações de pares no local de trabalho <code>comm</code> e autoavaliações de colaboração <code>teamwork</code>.</p>
+<p>Argumentamos que a “Habilidade de Aprendizagem Contínua” e a “Mentalidade de Crescimento” que são as variáveis latentes exógenas preveem níveis mais altos de “soft skills”, e o “soft skills”, por sua vez, prevê níveis mais altos de “Adaptabilidade da Força de Trabalho”.</p>
+<p>Podemos especificar modelos como este, que incorporam uma teoria mais complexa que fala sobre uma cadeia causal, onde esses fatores “Habilidade de Aprendizagem Contínua” e “Mentalidade de Crescimento” afetam a “Adaptabilidade da Força de Trabalho”, mas através de sua influência no “soft skills”, que é, em última análise, a causa mais próxima dessa diferença na “Adaptabilidade”.</p>
+<p>Podemos testar se esse modelo é consistente com as associações que vemos nos dados observados. E podemos comparar o ajuste desse modelo a modelos alternativos.</p>
+<p>Outro exemplo é que poderíamos especular que talvez todo o efeito da “Habilidade de Aprendizagem Contínua” e “Mentalidade de Crescimento” sobre a “Adaptabilidade da Força de Trabalho” passa pelo “soft skills”(<strong>linha azul na figua</strong>). Mas talvez também exista algum efeito direto da “Habilidade de Aprendizagem Contínua” e da “Mentalidade de Crescimento” na “Adaptabilidade da Força de Trabalho” que não passa pelo “soft skills” ou seja, é independente do “soft skills”(<strong>linha vermelha tracejada na figura</strong>).</p>
+<p>Podemos testar o ajuste de um modelo que inclui esses edges vermelhos versus um modelo que as exclui, e ver qual modelo se ajusta melhor aos dados, ou seja, qual modelo é mais consistente com os padrões de associação que realmente observamos em nossos dados.</p>
 </section>
 <section id="como-fazer" class="level3">
 <h3 class="anchored" data-anchor-id="como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer?</strong></span></h3>
@@ -2970,11 +3002,17 @@ Variances:
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bonvillian2021" class="csl-entry" role="listitem">
+Bonvillian, William B., and Sanjay E. Sarma. 2021. <em>Workforce Education: A New Roadmap</em>. The MIT Press.
+</div>
 <div id="ref-epskamp2025" class="csl-entry" role="listitem">
 Epskamp, Sacha. 2025. <em>SachaEpskamp/semPlot</em>. <a href="https://github.com/SachaEpskamp/semPlot">https://github.com/SachaEpskamp/semPlot</a>.
 </div>
 <div id="ref-iannone2025" class="csl-entry" role="listitem">
 Iannone, Richard, Joe Cheng, Barret Schloerke, Ellis Hughes, Alexandra Lauer, JooYoung Seo, Brevoort Ken, and Roy Olivier. 2025. <em>Gt: Easily Create Presentation-Ready Display Tables</em>. <a href="https://github.com/rstudio/gt">https://github.com/rstudio/gt</a>.
+</div>
+<div id="ref-joreskög2004" class="csl-entry" role="listitem">
+Joreskög, Karl. 2004. <span>“Structural Equation Modeling with Ordinal Variables Using LISREL.”</span> <a href="https://www.researchgate.net/publication/254206917_Structural_Equation_Modeling_with_Ordinal_Variables_using_LISREL">https://www.researchgate.net/publication/254206917_Structural_Equation_Modeling_with_Ordinal_Variables_using_LISREL</a>.
 </div>
 <div id="ref-kuhn2022" class="csl-entry" role="listitem">
 Kuhn, Max, Simon Jackson, and Jorge Cimentada. 2022. <em>Tidymodels/Corrr</em>. tidymodels. <a href="https://github.com/tidymodels/corrr">https://github.com/tidymodels/corrr</a>.
