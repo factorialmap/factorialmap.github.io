@@ -10,15 +10,21 @@ bibliography: references.bib
 
 ### {{< fa 1 >}} [**O que é a SEM**]{style="color: #5AC8BE ;"}
 
--   **Em linguagem simples por exemplo no contexto da manufatura e melhoria de processos**: o SEM é uma ferramenta estatística que ajuda a entender como diferents fatores dentro de um processo estão conectados permitindo analisar várias causas e efeitos ao mesmo tempo, mesmo quando alguns desses fatores não são diretamente medidos(e.g. clima organizacional, engajamento dos operadores, motivação etc).
+-   **No contexto da manufatura e melhoria de processos**: o SEM é uma ferramenta estatística que ajuda a entender como diferents fatores dentro de um processo estão conectados permitindo analisar várias causas e efeitos ao mesmo tempo, mesmo quando alguns desses fatores não são diretamente medidos(e.g. clima organizacional, engajamento dos operadores, motivação etc).
 
--   **Ponto de vista técnico**: É uma técnica estatística multivariada que permite testar e estimar relações complexas entre variáveis observadas (dados coletados) e variáveis latentes (conceitos não diretamente mensuráveis, como inteligência ou satisfação). Ela combina elementos de análise fatorial e regressão múltipla em um único modelo.
+-   É uma abordagem estatística poderosa e flexível que permite investigar relações complexas entre variáveis observadas (dados coletados) e variáveis latentes (conceitos não diretamente mensuráveis, como inteligência ou satisfação), mas que são inferidas a partir de indicadores. Ela combina elementos de análise fatorial e regressão múltipla em um único modelo.
 
-**Importante** Ela trabalha com dois tipos de variáveis.
+-   Diferente dos modelos tradicionais de regressão que analisam uma única equação por vez, o SEM trabalhar com múltiplas equações simultaneamene. O SEM incorpora várias técnicas estatísticas como `modelos de regressão linear`, `modelos de análise fatorial`, `path analysis`, `modelos com variáveis latentes`, `modelos de medição e ponderação` e `modelos hierárquicos ou multigrupo`
+
+![Modelos disponíveis no pacote lavaan para R](lavaan_sem_models.png)
+
+::: {.callout-tip collapse="true"}
+## Clique aqui para expandir detalhes sobre o que são variáveis latentes e variáveis observadas
 
 -   **Variáveis observadas**: Ajudam a controlar e monitorar o processo. São coisas que conseguimos medir diretamente no chão da fábrica(e.g. temperatura de uma maquina, tempo de produção de uma peça, número de peças com defeito, peso de um produto, horas de treinamento recebidos). Estas variáveis vêm de sensores, relatórios ou medições feitas por pessoas. Elas são vistas e registradas.
 
 -   **Variáveis latentes**: Ajudam a entender o que está por trás dos resultados e melhorar o sistema de forma mais profunda. São coisas que não conseguimos medir diretamente, mas que influenciam o processo. É necessário usar outras variáveis para estimar ou representá-las(e.g. motivação dos operadores, qualidade do ambiente de trabalho, engajamento com segurança, cultura de melhoria contínua, satisfação com treinamento). Não há um sensor que mede a motivação por exemplo, mas pode-se utilizar de perguntas de uma pesquisa ou observar o comportamentos para representar esse conceito.
+:::
 
 PS. Há conteúdos no Youtube de excelente qualidade que ajudam a compreender melhor esses modelos e suas aplicações como por exemplo, o do professor @prof.diogeness.bido2021
 
@@ -42,23 +48,66 @@ Na industria onde há sistemas igualmente complexos como uma fábrica com centen
 
 ### {{< fa 4 >}} [**Como fazer?**]{style="color: #5AC8BE ;"}
 
-**Caso1 - Apenas para trazer sentido para nosso exemplo usando mtcars dataset**
+Antes de iniciarmos nos exemplos é importante notar as diferentes sintaxes no pacote `lavaan` como `~` significa previsão(predict), `=~` significa indicador(indicator). E também as definições das palavras(e.g `variável exógena`, `fator` etc.)
 
-Iremos fazer um modelo sem variáveis latentes, chamado também de `path analysis` apenas para ilustrar de forma simples o problema e a solução.
+::: {.callout-tip collapse="true"}
+## Clique aqui para mais detalhes sobre as sintaxes usadas no lavaan
 
-1.  A especificação do modelo SEM é feito com uma string(em formato de texto), note que foi usado aspas indicado que o formato é texto.
+**fórmulas e sintaxes**
 
-2.  Há duas equações estruturais sendo:
+-   `~` significa prever ou predict e é usado para regressõ do resultado observado aos preditores observados(e.g. lm(mpg\~wt, data = mtcars)).
 
--   **mpg \~ cyl + disp + hp**: o consumo de combustível (mpg) é explicado por número de cilindros (cyl), deslocamento (disp) e potência (hp).
--   **qsec \~ disp + hp + wt**: o tempo de aceleração (qsec) é explicado por deslocamento (disp), potência (hp) e peso (wt).
+-   `=~` significa indicador(indicator) e é usada para a variável latente para indicador observado em modelos SEM(e.g. f =\~ q + r + s)
 
-3.  Implementar via software usando R/RStudio @rstudio/2025, Lavaan package @rosseel2024, Quarto Publishing @quarto2025
+-   `~~` significa covariância(e.g. x\~\~x), que neste caso é variância por está interagindo com ela mesma.
+
+-   `~1` significa intercepto(e.g. x\~1 estima média da variável x)
+
+-   `1*` significa corrige parametro ou carga(e.g. f =\~1\*q)
+
+-   `NA*` significa liberar o parâmetro ou carga(e.g. f=\~NA\*q), e é util para substituir o marcados padrão.
+
+-   `a*` significa rotular o parâmetro 'a' usado para restrições do modelo(e.g. f=\~a\*q)
+
+------------------------------------------------------------------------
+
+**tipos de variáveis e resultados**
+
+-   **variável observada**: é algo que a gente consegue medir ou ver diretamente(e.g. quantas peças um funcionário produz por hora)
+-   **variável latente**: é algo que a gente não consegue medir diretamente, mas que deduzimos com base em outras coisas(e.g. satisfação no trabalho de alguém).
+-   **variável exógena**: é uma causa. Ela influencia outra coisa, mas não é influenciada por ela(e.g pense na "experiência" de um funcionário).
+-   **variável endógena**: é um efeito. Ela é influenciada por outras coisas(e.g a "produtividade" de um funcionário).
+-   **modelo de medição**: é como a gente liga o que a gente vê (variáveis observadas) com o que a gente não vê diretamente(variáveis latentes).
+-   **indicador**: é o que a gente usa pra medir algo que não vemos. Se a "satisfação" é o que não vemos, o "número de reclamações" pode ser um indicador.
+-   **fator**: é o que a gente não vê, mas que é formado por várias coisas que a gente mede(e.g a "qualidade" é um fator, medido por "defeitos", "rejeitos", etc).
+-   **carga fatorial**: é o quanto uma coisa medida contribui para formar o que a gente não vê(e.g. tipo a "força" da ligação).
+-   **modelo estrutural**: é como a gente mostra as relações de causa e efeito entre as coisas que estudamos.
+-   **regression path**: é a seta que mostra a influência direta de uma coisa sobre outra.
+
+------------------------------------------------------------------------
+
+**diagrama**
+
+-   **retangulos/quadrados** representa que a variável é observada
+-   **circulos** representa que a variável é latente
+-   **traço com seta de um lado** representa o caminho da causa e efeito
+-   **traço com seta dos dois lados** representa a covariância ou variância(quando ela estiver em si mesma)
+:::
+
+**Caso1 - Prever milhas por galão e tempo de aceleração de veículos**
+
+Iremos fazer um modelo `path analysis` de regressão multivariada (duas variáveis de resposta) com variáveis observadas(neste não terá variáveis latentes), apenas para ilustrar de forma simples o problema e a solução. Para isso usaremos o conjunto de dados `mtcars` que é bem conhecido por quem usa o `R`
+
+1.  A especificação do modelo SEM é feito com uma string(em formato de texto), note que foi usado aspas indicado que o formato é texto, onde háduas equações estruturais.
+    -   **mpg \~ cyl + disp + hp**: o consumo de combustível (mpg) é explicado por número de cilindros (cyl), deslocamento (disp) e potência (hp).
+    -   **qsec \~ disp + hp + wt**: o tempo de aceleração (qsec) é explicado por deslocamento (disp), potência (hp) e peso (wt).
+2.  Rodar o modelo usando R/RStudio @rstudio/2025, Lavaan package @rosseel2024, Quarto Publishing @quarto2025 e mostrar os resultados.
 
 ```{r}
-#| label: sem_mtcars
+#| label: modelo_completo_mtcars
 #| warning: false
 #| message: false
+#| fig-align: center
 
 # packages
 library(tidyverse)
@@ -70,11 +119,11 @@ mdl_spec_sem_mtcas <- "
 mpg ~ cyl + disp + hp
 qsec ~ disp + hp + wt
 "
-
-# step2: rodar o modelo
+# step2: rodar o modelo e mostrar resultados
+# rodar o modelo
 mdl_fit_sem_mtcars <- sem(mdl_spec_sem_mtcas, data = mtcars)
 
-# step3: checar resultados
+# mostrar os resultados
 summary(mdl_fit_sem_mtcars, fit.measures = TRUE, standardized = TRUE)
 
 ```
@@ -89,26 +138,26 @@ summary(mdl_fit_sem_mtcars, fit.measures = TRUE, standardized = TRUE)
 -   **`lavaan 0.6-19 ended normally after 32 iterations`**: O processo de estimação do modelo convergiu com sucesso após 32 iterações. Isso é bom, indica que o algoritmo encontrou uma solução estável.
 -   **`Estimator ML`**: O estimador usado foi o de Máxima Verossimilhança (Maximum Likelihood). Este é o estimador padrão e mais comum para SEM quando os dados são aproximadamente normais.
 -   **`Optimization method NLMINB`**: O método de otimização usado.
--   **`Number of model parameters 9`**: Seu modelo possui 9 parâmetros que foram estimados (por exemplo, os coeficientes de caminho, variâncias residuais, covariâncias).
--   **`Number of observations 32`**: Você está usando um conjunto de dados com 32 observações (linhas), que é o tamanho do conjunto de dados `mtcars`.
+-   **`Number of model parameters 9`**: O modelo possui 9 parâmetros que foram estimados(e.g. os coeficientes de caminho, variâncias residuais, covariâncias).
+-   **`Number of observations 32`**: Foi usado um conjunto de dados com 32 observações (linhas), que é o tamanho do conjunto de dados `mtcars`.
 
 **2. Teste do Modelo do Usuário (`Model Test User Model`):**
 
-Este é o teste de qui-quadrado (Chi-square test) do seu modelo. A hipótese nula ($H_0$) deste teste é que o seu modelo se ajusta *perfeitamente* aos dados da população. Uma hipótese alternativa ($H_1$) é que o modelo não se ajusta perfeitamente.
+Este é o teste de qui-quadrado (Chi-square test) do nosso modelo. A hipótese nula ($H_0$) deste teste é que o nosso modelo se ajusta *perfeitamente* aos dados da população. Uma hipótese alternativa ($H_1$) é que o modelo não se ajusta perfeitamente.
 
 -   **`Test statistic 18.266`**: O valor do teste de qui-quadrado.
 
--   **`Degrees of freedom 2`**: Os graus de liberdade do seu modelo.
+-   **`Degrees of freedom 2`**: Os graus de liberdade do nosso modelo.
 
 -   **`P-value (Chi-square) 0.000`**: O p-valor associado.
 
-    **Interpretação:** Como o p-valor (0.000) é menor que 0.05 (ou qualquer nível de significância usual), nós **rejeitamos a hipótese nula**. Isso significa que o seu modelo (o "modelo do usuário") *não* se ajusta perfeitamente aos dados observados.
+    **Interpretação:** Como o p-valor (0.000) é menor que 0.05 (ou qualquer nível de significância usual), nós **rejeitamos a hipótese nula**. Isso significa que o nosso modelo (o "modelo do usuário") *não* se ajusta perfeitamente aos dados observados.
 
     **Cuidado:** Embora isso possa parecer uma má notícia, o teste de qui-quadrado é muito sensível, especialmente com tamanhos de amostra maiores. Com 32 observações, a rejeição aqui é um sinal de que o modelo não é *perfeito*. No entanto, em SEM, raramente esperamos um ajuste perfeito. O foco geralmente é em ter um "bom ajuste" ou um "ajuste razoável", avaliado por outros índices de ajuste.
 
 **3. Teste do Modelo de Linha de Base (`Model Test Baseline Model`):**
 
-O modelo de linha de base (baseline model) é um modelo nulo onde todas as variáveis são consideradas não correlacionadas. Serve como um ponto de comparação para o seu modelo.
+O modelo de linha de base (baseline model) é um modelo nulo onde todas as variáveis são consideradas não correlacionadas. Serve como um ponto de comparação para o nosso modelo.
 
 -   **`Test statistic 101.965`**
 
@@ -120,23 +169,23 @@ O modelo de linha de base (baseline model) é um modelo nulo onde todas as vari�
 
 **4. Modelo do Usuário versus Modelo de Linha de Base (`User Model versus Baseline Model`):**
 
-Esses são índices de ajuste incrementais, que comparam o seu modelo com o modelo de linha de base.
+Esses são índices de ajuste incrementais, que comparam o nosso modelo com o modelo de linha de base.
 
 -   **`Comparative Fit Index (CFI) 0.825`**:
 
-    -   **Interpretação:** O CFI varia de 0 a 1. Valores acima de 0.90 ou 0.95 são geralmente considerados indicativos de um bom ajuste. Seu CFI de 0.825 está abaixo dos critérios comuns para um bom ajuste (geralmente \> 0.90 ou \> 0.95). Isso sugere que o seu modelo não melhora substancialmente o ajuste em comparação com o modelo nulo o suficiente para ser considerado um "bom" ajuste.
+    -   **Interpretação:** O CFI varia de 0 a 1. Valores acima de 0.90 ou 0.95 são geralmente considerados indicativos de um bom ajuste. Nosso CFI de 0.825 está abaixo dos critérios comuns para um bom ajuste (geralmente \> 0.90 ou \> 0.95). Isso sugere que o nosso modelo não melhora substancialmente o ajuste em comparação com o modelo nulo o suficiente para ser considerado um "bom" ajuste.
 
 -   **`Tucker-Lewis Index (TLI) 0.213`**:
 
     -   **Interpretação:** O TLI (também conhecido como NNFI) é outro índice incremental, também variando geralmente de 0 a 1, com valores \> 0.90 ou \> 0.95 indicando bom ajuste. Seu TLI de 0.213 é **muito baixo**, indicando um ajuste pobre do modelo.
 
-    **Em resumo para CFI e TLI:** Ambos os índices sugerem que o seu modelo não está bem ajustado aos dados.
+    **Em resumo para CFI e TLI:** Ambos os índices sugerem que o nosso modelo não está bem ajustado aos dados.
 
 **5. Critérios de Log-Verossimilhança e Informação (`Loglikelihood and Information Criteria`):**
 
 Esses critérios são usados para comparar modelos, favorecendo modelos com melhor ajuste e menor complexidade. Valores menores são geralmente preferíveis.
 
--   **`Loglikelihood user model (H0) -124.003`**: A log-verossimilhança do seu modelo.
+-   **`Loglikelihood user model (H0) -124.003`**: A log-verossimilhança do nosso modelo.
 
 -   **`Loglikelihood unrestricted model (H1) -114.870`**: A log-verossimilhança do modelo não restrito (também conhecido como modelo saturado), que é o modelo com o melhor ajuste possível aos dados.
 
@@ -146,14 +195,14 @@ Esses critérios são usados para comparar modelos, favorecendo modelos com melh
 
 -   **`Sample-size adjusted Bayesian (SABIC) 251.140`**: BIC ajustado para o tamanho da amostra.
 
-    **Interpretação:** Esses valores são mais úteis para comparar seu modelo com modelos alternativos (modelos aninhados ou não aninhados). Modelos com valores menores de AIC, BIC e SABIC são considerados melhores. Isoladamente, eles não indicam "bom" ou "mau" ajuste.
+    **Interpretação:** Esses valores são mais úteis para comparar nosso modelo com modelos alternativos (modelos aninhados ou não aninhados). Modelos com valores menores de AIC, BIC e SABIC são considerados melhores. Isoladamente, eles não indicam "bom" ou "mau" ajuste.
 
 **6. Erro Quadrático Médio da Aproximação (`Root Mean Square Error of Approximation` - RMSEA):**
 
 O RMSEA é um índice de ajuste absoluto que mede o quão mal o modelo se ajusta aos dados. Valores menores indicam melhor ajuste.
 
 -   **`RMSEA 0.504`**:
-    -   **Interpretação:** Um RMSEA \< 0.05 é considerado um bom ajuste, entre 0.05 e 0.08 é um ajuste razoável, e \> 0.10 é um ajuste pobre. Seu valor de 0.504 é **extremamente alto**, indicando um ajuste muito ruim do modelo aos dados.
+    -   **Interpretação:** Um RMSEA \< 0.05 é considerado um bom ajuste, entre 0.05 e 0.08 é um ajuste razoável, e \> 0.10 é um ajuste pobre. Nosso valor de 0.504 é **extremamente alto**, indicando um ajuste muito ruim do modelo aos dados.
 -   **`90 Percent confidence interval - lower 0.309`**
 -   **`90 Percent confidence interval - upper 0.727`**: O intervalo de confiança para o RMSEA é muito amplo e totalmente acima de 0.08, reforçando o mau ajuste.
 -   **`P-value H_0: RMSEA <= 0.050 0.000`**: Este é o p-valor para o teste da hipótese nula de que o RMSEA é menor ou igual a 0.05. Como é 0.000, rejeitamos essa hipótese.
@@ -177,13 +226,13 @@ O RMSEA é um índice de ajuste absoluto que mede o quão mal o modelo se ajusta
 
 -   **`Information saturated (h1) model Structured`**: Refere-se a como a matriz de informação é tratada para o modelo saturado (h1).
 
-    **Interpretação:** Essas são informações técnicas sobre como os erros padrão e os testes de significância foram calculados. Geralmente, você não precisa se aprofundar muito nisso, a menos que haja problemas de convergência ou preocupações com a normalidade dos dados.
+    **Interpretação:** Essas são informações técnicas sobre como os erros padrão e os testes de significância foram calculados. Geralmente não é necessário se aprofundar muito nisso, a menos que haja problemas de convergência ou preocupações com a normalidade dos dados.
 
 **2. Regressões (`Regressions`):**
 
 Esta seção mostra os efeitos diretos (caminhos) de uma variável sobre outra, semelhantes aos coeficientes de regressão.
 
--   **`Estimate`**: O coeficiente de regressão não padronizado. Representa a mudança na variável dependente para cada unidade de mudança na variável preditora, mantendo as outras preditoras constantes.
+-   **`Estimate`**: O coeficiente de regressão(não padronizado). Representa a mudança na variável dependente para cada unidade de mudança na variável preditora, mantendo as outras preditoras constantes.
 -   **`Std.Err`**: O erro padrão do coeficiente estimado.
 -   **`z-value`**: O valor Z do teste de Wald, que é o `Estimate` dividido pelo `Std.Err`. É usado para testar a significância estatística do coeficiente.
 -   **`P(>|z|)`**: O p-valor associado ao valor Z. Se for menor que seu nível de significância (geralmente 0.05), o coeficiente é considerado estatisticamente significativo.
@@ -192,11 +241,11 @@ Esta seção mostra os efeitos diretos (caminhos) de uma variável sobre outra, 
 
 **Detalhes da Interpretação:**
 
-**a) `mpg ~ cyl` (mpg é predito por cyl):** \* `Estimate = -0.987`: Para cada aumento de 1 cilindro, o `mpg` diminui em 0.987 unidades. \* `P(>|z|) = 0.181`: Não é significativo (p \> 0.05). Isso significa que o número de cilindros não tem um efeito direto estatisticamente significativo sobre `mpg` APÓS contabilizar as outras variáveis no modelo para `mpg`. \* `Std.all = -0.293`: Um efeito padronizado fraco a moderado, mas não significativo. (Corresponde a `-0.29` no diagrama).
+**a) `mpg ~ cyl` (mpg é predito por cyl):** \* `Estimate = -0.987`: Para cada aumento de 1 cilindro, o `mpg` diminui em 0.987 unidades. \* `P(>|z|) = 0.181`: Não é significativo (p \> 0.05). Isso significa que o número de cilindros não tem um efeito direto estatisticamente significativo sobre `mpg`, após contabilizar as outras variáveis no modelo para `mpg`. \* `Std.all = -0.293`: Um efeito padronizado fraco a moderado, mas não significativo. (Corresponde a `-0.29` no diagrama).
 
 **b) `mpg ~ disp` (mpg é predito por disp):** \* `Estimate = -0.021`: Para cada aumento de 1 unidade em `disp`, o `mpg` diminui em 0.021 unidades. \* `P(>|z|) = 0.029`: **Significativo** (p \< 0.05). `disp` tem um efeito direto negativo estatisticamente significativo sobre `mpg`. \* `Std.all = -0.435`: Um efeito padronizado moderado e significativo. (Corresponde a `-0.44` no diagrama).
 
-**c) `mpg ~ hp` (mpg é predito por hp):** \* `Estimate = -0.017`: Para cada aumento de 1 unidade em `hp`, o `mpg` diminui em 0.017 unidades. \* `P(>|z|) = 0.223`: Não é significativo (p \> 0.05). `hp` não tem um efeito direto estatisticamente significativo sobre `mpg` APÓS contabilizar as outras variáveis. \* `Std.all = -0.190`: Um efeito padronizado fraco e não significativo. (Corresponde a `-0.19` no diagrama).
+**c) `mpg ~ hp` (mpg é predito por hp):** \* `Estimate = -0.017`: Para cada aumento de 1 unidade em `hp`, o `mpg` diminui em 0.017 unidades. \* `P(>|z|) = 0.223`: Não é significativo (p \> 0.05). `hp` não tem um efeito direto estatisticamente significativo sobre `mpg` após contabilizar as outras variáveis. \* `Std.all = -0.190`: Um efeito padronizado fraco e não significativo. (Corresponde a `-0.19` no diagrama).
 
 **d) `qsec ~ disp` (qsec é predito por disp):** \* `Estimate = -0.008`: Para cada aumento de 1 unidade em `disp`, o `qsec` diminui em 0.008 unidades. \* `P(>|z|) = 0.034`: **Significativo** (p \< 0.05). `disp` tem um efeito direto negativo estatisticamente significativo sobre `qsec`. \* `Std.all = -0.559`: Um efeito padronizado forte e significativo. (Corresponde a `-0.56` no diagrama).
 
@@ -220,7 +269,7 @@ Esta seção mostra as covariâncias estimadas entre variáveis que não têm um
 
 **4. Variâncias (`Variances`):**
 
-Esta seção mostra as variâncias estimadas para as variáveis exógenas e as variâncias residuais para as variáveis endógenas.
+Esta seção mostra as variâncias estimadas para as variáveis exógenas(chamada de causas ou variáveis preditoras) e as variâncias residuais para as variáveis endógenas(chamadas de efeito ou variáveis de resposta).
 
 -   **`.mpg` (Variância residual de mpg):**
 
@@ -234,42 +283,42 @@ Esta seção mostra as variâncias estimadas para as variáveis exógenas e as v
     -   `P(>|z|) = 0.000`: Altamente significativo.
     -   `Std.all = 0.308`: A variância residual padronizada (1 - R-quadrado). Isso significa que 30.8% da variância de `qsec` não é explicada pelas preditoras no modelo. Consequentemente, as preditoras (`disp`, `hp`, `wt`) explicam `1 - 0.308 = 0.692` ou 69.2% da variância em `qsec` (R-quadrado para `qsec`). (Corresponde a `0.31` no diagrama).
 
-    **Interpretação:** As variâncias residuais indicam a proporção da variância das variáveis dependentes que *não* é explicada pelo modelo. Os valores padronizados (`Std.all`) fornecem o complementar do R-quadrado. Seu modelo explica uma proporção razoável da variância em ambas as variáveis dependentes.
+    **Interpretação:** As variâncias residuais indicam a proporção da variância das variáveis dependentes que *não* é explicada pelo modelo. Os valores padronizados (`Std.all`) fornecem o complementar do R-quadrado. nosso modelo explica uma proporção razoável da variância em ambas as variáveis dependentes.
 
 **Considerações Finais:**
 
-Lembre-se da interpretação anterior sobre o ajuste geral do modelo. Embora alguns caminhos individuais sejam estatisticamente significativos e os Rs-quadrados sejam razoáveis, os índices de ajuste globais (CFI, TLI, RMSEA) indicaram que o modelo como um todo não se ajusta bem aos dados. Isso significa que, embora as relações específicas que você encontrou sejam interessantes, a estrutura geral do seu modelo pode não ser a melhor representação dos dados, possivelmente devido ao pequeno tamanho da amostra ou a um modelo teórico incompleto/incorreto.
+Lembre-se da interpretação anterior sobre o ajuste geral do modelo. Embora alguns caminhos individuais sejam estatisticamente significativos e os Rs-quadrados sejam razoáveis, os índices de ajuste globais (CFI, TLI, RMSEA) indicaram que o modelo como um todo não se ajusta bem aos dados. Isso significa que, embora as relações específicas que você encontrou sejam interessantes, a estrutura geral do nosso modelo pode não ser a melhor representação dos dados, possivelmente devido ao pequeno tamanho da amostra ou a um modelo teórico incompleto/incorreto.
 
-Em resumo, seu modelo atual não se ajusta bem aos dados. A primeira etapa é sempre revisar a teoria por trás do seu modelo e a especificação no `lavaan`. Dada a pequena amostra do `mtcars`, é desafiador construir um modelo SEM robusto com este conjunto de dados.
+Em resumo, nosso modelo atual não se ajusta bem aos dados. A primeira etapa é sempre revisar a teoria por trás do nosso modelo e a especificação no `lavaan`. Dada a pequena amostra do `mtcars`, é desafiador construir um modelo SEM robusto com este conjunto de dados, eu apenas usei ele para facilitar o entendimento para quem está vendo esse conteúdo pela primeira vez, mas que já conheça o `mtcars` de outros exemplos.
 
 **Conclusão Geral e Recomendações:**
 
-Com base em todos os índices de ajuste (Chi-quadrado, CFI, TLI, RMSEA), seu modelo atual apresenta um **ajuste muito pobre** aos dados do `mtcars`. Isso significa que as relações e a estrutura que você hipotetizou no seu diagrama (e que o `lavaan` tentou ajustar) não representam bem as covariâncias observadas no seu conjunto de dados.
+Com base em todos os índices de ajuste (Chi-quadrado, CFI, TLI, RMSEA), nosso modelo atual apresenta um ajuste muito pobre aos dados do `mtcars`. Isso significa que as relações e a estrutura que nós hipotetizamos em nosso diagrama (e que o `lavaan` tentou ajustar) não representam bem as covariâncias observadas no conjunto de dados.
 
 **O que fazer a seguir?**
 
 1.  **Revisar o Modelo Teórico:**
-    -   Seu modelo SEM deve ser baseado em teoria. As relações que você desenhou fazem sentido conceitualmente?
+    -   nosso modelo SEM deve ser baseado em teoria. As relações que desenhamos fazem sentido conceitualmente?
     -   Há alguma variável importante faltando no modelo que poderia explicar melhor `mpg` ou `qsec`?
-    -   Você incluiu todas as covariâncias entre as variáveis exógenas (`cyl`, `disp`, `hp`, `wt`) que são esperadas? (Pelo diagrama, parece que sim, mas verifique se o modelo `lavaan` as especificou corretamente).
+    -   Será que incluímos todas as covariâncias entre as variáveis preditoras(`cyl`, `disp`, `hp`, `wt`) que são esperadas? (Pelo diagrama, parece que sim, mas verificar se o modelo `lavaan` as especificou corretamente, é uma boa coisa a se fazer).
 2.  **Verificar Especificação do Modelo:**
-    -   Certifique-se de que a sintaxe do `lavaan` reflete *exatamente* o diagrama que você pretendia testar. Às vezes, pequenos erros de digitação ou omissões podem levar a um ajuste ruim.
-    -   Se você usou um atalho como `x ~~ y` para covariância ou `y ~ x` para regressão, confira se não há setas ou covariâncias que deveriam estar lá, mas não foram especificadas.
-3.  **Explorar Modificações (Com Cuidado):**
+    -   Certificar de que a sintaxe do `lavaan` reflete exatamente o diagrama que nós pretendiamos testar. Às vezes, pequenos erros de digitação ou omissões podem levar a um ajuste ruim.
+    -   Se nós usamos um atalho como `x ~~ y` para covariância ou `y ~ x` para regressão, confirir se não há setas ou covariâncias que deveriam estar lá mas não foram especificadas, também é uma boa prática.
+3.  **Explorar Modificações, mas com Cuidado:**
     -   O `lavaan` pode fornecer índices de modificação (`modindices()`) que sugerem quais parâmetros (caminhos ou covariâncias) poderiam ser adicionados ao modelo para melhorar o ajuste.
-    -   **Importante:** Use índices de modificação com **muita cautela** e apenas se as modificações fizerem sentido teórico. Fazer mudanças apenas para melhorar o ajuste sem base teórica pode levar a um modelo superajustado aos dados da amostra e que não generaliza bem.
+    -   **Importante:** Use índices de modificação com muita cautela e apenas se as modificações fizerem sentido teórico. Fazer mudanças apenas para melhorar o ajuste sem base teórica pode levar a um modelo superajustado aos dados da amostra e que não generaliza bem.
 4.  **Tamanho da Amostra:**
-    -   Com 32 observações, você tem um tamanho de amostra muito pequeno para SEM. Modelos SEM geralmente exigem amostras maiores (centenas de observações) para ter poder estatístico adequado e para que os índices de ajuste funcionem de forma confiável. Um tamanho de amostra pequeno pode inflar o qui-quadrado e dificultar a obtenção de um bom ajuste, mesmo que o modelo seja teoricamente correto. No caso do `mtcars`, que tem apenas 32 carros, as limitações do conjunto de dados são um fator importante.
+    -   Com 32 observações, nós temos um tamanho de amostra muito pequeno para SEM. Modelos SEM geralmente exigem amostras maiores (centenas de observações) para ter poder estatístico adequado e para que os índices de ajuste funcionem de forma confiável. Um tamanho de amostra pequeno pode inflar o qui-quadrado e dificultar a obtenção de um bom ajuste, mesmo que o modelo seja teoricamente correto. No caso do `mtcars`, que tem apenas 32 carros, as limitações do conjunto de dados são um fator importante.
 5.  **Multicolinearidade:**
-    -   No diagrama, vimos correlações muito altas entre `cyl`, `disp`, `hp`, `wt`. Embora SEM possa lidar com isso melhor do que regressão múltipla tradicional, correlações extremamente altas ainda podem dificultar a estimação ou interpretação dos efeitos diretos.
+    -   No diagrama, vimos correlações muito altas entre `cyl`, `disp`, `hp`, `wt`. Isso também pode ser observado, se nos plotarmos um gráfico de correlação. Embora SEM possa lidar com isso melhor do que regressão múltipla tradicional, correlações extremamente altas ainda podem dificultar a estimação ou interpretação dos efeitos diretos.
 
 **Conexão com o Diagrama abaixo**
 
-Os valores na coluna `Std.all` correspondem diretamente aos números exibidos nas setas do seu diagrama (`semPlot`). A espessura das setas no diagrama visualmente representa a magnitude desses `Std.all`. A cor (verde/vermelho) reflete o sinal do `Estimate` (positivo/negativo).
+Os valores na coluna `Std.all` correspondem diretamente aos números exibidos nas setas do nosso diagrama (`semPlot`). A espessura das setas no diagrama visualmente representa a magnitude desses `Std.all`. A cor (verde/vermelho) reflete o sinal do `Estimate` (positivo/negativo).
 :::
 
 ```{r}
-#| label: sem_plot_mtcars
+#| label: lavaan_plot_mtcars
 #| warning: false
 #| message: false
 #| eval: false
@@ -324,7 +373,7 @@ O diagrama de caminho (path diagram) acima, representa as relações hipotética
 
 **Visão Geral do Diagrama:**
 
--   **Variáveis Observadas (Retângulos):** representa uma variável observada do conjunto de dados `mtcars`(e.g cyl(número de cilindros), disp(cilindrada),hp(potência),wt(peso do veículo), mpg(milhas por galão), qsec(tempo de 1/4 de milha).
+-   **Variáveis Observadas (Retângulos):** representa uma variável observada do conjunto de dados `mtcars`(e.g cyl(número de cilindros), disp(cilindrada),hp(potência),wt(peso do veículo), mpg(milhas por galão), qsec(tempo de 1/4 de milha). Se tivessemos variáveis latentes elas apareceriam em círculos.
 
 -   **Setas e Linhas:** representam relações causais ou diretivas (regressões), enquanto as linhas bidirecionais curvas representam covariâncias ou correlações.
 
@@ -334,9 +383,9 @@ O diagrama de caminho (path diagram) acima, representa as relações hipotética
 
 -   **Números nas Setas/Linhas:** são os coeficientes de caminho padronizados (standardized path coefficients), que são análogos a coeficientes de regressão padronizados ou correlações. Eles variam de -1 a 1. Onde valores próximos a 0 indicam relações fracas e valores próximos a 1 (ou -1) indicam relações fortes.
 
-**Interpretação Detalhada por Seções:**
+**Interpretação detalhada por seções:**
 
-**1. Relações entre as Variáveis de "Características do Carro" (Topo):**
+**1. Relações entre as variáveis de "características do carro" (Topo):**
 
 -   **Setas Bidirecionais Curvas na Parte Superior (entre cyl, disp, hp, wt):** Estas representam as correlações entre essas variáveis de características do carro. Todas são verdes e têm valores altos, indicando fortes correlações positivas.
     -   `cyl <-> cyl` (1.00): Isso é o "erro" ou variância não explicada da própria variável. Em modelos SEM, geralmente é a variância residual ou a variância de um erro, mas para variáveis exógenas (sem setas apontando para elas), pode representar a variância total. No entanto, o `semPlot` pode desenhar isso como a variância total de uma variável quando não há preditores, ou a variância residual de uma variável endógena. Neste caso, para `cyl`, `disp`, `hp`, `wt` que parecem ser variáveis exógenas (ou seja, suas causas não são modeladas aqui, elas são as preditoras), esse `1.00` geralmente representa que 100% da variância delas é explicada por si mesmas no contexto de não serem preditas por outras variáveis no modelo, ou simplesmente sua variância total (que é 1 em uma escala padronizada).
@@ -393,26 +442,34 @@ Este diagrama oferece uma representação visual clara das relações entre as v
 
 **Caso2 - Estudo de impacto da satisfação no trabalho sobre a produtividade, mediado pela motivação**
 
-1.  A especificação do modelo SEM é feito com uma string(em formato de texto nota que foi usado aspas ou apóstrofos)
+1.  Vamos gerar dados simulados para este modelo.
 
-2.  Definimos as variáveis latentes
+2.  Especificar(definir) o modeo SEM. A especificação do modelo SEM é feito com uma string(em formato de texto nota que foi usado aspas ou apóstrofos)
 
-    -   `Satisfação no trabalho` (medida por perguntas sobre ambiente, salário, reconhecimento)
-    -   `Motivação` (medida por perguntas sobre engajamento, metas, esforço)
-    -   `Produtividade` (medida por desempenho, entregas, qualidade)
+    -   **Definir as variáveis latentes**
 
-3.  As equações estruturais são:
+        -   `Satisfação no trabalho` (medida por perguntas sobre ambiente, salário, reconhecimento)
 
-    -   `Satisfação → Motivação → Produtividade`
+        -   `Motivação` (medida por perguntas sobre engajamento, metas, esforço)
 
-4.  Implementar via software usando R (lavaan package)
+        -   `Produtividade` (medida por desempenho, entregas, qualidade)
 
-```{R}
+    -   **Definir as equações estruturais**
+
+        -   `Satisfação → Motivação → Produtividade`
+
+3.  Rodar o modelo usando o pacote `lavaan` e mostar os resultados arrumados usando os pacotes `broom` @robinson2025 e `gt` @iannone2025
+
+```{r}
+#| label: data_motivacao
+#| warning: false
+#| mmessage: false
 
 # chamar a package
 library(lavaan)
 library(tidyverse)
 library(broom)
+library(gt)
 
 
 # step1: simular os dados
@@ -431,12 +488,23 @@ Produtividade1 <- 0.7*Motivacao1 + rnorm(n)
 Produtividade2 <- Produtividade1 + rnorm(n, sd=0.5)
 Produtividade3 <- Produtividade1 + rnorm(n, sd=0.5)
 
-dados <- data.frame(Satisfacao1, Satisfacao2, Satisfacao3,
+dados_produtiv <- data.frame(Satisfacao1, Satisfacao2, Satisfacao3,
                     Motivacao1, Motivacao2, Motivacao3,
                     Produtividade1, Produtividade2, Produtividade3)
+```
+
+Espeficicar o modelo. Note que temos indicadores `=~` e previsão `~` na estrutura.
+
+-   Os indicadores `Satisfacao1 + Satisfacao2 + Satisfacao3` constrem a variável latente `Satisfação`
+-   A Satisfação prevê a `Motivação` e a `Motivação` prevê a `Produtividade`
+
+```{r}
+#| label: spec_motivacao
+#| warning: false
+#| message: false 
 
 # step2: especificar o modelo com string(texto)
-modelo <- "
+mdl_fit_spec_impact_motiv_prod <- "
   # Variáveis latentes
   Satisfacao =~ Satisfacao1 + Satisfacao2 + Satisfacao3
   Motivacao =~ Motivacao1 + Motivacao2 + Motivacao3
@@ -446,22 +514,32 @@ modelo <- "
   Motivacao ~ Satisfacao
   Produtividade ~ Motivacao
 "
+```
 
-# step3: Rodar o modelo
-mdl_fit_sem_impact_motiv_prod <- sem(modelo, data = dados)
+Rodar o modelo e mostrar os resultados via `summary function` e também resultados arrumados usando os pacotes `broom` e `gt`.
 
+```{r}
+#| label: fit_motivacao
+#| warning: false
+#| message: false
+#| fig-align: center
 
-# step4: Mostrar resultados via summary
-summary(mdl_fit_sem_impact_motiv_prod, fit.measures = TRUE,	standardized = TRUE)
+# step3: rodar o modelo e mostrar os resultads
+# Rodar o modelo
+mdl_fit_sem_impact_motiv_prod <- sem(mdl_fit_spec_impact_motiv_prod,
+                                     data = dados_produtiv)
 
+# Mostrar resultados via summary
+summary(mdl_fit_sem_impact_motiv_prod,
+        fit.measures = TRUE,	
+        standardized = TRUE)
 
-# step5: Mostrar resultados arrumados usando broom::tidy() e broom::glance()
-
+# Mostrar resultados arrumados usando broom::tidy() e broom::glance()
 # coeficientes de regressão (loadings)
-tidy(mdl_fit_sem_impact_motiv_prod) %>% filter(op=="~")
+tidy(mdl_fit_sem_impact_motiv_prod) %>% filter(op=="=~") %>% gt::gt()
 
 # principais medidas de ajuste
-glance(mdl_fit_sem_impact_motiv_prod) 
+glance(mdl_fit_sem_impact_motiv_prod) %>% gt::gt()
 
 ```
 
@@ -477,26 +555,29 @@ glance(mdl_fit_sem_impact_motiv_prod)
 
 Esses fatores não afetam diretamente a produtividade, mas influenciam a motivação e eficiência operacional, que por sua vez afetam a produtividade.
 
-1.  Vamos simular uma fábrica com as variáveis `treinamento`, `qualidade materia prima`, `clima organizacional`, `motivação`, `eficiência operacional` e `produtividade`.
+1.  Vamos simular uma fábrica com as variáveis `treinamento`, `qualidade materia prima`, `clima organizacional`, `motivação`, `eficiência operacional` e `produtividade` e gerar um gráfico de correlações.
 
 2.  Vamos definir o modelo `SEM` com relações causais entre essa variáveis.
 
 3.  Ajustar o modelo e gerar um resumo com cargas fatoriais, coeficientes padronizados, índices de ajustes(e.g. CFI, RMSEA, etc)
 
-4.  Implementar via software usando R (lavaan package)
+4.  Implementar o modelo no R
+
+5.  Mostrar os resultados no diagrama
+
+Gerar os dados de produtividade e plotar as correlações usando corrr package @kuhn2022
 
 ```{r}
-#| label: mdl_produtividade
+#| label: data_produtividade
 #| warning: false
 #| message: false
+#| fig-align: center
 
 # carregar package
-library(lavaan)
-library(lavaanPlot)
 library(tidyverse)
-library(broom)
+library(corrr)
 
-# simular dados de manufatura
+# step1: simular dados de manufatura e gerar correlações
 set.seed(123)
 n <- 300
 
@@ -526,16 +607,38 @@ produtividade_2 <- produtividade_1 + rnorm(n, sd=0.5)
 produtividade_3 <- produtividade_1 + rnorm(n, sd=0.5)
 
 # jogar dentro do dataframe
-dados <- tibble(treinamento_1, treinamento_2, treinamento_3,
-                qualy_material_1, qualy_material_2, qualy_material_3,
-                clima_org_1, clima_org_2, clima_org_3,
-                motivacao_1, motivacao_2, motivacao_3,
-                eficiencia_oper_1, eficiencia_oper_2, eficiencia_oper_3,
-                produtividade_1, produtividade_2, produtividade_3)
+data_produtividade <- 
+  tibble(treinamento_1, treinamento_2, treinamento_3,
+         qualy_material_1, qualy_material_2, qualy_material_3,
+         clima_org_1, clima_org_2, clima_org_3,
+         motivacao_1, motivacao_2, motivacao_3,
+         eficiencia_oper_1, eficiencia_oper_2, eficiencia_oper_3,
+         produtividade_1, produtividade_2, produtividade_3)
 
+# gerar correlações
+data_produtividade %>% 
+  correlate() %>% 
+  shave() %>% 
+  rplot(print_cor = TRUE)+
+  scale_x_discrete(label = abbreviate)
 
-# definir o modelo SEM
-modelo <- "
+```
+
+Criar a especificação do modelo. Note que neste exemplo temos variáveis `latentes` e usaremos as sintaxes para indicador `=~` e sintaxe para previsão `~`.
+
+Rodar o modelo e mostrar os resultados arrumados em formato de tabela.
+
+```{r}
+#| label: mdl_produtividade
+#| warning: false
+#| message: false
+
+library(lavaan)
+library(broom)
+library(gt)
+
+# step2: especificar modelo SEM
+mdl_spec_produtividade <- "
   # variaveis latentes
   treinamento =~ treinamento_1 + treinamento_2 + treinamento_3
   qualidade_material =~ qualy_material_1 + qualy_material_2 + qualy_material_3
@@ -550,29 +653,144 @@ modelo <- "
   produtividade ~ motivacao + eficiencia_oper
 "
 
-# Rodar o modelo
-mdl_fit_sem <- sem(modelo, data = dados)
+# step3: rodar o modelo
+mdl_fit_produtividade <- sem(mdl_spec_produtividade, 
+                             data = data_produtividade)
 
-# Mostrar o resumo arrumado com broom::tidy()
-tidy(mdl_fit_sem) %>% filter(op == "=~")
+# step4: mostrar o resumo arrumado com broom::tidy()
+tidy(mdl_fit_produtividade) %>% filter(op == "=~") %>% gt::gt()
 
 ```
 
 Plotar os resultados no diagrama usando `semPlot`
 
 ```{r}
-#| label: sem_produtividade
+#| label: plot_produtividade
 #| fig-align: center
 #| warning: false
 #| message: false
 
-semPlot::semPaths(mdl_fit_sem,
+library(semPlot)
+
+# step5: gerar o diagrama com os resultados.
+semPlot::semPaths(mdl_fit_produtividade,
+                  rotation = 2,
                   what = "std",
                   layout = "tree",
                   sizeMan = 8,
                   sizeLat = 10,
                   nCharNodes = 11
                   )
+```
+
+**Caso4 - Estudar os efeitos da formação acadêmica no desempenho dos alunos**
+
+Este exemplo será feito com o conjunto de dados apresentado por Johnny Lin no seminário @uclaofficeofadvancedresearchcomputing2021
+
+Imagine que você é um pesquisador investigando os impactos da formação acadêmica dos estudantes no seu desempenho escolar. O laboratório coletou os dados de 500 alunos com 9 variáveis observadas sendo `motivação(motiv)`, `harmonia(harm)`, `estabilidade(stabi)`, `psicologia parental negativa(ppsych)`, `nível sócio econômico(ses)`, `qi verbal(verbal)`, `leitura(read)`, `aritmética(arith)` e `ortografia(spell)`. É formulada a hipótese acerca de três construtos latentes sendo `ajuste`, `risco`, `conquista`, os quais são avaliados conforme o seguinte mapeamento de livro de códigos:
+
+| Adjust (Ajuste) | Risk (Risco) | Achieve (Conquista) |
+|-----------------|--------------|---------------------|
+| motiv           | ppsych       | read                |
+| harm            | ses          | arith               |
+| stabi           | verbal       | spell               |
+
+: Tabela de medidas
+
+No diagrama abaixo duas variáveis latentes exógenas `risk` e `ajust` são estimadas a partir dos indicadores observáveis `ses`, `ppsych`, `verbal`, `stabil`,`harm`, `motiv`. Em seguida, são analisados as relações estruturais com uma variável latente endógena `achieve` que é estimada pelos indicadores `spell`, `arith` e `read`.
+
+![Exemplo do diagrama do modelo SEM](sem_estrutural.png)
+
+1.  Vamos importar os dados e gerar as correlações
+
+2.  Definir o modelo `SEM` com relações causais entre as variáveis.
+
+3.  Ajustar o modelo e gerar um resumo com cargas fatoriais, coeficientes padronizados, índices de ajustes(e.g. CFI, RMSEA, etc)
+
+4.  Mostrar os resultados no diagrama
+
+Importando os dados e gerando as correlações.
+
+```{r}
+#| label: data_students
+#| fig-align: center
+#| warning: false
+#| message: false
+
+# carregar as packages
+library(tidyverse)
+library(corrr)
+
+# step1: importar dados e gerar correlacoes
+
+# importar os dados
+data_stud <- read.csv("https://stats.idre.ucla.edu/wp-content/uploads/2021/02/worland5.csv")
+
+# plotar as correlações
+data_stud %>% 
+  corrr::correlate() %>% 
+  corrr::rearrange() %>% 
+  corrr::shave() %>% 
+  corrr::rplot(print_cor = TRUE)
+
+```
+
+Definir o modelo `SEM` com relações causais entre essa variáveis.
+
+```{r}
+#| label: spec_students
+#| fig-align: center
+#| warning: false
+#| message: false
+
+
+# step2: especificar o modelo SEM
+mdl_spec_sem_full <- '
+# modelo de medição
+adjust =~ motiv + harm + stabi
+risk =~ verbal + ppsych + ses
+achieve =~ read + arith + spell
+
+# modelo estruturante (regression path)
+achieve ~ adjust + risk
+'
+
+
+```
+
+Rodar o modelo e gerar um resumo com cargas fatoriais, coeficientes padronizados, índices de ajustes(e.g. CFI, RMSEA, etc)
+
+```{r}
+#| label: fit_students
+#| fig-align: center
+#| warning: false
+#| message: false
+
+# step3: rodar o modelo e mostrar resultados
+# rodar modelo
+mdl_fit_sem_full <- sem(mdl_spec_sem_full, data = data_stud)  
+
+# mostrar resultados com coeficientes padronizados
+summary(mdl_fit_sem_full, 
+        standardize = TRUE, 
+        fit.measures = TRUE)
+
+```
+
+Mostrar os resultados no diagrama
+
+```{r}
+#| label: plot_students
+#| fig-align: center
+#| warning: false
+#| message: false
+
+library(semPlot)
+
+semPaths(mdl_fit_sem_full,
+         "std",
+         rotation = 2,
+         nCharNodes = 0)
 ```
 
 ### {{< fa 5 >}} [**Pra onde vai?**]{style="color: #5AC8BE ;"}

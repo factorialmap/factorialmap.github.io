@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/cfa/cfa.html",
       "/posts/sem/modelagem_equacoes_estruturais.html",
       "/posts/classificacao_ai/classificacao_ai.html",
       "/posts/two_sigma_problem/two_sigma_problem.html",

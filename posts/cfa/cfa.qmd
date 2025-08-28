@@ -1,0 +1,210 @@
+---
+title: "Análise Fatorial Confirmatória (CFA)"
+subbtitle: "Conceitos e práticas de CFA – Confirmatory Factor Analysis usando R"
+Author: "Marcelo Carvalho dos Anjos"
+Date: "2025-08-25"
+Categories: [Modelos]
+Format: html
+bibliography: references.bib
+---
+
+### {{< fa 1 >}} [**O que é ?**]{style="color: #5AC8BE ;"}
+
+A Análise Fatorial Confirmatória (CFA) é uma técnica estatística usada para testar se um modelo teórico de fatores, realmente se ajusta aos dados coletados. Ela verifica se as variáveis observadas(e.g. indicadores de qualidade, tempo de produção, etc.) estão agrupadas conforme os fatores que você acredita que existem.
+
+Imagine uma fábrica de veículos onde você está tentando entender por que alguns carros saem com defeitos. Você já tem uma hipótese (e.g que os defeitos são causados por matéria-prima, operador e ambiente), e quer confirmar se esses fatores realmente explicam os dados. Você testa se os dados de produção realmente se agrupam nesses 3 fatores que você identificou antes. Se o modelo se ajustar bem, você pode confiar nessa estrutura para tomar decisões. O CFA é usada quando já se tem uma ideia clara dos fatores, e ela serve para validar modelos teóricos, e é mais rigorosa que a análise exploratória de fatores EFA .
+
+### {{< fa 2 >}} [**Qual o objetivo ?**]{style="color: #5AC8BE ;"}
+
+O objetivo da CFA é confirmar uma estrutura de fatores previamente definida. Diferente da análise exploratória (EFA), que busca descobrir padrões, a CFA valida hipóteses sobre como os dados devem se comportar.
+
+### {{< fa 3 >}} [**De onde vem ?**]{style="color: #5AC8BE ;"}
+
+A CFA surgiu da necessidade de testar modelos teóricos em diversas áreas, como psicologia, educação e engenharia. Em ambientes industriais, como fábricas de veículos, ela é útil para validar modelos de desempenho, qualidade ou eficiência que foram propostos com base na experiência ou em estudos anteriores (e.g se engenheiros acreditam que a eficiência da produção depende de três fatores — treinamento dos operadores, qualidade das peças e condições da linha de montagem — a CFA pode testar se os dados realmente refletem essa estrutura).
+
+### {{< fa 4 >}} [**Como fazer ?**]{style="color: #5AC8BE ;"}
+
+**Exemplo1** Modelo UCLA
+
+Como exemplo usaremos os dados de questionário de ansiedade SPSS(SAQ) de @field2025 apresentado no seminário pelo professor Johnny Lin da Universidade da Califórnia @uclaofficeofadvancedresearchcomputing2021 e usamos o pacote `lavaan` @rosseel2024
+
+Neste exemplo o pesquisador quer avaliar as propriedades psicométricas do questionário que possui 8 questões.
+
+|  |  |
+|------------------------------------|------------------------------------|
+| 1 Estatísticas me fazem chorar | 5 Eu não entendo de estatística |
+| 2 Meus amigos vão pensar que sou estúpido por não conseguir lidar com o SPSS | 6 Tenho pouca experiência com computadores |
+| 3 Desvios padrão me excitam | 7 Todos os computadores me odeiam |
+| 4 Eu sonho que Pearson está me atacando com coeficientes de correlação | 8 Eu nunca fui bom em matemática |
+
+: Questões
+
+```{r}
+#| label: data_ucla
+#| warning: false
+#| message: false
+#| fig-align: center
+
+library(lavaan)
+library(lavaanPlot)
+library(tidyverse)
+library(foreign)
+library(semPlot)
+library(corrplot)
+
+# step1: import data
+data_dat <- read.spss("https://stats.idre.ucla.edu/wp-content/uploads/2018/05/SAQ.sav",
+                      to.data.frame=TRUE,
+                      use.value.labels = FALSE)
+
+#step2: show correlations
+library(corrr)
+
+data_dat %>% 
+  select(1:8) %>% 
+  cor() %>% 
+  corrplot::corrplot(addCoef.col = TRUE,
+                     type = "lower",
+                     number.cex = 0.6,
+                     col = c("#D81B60","#dfbcbc","#a4d5ce","#1abc9c")) 
+
+```
+
+Agora vamos fazer o modelo
+
+```{r}
+#| label: mdl_cfa_saq_ucla
+#| warning: false
+#| message: false
+
+
+# step2: exercise 1
+# one factor eight items, variance std
+m1 <- 'f=~ q01+q02+q03+q04+q05+q06+q07+q08'
+
+
+# step3: fit the model
+mdl_fit_m1 <- cfa(m1, data= data_dat)
+```
+
+Mostrando os resultados arrumados com os pacotes `Broom` @robinson2025 e `gt` @iannone2025
+
+```{r}
+
+#| label: mdl_result_broom
+#| warning: false
+#| message: false
+
+# show results
+broom::tidy(mdl_fit_m1) %>% filter(op =="=~") %>% gt::gt()
+
+
+# show results
+broom::glance(mdl_fit_m1) %>% gt::gt()
+
+```
+
+Mostrando o diagrama usando o pacote o pacote `semPlot` @epskamp2025
+
+```{r}
+#| label: mdl_plot_lavaan_plot
+#| warning: false
+#| message: false
+#| fig-align: "center"
+
+# plot the results
+# for one standard deviation increased in factor number 5, goes up by 0.574 in the deviation means
+semPaths(mdl_fit_m1, 
+         rotation = 4,
+         "std",
+         edge.label.cex = 1 )
+
+```
+
+**Modelo2:** Exemplo prático na fábrica de veículos
+
+Imagine que você tem os seguintes dados de produção: `Tempo de montagem` , `Número de retrabalhos` , `Índice de satisfação do operador` , `Temperatura da linha` e `Qualidade da peça recebida`
+
+Você acredita que esses dados se agrupam em dois fatores:
+
+1.  Fator Operacional: tempo de montagem, retrabalho, satisfação do operador.
+
+2.  Fator Material: temperatura da linha, qualidade da peça.
+
+Com a CFA, você monta um modelo que liga cada variável ao fator correspondente e testa se essa estrutura realmente se ajusta aos dados. Se o modelo for validado, você pode confiar nessa divisão para análises futuras.
+
+```{r}
+#| label: mdl_cfa_mfg
+#| warning: false
+#| message: false
+#| fig-align: center
+
+library(tidyverse)
+library(lavaan)
+
+# step1: gerar dados
+set.seed(123)
+dados_mfg <- tibble(
+  tempo_montagem = rnorm(100, mean = 30, sd = 5),
+  retrabalho = rnorm(100, mean = 2, sd = 1),
+  satisfacao_operador = rnorm(100, mean = 7, sd = 1.5),
+  temperatura_linha = rnorm(100, mean = 22, sd = 2),
+  qualidade_peca = rnorm(100, mean = 8, sd = 1)
+  )
+
+# step2: especificar modelo
+mdl_spec_cfa_mfg <- '
+  # Fator Operacional
+  operacional =~ tempo_montagem + retrabalho + satisfacao_operador
+
+  # Fator Material
+  material =~ temperatura_linha + qualidade_peca
+  '
+
+# step3: rodar modelo
+mdl_fit_cfa_mfg <- cfa(mdl_spec_cfa_mfg, data = dados_mfg)
+
+# step4: show results
+broom::tidy(mdl_fit_cfa_mfg) %>% filter(op =="=~") %>% gt::gt()
+
+
+# step4: show results
+broom::glance(mdl_fit_cfa_mfg) %>% gt::gt()
+
+```
+
+**O que é possível observar nos resultados?**
+
+- Os indicadores de ajuste estão dentro dos padrões aceitáveis (ex: RMSEA < 0.08, CFI > 0.90)?
+- As variáveis estão bem representadas pelos fatores?
+
+
+Vamos mostrar os dados no diagrama
+
+```{r}
+#| label: mdl_plot_cfa_mfg
+#| warning: false
+#| message: false
+#| fig-align: center
+
+
+semPaths(mdl_fit_cfa_mfg,
+         rotation = 4,
+         "std",
+         edge.label.cex = 1)
+```
+
+
+
+### {{< fa 5 >}} [**Pra onde vai ?**]{style="color: #5AC8BE ;"}
+
+Depois de validar o modelo com CFA, ele pode ser usado para monitorar a produção com base nos fatores confirmados, criar indicadores compostos (ex: índice de eficiência operacional), apoiar decisões gerenciais, como onde investir em treinamento ou melhorias, e ou integrar com SEM (Modelagem de Equações Estruturais) para entender relações causais entre fatores.
+
+### {{< fa 6 >}} [**Qual o resultado ?**]{style="color: #5AC8BE ;"}
+
+-   Confirmação estatística de que os fatores teóricos fazem sentido.
+-   Redução da complexidade dos dados, agrupando variáveis em fatores significativos.
+-   Criar índices compostos de desempenho.
+-   Alimentar modelos preditivos, com base sólida para modelos e análises futuras.
+-   Integrar com SEM para entender relações causais.
+-   Maior confiança nas decisões baseadas em dados.
