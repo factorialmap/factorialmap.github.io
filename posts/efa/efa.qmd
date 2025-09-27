@@ -48,8 +48,7 @@ Aqui está um passo a passo prático para realizar uma EFA em R:
 
 Para praticar, iremos usar três exemplos sendo o primeiro com dados contínuos o segundo com com dados categóricos dicotômicos, e terceiro com dados mistos(categóricos dicotômicos e ordinais e numéricos).
 
-::: {.callout-tip collapse="true"}
-## **Caso1: Comportamento de consumo com variáveis contínuas**
+**Caso1: Comportamento de consumo com variáveis contínuas**
 
 Imagine que estou conduzindo uma análise fatorial em um questionário com 12 variáveis que representam respostas sobre comportamento de consumo.
 
@@ -72,7 +71,7 @@ Quando simulamos variáveis contínuas para representar respostas de um question
 
 As escalas de Likert são ordinais, geralmente com 5 ou 7 pontos, como:
 
-1 = Discordo totalmente 2 = Discordo 3 = Neutro 4 = Concordo 5 = Concordo totalmente
+1 = Discordo totalmente, 2 = Discordo, 3 = Neutro, 4 = Concordo, 5 = Concordo totalmente
 
 Apesar de serem categorias ordenadas, na prática estatística (especialmente em psicometria e ciências sociais), elas são frequentemente tratadas como variáveis contínuas, principalmente quando há muitos itens (variáveis), a escala tem mais de 4 pontos e os dados são usados em modelos paramétricos como EFA, regressão, etc.
 
@@ -172,10 +171,15 @@ efa_result$communality
 efa_result$Vaccounted
 
 ```
+
+::: {.callout-note collapse="true"}
+## Clique aqui para exibir detalhes sobre a interpretação dos resultados
+
 :::
 
-::: {.callout-tip collapse="true"}
-## **Caso2 - Sintomas de saúde com variáveis dicotômicas**
+---
+
+**Caso2 - Sintomas de saúde com variáveis dicotômicas**
 
 Imagine que estou conduzindo uma análise fatorial para investigar uma possível estrutura latente para 10 sintomas definidos apenas por variáveis dicotômicas (0 = ausente, 1 = presente). Preciso realizar uma análise fatorial exploratória apenas com variáveis categóricas para isso preciso saber qual a melhor abordagem e matriz de correlação utilizar.
 
@@ -265,10 +269,15 @@ efa_binaria$loadings
 efa_binaria$Vaccounted
 
 ```
+
+::: {.callout-note collapse="true"}
+## Clique aqui para exibir detalhes sobre a interpretação dos resultados
+
 :::
 
-::: {.callout-tip collapse="true"}
-## **Caso3 - Sintomas de saúde com variáveis mistas**
+---
+
+**Caso3 - Sintomas de saúde com variáveis mistas**
 
 Quando temos variáveis mistas em um questionário (algumas dicotômicas e outras em escala de Likert), a escolha da abordagem para a análise fatorial exploratória precisa considerar a natureza dos dados para garantir resultados válidos.
 
@@ -322,6 +331,9 @@ efa_mista <- fa(matriz_het, nfactors = 2, rotate = "varimax", fm = "ml")
 print(efa_mista)
 
 ```
+::: {.callout-note collapse="true"}
+## Clique aqui para exibir detalhes sobre a interpretação dos resultados
+
 :::
 
 ### {{< fa 5 >}} [**Pra onde vai?**]{style="color: #5AC8BE ;"}

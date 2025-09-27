@@ -247,18 +247,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Refinar o modelo eliminando variáveis com baixa carga ou comunalidade e reexecutando a análise se necessário.</p></li>
 </ol>
 <p>Para praticar, iremos usar três exemplos sendo o primeiro com dados contínuos o segundo com com dados categóricos dicotômicos, e terceiro com dados mistos(categóricos dicotômicos e ordinais e numéricos).</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<strong>Caso1: Comportamento de consumo com variáveis contínuas</strong>
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+<p><strong>Caso1: Comportamento de consumo com variáveis contínuas</strong></p>
 <p>Imagine que estou conduzindo uma análise fatorial em um questionário com 12 variáveis que representam respostas sobre comportamento de consumo.</p>
 <p>Vamos instalar ou chamar os pacotes necessários.</p>
 <div class="cell">
@@ -270,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Vamos criar um conjunto de dados com 12 variáveis que representam respostas a um questionário sobre comportamento de consumo, agrupadas em 3 fatores latentes.</p>
 <p>Quando simulamos variáveis contínuas para representar respostas de um questionário, estamos aproximando o comportamento de escalas de Likert que foram normalizadas ou tratadas como contínuas.</p>
 <p>As escalas de Likert são ordinais, geralmente com 5 ou 7 pontos, como:</p>
-<p>1 = Discordo totalmente 2 = Discordo 3 = Neutro 4 = Concordo 5 = Concordo totalmente</p>
+<p>1 = Discordo totalmente, 2 = Discordo, 3 = Neutro, 4 = Concordo, 5 = Concordo totalmente</p>
 <p>Apesar de serem categorias ordenadas, na prática estatística (especialmente em psicometria e ciências sociais), elas são frequentemente tratadas como variáveis contínuas, principalmente quando há muitos itens (variáveis), a escala tem mais de 4 pontos e os dados são usados em modelos paramétricos como EFA, regressão, etc.</p>
 <p>Na simulação abaixo, as variáveis foram geradas como contínuas com ruído, o que simula o comportamento de respostas em Likert. Isso equivale a dizer que os dados passaram por uma transformação ou suavização como por exemplo padronização (z-score), conversão para escala contínua (ex: média de itens), tratamento como intervalares para fins de modelagem.</p>
 <div class="cell">
@@ -451,21 +440,24 @@ Proportion Explained  0.3363313 0.3358574 0.3278113
 Cumulative Proportion 0.3363313 0.6721887 1.0000000</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<strong>Caso2 - Sintomas de saúde com variáveis dicotômicas</strong>
+Clique aqui para exibir detalhes sobre a interpretação dos resultados
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<hr>
+<p><strong>Caso2 - Sintomas de saúde com variáveis dicotômicas</strong></p>
 <p>Imagine que estou conduzindo uma análise fatorial para investigar uma possível estrutura latente para 10 sintomas definidos apenas por variáveis dicotômicas (0 = ausente, 1 = presente). Preciso realizar uma análise fatorial exploratória apenas com variáveis categóricas para isso preciso saber qual a melhor abordagem e matriz de correlação utilizar.</p>
 <p>Quando lidamos com variáveis dicotômicas (0 = ausente, 1 = presente) em uma análise fatorial exploratória, precisamos adaptar a abordagem tradicional, pois a matriz de correlação padrão (Pearson) não é apropriada para variáveis categóricas.</p>
 <p>Para casos como este, a correlação tetra-córica é mais adequada. Ela é ideal para variáveis dicotômicas que representam uma versão categorizada de uma variável contínua subjacente, pois estima a correlação entre essas variáveis como se fossem contínuas e normalmente distribuídas.</p>
@@ -589,21 +581,24 @@ Proportion Explained  0.6333814 0.36661863
 Cumulative Proportion 0.6333814 1.00000000</code></pre>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<strong>Caso3 - Sintomas de saúde com variáveis mistas</strong>
+Clique aqui para exibir detalhes sobre a interpretação dos resultados
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div>
+<hr>
+<p><strong>Caso3 - Sintomas de saúde com variáveis mistas</strong></p>
 <p>Quando temos variáveis mistas em um questionário (algumas dicotômicas e outras em escala de Likert), a escolha da abordagem para a análise fatorial exploratória precisa considerar a natureza dos dados para garantir resultados válidos.</p>
 <p>A correlação policórica/tetra-córica pode ser mais adequada para estes casos sendo que:</p>
 <ul>
@@ -622,6 +617,19 @@ Cumulative Proportion 0.6333814 1.00000000</code></pre>
 <span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>efa_mista <span class="ot">&lt;-</span> <span class="fu">fa</span>(matriz_het, <span class="at">nfactors =</span> <span class="dv">2</span>, <span class="at">rotate =</span> <span class="st">"varimax"</span>, <span class="at">fm =</span> <span class="st">"ml"</span>)</span>
 <span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(efa_mista)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Clique aqui para exibir detalhes sobre a interpretação dos resultados
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+
 </div>
 </div>
 </div>
