@@ -57,7 +57,7 @@
 <li><p>Interpretar os resultados analisando as cargas fatoriais, verificando comunalidades e variância explicada e validar a consistência dos fatores.</p></li>
 <li><p>Refinar o modelo eliminando variáveis com baixa carga ou comunalidade e reexecutando a análise se necessário.</p></li>
 </ol>
-<p>Para praticar, iremos usar dois exemplos sendo um com dados contínuos e outro com dados categóricos dicotômicos.</p>
+<p>Para praticar, iremos usar três exemplos sendo o primeiro com dados contínuos o segundo com com dados categóricos dicotômicos, e terceiro com dados mistos(categóricos dicotômicos e ordinais e numéricos).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">

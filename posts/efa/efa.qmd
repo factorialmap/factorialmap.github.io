@@ -15,15 +15,14 @@ A Análise Fatorial Exploratória (EFA) é uma técnica estatística multivariad
 
 ![Exemplode Análise fatorial exploratória](efa_figure.png)
 
-
 ### {{< fa 2 >}} [**Qual o objetivo?**]{style="color: #5AC8BE ;"}
 
 O principal objetivo da EFA é reduzir a dimensionalidade dos dados e descobrir estruturas latentes que explicam as correlações entre variáveis. Isso permite:
 
-- Identificar agrupamentos naturais de variáveis.
-- Compreender melhor os construtos teóricos por trás dos dados.
-- Preparar modelos mais simples e interpretáveis.
-- Apoiar o desenvolvimento de escalas e instrumentos de medida (como questionários).
+-   Identificar agrupamentos naturais de variáveis.
+-   Compreender melhor os construtos teóricos por trás dos dados.
+-   Preparar modelos mais simples e interpretáveis.
+-   Apoiar o desenvolvimento de escalas e instrumentos de medida (como questionários).
 
 ### {{< fa 3 >}} [**De onde vem?**]{style="color: #5AC8BE ;"}
 
@@ -31,27 +30,23 @@ Ela surgiu no campo da psicometria e da psicologia, especialmente para entender 
 
 Ela se baseia em conceitos de correlação, covariância e álgebra linear, especialmente decomposição de matrizes.
 
-
 ### {{< fa 4 >}} [**Como fazer?**]{style="color: #5AC8BE ;"}
 
 Aqui está um passo a passo prático para realizar uma EFA em R:
 
-1. Preparar os dados verificando se há dados faltantes, certifique-se de que as variáveis são numéricas e correlacionáveis.
+1.  Preparar os dados verificando se há dados faltantes, certifique-se de que as variáveis são numéricas e correlacionáveis.
 
-2. Verificar a adequação dos dados usando teste de Kaiser-Meyer-Olkin (KMO) e ou teste de esfericidade de Bartlett.
+2.  Verificar a adequação dos dados usando teste de Kaiser-Meyer-Olkin (KMO) e ou teste de esfericidade de Bartlett.
 
-3. Escolher o número de fatores usando scree plot (gráfico de sedimentação), critério de Kaiser (autovalores > 1), e análise paralela.
+3.  Escolher o número de fatores usando scree plot (gráfico de sedimentação), critério de Kaiser (autovalores \> 1), e análise paralela.
 
-4. Executar a EFA usando a função `factanal()` ou pacotes como `psych` (`fa()`), escolher o método de extração (ex: máxima verossimilhança, componentes principais) e escolher o tipo de rotação (ex: varimax, oblimin).
+4.  Executar a EFA usando a função `factanal()` ou pacotes como `psych` (`fa()`), escolher o método de extração (ex: máxima verossimilhança, componentes principais) e escolher o tipo de rotação (ex: varimax, oblimin).
 
-5. Interpretar os resultados analisando as cargas fatoriais, 
-verificando comunalidades e variância explicada e validar a consistência dos fatores.
+5.  Interpretar os resultados analisando as cargas fatoriais, verificando comunalidades e variância explicada e validar a consistência dos fatores.
 
-6. Refinar o modelo eliminando variáveis com baixa carga ou comunalidade e reexecutando a análise se necessário.
+6.  Refinar o modelo eliminando variáveis com baixa carga ou comunalidade e reexecutando a análise se necessário.
 
-
-Para praticar, iremos usar dois exemplos sendo um com dados contínuos e outro com dados categóricos dicotômicos.
-
+Para praticar, iremos usar três exemplos sendo o primeiro com dados contínuos o segundo com com dados categóricos dicotômicos, e terceiro com dados mistos(categóricos dicotômicos e ordinais e numéricos).
 
 ::: {.callout-tip collapse="true"}
 ## **Caso1: Comportamento de consumo com variáveis contínuas**
@@ -71,19 +66,13 @@ library(psych)
 library(GPArotation)
 ```
 
-
-
 Vamos criar um conjunto de dados com 12 variáveis que representam respostas a um questionário sobre comportamento de consumo, agrupadas em 3 fatores latentes.
 
 Quando simulamos variáveis contínuas para representar respostas de um questionário, estamos aproximando o comportamento de escalas de Likert que foram normalizadas ou tratadas como contínuas.
 
 As escalas de Likert são ordinais, geralmente com 5 ou 7 pontos, como:
 
-1 = Discordo totalmente
-2 = Discordo
-3 = Neutro
-4 = Concordo
-5 = Concordo totalmente
+1 = Discordo totalmente 2 = Discordo 3 = Neutro 4 = Concordo 5 = Concordo totalmente
 
 Apesar de serem categorias ordenadas, na prática estatística (especialmente em psicometria e ciências sociais), elas são frequentemente tratadas como variáveis contínuas, principalmente quando há muitos itens (variáveis), a escala tem mais de 4 pontos e os dados são usados em modelos paramétricos como EFA, regressão, etc.
 
@@ -125,7 +114,6 @@ dados <- tibble(
 
 ```
 
-
 Em seguida, faremos a verificação e adequação dos dados usando funções como KMO e Teste de esfericidade de Bartlett.
 
 ```{r}
@@ -141,7 +129,6 @@ print(KMO_result)
 cortest.bartlett(cor(dados), n = n)
 
 ```
-
 
 Em seguinda faremos a escolha do número de fatores. O gráfico `Scree Plot` nos ajudará a visualizar o número ideal de fatores com base nos autovalores.
 
@@ -185,9 +172,7 @@ efa_result$communality
 efa_result$Vaccounted
 
 ```
-
 :::
-
 
 ::: {.callout-tip collapse="true"}
 ## **Caso2 - Sintomas de saúde com variáveis dicotômicas**
@@ -211,9 +196,7 @@ library(polycor)
 
 ```
 
-
 Vamos gerar os dados para a simulação.
-
 
 ```{r}
 #| label: case2_data
@@ -239,9 +222,7 @@ dados_binarios <- tibble(
 
 ```
 
-
 Vamos gerar a matriz de correlação.
-
 
 ```{r}
 #| label: case_2_tetra
@@ -252,7 +233,6 @@ Vamos gerar a matriz de correlação.
 matriz_tetra <- tetrachoric(dados_binarios)$rho
 
 ```
-
 
 ```{r}
 #| label: case_2_plot
@@ -285,21 +265,18 @@ efa_binaria$loadings
 efa_binaria$Vaccounted
 
 ```
-
-
 :::
-
 
 ::: {.callout-tip collapse="true"}
 ## **Caso3 - Sintomas de saúde com variáveis mistas**
 
-Quando temos variáveis mistas em um questionário (algumas dicotômicas e outras em escala de Likert), a escolha da abordagem para a análise fatorial exploratória  precisa considerar a natureza dos dados para garantir resultados válidos.
+Quando temos variáveis mistas em um questionário (algumas dicotômicas e outras em escala de Likert), a escolha da abordagem para a análise fatorial exploratória precisa considerar a natureza dos dados para garantir resultados válidos.
 
 A correlação policórica/tetra-córica pode ser mais adequada para estes casos sendo que:
 
-- As variáveis dicotômicas (0/1) devem ser tratadas com correlação tetra-córica.
-- As variáveis ordinais (Likert) devem ser tratadas com correlação policórica.
-- Tratar todas como contínuas (usando correlação de Pearson) pode distorcer os resultados, especialmente se houver muitas variáveis dicotômicas ou escalas curtas (ex: Likert de 3 ou 5 pontos).
+-   As variáveis dicotômicas (0/1) devem ser tratadas com correlação tetra-córica.
+-   As variáveis ordinais (Likert) devem ser tratadas com correlação policórica.
+-   Tratar todas como contínuas (usando correlação de Pearson) pode distorcer os resultados, especialmente se houver muitas variáveis dicotômicas ou escalas curtas (ex: Likert de 3 ou 5 pontos).
 
 O pacote polycor oferece a função hetcor() que calcula uma matriz de correlação heterogênea, combinando `pearson` para variáveis contínuas, `policórica` para variáveis ordinais, `tetra-córica` para variáveis dicotômicas.
 
@@ -329,7 +306,6 @@ dados_mistos <- tibble(
 matriz_het <- polycor::hetcor(dados_mistos)$correlations
 ```
 
-
 ```{r}
 #| label: case3_code
 #| warning: false
@@ -346,26 +322,24 @@ efa_mista <- fa(matriz_het, nfactors = 2, rotate = "varimax", fm = "ml")
 print(efa_mista)
 
 ```
-
-
 :::
 
 ### {{< fa 5 >}} [**Pra onde vai?**]{style="color: #5AC8BE ;"}
 
 A análise fatorial exploratória serve como base para modelos mais avançados, como a Análise Fatorial Confirmatória (CFA) e Modelagem de Equações Estruturais (SEM) e é amplamente utilizada em diferentes áreas como:
 
-- **Psicologia e educação**: desenvolvimento de testes e escalas.
-- **Marketing**: segmentação de consumidores com base em comportamentos.
-- **Saúde**: identificação de padrões em sintomas ou respostas a tratamentos.
-- **Ciências sociais**: estudo de atitudes, valores e crenças.
+-   **Psicologia e educação**: desenvolvimento de testes e escalas.
+-   **Marketing**: segmentação de consumidores com base em comportamentos.
+-   **Saúde**: identificação de padrões em sintomas ou respostas a tratamentos.
+-   **Ciências sociais**: estudo de atitudes, valores e crenças.
 
 ### {{< fa 6 >}} [**Qual resultado?**]{style="color: #5AC8BE ;"}
 
 Após realizarmos a análise fatorial exploratória
 
-- Um conjunto de fatores latentes que explicam a estrutura dos dados.
-- Redução da complexidade do modelo.
-- Melhor compreensão dos constructos teóricos.
-- Um modelo mais parcimonioso e interpretável.
+-   Um conjunto de fatores latentes que explicam a estrutura dos dados.
+-   Redução da complexidade do modelo.
+-   Melhor compreensão dos constructos teóricos.
+-   Um modelo mais parcimonioso e interpretável.
 
 Esses resultados ajudam na tomada de decisão, no desenvolvimento de instrumentos de medida e na validação de teorias.
