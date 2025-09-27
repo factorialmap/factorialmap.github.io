@@ -58,7 +58,8 @@
 <li><p>Refinar o modelo eliminando variáveis com baixa carga ou comunalidade e reexecutando a análise se necessário.</p></li>
 </ol>
 <p>Para praticar, iremos usar três exemplos sendo o primeiro com dados contínuos o segundo com com dados categóricos dicotômicos, e terceiro com dados mistos(categóricos dicotômicos e ordinais e numéricos).</p>
-<p><strong>Caso1: Comportamento de consumo com variáveis contínuas</strong></p>
+<section id="caso1-comportamento-de-consumo-com-variáveis-contínuas" class="level4">
+<h4 class="anchored" data-anchor-id="caso1-comportamento-de-consumo-com-variáveis-contínuas">Caso1: Comportamento de consumo com variáveis contínuas</h4>
 <p>Imagine que estou conduzindo uma análise fatorial em um questionário com 12 variáveis que representam respostas sobre comportamento de consumo.</p>
 <p>Vamos instalar ou chamar os pacotes necessários.</p>
 <div class="cell">
@@ -472,7 +473,9 @@ Clique aqui para exibir detalhes sobre a interpretação dos resultados
 </div>
 </div>
 <hr>
-<p><strong>Caso2 - Sintomas de saúde com variáveis dicotômicas</strong></p>
+</section>
+<section id="caso2---sintomas-de-saúde-com-variáveis-dicotômicas" class="level4">
+<h4 class="anchored" data-anchor-id="caso2---sintomas-de-saúde-com-variáveis-dicotômicas">Caso2 - Sintomas de saúde com variáveis dicotômicas</h4>
 <p>Imagine que estou conduzindo uma análise fatorial para investigar uma possível estrutura latente para 10 sintomas definidos apenas por variáveis dicotômicas (0 = ausente, 1 = presente). Preciso realizar uma análise fatorial exploratória apenas com variáveis categóricas para isso preciso saber qual a melhor abordagem e matriz de correlação utilizar.</p>
 <p>Quando lidamos com variáveis dicotômicas (0 = ausente, 1 = presente) em uma análise fatorial exploratória, precisamos adaptar a abordagem tradicional, pois a matriz de correlação padrão (Pearson) não é apropriada para variáveis categóricas.</p>
 <p>Para casos como este, a correlação tetra-córica é mais adequada. Ela é ideal para variáveis dicotômicas que representam uma versão categorizada de uma variável contínua subjacente, pois estima a correlação entre essas variáveis como se fossem contínuas e normalmente distribuídas.</p>
@@ -751,7 +754,9 @@ Clique aqui para exibir detalhes sobre a interpretação dos resultados
 </div>
 </div>
 <hr>
-<p><strong>Caso3 - Sintomas de saúde com variáveis mistas</strong></p>
+</section>
+<section id="caso3---sintomas-de-saúde-com-variáveis-mistas" class="level4">
+<h4 class="anchored" data-anchor-id="caso3---sintomas-de-saúde-com-variáveis-mistas">Caso3 - Sintomas de saúde com variáveis mistas</h4>
 <p>Quando temos variáveis mistas em um questionário (algumas dicotômicas e outras em escala de Likert), a escolha da abordagem para a análise fatorial exploratória precisa considerar a natureza dos dados para garantir resultados válidos.</p>
 <p>A correlação policórica/tetra-córica pode ser mais adequada para estes casos sendo que:</p>
 <ul>
@@ -820,6 +825,7 @@ Clique aqui para exibir detalhes sobre a interpretação dos resultados
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="pra-onde-vai" class="level3">
 <h3 class="anchored" data-anchor-id="pra-onde-vai"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai?</strong></span></h3>

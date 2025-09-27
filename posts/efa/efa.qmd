@@ -48,7 +48,7 @@ Aqui está um passo a passo prático para realizar uma EFA em R:
 
 Para praticar, iremos usar três exemplos sendo o primeiro com dados contínuos o segundo com com dados categóricos dicotômicos, e terceiro com dados mistos(categóricos dicotômicos e ordinais e numéricos).
 
-**Caso1: Comportamento de consumo com variáveis contínuas**
+#### Caso1: Comportamento de consumo com variáveis contínuas
 
 Imagine que estou conduzindo uma análise fatorial em um questionário com 12 variáveis que representam respostas sobre comportamento de consumo.
 
@@ -179,7 +179,7 @@ efa_result$Vaccounted
 
 ---
 
-**Caso2 - Sintomas de saúde com variáveis dicotômicas**
+#### Caso2 - Sintomas de saúde com variáveis dicotômicas
 
 Imagine que estou conduzindo uma análise fatorial para investigar uma possível estrutura latente para 10 sintomas definidos apenas por variáveis dicotômicas (0 = ausente, 1 = presente). Preciso realizar uma análise fatorial exploratória apenas com variáveis categóricas para isso preciso saber qual a melhor abordagem e matriz de correlação utilizar.
 
@@ -277,7 +277,7 @@ efa_binaria$Vaccounted
 
 ---
 
-**Caso3 - Sintomas de saúde com variáveis mistas**
+#### Caso3 - Sintomas de saúde com variáveis mistas
 
 Quando temos variáveis mistas em um questionário (algumas dicotômicas e outras em escala de Likert), a escolha da abordagem para a análise fatorial exploratória precisa considerar a natureza dos dados para garantir resultados válidos.
 
