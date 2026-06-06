@@ -9,8 +9,879 @@
 <link>https://carvalhoribeiro.netlify.app/</link>
 <atom:link href="https://carvalhoribeiro.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
 <description>projetos kaizen</description>
-<generator>quarto-1.6.43</generator>
-<lastBuildDate>Sat, 27 Sep 2025 03:00:00 GMT</lastBuildDate>
+<generator>quarto-1.9.37</generator>
+<lastBuildDate>Thu, 04 Jun 2026 03:00:00 GMT</lastBuildDate>
+<item>
+  <title>Quanto tempo sua máquina ainda aguenta? Uma abordagem moderna para prever falhas antes que elas aconteçam</title>
+  <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
+  <link>https://carvalhoribeiro.netlify.app/posts/time-to-event/time_to_event.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612031203e7d7d-o-que-é-a-time-to-event-modelssurvival-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612031203e7d7d-o-que-é-a-time-to-event-modelssurvival-analysis"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é a time to event models(Survival Analysis)?</strong></span></h3>
+<ul>
+<li>É uma forma de transformar histórico operacional em uma estimativa de quanto tempo resta até o risco virar problema. Isso cria a capacidade de enxergar o tempo como parte da decisão.</li>
+</ul>
+<!-- -->
+<ul>
+<li>Existe uma diferença grande entre saber que máquinas falham e saber quando elas provavelmente vão falhar. Na prática, é essa diferença que separa uma operação que vive apagando incêndios de uma operação que toma decisões com antecedência, reduz surpresa, protege produção e usa melhor seus recursos. É aí que entram os Time-to-Event Models, também conhecidos como “Survival Analysis”.</li>
+</ul>
+<!-- -->
+<ul>
+<li><p>Apesar do nome técnico, a proposta é muito simples. Em vez de perguntar apenas “vai falhar ou não?”, esses modelos perguntam algo muito mais útil para a industria como “Quanto tempo ainda temos até que o evento crítico aconteça?” ou “Qual é a probabilidade de um determinado sistema continuar operando sem falha até um tempo t?”. E quando o evento é falha, desgaste, manutenção corretiva ou parada de linha, essa pergunta deixa de ser estatística pura e passa a ser vantagem operacional.</p></li>
+<li><p>Em vez de olhar apenas para o desfecho final, esses modelos colocam o “tempo” no centro da análise. Em aplicações clássicas, isso foi amplamente usado nas ciências biomédicas; em confiabilidade e manutenção, a mesma lógica passa a representar vida útil, degradação e falha de ativos <span class="citation" data-cites="hrnjica2021">Hrnjica and Softic (2021)</span> e <span class="citation" data-cites="yang2022">Yang et al. (2022)</span></p></li>
+<li><p>Esses modelos lidam explicitamente com duas características fundamentais:</p>
+<ul>
+<li><p><strong>Censura (censoring)</strong>: quando o evento não ocorre durante o período observado</p></li>
+<li><p><strong>Tempo variável de observação</strong>: diferentes unidades podem ser acompanhadas por períodos distintos</p></li>
+</ul></li>
+<li><p>No contexto de advanced manufacturing, o “evento” normalmente representa:</p>
+<ul>
+<li>Falha de equipamento ou componente.</li>
+<li>Ultrapassagen de um limite de degradação.</li>
+<li>Necessidade de intervenção de manutenção.</li>
+<li>Parada não planejada.</li>
+<li>Descarte prematuro de peça ou ferramenta.</li>
+</ul></li>
+<li><p>O ponto mais poderoso aqui é que esses modelos também lidam com uma realidade muito comum na indústria onde nem tudo falha durante o período observado. Muitas vezes, o equipamento saiu da janela de observação ainda funcionando. Isso não é “dado perdido”; isso é <strong>censura</strong>, e Survival Analysis foi feita para tratar exatamente esse tipo de cenário. A literatura de prognóstico de ativos mostra que diferentes formas de censura podem afetar fortemente a modelagem e a interpretação dos resultados em manutenção preditiva.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/time-to-event/kaplan_meier.png" class="img-fluid figure-img"></p>
+<figcaption>Curva de sobrevivência (Kaplan-Meier) mostrando a probabilidade de sobrevivência ao longo do tempo com quedas discretas</figcaption>
+</figure>
+</div>
+</section>
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612032203e7d7d-qual-o-objetivo" class="level3">
+<h3 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612032203e7d7d-qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo?</strong></span></h3>
+<p>Modelar e prever o tempo até que um evento crítico ocorra, e isso ajuda a resolver alguns problemas no mundo real como:</p>
+<ul>
+<li>Estimar a vida útil de componentes.</li>
+<li>Calcular a função de risco (hazard).</li>
+<li>Avaliar impacto de variáveis explicativas (temperatura, vibração, carga, etc.).</li>
+<li>Apoiar estratégias de manutenção preditiva.</li>
+</ul>
+<p>Em ambientes industriais avançados, isso viabiliza a redução de downtime, otimização de plano de manutenção e aumento da confiabilidade operacional. Em um país com foco em manufatura, isso é poder competitivo.</p>
+<p><strong>Abaixo algumas perguntas industriais que são transformadas em algo acionavel através dos resultados dos modelos time to event</strong></p>
+<ul>
+<li>Qual a probabilidade de um ativo continuar operando até o próximo lote?</li>
+<li>Quais variáveis aceleram o risco de falha?</li>
+<li>Em que faixa de operaçao o risco cresce mais rápido?</li>
+<li>Quando vale investir antes que o custo fuja do controle?</li>
+</ul>
+<p>Na prática o que acontece é que a conversa muda de “acho que vai falhar” para “o risco aumenta nessa condição, nessa velocidade e nessa janela de tempo” ou seja, se tornam decisões baseadas em dados.</p>
+<p>Em estudos aplicados em manufatura e equipamentos industriais, Survival Analysis aparece como ferramenta para estimar probabilidade de falha, curvas de sobrevivência e fatores que influenciam o tempo de vida útil <span class="citation" data-cites="hrnjica2024">Hrnjica et al. (2024)</span></p>
+</section>
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612033203e7d7d-de-onde-vem" class="level3">
+<h3 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612033203e7d7d-de-onde-vem"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem?</strong></span></h3>
+<ul>
+<li><p>A motivação industrial surge com crescimento de sensores IoT, disponibilidade de dados temporais ricos e necessidade de migrar de manutenção corretiva para preditiva(ganhos de eficiência para se manter competitivo). Na manufatura moderna, esses modelos são uma resposta à necessidade de reduzir custos operacionais, aumentar eficiência e trabalhar com incerteza real dos processos.</p></li>
+<li><p>Os modelos tem origem na medicina através da necessidade de análise de sobrevivência de pacientes com uso de diferentes tratamentos e na industria através de confiabilidade de sistemas de engenharia.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/time-to-event/forum_avc25.png" class="img-fluid figure-img"></p>
+<figcaption>Forum do AVC 2025 mostrando sobrevida sem recorrência de AVC em diferentes tipos de tratamento</figcaption>
+</figure>
+</div>
+<p>Durante muito tempo, a indústria conviveu com dois extremos sendo a manutenção reativa que é agir depois da falha, e a manutenção preventiva fixa que é agir por calendário ou ciclo, mesmo quando ainda não era necessário. O problema é que os dois extremos <strong>custam caro</strong>.</p>
+<p>A reativa gera parada inesperada e urgência. A preventiva fixa pode gerar manutenção em excesso, trocando componentes antes da hora e consumindo recursos sem necessidade. Esse contraste aparece explicitamente na literatura recente sobre manutenção preditiva em ambientes Industry 4.0. <span class="citation" data-cites="coutinho2025">Coutinho et al. (2025)</span></p>
+<p>Em advanced manufacturing, o contexto está mudando:</p>
+<ul>
+<li>Sensores produzem mais dados.</li>
+<li>Operações passam a registrar eventos com maior granularidade.</li>
+<li>A pressão por disponibilidade, eficiência e sustentabilidade aumentou.</li>
+<li>Tornou-se possível integrar estatística, confiabilidade e otimização de decisão.</li>
+</ul>
+<p>Nesse cenário, Survival Analysis ganhou força porque faz uma ponte entre três mundos, o da estatística aplicada,engenharia de confiabilidade e decisão operacional baseada em risco.</p>
+<p>Em um estudo recente, um framework que combinou modelos de sobrevivência com otimização de agendamento de manutenção reportou 25% de redução de downtime em comparação com métodos não otimizados. O mesmo trabalho avaliou modelos como Cox PH, Random Survival Forests, Gradient Boosting Survival Analysis e Survival SVM para estimar falha e vida útil remanescente.</p>
+<p>Isso nasce porque a manufatura precisa sair do manter por hábito para o intervir com inteligência como mostrado nesse vídeo do MIT por Brian Anthony.</p>
+<div class="video-container">
+<iframe src="https://www.youtube.com/embed/SVDcNxO7siQ?si=qChJGexFtrrN_2uB" frameborder="0" allow="autoplay; encrypted-media" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="">
+</iframe>
+</div>
+</section>
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612034203e7d7d-como-fazer" class="level3">
+<h3 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612034203e7d7d-como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer?</strong></span></h3>
+<p><strong>Dados e bibliotecas</strong></p>
+<p>A implementação será feita na linguagem R e tidyverse com a seguinte estrutura:</p>
+<ul>
+<li><strong>time:</strong> tempo até evento ou censura</li>
+<li><strong>event:</strong> indicador (1 = evento ocorreu, 0 = censurado)</li>
+<li><strong>covariáveis</strong> temperature e vibration</li>
+</ul>
+<p>Cada linha no conjunto representa uma unidade observada (máquina, componente, ferramenta, lote ou ativo), o tempo representa o período até a falha ou até o fim da observação, e event informa se a falha realmente aconteceu.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># pacotes usados</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidyverse)</span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(survival)</span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(survminer)</span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(tidymodels)</span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(censored)</span>
+<span id="cb1-7"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggsurvfit)</span>
+<span id="cb1-8"></span>
+<span id="cb1-9"></span>
+<span id="cb1-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exemplo simulado</span></span>
+<span id="cb1-11"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set.seed</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">123</span>)</span>
+<span id="cb1-12"></span>
+<span id="cb1-13">df <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(</span>
+<span id="cb1-14">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">id =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">200</span>,</span>
+<span id="cb1-15">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">temperature =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">200</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">75</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>),</span>
+<span id="cb1-16">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vibration =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rnorm</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">200</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mean =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">sd =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb1-17">) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb1-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb1-19">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Quanto maior temp e vibração, maior a 'taxa' de falha (rate)</span></span>
+<span id="cb1-20">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Subtraímos a média para centralizar e escalamos para gerar variação</span></span>
+<span id="cb1-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">hazard_rate =</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.01</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">exp</span>(<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.07</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (temperature <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">75</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span> <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> (vibration <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>)),</span>
+<span id="cb1-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">time =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rexp</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">n</span>(), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">rate =</span> hazard_rate),</span>
+<span id="cb1-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">event =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rbinom</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">n</span>(), <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Adicionando censura (nem todos falham no tempo do estudo)</span></span>
+<span id="cb1-24">  )</span></code></pre></div></div>
+</div>
+<p><strong>Objeto de sobrevivência</strong></p>
+<p>Criando o objeto de sobrevivência, nós explicamos que não olhamos apenas se “quebrou”, mas “quando” quebrou e se a observação foi interrompida (censura). Esse objeto é o coração da análise e ele diz ao modelo <code>aqui está o tempo, e aqui está se o evento ocorreu ou se a observação foi censurada.</code></p>
+<p>A ideia é encapsular tempo + evento em uma única variável de resposta.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># criando o objeto sobrevivencia (surv_obj) e grupos que iremos usar lá na frente</span></span>
+<span id="cb2-2">df_clean <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> df <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(</span>
+<span id="cb2-4">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">temp_group =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">if_else</span>(temperature <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">75</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Alta (&gt;75°C)"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Baixa (&lt;=75°C)"</span>),</span>
+<span id="cb2-5">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">temp_group =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fct_relevel</span>(temp_group, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Baixa (&lt;=75°C)"</span>),</span>
+<span id="cb2-6">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">surv_obj =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">Surv</span>(time, event)</span>
+<span id="cb2-7">  )</span></code></pre></div></div>
+</div>
+<p><strong>Visualização inicial usando Kaplan-Meier</strong></p>
+<p>Começamos com uma pergunta importante: qual a curva de sobrevivência ? Qual a chance do sistema ainda estar funcionando no tempo t?</p>
+<p>A curva mostrada no Kaplan-Meier é uma boa porta de entrada que estima a probabilidade de sobrevivência ao longo do tempo. Esse é um dos modelos clássicos mais usados quando queremos enxergar o comportamento geral do sistema ou comparar grupos.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># rodar o modelo km</span></span>
+<span id="cb3-2">km_fit <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">survfit</span>(surv_obj <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> df_clean)</span>
+<span id="cb3-3"></span>
+<span id="cb3-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># plotar kaplan-meier</span></span>
+<span id="cb3-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggsurvplot</span>(km_fit)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/time-to-event/time_to_event_files/figure-html/kaplan-meier-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Comparando condições operacionais</strong></p>
+<p>Uma das perguntas mais úteis na indústria: “esse contexto operacional acelera ou desacelera a falha?” Por exemplo, podemos comparar ativos em condição de temperatura alta vs.&nbsp;baixa. Se as curvas se separam, você começa a visualizar algo muito valioso: não apenas se existe diferença, mas como essa diferença se comporta no tempo.</p>
+<p>A ideia é trnasformar contexto operacional em variável explicativa, e mostrar a diferença entre os regimes de temperatura.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># "Qual a chance do sistema ainda estar funcionando no tempo t?"</span></span>
+<span id="cb4-2">km_fit <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">survfit2</span>(surv_obj <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> temp_group, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> df_clean)</span>
+<span id="cb4-3"></span>
+<span id="cb4-4">km_fit <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb4-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggsurvfit</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-6">  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#add_confidence_interval() +</span></span>
+<span id="cb4-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">add_risktable</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb4-8">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb4-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Curva de Sobrevivência Kaplan-Meier"</span>,</span>
+<span id="cb4-10">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Impacto da Temperatura na Confiabilidade do Ativo"</span>,</span>
+<span id="cb4-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tempo de Operação (horas)"</span>,</span>
+<span id="cb4-12">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Probabilidade de Funcionamento"</span></span>
+<span id="cb4-13">  )</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/time-to-event/time_to_event_files/figure-html/km_group-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Modelar risco condicionado as variáveis</strong></p>
+<p>O modelo de Cox Proportional Hazards nos envia para além da visualização quando o objetivo é entender como múltiplas variáveis afetam o risco ao mesmo tempo. Ele é amplamente citado em aplicações de falha e manutenção para identificar covariáveis associadas ao tempo até o evento.</p>
+<p>O ponto central aqui é o hazard ratio onde a ideia é modelar risco condicionado as variáveis por exemplo valor maior que 1: aumenta o risco; valor menor que 1: reduz o risco. Os resultados essenciais são - <code>coeficiente = log risk - exp(coef) = hazard ratio</code></p>
+<p>Na prática, isso permite sair de uma narrativa vaga (“vibração parece ruim”) para uma narrativa quantitativa (“maior vibração está associada a maior risco relativo”) ou (“Para cada grau Celsius de aumento na temperatura da carcaça, o risco de falha do componente auemnta em 7%”).</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Muito importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cuidado para não confundiir risco relativo com risco absoluto na interpretação e também na comunicação. Para saber mais, sugiro ler Spiegelhalter em The Art of Statistics página 33 na versão Inglês.</p>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Definindo a especificação do modelo (usando o pacote censored)</span></span>
+<span id="cb5-2">cox_spec <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">proportional_hazards</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set_engine</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"survival"</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">set_mode</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"censored regression"</span>)</span>
+<span id="cb5-5"></span>
+<span id="cb5-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Criando a receita (Recipe)</span></span>
+<span id="cb5-7">rec_maint <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">recipe</span>(surv_obj <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">~</span> temperature <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> vibration, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> df_clean)</span>
+<span id="cb5-8"></span>
+<span id="cb5-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Montando o Workflow (Passo 5)</span></span>
+<span id="cb5-10">maint_wflow <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">workflow</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">add_recipe</span>(rec_maint) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb5-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">add_model</span>(cox_spec)</span>
+<span id="cb5-13"></span>
+<span id="cb5-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Treinando o modelo</span></span>
+<span id="cb5-15">maint_fit <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> maint_wflow <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">fit</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> df_clean)</span>
+<span id="cb5-16"></span>
+<span id="cb5-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Visualizando os coeficientes (Hazard Ratios)</span></span>
+<span id="cb5-18">maint_fit <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">extract_fit_parsnip</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb5-20">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tidy</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">exp =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">conf.int =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>)</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 7
+  term        estimate std.error statistic  p.value conf.low conf.high
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1 temperature     1.07   0.00970      7.03 2.06e-12     1.05      1.09
+2 vibration       1.75   0.0855       6.58 4.77e-11     1.48      2.08</code></pre>
+</div>
+</div>
+<p><strong>Validando uma hipótese importante/diagnóstico teste de proporcionalidade</strong></p>
+<p>O modelo de Cox parte da hipótese de proporcionalidade dos riscos. Se essa hipótese não se sustentar, você por partir para alternativas mais flexíveis como modelos de sobrevivência com machine learning, como Random Survival Forests ou Gradient Boosting Survival Analysis, que já aparecem em aplicações industriais mais recente.</p>
+<p>O verdadeiro fluxo é definir claramente o evento relevante, estruturar corretamente tempo e censura, explorar a curva de sobrevivência, comparar condições operacionais, modelar covariáveis que explicam risco e principalmente transformar o resultado em decisão de manutenção, operação ou engenharia. O modelo não é o fim, mas sim o tradutor entre dado histórico e ação futura.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ExtraI o fit original para usar funções do pacote survival</span></span>
+<span id="cb7-2">raw_fit <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> maint_fit <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">extract_fit_engine</span>()</span>
+<span id="cb7-3">test_ph <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">cox.zph</span>(raw_fit)</span>
+<span id="cb7-4"></span>
+<span id="cb7-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(test_ph) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Se p &gt; 0.05, a premissa de riscos proporcionais é mantida</span></span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            chisq df    p
+temperature 0.656  1 0.42
+vibration   0.011  1 0.92
+GLOBAL      0.700  2 0.70</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">plot</span>(test_ph)</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/time-to-event/time_to_event_files/figure-html/proportional_hazard-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/time-to-event/time_to_event_files/figure-html/proportional_hazard-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Previsão de risco relativo</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| label: relative_risk</span></span>
+<span id="cb10-2"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| warning: false</span></span>
+<span id="cb10-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#| message: false</span></span>
+<span id="cb10-4"></span>
+<span id="cb10-5"></span>
+<span id="cb10-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># crate eval time</span></span>
+<span id="cb10-7">eval_time <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">max</span>(df_clean<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">$</span>time), <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">length.out =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">100</span>)</span>
+<span id="cb10-8"></span>
+<span id="cb10-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Vamos prever o "hazard score" para os dados originais</span></span>
+<span id="cb10-10">predictions <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">predict</span>(maint_fit, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">new_data =</span> df_clean, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"survival"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">eval_time =</span> eval_time) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb10-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_cols</span>(df_clean)</span>
+<span id="cb10-12"></span>
+<span id="cb10-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Exemplo de predição de risco (linear predictor)</span></span>
+<span id="cb10-14">df_risco <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">predict</span>(maint_fit, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">new_data =</span> df_clean, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"survival"</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">eval_time =</span> eval_time) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb10-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_cols</span>(df_clean) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb10-16">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">rename</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">risk_score =</span> .pred)</span>
+<span id="cb10-17"></span>
+<span id="cb10-18"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">head</span>(df_risco <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">select</span>(id, temperature, vibration, risk_score))</span></code></pre></div></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+     id temperature vibration risk_score        
+  &lt;int&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;list&gt;            
+1     1        69.4      7.20 &lt;tibble [100 × 2]&gt;
+2     2        72.7      6.31 &lt;tibble [100 × 2]&gt;
+3     3        90.6      4.73 &lt;tibble [100 × 2]&gt;
+4     4        75.7      5.54 &lt;tibble [100 × 2]&gt;
+5     5        76.3      4.59 &lt;tibble [100 × 2]&gt;
+6     6        92.2      4.52 &lt;tibble [100 × 2]&gt;</code></pre>
+</div>
+</div>
+<p><strong>Curvas previstas para cenários (Digital Twin Simulado)</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Criando cenários hipotéticos para comparação</span></span>
+<span id="cb12-2">cenarios <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">tibble</span>(</span>
+<span id="cb12-3">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">temperature =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">65</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">85</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">95</span>), <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Máquina Fria vs Máquina Quente</span></span>
+<span id="cb12-4">  <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">vibration =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">7</span>)<span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Vibração Baixa vs Vibração Alta</span></span>
+<span id="cb12-5">) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb12-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">label =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">c</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Operação Ideal"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Alerta Térmico"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Risco Crítico"</span>))</span>
+<span id="cb12-7"></span>
+<span id="cb12-8">pred_curves <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">predict</span>(maint_fit, </span>
+<span id="cb12-9">                       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">new_data =</span> cenarios, </span>
+<span id="cb12-10">                       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"survival"</span>, </span>
+<span id="cb12-11">                       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">eval_time =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">seq</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">400</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">by =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>))</span>
+<span id="cb12-12"></span>
+<span id="cb12-13">pred_curves <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb12-14">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">bind_cols</span>(cenarios) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb12-15">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">unnest</span>(.pred) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb12-16">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> .eval_time, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> .pred_survival, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> label)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb12-17">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_step</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">linewidth =</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb12-18">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_minimal</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb12-19">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb12-20">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Curvas de Sobrevivência por Cenário Operacional"</span>,</span>
+<span id="cb12-21">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Predição baseada no modelo de Cox PH"</span>,</span>
+<span id="cb12-22">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Tempo Projetado"</span>,</span>
+<span id="cb12-23">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Probabilidade de Sobrevivência"</span>,</span>
+<span id="cb12-24">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">color =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Cenário"</span></span>
+<span id="cb12-25">  )</span></code></pre></div></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/time-to-event/time_to_event_files/figure-html/simulation-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612035203e7d7d-pra-onde-vai" class="level3">
+<h3 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612035203e7d7d-pra-onde-vai"><i class="fa-solid fa-5" aria-label="5"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai?</strong></span></h3>
+<p>Ela pode criar valor para vários públicos ao mesmo tempo, onde para a equipe de manutenção ela ajuda a planejar intervenções com mais antecedência reduzindo surpresas e na melhoria e priorização de ativos críticos, para o time de operações ela aumenta previsibilidade, reduzindo paradas não planejadas e melhora a sincronização entre produção e manutenção, ja na engenharia ela ajuda a identificar variáveis associadas a desgaste e falha, na melhoria do entendimento de regimes de uso e também apoia redesign de processo, componente ou janela operacional.</p>
+<p>Outros times também se beneficiam dessa abordagem como o supply chain através de melhora planejamento de reposição reduzindo urgência e compra emergencial e também apoia gestão de peças sobressalentes e data science onde ela oferece uma forma mais realista de modelar fenômenos industriais quando o tempo importa e quando existem observações censuradas.</p>
+<p>Esse papel de ponte entre confiabilidade, manutenção e otimização operacional é justamente o que faz esses modelos ganharem relevância em cenários modernos de Industry 4.0</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://carvalhoribeiro.netlify.app/posts/time-to-event/fluxo_time_to_event.png" class="img-fluid figure-img"></p>
+<figcaption>Fluxo do processo de modelos time-to-event</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>E a computação quântica?</strong></p>
+<p>O surgimento de novas tecnologias como computação quantica, pode expandir o espaço de otimização dos modelos time-to-event permitindo resolver problemas que hoje em 2026, ainda são impossíveis ou lentos demais mesmo com MCP e LLMs. Exemplos de ações seriam qual máquina parar primeiro, como alocar equipes, como minimizar downtime, como otimizar rotas de manutenção, como balancear custo vs risco e como simular cenários complexos, ou seja, ela resolveria probemas que hoje são np-hard, combinatórios, com milhões de variáveis e impossíveis de otimizar em tempo real.</p>
+<p>Um exemplo hipotético: Usamos o time-to-event para prever quando um avião vai precisar de manutenção e a computação quântica permitiria otimizar toda a malha aérea global para encaixar essa manutenção com o mínimo impacto.</p>
+</div>
+</div>
+</section>
+<section id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612036203e7d7d-qual-resultado" class="level3">
+<h3 class="anchored" data-anchor-id="b58fc729-690b-4000-b19f-365a4093b2ff7b7b3c2066612036203e7d7d-qual-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual resultado?</strong></span></h3>
+<p>O resultado esperado está em mudar o tipo de conversa que a empresa consegue ter, por exemplo:</p>
+<ul>
+<li><p><strong>Antes:</strong> “A falha aconteceu de novo”, “vamos trocar por segurança” ou “não sabemos direito quanto isso aguenta”.</p></li>
+<li><p><strong>Depois:</strong> O risco acelera nesta faixa operacional”, “esse ativo provavelmente sustenta mais ciclos com segurança”, “vale intervir agora ou depois do próximo lote?” ou “qual ativo precisa de atenção primeiro?”</p></li>
+</ul>
+<p>Esse deslocamento se torna um resultado importante porque troca opinião por evidência, urgência por planejamento, reação por antecipação. Em aplicações recentes, Survival Analysis já aparece integrada não só à estimativa de falha e vida útil remanescente, mas também ao agendamento otimizado de manutenção, conectando modelagem estatística a decisão operacional efetiva.</p>
+<p>Para quem cria modelos os resultados são modelos mais aderentes à realidade temporal dos ativos, melhor interpretação de risco e conexão clara entre análise e decisão. Para o time os resultados são melhor coordenação entre manutenção, operação e engenharia, menos debate baseado em intuição isolada e maior capacidade de priorizar. Já para a empresa o resultado é redução de downtime, melhor uso de recursos, mais confiabilidade operacional e maior maturidade analítica.</p>
+<p>Para a consumidores e ou usuários e ou sociedade, quando operações industriais se tornam mais previsíveis e eficientes, o efeito final tende a incluir menos desperdício, melhor uso de materiais, menor consumo desnecessário de peças e uma manufatura mais sustentável e maior acesso.</p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-coutinho2025" class="csl-entry">
+Coutinho, Beatriz, Margarida Moreira, Eliseu Pereira, and Gil Gonçalves. 2025. <span>“Survival Analysis-Based System for Predictive Maintenance Optimization.”</span> <em>SN Computer Science</em> 6 (7): 766. <a href="https://doi.org/10.1007/s42979-025-04291-9">https://doi.org/10.1007/s42979-025-04291-9</a>.
+</div>
+<div id="ref-hrnjica2021" class="csl-entry">
+Hrnjica, Bahrudin, and Selver Softic. 2021. <em>The Survival Analysis for a Predictive Maintenance in Manufacturing</em>. Edited by Alexandre Dolgui, Alain Bernard, David Lemoine, Gregor Von Cieminski, and David Romero. Vol. 632. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-030-85906-0_9">https://doi.org/10.1007/978-3-030-85906-0_9</a>.
+</div>
+<div id="ref-hrnjica2024" class="csl-entry">
+Hrnjica, Softic, Selver Softic, Bahrudin Hrnjica, and University of Bihac, Faculty of Technical Engineering, Bihac, Bosnia and Herzegovina. 2024. <span>“Case Studies of Survival Analysis for Predictive Maintenance in Manufacturing.”</span> <em>International Journal of Industrial Engineering and Management</em> 15 (4): 320–37. <a href="https://doi.org/10.24867/IJIEM-2024-4-366">https://doi.org/10.24867/IJIEM-2024-4-366</a>.
+</div>
+<div id="ref-yang2022" class="csl-entry">
+Yang, Zhen, Juho Kanniainen, Tomi Krogerus, and Frank Emmert-Streib. 2022. <span>“Prognostic Modeling of Predictive Maintenance with Survival Analysis for Mobile Work Equipment.”</span> <em>Scientific Reports</em> 12 (1): 8529. <a href="https://doi.org/10.1038/s41598-022-12572-z">https://doi.org/10.1038/s41598-022-12572-z</a>.
+</div>
+</div></section></div> ]]></description>
+  <category>Modelos</category>
+  <guid>https://carvalhoribeiro.netlify.app/posts/time-to-event/time_to_event.html</guid>
+  <pubDate>Thu, 04 Jun 2026 03:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Análise Fatorial Exploratória (EFA)</title>
   <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
@@ -21201,338 +22072,6 @@ font-style: inherit;">desc</span>(n))</span></code></pre></div>
   <guid>https://carvalhoribeiro.netlify.app/posts/importar-visualizar/importar_visualizar.html</guid>
   <pubDate>Sun, 07 Aug 2022 03:00:00 GMT</pubDate>
   <media:content url="https://carvalhoribeiro.netlify.app/posts/importar-visualizar/data_import.png" medium="image" type="image/png" height="74" width="144"/>
-</item>
-<item>
-  <title>Modelo preditivo usando com rede neural</title>
-  <dc:creator>Marcelo Carvalho dos Anjos</dc:creator>
-  <link>https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet.html</link>
-  <description><![CDATA[ 
-
-
-
-
-<div class="callout callout-style-simple callout-tip">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Vídeo tema para este post <a href="https://youtu.be/UKXYGGzHc0A" target="_blank">Redes neurais artificiais no R com nnet package</a></p>
-</div>
-</div>
-</div>
-<section id="o-que-é-um-modelo-de-rede-neural" class="level3">
-<h3 class="anchored" data-anchor-id="o-que-é-um-modelo-de-rede-neural"><i class="fa-solid fa-1" aria-label="1"></i> <span style="color: #5AC8BE ;"><strong>O que é um modelo de rede neural</strong></span></h3>
-<ul>
-<li><p>Rede neural é uma técnica que usa nós interconectados ou neuronios em uma estrutura de camadas com o objetivo de resolver problemas de previsão.</p>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">Rede neural regressão</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Rede neural Classificação</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neural_reg.png" class="img-fluid figure-img" width="500"></p>
-<figcaption>Rede Neural - Regressão</figcaption>
-</figure>
-</div>
-</div>
-<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neural_class.png" class="img-fluid figure-img" width="500"></p>
-<figcaption>Rede Neural - Classificação</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div></li>
-</ul>
-</section>
-<section id="qual-o-objetivo" class="level3">
-<h3 class="anchored" data-anchor-id="qual-o-objetivo"><i class="fa-solid fa-2" aria-label="2"></i> <span style="color: #5AC8BE ;"><strong>Qual o objetivo</strong></span></h3>
-<ul>
-<li><p>A técnica é muito utilizada na solução de problemas de classificação onde o resultado(desfecho) é uma classe (e.g.&nbsp;gato, cachorro, cavalo).</p></li>
-<li><p>Neste exemplo, nós usaremos como exemplo uma linha de produção com sensores que registram características como largura e comprimento da pétala e sepala dos três tipos de flores iris: <strong>setosa</strong>, <strong>versicolor</strong> e <strong>virgínica</strong>.</p></li>
-<li><p>Nosso objetivo é fazer um modelo de previsão o qual com base nessas características, consiga classificar cada tipo de flor e separá-las corretamente.</p></li>
-</ul>
-</section>
-<section id="de-onde-vem-a-demanda" class="level3">
-<h3 class="anchored" data-anchor-id="de-onde-vem-a-demanda"><i class="fa-solid fa-3" aria-label="3"></i> <span style="color: #5AC8BE ;"><strong>De onde vem a demanda</strong></span></h3>
-<ul>
-<li><p>Vem do uso de sistemas que utilizam visão computacional, processamento de linguagem natural em seu funcionamento como por exemplo veículos semi-autonomos, linhas de produção de veículos, controle de qualidade de autopeças entre outros.</p></li>
-<li><p>A primeira rede neural artificial foi implementada em 1958 por Frank Rosenblat e se chamava <strong>Perceptron</strong> e naquela época já se falava que era um embrião de um computador eletronico que seria capaz de andar, falar, ver, escrever e se reproduzir. <a href="https://www.nytimes.com/1958/07/13/archives/electronic-brain-teaches-itself.html" target="_blank">Materia New York Times</a></p></li>
-</ul>
-</section>
-<section id="como-fazer" class="level3">
-<h3 class="anchored" data-anchor-id="como-fazer"><i class="fa-solid fa-4" aria-label="4"></i> <span style="color: #5AC8BE ;"><strong>Como fazer</strong></span></h3>
-<p>Neste exemplo usaremos os pacotes <a href="https://www.tidyverse.org/" target="_blank">tidyverse</a>, <a href="https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html" target="_blank">janitor</a>, <a href="https://www.tidymodels.org/" target="_blank">tidymodels</a>, <a href="https://cran.r-project.org/web/packages/nnet/index.html" target="_blank">nnet</a> e <a href="https://www.jstatsoft.org/article/view/v085i11" target="_blank">neuralnettools</a></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># packages ----------------------------------------------------</span></span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(tidyverse)</span>
-<span id="cb1-3"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(tidymodels)</span>
-<span id="cb1-4"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(nnet)</span>
-<span id="cb1-5"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">library</span>(NeuralNetTools)</span>
-<span id="cb1-6"></span>
-<span id="cb1-7"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># data --------------------------------------------------------</span></span>
-<span id="cb1-8">data_iris <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> iris <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> janitor<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">clean_names</span>()</span>
-<span id="cb1-9"></span>
-<span id="cb1-10">split_iris <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">initial_split</span>(data_iris, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">strata =</span> species)</span>
-<span id="cb1-11">train_iris <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">training</span>(split_iris)</span>
-<span id="cb1-12">test_iris  <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">testing</span>(split_iris)</span>
-<span id="cb1-13"></span>
-<span id="cb1-14"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># model -------------------------------------------------------</span></span>
-<span id="cb1-15">mdl_fit_nn_iris <span class="ot" style="color: #003B4F;
-background-color: null;
-font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">nnet</span>(species <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">~</span>., </span>
-<span id="cb1-16">                        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">data =</span> train_iris, </span>
-<span id="cb1-17">                        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">size =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">5</span>, </span>
-<span id="cb1-18">                        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">decay =</span> <span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.01</span>, </span>
-<span id="cb1-19">                        <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">maxit =</span> <span class="dv" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">500</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># weights:  43
-initial  value 142.466668 
-iter  10 value 14.781617
-iter  20 value 9.929478
-iter  30 value 8.291768
-iter  40 value 7.849535
-iter  50 value 7.765939
-iter  60 value 7.732812
-iter  70 value 7.696247
-iter  80 value 7.684596
-iter  90 value 7.675855
-iter 100 value 7.669159
-iter 110 value 7.662754
-iter 120 value 7.658608
-iter 130 value 7.657329
-iter 140 value 7.657058
-iter 150 value 7.657015
-final  value 7.657012 
-converged</code></pre>
-</div>
-</div>
-<p>Vamos fazer uma previsão usando o modelo que construímos e colocar o resultado dentro do <code>dataframe</code> com os dados de teste para podermos comparar valores <code>previstos</code> e <code>realizados</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;"># results -----------------------------------------------------</span></span>
-<span id="cb3-2">mdl_fit_nn_iris <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span> </span>
-<span id="cb3-3">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">predict</span>(test_iris,<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"class"</span>) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">%&gt;%</span></span>
-<span id="cb3-4">  <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">bind_cols</span>(test_iris)</span></code></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-• `` -&gt; `...1`</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>         ...1 sepal_length sepal_width petal_length petal_width    species
-1      setosa          4.9         3.0          1.4         0.2     setosa
-2      setosa          5.0         3.4          1.5         0.2     setosa
-3      setosa          5.4         3.7          1.5         0.2     setosa
-4      setosa          5.8         4.0          1.2         0.2     setosa
-5      setosa          5.1         3.5          1.4         0.3     setosa
-6      setosa          5.7         3.8          1.7         0.3     setosa
-7      setosa          5.4         3.4          1.7         0.2     setosa
-8      setosa          5.0         3.4          1.6         0.4     setosa
-9      setosa          4.9         3.6          1.4         0.1     setosa
-10     setosa          5.1         3.4          1.5         0.2     setosa
-11     setosa          5.0         3.5          1.6         0.6     setosa
-12     setosa          5.1         3.8          1.6         0.2     setosa
-13     setosa          5.3         3.7          1.5         0.2     setosa
-14 versicolor          5.5         2.3          4.0         1.3 versicolor
-15 versicolor          6.3         3.3          4.7         1.6 versicolor
-16 versicolor          4.9         2.4          3.3         1.0 versicolor
-17 versicolor          6.2         2.2          4.5         1.5 versicolor
-18 versicolor          5.6         2.5          3.9         1.1 versicolor
-19 versicolor          6.7         3.0          5.0         1.7 versicolor
-20 versicolor          5.7         2.6          3.5         1.0 versicolor
-21 versicolor          6.0         3.4          4.5         1.6 versicolor
-22 versicolor          6.7         3.1          4.7         1.5 versicolor
-23 versicolor          5.5         2.6          4.4         1.2 versicolor
-24 versicolor          5.6         2.7          4.2         1.3 versicolor
-25 versicolor          5.7         3.0          4.2         1.2 versicolor
-26 versicolor          5.7         2.8          4.1         1.3 versicolor
-27  virginica          7.1         3.0          5.9         2.1  virginica
-28  virginica          4.9         2.5          4.5         1.7  virginica
-29  virginica          5.7         2.5          5.0         2.0  virginica
-30  virginica          5.8         2.8          5.1         2.4  virginica
-31  virginica          6.4         3.2          5.3         2.3  virginica
-32  virginica          7.7         2.8          6.7         2.0  virginica
-33  virginica          6.2         2.8          4.8         1.8  virginica
-34  virginica          7.2         3.0          5.8         1.6  virginica
-35  virginica          7.9         3.8          6.4         2.0  virginica
-36 versicolor          6.1         2.6          5.6         1.4  virginica
-37  virginica          6.4         3.1          5.5         1.8  virginica
-38  virginica          5.8         2.7          5.1         1.9  virginica
-39  virginica          6.3         2.5          5.0         1.9  virginica</code></pre>
-</div>
-</div>
-<p>Como já temos o resultados previstos e o real, podemos fazer uma matriz de confusão para facilitar a visualização dos resultados e analisar o desempenho inicial do modelo.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#confusion matrix</span></span>
-<span id="cb6-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">table</span>(test_iris<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">$</span>species,</span>
-<span id="cb6-3">      <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">predict</span>(mdl_fit_nn_iris,</span>
-<span id="cb6-4">              <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">newdata =</span> test_iris, </span>
-<span id="cb6-5">              <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"class"</span>))</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>            
-             setosa versicolor virginica
-  setosa         13          0         0
-  versicolor      0         13         0
-  virginica       0          1        12</code></pre>
-</div>
-</div>
-<p>Como ficou o resultado da previsão ?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#predict classes</span></span>
-<span id="cb8-2"><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">predict</span>(mdl_fit_nn_iris, test_iris, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">type =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"class"</span>)</span></code></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
- [6] "setosa"     "setosa"     "setosa"     "setosa"     "setosa"    
-[11] "setosa"     "setosa"     "setosa"     "versicolor" "versicolor"
-[16] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
-[21] "versicolor" "versicolor" "versicolor" "versicolor" "versicolor"
-[26] "versicolor" "virginica"  "virginica"  "virginica"  "virginica" 
-[31] "virginica"  "virginica"  "virginica"  "virginica"  "virginica" 
-[36] "versicolor" "virginica"  "virginica"  "virginica" </code></pre>
-</div>
-</div>
-<p>Plotando o modelo que acabamos de fazer</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#plotando o gráfico</span></span>
-<span id="cb10-2">NeuralNetTools<span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">::</span><span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">plotnet</span>(mdl_fit_nn_iris,<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">pad_x=</span><span class="fl" style="color: #AD0000;
-background-color: null;
-font-style: inherit;">0.55</span>, <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">circle_col =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"grey90"</span>)</span></code></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet_files/figure-html/plot-neural-net-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="pra-onde-vai-quem-é-o-cliente" class="level3">
-<h3 class="anchored" data-anchor-id="pra-onde-vai-quem-é-o-cliente"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Pra onde vai quem é o cliente</strong></span></h3>
-<ul>
-<li><p>Um modelos de previsão de classificação pode ser embarcado dentro do sistema de produção.</p></li>
-<li><p>O modelo que fizemos é bastante simples e serve apenas como base para aprendizado, como próximo passo o uso de validação cruzada (cross validation) pode ser uma excelente opção para complementar o que aprendemos aqui.</p></li>
-</ul>
-</section>
-<section id="qual-o-resultado" class="level3">
-<h3 class="anchored" data-anchor-id="qual-o-resultado"><i class="fa-solid fa-6" aria-label="6"></i> <span style="color: #5AC8BE ;"><strong>Qual o resultado</strong></span></h3>
-<ul>
-<li><p>Aperfeiçoar as técnicas de contrução de modelos e solução de problemas de classificação para que estes possam auxiliar na produtividade da industria de flores que usamos como exemplo.</p></li>
-<li><p>Facilitar o processo de classificação.</p></li>
-<li><p>Melhorar o processo de produção, qualidade do produto, satisfação do consumidor e competitividade do negócio.</p></li>
-</ul>
-
-
-</section>
-
- ]]></description>
-  <category>Modelos</category>
-  <guid>https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neuralnet.html</guid>
-  <pubDate>Sat, 06 Aug 2022 03:00:00 GMT</pubDate>
-  <media:content url="https://carvalhoribeiro.netlify.app/posts/neural-net-nnet/neural_class.png" medium="image" type="image/png" height="144" width="144"/>
 </item>
 </channel>
 </rss>

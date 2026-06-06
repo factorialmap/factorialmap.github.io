@@ -3,6 +3,7 @@
     "listing": "/index.html",
     "items": [
       "/posts/cfa/cfa.html",
+      "/posts/time-to-event/time_to_event.html",
       "/posts/efa/efa.html",
       "/posts/sem/modelagem_equacoes_estruturais.html",
       "/posts/classificacao_ai/classificacao_ai.html",
